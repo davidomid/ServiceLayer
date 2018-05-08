@@ -7,7 +7,7 @@
     <RepositoryUrl>https://github.com/davidomid/ServiceLayer</RepositoryUrl>
     <PackageProjectUrl>https://github.com/davidomid/ServiceLayer/tree/master/ServiceLayer.Core</PackageProjectUrl>
     <PackageTags>Service, Layer, Core, David, Omid</PackageTags>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
   </PropertyGroup>
 
   <ItemGroup>
