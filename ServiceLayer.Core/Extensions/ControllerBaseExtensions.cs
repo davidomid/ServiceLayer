@@ -5,12 +5,28 @@ namespace ServiceLayer.Core.Extensions
 {
     public static class ControllerBaseExtensions
     {
-        public static ActionResult FromResult<T>(this ControllerBase controller, ServiceResult<T> result)
+        public static ActionResult FromResult(this ControllerBase controller, IServiceResult result)
+        {
+            return controller.FromNonGenericResult(result);
+        }
+
+        public static ActionResult FromResult<T>(this ControllerBase controller, IServiceResult<T> result)
         {
             switch (result.ResultType)
             {
                 case ServiceResultTypes.Ok:
                     return controller.Ok(result.Data);
+                default:
+                    return controller.FromNonGenericResult(result);
+            }
+        }
+
+        private static ActionResult FromNonGenericResult(this ControllerBase controller, IServiceResult result)
+        {
+            switch (result.ResultType)
+            {
+                case ServiceResultTypes.Ok:
+                    return controller.Ok();
                 case ServiceResultTypes.NotFound:
                     return controller.NotFound();
                 case ServiceResultTypes.BadRequest:
