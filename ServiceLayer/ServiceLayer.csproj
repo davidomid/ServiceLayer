@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard1.0;netstandard2.0;net40</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>David Omid</Authors>
+    <Company />
+    <Description>A project which contains useful models for implementing or integrating with a C# service.</Description>
+    <RepositoryUrl>https://github.com/davidomid/ServiceLayer</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/davidomid/ServiceLayer/tree/master/ServiceLayer</PackageProjectUrl>
+    <PackageTags>Service, Layer, David, Omid</PackageTags>
   </PropertyGroup>
 
 </Project>

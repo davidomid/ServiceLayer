@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>A project for implementing or integrating with a service using .NET Core.</Description>
+    <RepositoryUrl>https://github.com/davidomid/ServiceLayer</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/davidomid/ServiceLayer/tree/master/ServiceLayer.Core</PackageProjectUrl>
+    <PackageTags>Service, Layer, Core, David, Omid</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
