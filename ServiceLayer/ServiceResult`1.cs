@@ -27,5 +27,15 @@ namespace ServiceLayer
         {
             return new ServiceResult(serviceResult.ResultType, serviceResult.ErrorMessages);
         }
+
+        public static implicit operator T(ServiceResult<T> serviceResult)
+        {
+            return serviceResult.Data; 
+        }
+
+        public static implicit operator ServiceResult<T>(T data)
+        {
+            return new ServiceResult<T>(ServiceResultTypes.Ok, data);
+        }
     }
 }
