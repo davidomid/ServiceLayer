@@ -31,6 +31,8 @@ namespace ServiceLayer.Core.Extensions
                     return controller.NotFound();
                 case ServiceResultTypes.BadRequest:
                     return controller.BadRequest(result.ErrorMessages);
+                case ServiceResultTypes.Conflict:
+                    return controller.StatusCode(409, result.ErrorMessages);
                 case ServiceResultTypes.Error:
                     return controller.StatusCode(500, result.ErrorMessages);
                 default:
