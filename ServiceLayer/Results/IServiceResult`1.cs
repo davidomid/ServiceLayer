@@ -1,4 +1,4 @@
-﻿namespace ServiceLayer
+﻿namespace ServiceLayer.Results
 {
     public interface IServiceResult<out T> : IServiceResult
     {

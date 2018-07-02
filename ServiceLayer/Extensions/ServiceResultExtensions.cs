@@ -1,5 +1,9 @@
 ﻿
-namespace ServiceLayer
+using ServiceLayer.Results;
+using ServiceLayer.Results.Implementations;
+using ServiceLayer.Results.Implementations.Internal;
+
+namespace ServiceLayer.Extensions
 {
     public static class ServiceResultExtensions
     {

@@ -1,4 +1,6 @@
-﻿namespace ServiceLayer
+﻿using ServiceLayer.Enums;
+
+namespace ServiceLayer.Results.Implementations
 {
     public class BadRequestResult : ServiceResult
     {

@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using ServiceLayer.Enums;
+using ServiceLayer.Extensions;
+using ServiceLayer.Results.Implementations.Internal;
+using System.Collections.Generic;
 using System.Linq;
 
-namespace ServiceLayer
+namespace ServiceLayer.Results.Implementations
 {
     public abstract class ServiceResult : IServiceResult
     {
