@@ -3,14 +3,14 @@ using System.Linq;
 
 namespace ServiceLayer
 {
-    public class ServiceResult : IServiceResult
+    public abstract class ServiceResult : IServiceResult
     {
-        public ServiceResult(ServiceResultTypes resultType, IEnumerable<string> errorMessages = null) : this(resultType,
+        protected ServiceResult(ServiceResultTypes resultType, IEnumerable<string> errorMessages = null) : this(resultType,
             errorMessages?.ToArray())
         {
         }
 
-        public ServiceResult(ServiceResultTypes resultType, params string[] errorMessages)
+        protected ServiceResult(ServiceResultTypes resultType, params string[] errorMessages)
         {
             this.ResultType = resultType;
             this.ErrorMessages = errorMessages;
@@ -21,5 +21,25 @@ namespace ServiceLayer
         public ServiceResultTypes ResultType { get; }
 
         IEnumerable<string> IServiceResult.ErrorMessages => this.ErrorMessages;
+
+        public static ServiceResult FromServiceResult(IServiceResult serviceResult)
+        {
+            return serviceResult.ToServiceResult();
+        }
+
+        public static ServiceResult FromServiceResult<T>(IServiceResult<T> serviceResult)
+        {
+            return serviceResult.ToServiceResult();
+        }
+
+        public static ServiceResult Create(ServiceResultTypes resultType, params string[] errorMessages)
+        {
+            return new InternalServiceResult(resultType, errorMessages);
+        }
+
+        public static ServiceResult Create(ServiceResultTypes resultType, IEnumerable<string> errorMessages = null)
+        {
+            return new InternalServiceResult(resultType, errorMessages);
+        }
     }
 }
