@@ -6,13 +6,17 @@ A C# library for developing SOLID services with consistent error handling.
 
 ServiceLayer is available as a NuGet package: 
 
-```Install-Package ServiceLayer```
+```
+Install-Package ServiceLayer
+```
 
 ### ASP.NET Core integration
 
 Some useful features for integrating ServiceLayer with ASP.NET Core applications is also available as a separate NuGet package: 
 
-```Install-Package ServiceLayer.Core```
+```
+Install-Package ServiceLayer.Core
+```
 
 
 |         |       |       |
