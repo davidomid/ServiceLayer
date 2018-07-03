@@ -1,4 +1,5 @@
-# ServiceLayer [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/davidomid/ServiceLayer/Operator-improvements/LICENSE)
+# ServiceLayer
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/davidomid/ServiceLayer/Operator-improvements/LICENSE)
 
 A C# library for developing SOLID services with consistent error handling. 
 
