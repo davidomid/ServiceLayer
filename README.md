@@ -1,6 +1,7 @@
-# ServiceLayer
+# ServiceLayer [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/davidomid/ServiceLayer/Operator-improvements/LICENSE)
 
 A C# library for developing SOLID services with consistent error handling. 
+
 
 ## Installation
 
@@ -19,7 +20,9 @@ Install-Package ServiceLayer.Core
 ```
 
 
-|         |       |       |
+|     Package    |    Version   |    Downloads   |
 | ------- | ----- | ----- |
 | `ServiceLayer` | [![NuGet](https://img.shields.io/nuget/v/ServiceLayer.svg)](https://nuget.org/packages/ServiceLayer) | [![Nuget](https://img.shields.io/nuget/dt/ServiceLayer.svg)](https://nuget.org/packages/ServiceLayer) |
 | `ServiceLayer.Core` | [![NuGet](https://img.shields.io/nuget/v/ServiceLayer.Core.svg)](https://nuget.org/packages/ServiceLayer.Core) | [![Nuget](https://img.shields.io/nuget/dt/ServiceLayer.Core.svg)](https://nuget.org/packages/ServiceLayer.Core)
+
+
