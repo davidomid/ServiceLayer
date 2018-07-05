@@ -2,9 +2,9 @@
 
 namespace ServiceLayer.Results.Implementations
 {
-    public class OkServiceResult : ServiceResult
+    public class OkResult : ServiceResult
     {
-        public OkServiceResult() : base(ServiceResultTypes.Ok)
+        public OkResult() : base(ServiceResultTypes.Ok)
         {
         }
     }

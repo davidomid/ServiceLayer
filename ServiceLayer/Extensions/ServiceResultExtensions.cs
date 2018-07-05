@@ -19,7 +19,7 @@ namespace ServiceLayer.Extensions
 
         public static ServiceResult<T> ToServiceResult<T>(this T data)
         {
-            return new OkServiceResult<T>(data);
+            return new OkResult<T>(data);
         }
 
         public static ServiceResult<T> ToServiceResult<T>(this IServiceResult<T> serviceResult)
