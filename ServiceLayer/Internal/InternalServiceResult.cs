@@ -1,7 +1,6 @@
-﻿using ServiceLayer.Enums;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace ServiceLayer.Results.Implementations.Internal
+namespace ServiceLayer.Internal
 {
     internal sealed class InternalServiceResult : ServiceResult
     {

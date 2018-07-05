@@ -1,4 +1,4 @@
-﻿namespace ServiceLayer.Enums
+﻿namespace ServiceLayer
 {
     public enum ServiceResultTypes
     {

@@ -1,9 +1,6 @@
-﻿
-using ServiceLayer.Results;
-using ServiceLayer.Results.Implementations;
-using ServiceLayer.Results.Implementations.Internal;
+﻿using ServiceLayer.Internal;
 
-namespace ServiceLayer.Extensions
+namespace ServiceLayer
 {
     public static class ServiceResultExtensions
     {

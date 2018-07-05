@@ -1,7 +1,6 @@
-﻿using ServiceLayer.Enums;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace ServiceLayer.Results
+namespace ServiceLayer
 {
     public interface IServiceResult
     {

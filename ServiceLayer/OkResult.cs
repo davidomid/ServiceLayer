@@ -1,6 +1,4 @@
-﻿using ServiceLayer.Enums;
-
-namespace ServiceLayer.Results.Implementations
+﻿namespace ServiceLayer
 {
     public class OkResult : ServiceResult
     {
