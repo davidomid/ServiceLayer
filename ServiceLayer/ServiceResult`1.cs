@@ -6,10 +6,6 @@ namespace ServiceLayer
 {
     public abstract class ServiceResult<T> : IServiceResult<T>
     {
-        protected ServiceResult(ServiceResultTypes resultType, T data = default(T), IEnumerable<string> errorMessages = null) : this(resultType, data, errorMessages?.ToArray())
-        {
-        }
-
         protected ServiceResult(ServiceResultTypes resultType, T data = default(T), params string[] errorMessages)
         {
             this.ResultType = resultType;
@@ -55,11 +51,6 @@ namespace ServiceLayer
         }
 
         public static ServiceResult<T> Create(ServiceResultTypes resultType, T data = default(T), params string[] errorMessages)
-        {
-            return new InternalServiceResult<T>(resultType, data, errorMessages);
-        }
- 
-        public static ServiceResult<T> Create(ServiceResultTypes resultType, T data = default(T), IEnumerable<string> errorMessages = null)
         {
             return new InternalServiceResult<T>(resultType, data, errorMessages);
         }

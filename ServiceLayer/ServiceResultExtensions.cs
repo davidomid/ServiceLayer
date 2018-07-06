@@ -1,4 +1,5 @@
 ﻿using ServiceLayer.Internal;
+using System.Linq;
 
 namespace ServiceLayer
 {
@@ -6,12 +7,12 @@ namespace ServiceLayer
     {
         internal static ServiceResult<T> ToGenericServiceResult<T>(this IServiceResult serviceResult)
         {
-            return new InternalServiceResult<T>(serviceResult.ResultType, default(T), serviceResult.ErrorMessages); 
+            return new InternalServiceResult<T>(serviceResult.ResultType, default(T), serviceResult.ErrorMessages?.ToArray()); 
         }
 
         internal static ServiceResult ToNonGenericServiceResult<T>(this IServiceResult<T> serviceResult)
         {
-            return new InternalServiceResult(serviceResult.ResultType, serviceResult.ErrorMessages);
+            return new InternalServiceResult(serviceResult.ResultType, serviceResult.ErrorMessages?.ToArray());
         }
 
         public static ServiceResult<T> ToServiceResult<T>(this T data)
@@ -21,7 +22,7 @@ namespace ServiceLayer
 
         public static ServiceResult<T> ToServiceResult<T>(this IServiceResult<T> serviceResult)
         {
-            return new InternalServiceResult<T>(serviceResult.ResultType, serviceResult.Data, serviceResult.ErrorMessages); 
+            return new InternalServiceResult<T>(serviceResult.ResultType, serviceResult.Data, serviceResult.ErrorMessages?.ToArray()); 
         }
 
         public static ServiceResult<T> ToServiceResult<T>(this IServiceResult serviceResult)
@@ -31,7 +32,7 @@ namespace ServiceLayer
 
         public static ServiceResult ToServiceResult(this IServiceResult serviceResult)
         {
-            return new InternalServiceResult(serviceResult.ResultType, serviceResult.ErrorMessages);
+            return new InternalServiceResult(serviceResult.ResultType, serviceResult.ErrorMessages?.ToArray());
         }
     }
 }
