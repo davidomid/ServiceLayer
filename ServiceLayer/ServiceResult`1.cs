@@ -1,33 +1,31 @@
 ﻿using ServiceLayer.Internal;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ServiceLayer
 {
-    public abstract class ServiceResult<T> : IServiceResult<T>
+    public abstract class ServiceResult<T> : ServiceResult
     {
-        protected ServiceResult(ServiceResultTypes resultType, T data = default(T), params string[] errorMessages)
+        protected ServiceResult(ServiceResultTypes resultType, T data = default(T), params string[] errorMessages) : base(resultType, errorMessages)
         {
-            this.ResultType = resultType;
-            this.ErrorMessages = errorMessages;
             this.Data = data;
         }
 
-        public string[] ErrorMessages { get; }
         public T Data { get; }
 
-        public ServiceResultTypes ResultType { get; }
-
-        IEnumerable<string> IServiceResult.ErrorMessages => this.ErrorMessages;
-
-        public static implicit operator ServiceResult<T>(ServiceResult serviceResult)
+        public static implicit operator ServiceResult<T>(BadRequestResult badRequestResult)
         {
-            return serviceResult.ToGenericServiceResult<T>();
+            return badRequestResult.ToGenericServiceResult<T>();
         }
-
-        public static implicit operator ServiceResult(ServiceResult<T> serviceResult)
+        public static implicit operator ServiceResult<T>(ConflictResult conflictResult)
         {
-            return serviceResult.ToNonGenericServiceResult();
+            return conflictResult.ToGenericServiceResult<T>();
+        }
+        public static implicit operator ServiceResult<T>(ErrorResult errorResult)
+        {
+            return errorResult.ToGenericServiceResult<T>();
+        }
+        public static implicit operator ServiceResult<T>(NotFoundResult notFoundResult)
+        {
+            return notFoundResult.ToGenericServiceResult<T>();
         }
 
         public static implicit operator T(ServiceResult<T> serviceResult)
@@ -38,16 +36,6 @@ namespace ServiceLayer
         public static implicit operator ServiceResult<T>(T data)
         {
             return data.ToServiceResult();
-        }
-
-        public static ServiceResult<T> FromServiceResult(IServiceResult<T> serviceResult)
-        {
-            return serviceResult.ToServiceResult();
-        }
-
-        public static ServiceResult<T> FromServiceResult(IServiceResult serviceResult)
-        {
-            return serviceResult.ToServiceResult<T>();
         }
 
         public static ServiceResult<T> Create(ServiceResultTypes resultType, T data = default(T), params string[] errorMessages)

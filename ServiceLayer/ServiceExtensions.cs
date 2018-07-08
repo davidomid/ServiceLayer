@@ -1,7 +1,4 @@
-﻿
-using System.Collections.Generic;
-
-namespace ServiceLayer
+﻿namespace ServiceLayer
 {
     public static class ServiceExtensions
     {

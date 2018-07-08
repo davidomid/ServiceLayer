@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace ServiceLayer.Internal
+﻿namespace ServiceLayer.Internal
 {
     internal sealed class InternalServiceResult<T> : ServiceResult<T>
     {

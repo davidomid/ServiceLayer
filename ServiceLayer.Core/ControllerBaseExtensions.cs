@@ -5,39 +5,39 @@ namespace ServiceLayer.Core
 {
     public static class ControllerBaseExtensions
     {
-        public static IActionResult FromServiceResult(this ControllerBase controller, IServiceResult result)
+        public static IActionResult FromServiceResult(this ControllerBase controller, ServiceResult serviceResult)
         {
-            return controller.FromNonGenericServiceResult(result);
+            return controller.FromNonGenericServiceResult(serviceResult);
         }
 
-        public static IActionResult FromServiceResult<T>(this ControllerBase controller, IServiceResult<T> result)
+        public static IActionResult FromServiceResult<T>(this ControllerBase controller, ServiceResult<T> serviceResult)
         {
-            switch (result.ResultType)
+            switch (serviceResult.ResultType)
             {
                 case ServiceResultTypes.Ok:
-                    return controller.Ok(result.Data);
+                    return controller.Ok(serviceResult.Data);
                 default:
-                    return controller.FromNonGenericServiceResult(result);
+                    return controller.FromNonGenericServiceResult(serviceResult);
             }
         }
 
-        private static IActionResult FromNonGenericServiceResult(this ControllerBase controller, IServiceResult result)
+        private static IActionResult FromNonGenericServiceResult(this ControllerBase controller, ServiceResult serviceResult)
         {
-            switch (result.ResultType)
+            switch (serviceResult.ResultType)
             {
                 case ServiceResultTypes.Ok:
                     return controller.Ok();
                 case ServiceResultTypes.NotFound:
                     return controller.NotFound();
                 case ServiceResultTypes.BadRequest:
-                    return controller.BadRequest(result.ErrorMessages);
+                    return controller.BadRequest(serviceResult.ErrorMessages);
                 case ServiceResultTypes.Conflict:
-                    return controller.StatusCode(409, result.ErrorMessages);
+                    return controller.StatusCode(409, serviceResult.ErrorMessages);
                 case ServiceResultTypes.Error:
-                    return controller.StatusCode(500, result.ErrorMessages);
+                    return controller.StatusCode(500, serviceResult.ErrorMessages);
                 default:
                     throw new ArgumentOutOfRangeException(
-                        $"No action result could be returned for service result type {result.ResultType}");
+                        $"No action result could be returned for service result type {serviceResult.ResultType}");
             }
         }
     }

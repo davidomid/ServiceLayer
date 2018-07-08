@@ -1,10 +1,8 @@
 ﻿using ServiceLayer.Internal;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ServiceLayer
 {
-    public abstract class ServiceResult : IServiceResult
+    public abstract class ServiceResult
     {
         protected ServiceResult(ServiceResultTypes resultType, params string[] errorMessages)
         {
@@ -15,18 +13,6 @@ namespace ServiceLayer
         public string[] ErrorMessages { get; }
 
         public ServiceResultTypes ResultType { get; }
-
-        IEnumerable<string> IServiceResult.ErrorMessages => this.ErrorMessages;
-
-        public static ServiceResult FromServiceResult(IServiceResult serviceResult)
-        {
-            return serviceResult.ToServiceResult();
-        }
-
-        public static ServiceResult FromServiceResult<T>(IServiceResult<T> serviceResult)
-        {
-            return serviceResult.ToServiceResult();
-        }
 
         public static ServiceResult Create(ServiceResultTypes resultType, params string[] errorMessages)
         {
