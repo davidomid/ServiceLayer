@@ -1,4 +1,6 @@
 ﻿using ServiceLayer.Internal;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ServiceLayer
 {
@@ -13,7 +15,7 @@ namespace ServiceLayer
 
         public static implicit operator ServiceResult<T>(ErrorResult errorResult)
         {
-            return errorResult.ToGenericServiceResult<T>();
+            return Create(errorResult);
         }
 
         public static implicit operator T(ServiceResult<T> serviceResult)
@@ -21,19 +23,24 @@ namespace ServiceLayer
             return serviceResult.Data; 
         }
 
-        public static implicit operator ServiceResult<T>(T data)
+        public static ServiceResult<T> Create(IServiceResult<T> serviceResult)
         {
-            return data.ToServiceResult();
+            return Create(serviceResult.ResultType, serviceResult.Data, serviceResult.ErrorMessages);
         }
 
-        public static ServiceResult<T> Create(IServiceResult serviceResult)
+        public new static ServiceResult<T> Create(IServiceResult serviceResult)
         {
-            return serviceResult.ToGenericServiceResult<T>();
+            return Create(serviceResult.ResultType, errorMessages: serviceResult.ErrorMessages);
         }
 
         public static ServiceResult<T> Create(ServiceResultTypes resultType, T data = default(T), params string[] errorMessages)
         {
             return new InternalServiceResult<T>(resultType, data, errorMessages);
+        }
+
+        private static ServiceResult<T> Create(ServiceResultTypes resultType, T data = default(T), IEnumerable<string> errorMessages = null)
+        {
+            return Create(resultType, data, errorMessages?.ToArray()); 
         }
     }
 }

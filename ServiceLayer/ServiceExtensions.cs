@@ -24,12 +24,7 @@
         }
         public static OkResult<T> Ok<T>(this IService service, T data)
         {
-            return new OkResult<T>(data);
-        }
-
-        public static OkResult<T> Ok<T>(this IServiceResult<T> service, T data)
-        {
-            return new OkResult<T>(data);
+            return data; 
         }
     }
 }

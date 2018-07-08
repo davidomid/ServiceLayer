@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using ServiceLayer.Internal;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ServiceLayer
 {
@@ -15,5 +17,15 @@ namespace ServiceLayer
         public ServiceResultTypes ResultType { get; }
 
         IEnumerable<string> IServiceResult.ErrorMessages => this.ErrorMessages;
+
+        public static ServiceResult Create(IServiceResult serviceResult)
+        {
+            return Create(serviceResult.ResultType, serviceResult.ErrorMessages?.ToArray());
+        }
+
+        public static ServiceResult Create(ServiceResultTypes resultType, params string[] errorMessages)
+        {
+            return new InternalServiceResult(resultType, errorMessages);
+        }
     }
 }
