@@ -1,6 +1,6 @@
 ﻿namespace ServiceLayer
 {
-    public class NotFoundResult : ServiceResult
+    public sealed class NotFoundResult : ErrorResult
     {
         public NotFoundResult() : base(ServiceResultTypes.NotFound)
         {

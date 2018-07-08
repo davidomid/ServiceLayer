@@ -6,6 +6,6 @@
         NotFound,
         BadRequest,
         Conflict,
-        Error
+        ServiceError
     }
 }

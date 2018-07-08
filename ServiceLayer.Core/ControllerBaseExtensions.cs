@@ -5,12 +5,12 @@ namespace ServiceLayer.Core
 {
     public static class ControllerBaseExtensions
     {
-        public static IActionResult FromServiceResult(this ControllerBase controller, ServiceResult serviceResult)
+        public static IActionResult FromServiceResult(this ControllerBase controller, IServiceResult serviceResult)
         {
             return controller.FromNonGenericServiceResult(serviceResult);
         }
 
-        public static IActionResult FromServiceResult<T>(this ControllerBase controller, ServiceResult<T> serviceResult)
+        public static IActionResult FromServiceResult<T>(this ControllerBase controller, IServiceResult<T> serviceResult)
         {
             switch (serviceResult.ResultType)
             {
@@ -21,7 +21,7 @@ namespace ServiceLayer.Core
             }
         }
 
-        private static IActionResult FromNonGenericServiceResult(this ControllerBase controller, ServiceResult serviceResult)
+        private static IActionResult FromNonGenericServiceResult(this ControllerBase controller, IServiceResult serviceResult)
         {
             switch (serviceResult.ResultType)
             {
@@ -33,7 +33,7 @@ namespace ServiceLayer.Core
                     return controller.BadRequest(serviceResult.ErrorMessages);
                 case ServiceResultTypes.Conflict:
                     return controller.StatusCode(409, serviceResult.ErrorMessages);
-                case ServiceResultTypes.Error:
+                case ServiceResultTypes.ServiceError:
                     return controller.StatusCode(500, serviceResult.ErrorMessages);
                 default:
                     throw new ArgumentOutOfRangeException(

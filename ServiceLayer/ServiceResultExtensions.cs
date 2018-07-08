@@ -5,7 +5,7 @@ namespace ServiceLayer
 {
     public static class ServiceResultExtensions
     {
-        internal static ServiceResult<T> ToGenericServiceResult<T>(this ServiceResult serviceResult)
+        internal static ServiceResult<T> ToGenericServiceResult<T>(this IServiceResult serviceResult)
         {
             return new InternalServiceResult<T>(serviceResult.ResultType, default(T), serviceResult.ErrorMessages?.ToArray());
         }
