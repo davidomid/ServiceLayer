@@ -4,7 +4,7 @@ namespace ServiceLayer.UnitTests
 {
     [TestFixture]
     [Parallelizable(ParallelScope.All)]
-    public abstract class TestBase
+    public abstract class NUnitTestBase
     {
         [OneTimeSetUp]
         protected void OneTimeSetUp()

@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace ServiceLayer.UnitTests.ServiceResult.Create
 {
-    public class WhenGivenIServiceResultInstance : TestBase
+    public class WhenGivenIServiceResultInstance : NUnitTestBase
     {
         private IServiceResult _existingServiceResult;
         private ServiceLayer.ServiceResult _newServiceResult;

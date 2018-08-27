@@ -2,7 +2,7 @@ using System;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace ServiceLayer.UnitTests.ServiceResult.Create
+namespace ServiceLayer.UnitTests.ServiceResult.Constructor
 {
     [TestFixtureSource(nameof(ResultTypes))]
     public class WhenGivenResultTypeAndErrorMessages : NUnitTestBase
@@ -19,19 +19,13 @@ namespace ServiceLayer.UnitTests.ServiceResult.Create
         }
 
         [Test]
-        public void Should_Not_Return_Null()
-        {
-            _serviceResult.Should().NotBeNull();
-        }
-
-        [Test]
-        public void Should_Return_ServiceResult_Of_Given_Type()
+        public void Should_Have_ServiceResultType_Matching_Given_Type()
         {
             _serviceResult.ResultType.Should().Be(_serviceResultType);
         }
 
         [Test]
-        public void Should_Return_ServiceResult_With_Given_ErrorMessages()
+        public void Should_Have_ErrorMessages_Matching_Given_ErrorMessages()
         {
             _serviceResult.ErrorMessages.Should().BeSameAs(_errorMessages); 
         }
@@ -43,7 +37,14 @@ namespace ServiceLayer.UnitTests.ServiceResult.Create
 
         protected override void Act()
         {
-            _serviceResult = ServiceLayer.ServiceResult.Create(_serviceResultType, _errorMessages);
+            _serviceResult = new TestServiceResultSubClass(_serviceResultType, _errorMessages);
+        }
+
+        private class TestServiceResultSubClass : ServiceLayer.ServiceResult
+        {
+            public TestServiceResultSubClass(ServiceResultTypes resultType, params string[] errorMessages) : base(resultType, errorMessages)
+            {
+            }
         }
     }
 }
