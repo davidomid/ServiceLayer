@@ -1,8 +1,9 @@
 using System;
 using FluentAssertions;
 using NUnit.Framework;
+using ServiceLayer.UnitTests.Infrastructure;
 
-namespace ServiceLayer.UnitTests.ServiceResult.Constructor
+namespace ServiceLayer.UnitTests.Tests.ServiceResult.Constructor
 {
     [TestFixtureSource(nameof(ResultTypes))]
     public class WhenGivenResultTypeAndErrorMessages : NUnitTestBase
@@ -37,14 +38,7 @@ namespace ServiceLayer.UnitTests.ServiceResult.Constructor
 
         protected override void Act()
         {
-            _serviceResult = new TestServiceResultSubClass(_serviceResultType, _errorMessages);
-        }
-
-        private class TestServiceResultSubClass : ServiceLayer.ServiceResult
-        {
-            public TestServiceResultSubClass(ServiceResultTypes resultType, params string[] errorMessages) : base(resultType, errorMessages)
-            {
-            }
+            _serviceResult = new TestServiceResult(_serviceResultType, _errorMessages);
         }
     }
 }

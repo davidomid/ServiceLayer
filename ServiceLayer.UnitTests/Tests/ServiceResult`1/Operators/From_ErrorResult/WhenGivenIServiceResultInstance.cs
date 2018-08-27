@@ -1,7 +1,8 @@
 using FluentAssertions;
 using NUnit.Framework;
+using ServiceLayer.UnitTests.Infrastructure;
 
-namespace ServiceLayer.UnitTests.Operators.From_ErrorResult
+namespace ServiceLayer.UnitTests.Tests.Operators.From_ErrorResult
 {
     public class WhenGivenErrorResultInstance : NUnitTestBase
     {

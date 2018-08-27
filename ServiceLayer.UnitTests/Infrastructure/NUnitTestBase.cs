@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace ServiceLayer.UnitTests
+namespace ServiceLayer.UnitTests.Infrastructure
 {
     [TestFixture]
     [Parallelizable(ParallelScope.All)]

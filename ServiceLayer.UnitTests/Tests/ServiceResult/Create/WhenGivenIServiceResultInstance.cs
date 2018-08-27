@@ -1,12 +1,13 @@
 using FluentAssertions;
 using NUnit.Framework;
+using ServiceLayer.UnitTests.Infrastructure;
 
-namespace ServiceLayer.UnitTests.Create
+namespace ServiceLayer.UnitTests.Tests.ServiceResult.Create
 {
     public class WhenGivenIServiceResultInstance : NUnitTestBase
     {
         private IServiceResult _existingServiceResult;
-        private ServiceResult<string> _newServiceResult;
+        private ServiceLayer.ServiceResult _newServiceResult;
 
         [Test]
         public void Should_Not_Return_Null()
@@ -26,15 +27,9 @@ namespace ServiceLayer.UnitTests.Create
             _newServiceResult.ErrorMessages.Should().BeEquivalentTo(_existingServiceResult.ErrorMessages);
         }
 
-        [Test]
-        public void Should_Return_ServiceResult_With_Data_Default_Value()
-        {
-            _newServiceResult.Data.Should().Be(default(string)); 
-        }
-
         protected override void Act()
         {
-            _newServiceResult = ServiceResult<string>.Create(_existingServiceResult);
+            _newServiceResult = ServiceLayer.ServiceResult.Create(_existingServiceResult);
         }
 
         protected override void Arrange()

@@ -1,19 +1,21 @@
 using System;
 using FluentAssertions;
 using NUnit.Framework;
+using ServiceLayer.UnitTests.Infrastructure;
 
-namespace ServiceLayer.UnitTests.ServiceResult.Create
+namespace ServiceLayer.UnitTests.Tests.Create
 {
     [TestFixtureSource(nameof(ResultTypes))]
-    public class WhenGivenResultTypeAndErrorMessages : NUnitTestBase
+    public class WhenGivenResultTypeAndDataAndErrorMessages : NUnitTestBase
     {
-        private ServiceLayer.ServiceResult _serviceResult;
+        private ServiceResult<string> _serviceResult;
+        private const string TestData = "test data";
         private string[] _errorMessages;
         private readonly ServiceResultTypes _serviceResultType;
 
         private static readonly ServiceResultTypes[] ResultTypes = (ServiceResultTypes[])Enum.GetValues(typeof(ServiceResultTypes));
 
-        public WhenGivenResultTypeAndErrorMessages(ServiceResultTypes serviceResultType)
+        public WhenGivenResultTypeAndDataAndErrorMessages(ServiceResultTypes serviceResultType)
         {
             _serviceResultType = serviceResultType;
         }
@@ -36,6 +38,12 @@ namespace ServiceLayer.UnitTests.ServiceResult.Create
             _serviceResult.ErrorMessages.Should().BeSameAs(_errorMessages); 
         }
 
+        [Test]
+        public void Should_Return_ServiceResult_With_Data_Matching_Given_Data()
+        {
+            _serviceResult.Data.Should().Be(TestData);
+        }
+
         protected override void Arrange()
         {
             _errorMessages = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
@@ -43,7 +51,7 @@ namespace ServiceLayer.UnitTests.ServiceResult.Create
 
         protected override void Act()
         {
-            _serviceResult = ServiceLayer.ServiceResult.Create(_serviceResultType, _errorMessages);
+            _serviceResult = ServiceResult<string>.Create(_serviceResultType, TestData, _errorMessages);
         }
     }
 }

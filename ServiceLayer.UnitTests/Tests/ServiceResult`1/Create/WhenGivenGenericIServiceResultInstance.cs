@@ -1,7 +1,8 @@
 using FluentAssertions;
 using NUnit.Framework;
+using ServiceLayer.UnitTests.Infrastructure;
 
-namespace ServiceLayer.UnitTests.Create
+namespace ServiceLayer.UnitTests.Tests.Create
 {
     public class WhenGivenGenericIServiceResultInstance : NUnitTestBase
     {

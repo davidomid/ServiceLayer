@@ -1,14 +1,15 @@
 using System;
 using FluentAssertions;
 using NUnit.Framework;
+using ServiceLayer.UnitTests.Infrastructure;
 
-namespace ServiceLayer.UnitTests.Create
+namespace ServiceLayer.UnitTests.Tests.Constructor
 {
     [TestFixtureSource(nameof(ResultTypes))]
     public class WhenGivenResultTypeAndDataAndErrorMessages : NUnitTestBase
     {
         private ServiceResult<string> _serviceResult;
-        private const string TestData = "test data";
+        private const string TestData = "test data"; 
         private string[] _errorMessages;
         private readonly ServiceResultTypes _serviceResultType;
 
@@ -20,25 +21,19 @@ namespace ServiceLayer.UnitTests.Create
         }
 
         [Test]
-        public void Should_Not_Return_Null()
-        {
-            _serviceResult.Should().NotBeNull();
-        }
-
-        [Test]
-        public void Should_Return_ServiceResult_Of_Given_Type()
+        public void Should_Have_ServiceResultType_Matching_Given_Type()
         {
             _serviceResult.ResultType.Should().Be(_serviceResultType);
         }
 
         [Test]
-        public void Should_Return_ServiceResult_With_Given_ErrorMessages()
+        public void Should_Have_ErrorMessages_Matching_Given_ErrorMessages()
         {
             _serviceResult.ErrorMessages.Should().BeSameAs(_errorMessages); 
         }
 
         [Test]
-        public void Should_Return_ServiceResult_With_Data_Matching_Given_Data()
+        public void Should_Have_Data_Matching_Given_Data()
         {
             _serviceResult.Data.Should().Be(TestData);
         }
@@ -50,7 +45,7 @@ namespace ServiceLayer.UnitTests.Create
 
         protected override void Act()
         {
-            _serviceResult = ServiceResult<string>.Create(_serviceResultType, TestData, _errorMessages);
+            _serviceResult = new TestServiceResult<string>(_serviceResultType, TestData, _errorMessages);
         }
     }
 }

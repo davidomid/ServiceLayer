@@ -16,7 +16,7 @@
         }
         public static NotFoundResult NotFound(this IService service, params string[] errorMessages)
         {
-            return new NotFoundResult();
+            return new NotFoundResult(errorMessages);
         }
         public static OkResult Ok(this IService service)
         {
