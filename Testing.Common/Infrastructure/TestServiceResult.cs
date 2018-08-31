@@ -2,7 +2,7 @@
 
 namespace Testing.Common.Infrastructure
 {
-    internal sealed class TestServiceResult : ServiceResult
+    public sealed class TestServiceResult : ServiceResult
     {
         public TestServiceResult(ServiceResultTypes resultType, params string[] errorMessages) : base(resultType, errorMessages)
         {

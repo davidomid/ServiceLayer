@@ -2,7 +2,7 @@
 
 namespace Testing.Common.Infrastructure
 {
-    internal sealed class TestService : IService
+    public sealed class TestService : IService
     {
     }
 }

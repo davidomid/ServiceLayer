@@ -23,7 +23,7 @@ namespace ServiceLayer.UnitTests.Tests
         }
 
         [Test]
-        public void Should_Data_Data_Matching_Given_Data()
+        public void Should_Return_Data_Matching_Given_Data()
         {
             _okResult.Data.Should().Be(TestData);
         }
