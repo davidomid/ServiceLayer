@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ServiceLayer\ServiceLayer.csproj" />
+    <ProjectReference Include="..\Testing.Common\Testing.Common.csproj" />
   </ItemGroup>
 
 </Project>

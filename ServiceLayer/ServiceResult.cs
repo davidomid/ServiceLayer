@@ -8,15 +8,15 @@ namespace ServiceLayer
     {
         protected ServiceResult(ServiceResultTypes resultType, params string[] errorMessages)
         {
-            this.ResultType = resultType;
-            this.ErrorMessages = errorMessages;
+            ResultType = resultType;
+            ErrorMessages = errorMessages;
         }
 
         public string[] ErrorMessages { get; }
 
         public ServiceResultTypes ResultType { get; }
 
-        IEnumerable<string> IServiceResult.ErrorMessages => this.ErrorMessages;
+        IEnumerable<string> IServiceResult.ErrorMessages => ErrorMessages;
 
         public static ServiceResult Create(IServiceResult serviceResult)
         {

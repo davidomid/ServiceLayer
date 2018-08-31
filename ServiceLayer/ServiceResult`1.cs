@@ -8,7 +8,7 @@ namespace ServiceLayer
     {
         protected ServiceResult(ServiceResultTypes resultType, T data = default(T), params string[] errorMessages) : base(resultType, errorMessages)
         {
-            this.Data = data;
+            Data = data;
         }
 
         public T Data { get; }

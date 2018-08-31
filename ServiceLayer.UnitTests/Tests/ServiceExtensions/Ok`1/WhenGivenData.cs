@@ -1,6 +1,6 @@
 using FluentAssertions;
 using NUnit.Framework;
-using ServiceLayer.UnitTests.Infrastructure;
+using Testing.Common.Infrastructure;
 
 namespace ServiceLayer.UnitTests.Tests.ServiceExtensions
 {
