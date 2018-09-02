@@ -5,10 +5,10 @@ using Moq;
 using NUnit.Framework;
 using Testing.Common.Infrastructure;
 
-namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
+namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult.WhenGivenIServiceResultInstance
 {
     [TestFixtureSource(nameof(ResultTypes))]
-    public class WhenGivenIServiceResultInstance : NUnitTestBase
+    public class WithValidServiceResultType : NUnitTestBase
     {
         private IServiceResult _existingServiceResult;
 
@@ -18,7 +18,7 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
 
         private TestController _controller;
 
-        public WhenGivenIServiceResultInstance(ServiceResultTypes serviceResultType)
+        public WithValidServiceResultType(ServiceResultTypes serviceResultType)
         {
             _serviceResultType = serviceResultType;
         }
@@ -33,8 +33,7 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
 
         protected override void Act()
         {
-            TestController controller = new TestController();
-            _actionResult = controller.FromServiceResult(_existingServiceResult);
+            _actionResult = _controller.FromServiceResult(_existingServiceResult);
         }
 
         private static readonly ServiceResultTypes[] ResultTypes = (ServiceResultTypes[])Enum.GetValues(typeof(ServiceResultTypes));

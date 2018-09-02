@@ -36,7 +36,7 @@ namespace ServiceLayer.Core
                 case ServiceResultTypes.ServiceError:
                     return controller.StatusCode(500, serviceResult.ErrorMessages);
                 default:
-                    throw new ArgumentOutOfRangeException(
+                    throw new ArgumentOutOfRangeException(nameof(serviceResult.ResultType),
                         $"No action result could be returned for service result type {serviceResult.ResultType}");
             }
         }
