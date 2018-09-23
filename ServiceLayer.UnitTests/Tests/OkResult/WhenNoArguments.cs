@@ -1,10 +1,10 @@
 using FluentAssertions;
 using NUnit.Framework;
-using Testing.Common.Infrastructure;
+using Testing.Common.Domain;
 
 namespace ServiceLayer.UnitTests.Tests.OkResult
 {
-    public class WhenNoArguments : NUnitTestBase
+    public class WhenNoArguments : UnitTestBase
     {
         private ServiceLayer.OkResult _okResult;
 

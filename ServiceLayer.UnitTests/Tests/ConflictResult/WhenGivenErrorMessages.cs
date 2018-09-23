@@ -1,11 +1,11 @@
 using System;
 using FluentAssertions;
 using NUnit.Framework;
-using Testing.Common.Infrastructure;
+using Testing.Common.Domain;
 
 namespace ServiceLayer.UnitTests.Tests.ConflictResult
 {
-    public class WhenGivenErrorMessages : NUnitTestBase
+    public class WhenGivenErrorMessages : UnitTestBase
     {
         private ServiceLayer.ConflictResult _conflictResult;
         private string[] _errorMessages;

@@ -1,10 +1,10 @@
 using FluentAssertions;
 using NUnit.Framework;
-using Testing.Common.Infrastructure;
+using Testing.Common.Domain;
 
 namespace ServiceLayer.UnitTests.Tests.Create
 {
-    public class WhenGivenGenericIServiceResultInstance : NUnitTestBase
+    public class WhenGivenGenericIServiceResultInstance : UnitTestBase
     {
         private const string TestData = "test data";
         private IServiceResult<string> _existingServiceResult;

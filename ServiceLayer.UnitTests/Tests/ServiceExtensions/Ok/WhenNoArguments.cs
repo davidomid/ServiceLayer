@@ -1,11 +1,11 @@
-using System;
 using FluentAssertions;
 using NUnit.Framework;
-using Testing.Common.Infrastructure;
+using Testing.Common.Domain;
+using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Tests.ServiceExtensions.Ok
 {
-    public class WhenGivenData : NUnitTestBase
+    public class WhenGivenData : UnitTestBase
     {
         private IService _service;
         private ServiceLayer.OkResult _okResult;

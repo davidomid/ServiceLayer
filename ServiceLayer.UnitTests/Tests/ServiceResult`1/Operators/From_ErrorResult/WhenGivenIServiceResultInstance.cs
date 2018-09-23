@@ -1,10 +1,10 @@
 using FluentAssertions;
 using NUnit.Framework;
-using Testing.Common.Infrastructure;
+using Testing.Common.Domain;
 
 namespace ServiceLayer.UnitTests.Tests.Operators.From_ErrorResult
 {
-    public class WhenGivenErrorResultInstance : NUnitTestBase
+    public class WhenGivenErrorResultInstance : UnitTestBase
     {
         private ErrorResult _existingErrorResult;
         private ServiceResult<string> _newServiceResult;

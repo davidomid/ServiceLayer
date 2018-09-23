@@ -1,10 +1,10 @@
 using FluentAssertions;
 using NUnit.Framework;
-using Testing.Common.Infrastructure;
+using Testing.Common.Domain;
 
 namespace ServiceLayer.UnitTests.Tests.Create
 {
-    public class WhenGivenIServiceResultInstance : NUnitTestBase
+    public class WhenGivenIServiceResultInstance : UnitTestBase
     {
         private IServiceResult _existingServiceResult;
         private ServiceResult<string> _newServiceResult;

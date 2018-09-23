@@ -1,11 +1,12 @@
 using System;
 using FluentAssertions;
 using NUnit.Framework;
-using Testing.Common.Infrastructure;
+using Testing.Common.Domain;
+using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Tests.ServiceExtensions.NotFound
 {
-    public class WhenGivenErrorMessages : NUnitTestBase
+    public class WhenGivenErrorMessages : UnitTestBase
     {
         private IService _service;
         private string[] _errorMessages;

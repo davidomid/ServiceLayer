@@ -3,8 +3,7 @@
 namespace Testing.Common.Infrastructure
 {
     [TestFixture]
-    [Parallelizable(ParallelScope.All)]
-    public abstract class NUnitTestBase
+    public abstract class NUnitTestBase : TestBase
     {
         [OneTimeSetUp]
         protected void OneTimeSetUp()
@@ -13,8 +12,10 @@ namespace Testing.Common.Infrastructure
             Act();
         }
 
-        protected abstract void Arrange();
-
-        protected abstract void Act();
+        [OneTimeTearDown]
+        protected void OneTimeTearDown()
+        {
+            Finally();
+        }
     }
 }

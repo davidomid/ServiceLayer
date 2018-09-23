@@ -1,10 +1,11 @@
 using FluentAssertions;
 using NUnit.Framework;
-using Testing.Common.Infrastructure;
+using Testing.Common.Domain;
+using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Tests.ServiceExtensions
 {
-    public class WhenGivenData : NUnitTestBase
+    public class WhenGivenData : UnitTestBase
     {
         private IService _service;
         private const string TestData = "test data"; 

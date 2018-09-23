@@ -1,12 +1,13 @@
 using System;
 using FluentAssertions;
 using NUnit.Framework;
-using Testing.Common.Infrastructure;
+using Testing.Common.Domain;
+using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Tests.Constructor
 {
     [TestFixtureSource(nameof(ResultTypes))]
-    public class WhenGivenResultTypeAndDataAndErrorMessages : NUnitTestBase
+    public class WhenGivenResultTypeAndDataAndErrorMessages : UnitTestBase
     {
         private ServiceResult<string> _serviceResult;
         private const string TestData = "test data"; 

@@ -1,11 +1,11 @@
 using System;
 using FluentAssertions;
 using NUnit.Framework;
-using Testing.Common.Infrastructure;
+using Testing.Common.Domain;
 
 namespace ServiceLayer.UnitTests.Tests.NotFoundResult
 {
-    public class WhenGivenErrorMessages : NUnitTestBase
+    public class WhenGivenErrorMessages : UnitTestBase
     {
         private ServiceLayer.NotFoundResult _notFoundResult;
         private string[] _errorMessages;

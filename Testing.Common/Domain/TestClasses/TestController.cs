@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Testing.Common.Infrastructure
+namespace Testing.Common.Domain.TestClasses
 {
     public class TestController : ControllerBase
     {

@@ -1,10 +1,10 @@
 using FluentAssertions;
 using NUnit.Framework;
-using Testing.Common.Infrastructure;
+using Testing.Common.Domain;
 
 namespace ServiceLayer.UnitTests.Tests
 {
-    public class WhenErrorMessages : NUnitTestBase
+    public class WhenErrorMessages : UnitTestBase
     {
         private OkResult<string> _okResult;
 

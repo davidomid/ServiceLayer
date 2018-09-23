@@ -1,6 +1,6 @@
 ﻿using ServiceLayer;
 
-namespace Testing.Common.Infrastructure
+namespace Testing.Common.Domain.TestClasses
 {
     public sealed class TestServiceResult<T> : ServiceResult<T>
     {

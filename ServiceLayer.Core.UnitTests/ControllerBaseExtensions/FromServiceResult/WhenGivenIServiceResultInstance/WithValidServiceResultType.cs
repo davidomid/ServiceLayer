@@ -3,12 +3,13 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
-using Testing.Common.Infrastructure;
+using Testing.Common.Domain;
+using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult.WhenGivenIServiceResultInstance
 {
     [TestFixtureSource(nameof(ResultTypes))]
-    public class WithValidServiceResultType : NUnitTestBase
+    public class WithValidServiceResultType : UnitTestBase
     {
         private IServiceResult _existingServiceResult;
 
