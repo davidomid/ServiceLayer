@@ -2,10 +2,12 @@
 
 namespace ServiceLayer
 {
-    public interface IServiceResult
+    public interface IServiceResult 
     {
+        ServiceResultTypes ResultType { get; }
+
         IEnumerable<string> ErrorMessages { get; }
 
-        ServiceResultTypes ResultType { get; }
+        bool IsSuccessful { get; }
     }
 }

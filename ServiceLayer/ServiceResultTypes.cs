@@ -2,10 +2,7 @@
 {
     public enum ServiceResultTypes
     {
-        Ok,
-        NotFound,
-        BadRequest,
-        Conflict,
-        ServiceError
+        Success,
+        Failure
     }
 }
