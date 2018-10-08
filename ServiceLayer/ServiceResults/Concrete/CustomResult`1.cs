@@ -1,12 +1,9 @@
-﻿using System;
-
-namespace ServiceLayer
+﻿namespace ServiceLayer
 {
-    public class CustomResult<TResultType> : ServiceResult<TResultType> where TResultType : Enum
+    public class CustomResult<TData> : CustomResult<TData, ServiceResultTypes> 
     {
-        public CustomResult(TResultType resultType, params string[] errorMessages) : base(resultType, errorMessages)
+        public CustomResult(ServiceResultTypes resultType, TData data, params string[] errorMessages) : base(resultType, data, errorMessages)
         {
-
         }
     }
 }
