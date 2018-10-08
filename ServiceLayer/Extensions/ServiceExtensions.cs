@@ -11,7 +11,7 @@ namespace ServiceLayer
 
         public static SuccessResult<TData> Success<TData>(this IService service, TData data)
         {
-            return new SuccessResult<TData>(data); 
+            return new SuccessResult<TData>(data);
         }
 
         public static FailureResult Failure(this IService service, params string[] errorMessages)
@@ -19,19 +19,19 @@ namespace ServiceLayer
             return new FailureResult(errorMessages);
         }
 
-        public static FailureResult<TData> Failure<TData>(this IService service, params string[] errorMessages)
+        public static ServiceResult Result(this IService service, ServiceResultTypes resultType, params string[] errorMessages)
         {
-            return new FailureResult<TData>(errorMessages);
+            return new ServiceResult(resultType, errorMessages);
         }
 
-        public static CustomResult<TResultType> Result<TResultType>(this IService service, TResultType resultType, params string[] errorMessages) where TResultType : Enum
+        public static ServiceResult<TData> Result<TData>(this IService service, ServiceResultTypes resultType, TData data, params string[] errorMessages)
         {
-            return new CustomResult<TResultType>(resultType, errorMessages);
+            return new ServiceResult<TData>(resultType, data, errorMessages);
         }
 
-        public static CustomResult<TResultType, TData> Result<TResultType, TData>(this IService service, TResultType resultType, TData data, params string[] errorMessages) where TResultType : Enum
+        public static ServiceResult<TData, TResultType> Result<TResultType, TData>(this IService service, TResultType resultType, TData data, params string[] errorMessages) where TResultType : Enum
         {
-            return new CustomResult<TResultType, TData>(resultType, data, errorMessages);
+            return new ServiceResult<TData, TResultType>(resultType, data, errorMessages);
         }
 
     }

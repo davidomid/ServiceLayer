@@ -2,9 +2,9 @@
 
 namespace ServiceLayer
 {
-    public abstract class ServiceResult : IServiceResult
+    public class ServiceResult : IServiceResult
     {
-        protected ServiceResult(ServiceResultTypes resultType, params string[] errorMessages)
+        public ServiceResult(ServiceResultTypes resultType, params string[] errorMessages)
         {
             ResultType = resultType;
             ErrorMessages = errorMessages;
