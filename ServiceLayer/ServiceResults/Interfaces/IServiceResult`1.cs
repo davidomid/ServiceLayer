@@ -2,8 +2,8 @@
 
 namespace ServiceLayer
 {
-    public interface IServiceResult<out TData> : IServiceResult
+    public interface IServiceResult<out TResultType> : IServiceResult where TResultType : Enum
     {
-        TData Data { get; }
+        new TResultType ResultType { get; }
     }
 }

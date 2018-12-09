@@ -28,11 +28,5 @@ namespace ServiceLayer
         {
             return new ServiceResult<TData>(resultType, data, errorMessages);
         }
-
-        public static ServiceResult<TData, TResultType> Result<TResultType, TData>(this IService service, TResultType resultType, TData data, params string[] errorMessages) where TResultType : Enum
-        {
-            return new ServiceResult<TData, TResultType>(resultType, data, errorMessages);
-        }
-
     }
 }

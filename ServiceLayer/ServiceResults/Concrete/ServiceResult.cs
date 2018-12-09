@@ -2,7 +2,7 @@
 
 namespace ServiceLayer
 {
-    public class ServiceResult : IServiceResult
+    public class ServiceResult : IServiceResult<ServiceResultTypes>
     {
         public ServiceResult(ServiceResultTypes resultType, params string[] errorMessages)
         {
