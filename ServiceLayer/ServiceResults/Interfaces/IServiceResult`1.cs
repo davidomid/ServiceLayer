@@ -1,9 +1,6 @@
-﻿using System;
-
-namespace ServiceLayer
+﻿namespace ServiceLayer
 {
-    public interface IServiceResult<out TResultType> : IServiceResult where TResultType : Enum
+    public interface IServiceResult<out TData> : IServiceResult, IBaseServiceResult<ServiceResultTypes, TData>
     {
-        new TResultType ResultType { get; }
     }
 }

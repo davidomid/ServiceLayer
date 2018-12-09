@@ -1,21 +1,10 @@
-﻿using System.Collections.Generic;
-
-namespace ServiceLayer
+﻿namespace ServiceLayer
 {
-    public class ServiceResult : IServiceResult<ServiceResultTypes>
+    public class ServiceResult : BaseServiceResult<ServiceResultTypes>, IServiceResult
     {
-        public ServiceResult(ServiceResultTypes resultType, params string[] errorMessages)
+        public ServiceResult(ServiceResultTypes resultType, params string[] errorMessages) : base(resultType, errorMessages)
         {
-            ResultType = resultType;
-            ErrorMessages = errorMessages;
+
         }
-
-        public string[] ErrorMessages { get; }
-
-        public bool IsSuccessful => this.ResultType == ServiceResultTypes.Success;
-
-        public ServiceResultTypes ResultType { get; }
-
-        IEnumerable<string> IServiceResult.ErrorMessages => this.ErrorMessages;
     }
 }

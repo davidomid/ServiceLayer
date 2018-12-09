@@ -1,13 +1,6 @@
-﻿using System.Collections.Generic;
-
-namespace ServiceLayer
+﻿namespace ServiceLayer
 {
-    public interface IServiceResult 
+    public interface IServiceResult : IBaseServiceResult<ServiceResultTypes>
     {
-        ServiceResultTypes ResultType { get; }
-
-        IEnumerable<string> ErrorMessages { get; }
-
-        bool IsSuccessful { get; }
     }
 }
