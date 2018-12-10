@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ServiceLayer
 {
-    public interface IBaseServiceResult<out TResultType> where TResultType : Enum
+    public interface IGenericServiceResult<out TResultType> where TResultType : Enum
     {
         TResultType ResultType { get; }
 

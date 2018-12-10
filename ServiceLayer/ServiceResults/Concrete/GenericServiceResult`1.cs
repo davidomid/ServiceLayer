@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace ServiceLayer
 {
-    public abstract class BaseServiceResult<TResultType> : IBaseServiceResult<TResultType> where TResultType : Enum
+    public class GenericServiceResult<TResultType> : IGenericServiceResult<TResultType> where TResultType : Enum
     {
-        protected BaseServiceResult(TResultType resultType, params string[] errorMessages)
+        protected GenericServiceResult(TResultType resultType, params string[] errorMessages)
         {
             this.ResultType = resultType;
             this.ErrorMessages = errorMessages;
