@@ -7,16 +7,15 @@ using Testing.Common.Domain.TestClasses;
 namespace ServiceLayer.UnitTests.Tests.Constructor
 {
     [TestFixtureSource(nameof(ResultTypes))]
-    public class WhenGivenResultTypeAndDataAndErrorMessages : UnitTestBase
+    public class WhenGivenResultTypeAndErrorMessages : UnitTestBase
     {
-        private ServiceResult<string> _serviceResult;
-        private const string TestData = "test data"; 
+        private ServiceResult<ServiceResultTypes> _serviceResult;
         private string[] _errorMessages;
         private readonly ServiceResultTypes _serviceResultType;
 
         private static readonly ServiceResultTypes[] ResultTypes = (ServiceResultTypes[])Enum.GetValues(typeof(ServiceResultTypes));
 
-        public WhenGivenResultTypeAndDataAndErrorMessages(ServiceResultTypes serviceResultType)
+        public WhenGivenResultTypeAndErrorMessages(ServiceResultTypes serviceResultType)
         {
             _serviceResultType = serviceResultType;
         }
@@ -33,12 +32,6 @@ namespace ServiceLayer.UnitTests.Tests.Constructor
             _serviceResult.ErrorMessages.Should().BeSameAs(_errorMessages); 
         }
 
-        [Test]
-        public void Should_Have_Data_Matching_Given_Data()
-        {
-            _serviceResult.Data.Should().Be(TestData);
-        }
-
         protected override void Arrange()
         {
             _errorMessages = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
@@ -46,7 +39,7 @@ namespace ServiceLayer.UnitTests.Tests.Constructor
 
         protected override void Act()
         {
-            _serviceResult = new TestServiceResult<string>(_serviceResultType, TestData, _errorMessages);
+            _serviceResult = new ServiceResult<ServiceResultTypes>(_serviceResultType, _errorMessages);
         }
     }
 }

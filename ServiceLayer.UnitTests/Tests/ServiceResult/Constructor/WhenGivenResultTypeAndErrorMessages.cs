@@ -39,7 +39,7 @@ namespace ServiceLayer.UnitTests.Tests.ServiceResult.Constructor
 
         protected override void Act()
         {
-            _serviceResult = new TestServiceResult(_serviceResultType, _errorMessages);
+            _serviceResult = new ServiceLayer.ServiceResult(_serviceResultType, _errorMessages);
         }
     }
 }
