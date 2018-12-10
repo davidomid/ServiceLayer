@@ -1,7 +1,7 @@
 ﻿using System;
 namespace ServiceLayer
 {
-    public static class EnumExtensions
+    public static class ServiceResultTypesExtensions
     {
         public static ServiceResultTypes ToServiceResultType(this Enum enumValue)
         {

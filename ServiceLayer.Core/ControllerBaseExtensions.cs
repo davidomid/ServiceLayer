@@ -5,7 +5,7 @@ namespace ServiceLayer.Core
 {
     public static class ControllerBaseExtensions
     {
-        public static IActionResult FromServiceResult<TResultType, TData>(this ControllerBase controller, IGenericServiceResult<TResultType, TData> serviceResult) where TResultType : Enum
+        public static IActionResult FromServiceResult<TResultType, TData>(this ControllerBase controller, IDataServiceResult<TData, TResultType> serviceResult) where TResultType : Enum
         {
             if (serviceResult.IsSuccessful)
             {
@@ -14,7 +14,7 @@ namespace ServiceLayer.Core
             return controller.StatusCode(500, serviceResult.ErrorMessages);
         }
 
-        public static IActionResult FromServiceResult<TResultType>(this ControllerBase controller, IGenericServiceResult<TResultType> serviceResult) where TResultType : Enum
+        public static IActionResult FromServiceResult<TResultType>(this ControllerBase controller, IServiceResult<TResultType> serviceResult) where TResultType : Enum
         {
             if (serviceResult.IsSuccessful)
             {
@@ -23,7 +23,7 @@ namespace ServiceLayer.Core
             return controller.StatusCode(500, serviceResult.ErrorMessages);
         }
 
-        public static IActionResult FromServiceResult<TData>(this ControllerBase controller, HttpServiceResult<TData> httpServiceResult)
+        public static IActionResult FromServiceResult<TData>(this ControllerBase controller, IDataServiceResult<TData, HttpServiceResultTypes> httpServiceResult)
         {
             switch (httpServiceResult.ResultType)
             {
@@ -31,16 +31,16 @@ namespace ServiceLayer.Core
                     return controller.Ok(httpServiceResult.Data);
                 
                 default:
-                    return controller.FromNonGenericServiceResult(httpServiceResult); 
+                    return controller.FromNonGenericHttpServiceResult(httpServiceResult); 
             }
         }
 
-        public static IActionResult FromServiceResult(this ControllerBase controller, HttpServiceResult httpServiceResult)
+        public static IActionResult FromServiceResult(this ControllerBase controller, IServiceResult<HttpServiceResultTypes> httpServiceResult)
         {
-            return controller.FromNonGenericServiceResult(httpServiceResult); 
+            return controller.FromNonGenericHttpServiceResult(httpServiceResult); 
         }
 
-        private static IActionResult FromNonGenericServiceResult(this ControllerBase controller, HttpServiceResult httpServiceResult)
+        private static IActionResult FromNonGenericHttpServiceResult(this ControllerBase controller, IServiceResult<HttpServiceResultTypes> httpServiceResult)
         {
             switch (httpServiceResult.ResultType)
             {
