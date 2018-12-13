@@ -2,14 +2,13 @@ using System;
 using FluentAssertions;
 using NUnit.Framework;
 using Testing.Common.Domain;
-using Testing.Common.Domain.TestClasses;
 
-namespace ServiceLayer.UnitTests.Tests.ServiceResult.Constructor
+namespace ServiceLayer.UnitTests.Models.Constructor
 {
     [TestFixtureSource(nameof(ResultTypes))]
     public class WhenGivenResultTypeAndErrorMessages : UnitTestBase
     {
-        private ServiceLayer.ServiceResult _serviceResult;
+        private ServiceResult<ServiceResultTypes> _serviceResult;
         private string[] _errorMessages;
         private readonly ServiceResultTypes _serviceResultType;
 
@@ -39,7 +38,7 @@ namespace ServiceLayer.UnitTests.Tests.ServiceResult.Constructor
 
         protected override void Act()
         {
-            _serviceResult = new ServiceLayer.ServiceResult(_serviceResultType, _errorMessages);
+            _serviceResult = new ServiceResult<ServiceResultTypes>(_serviceResultType, _errorMessages);
         }
     }
 }

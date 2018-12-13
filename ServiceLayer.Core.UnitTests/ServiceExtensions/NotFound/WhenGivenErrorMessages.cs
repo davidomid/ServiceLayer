@@ -1,7 +1,7 @@
 using System;
 using NUnit.Framework;
 using Testing.Common.Domain;
-using Testing.Common.Domain.TestClasses;
+using Testing.Common.Domain.TestData;
 
 namespace ServiceLayer.UnitTests.Tests.ServiceExtensions.NotFound
 {
