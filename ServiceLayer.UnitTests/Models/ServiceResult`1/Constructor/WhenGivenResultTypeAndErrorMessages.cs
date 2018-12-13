@@ -6,7 +6,7 @@ using Testing.Common.Domain;
 namespace ServiceLayer.UnitTests.Models.Constructor
 {
     [TestFixtureSource(nameof(ResultTypes))]
-    public class WhenGivenResultTypeAndErrorMessages : UnitTestBase
+    public class WhenServiceResultTypeSuccess : UnitTestBase
     {
         private ServiceResult<ServiceResultTypes> _serviceResult;
         private string[] _errorMessages;
@@ -14,7 +14,7 @@ namespace ServiceLayer.UnitTests.Models.Constructor
 
         private static readonly ServiceResultTypes[] ResultTypes = (ServiceResultTypes[])Enum.GetValues(typeof(ServiceResultTypes));
 
-        public WhenGivenResultTypeAndErrorMessages(ServiceResultTypes serviceResultType)
+        public WhenServiceResultTypeSuccess(ServiceResultTypes serviceResultType)
         {
             _serviceResultType = serviceResultType;
         }
