@@ -2,7 +2,7 @@
 {
     public class DataServiceResult<TData> : DataServiceResult<TData, ServiceResultTypes>
     {
-        public DataServiceResult(ServiceResultTypes resultType, TData data, params string[] errorMessages) : base(resultType, data, errorMessages)
+        public DataServiceResult(TData data, ServiceResultTypes resultType, params string[] errorMessages) : base(data, resultType, errorMessages)
         {
         }
     }

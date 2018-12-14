@@ -31,12 +31,12 @@ namespace ServiceLayer
 
         public static DataServiceResult<TData> DataResult<TData>(this IService service, TData data, ServiceResultTypes resultType, params string[] errorMessages)
         {
-            return new DataServiceResult<TData>(resultType, data, errorMessages);
+            return new DataServiceResult<TData>(data, resultType, errorMessages);
         }
 
         public static DataServiceResult<TData, TResultType> DataResult<TData, TResultType>(this IService service, TData data, TResultType resultType, params string[] errorMessages) where TResultType : Enum
         {
-            return new DataServiceResult<TData, TResultType>(resultType, data, errorMessages);
+            return new DataServiceResult<TData, TResultType>(data, resultType, errorMessages);
         }
     }
 }
