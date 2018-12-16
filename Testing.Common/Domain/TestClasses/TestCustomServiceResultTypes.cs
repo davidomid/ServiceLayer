@@ -1,6 +1,6 @@
 ﻿using ServiceLayer.Attributes;
 
-namespace Testing.Common.Domain.TestData
+namespace Testing.Common.Domain.TestClasses
 {
     public enum TestCustomServiceResultTypes
     {

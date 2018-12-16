@@ -2,9 +2,9 @@ using FluentAssertions;
 using NUnit.Framework;
 using Testing.Common.Domain;
 
-namespace ServiceLayer.UnitTests.Models.IsSuccessful
+namespace ServiceLayer.UnitTests.Models.ServiceResult_1.IsSuccessful
 {
-    public class WhenServiceResultTypeFailure : UnitTestBase
+    public class WhenServiceResultTypeSuccess : UnitTestBase
     {
         private ServiceResult<ServiceResultTypes> _serviceResult;
         private bool _isSuccessful;
@@ -12,12 +12,12 @@ namespace ServiceLayer.UnitTests.Models.IsSuccessful
         [Test]
         public void Should_Return_True()
         {
-            _isSuccessful.Should().BeFalse();
+            _isSuccessful.Should().BeTrue();
         }
 
         protected override void Arrange()
         {
-            _serviceResult = new ServiceResult<ServiceResultTypes>(ServiceResultTypes.Failure);
+            _serviceResult = new ServiceResult<ServiceResultTypes>(ServiceResultTypes.Success);
         }
 
         protected override void Act()
