@@ -1,7 +1,8 @@
+using FluentAssertions;
 using NUnit.Framework;
 using Testing.Common.Domain;
 
-namespace ServiceLayer.UnitTests.Tests
+namespace ServiceLayer.Core.UnitTests
 {
     public class WhenErrorMessages : UnitTestBase
     {
@@ -12,7 +13,7 @@ namespace ServiceLayer.UnitTests.Tests
         [Test]
         public void Should_Have_Ok_ResultType()
         {
-            _okResult.ResultType.Should().Be(ServiceResultTypes.Ok);
+            _okResult.ResultType.Should().Be(HttpServiceResultTypes.Ok);
         }
 
         [Test]

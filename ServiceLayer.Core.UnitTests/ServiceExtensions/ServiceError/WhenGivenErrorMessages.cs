@@ -3,7 +3,7 @@ using NUnit.Framework;
 using Testing.Common.Domain;
 using Testing.Common.Domain.TestClasses;
 
-namespace ServiceLayer.UnitTests.Tests.ServiceExtensions.ServiceError
+namespace ServiceLayer.Core.UnitTests.ServiceExtensions.ServiceError
 {
     public class WhenGivenErrorMessages : UnitTestBase
     {

@@ -2,7 +2,7 @@ using NUnit.Framework;
 using Testing.Common.Domain;
 using Testing.Common.Domain.TestClasses;
 
-namespace ServiceLayer.UnitTests.Tests.ServiceExtensions
+namespace ServiceLayer.Core.UnitTests.ServiceExtensions
 {
     public class WhenGivenData : UnitTestBase
     {

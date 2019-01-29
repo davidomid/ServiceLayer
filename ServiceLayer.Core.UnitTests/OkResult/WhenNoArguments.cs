@@ -1,16 +1,17 @@
+using FluentAssertions;
 using NUnit.Framework;
 using Testing.Common.Domain;
 
-namespace ServiceLayer.UnitTests.Tests.OkResult
+namespace ServiceLayer.Core.UnitTests.OkResult
 {
     public class WhenNoArguments : UnitTestBase
     {
-        private ServiceLayer.OkResult _okResult;
+        private Core.OkResult _okResult;
 
         [Test]
         public void Should_Have_Ok_ResultType()
         {
-            _okResult.ResultType.Should().Be(ServiceResultTypes.Ok);
+            _okResult.ResultType.Should().Be(HttpServiceResultTypes.Ok);
         }
 
         [Test]
@@ -25,7 +26,7 @@ namespace ServiceLayer.UnitTests.Tests.OkResult
 
         protected override void Act()
         {
-            _okResult = new ServiceLayer.OkResult();
+            _okResult = new Core.OkResult();
         }
     }
 }

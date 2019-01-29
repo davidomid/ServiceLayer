@@ -1,18 +1,19 @@
 using System;
+using FluentAssertions;
 using NUnit.Framework;
 using Testing.Common.Domain;
 
-namespace ServiceLayer.UnitTests.Tests.ConflictResult
+namespace ServiceLayer.Core.UnitTests.ConflictResult
 {
     public class WhenGivenErrorMessages : UnitTestBase
     {
-        private ServiceLayer.ConflictResult _conflictResult;
+        private Core.ConflictResult _conflictResult;
         private string[] _errorMessages;
 
         [Test]
         public void Should_Have_Conflict_ResultType()
         {
-            _conflictResult.ResultType.Should().Be(ServiceResultTypes.Conflict);
+            _conflictResult.ResultType.Should().Be(HttpServiceResultTypes.Conflict);
         }
 
         [Test]
@@ -28,7 +29,7 @@ namespace ServiceLayer.UnitTests.Tests.ConflictResult
 
         protected override void Act()
         {
-            _conflictResult = new ServiceLayer.ConflictResult(_errorMessages);
+            _conflictResult = new Core.ConflictResult(_errorMessages);
         }
     }
 }

@@ -3,7 +3,7 @@ using NUnit.Framework;
 using Testing.Common.Domain;
 using Testing.Common.Domain.TestClasses;
 
-namespace ServiceLayer.UnitTests.Tests.ServiceExtensions.NotFound
+namespace ServiceLayer.Core.UnitTests.ServiceExtensions.NotFound
 {
     public class WhenGivenErrorMessages : UnitTestBase
     {

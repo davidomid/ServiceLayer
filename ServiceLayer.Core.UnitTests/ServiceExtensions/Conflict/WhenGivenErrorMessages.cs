@@ -3,7 +3,7 @@ using NUnit.Framework;
 using Testing.Common.Domain;
 using Testing.Common.Domain.TestClasses;
 
-namespace ServiceLayer.UnitTests.Tests.ServiceExtensions.Conflict
+namespace ServiceLayer.Core.UnitTests.ServiceExtensions.Conflict
 {
     public class WhenGivenErrorMessages : UnitTestBase
     {

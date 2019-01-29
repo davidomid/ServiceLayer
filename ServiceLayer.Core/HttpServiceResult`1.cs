@@ -2,7 +2,7 @@
 {
     public class HttpServiceResult<TData> : DataServiceResult<TData, HttpServiceResultTypes>
     {
-        public HttpServiceResult(HttpServiceResultTypes resultType, TData data, params string[] errorMessages) : base(resultType, data, errorMessages)
+        public HttpServiceResult(HttpServiceResultTypes resultType, TData data, params string[] errorMessages) : base(data, resultType, errorMessages)
         {
         }
     }

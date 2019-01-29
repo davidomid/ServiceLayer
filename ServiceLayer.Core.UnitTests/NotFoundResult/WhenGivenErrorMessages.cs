@@ -1,18 +1,19 @@
 using System;
+using FluentAssertions;
 using NUnit.Framework;
 using Testing.Common.Domain;
 
-namespace ServiceLayer.UnitTests.Tests.NotFoundResult
+namespace ServiceLayer.Core.UnitTests.NotFoundResult
 {
     public class WhenGivenErrorMessages : UnitTestBase
     {
-        private ServiceLayer.NotFoundResult _notFoundResult;
+        private Core.NotFoundResult _notFoundResult;
         private string[] _errorMessages;
 
         [Test]
         public void Should_Have_NotFound_ResultType()
         {
-            _notFoundResult.ResultType.Should().Be(ServiceResultTypes.NotFound);
+            _notFoundResult.ResultType.Should().Be(HttpServiceResultTypes.NotFound);
         }
 
         [Test]
@@ -28,7 +29,7 @@ namespace ServiceLayer.UnitTests.Tests.NotFoundResult
 
         protected override void Act()
         {
-            _notFoundResult = new ServiceLayer.NotFoundResult(_errorMessages);
+            _notFoundResult = new Core.NotFoundResult(_errorMessages);
         }
     }
 }

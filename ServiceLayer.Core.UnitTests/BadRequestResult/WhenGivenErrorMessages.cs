@@ -1,18 +1,19 @@
 using System;
+using FluentAssertions;
 using NUnit.Framework;
 using Testing.Common.Domain;
 
-namespace ServiceLayer.UnitTests.Tests.BadRequestResult
+namespace ServiceLayer.Core.UnitTests.BadRequestResult
 {
     public class WhenGivenErrorMessages : UnitTestBase
     {
-        private ServiceLayer.BadRequestResult _badRequestResult;
+        private Core.BadRequestResult _badRequestResult;
         private string[] _errorMessages;
 
         [Test]
         public void Should_Have_BadRequest_ResultType()
         {
-            _badRequestResult.ResultType.Should().Be(ServiceResultTypes.BadRequest);
+            _badRequestResult.ResultType.Should().Be(HttpServiceResultTypes.BadRequest);
         }
 
         [Test]
@@ -28,7 +29,7 @@ namespace ServiceLayer.UnitTests.Tests.BadRequestResult
 
         protected override void Act()
         {
-            _badRequestResult = new ServiceLayer.BadRequestResult(_errorMessages);
+            _badRequestResult = new Core.BadRequestResult(_errorMessages);
         }
     }
 }
