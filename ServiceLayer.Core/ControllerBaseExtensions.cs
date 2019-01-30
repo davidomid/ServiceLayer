@@ -31,16 +31,16 @@ namespace ServiceLayer.Core
                     return controller.Ok(httpServiceResult.Data);
                 
                 default:
-                    return controller.FromNonGenericHttpServiceResult(httpServiceResult); 
+                    return controller.FromHttpServiceResult(httpServiceResult); 
             }
         }
 
         public static IActionResult FromServiceResult(this ControllerBase controller, IServiceResult<HttpServiceResultTypes> httpServiceResult)
         {
-            return controller.FromNonGenericHttpServiceResult(httpServiceResult); 
+            return controller.FromHttpServiceResult(httpServiceResult); 
         }
 
-        private static IActionResult FromNonGenericHttpServiceResult(this ControllerBase controller, IServiceResult<HttpServiceResultTypes> httpServiceResult)
+        private static IActionResult FromHttpServiceResult(this ControllerBase controller, IServiceResult<HttpServiceResultTypes> httpServiceResult)
         {
             switch (httpServiceResult.ResultType)
             {

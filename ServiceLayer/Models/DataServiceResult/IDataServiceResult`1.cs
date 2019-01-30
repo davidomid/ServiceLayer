@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ServiceLayer
+﻿namespace ServiceLayer
 {
     public interface IDataServiceResult<out TData> : IDataServiceResult<TData, ServiceResultTypes>
     {
