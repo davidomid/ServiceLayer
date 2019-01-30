@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using Testing.Common.Domain;
 using Testing.Common.Domain.TestClasses;

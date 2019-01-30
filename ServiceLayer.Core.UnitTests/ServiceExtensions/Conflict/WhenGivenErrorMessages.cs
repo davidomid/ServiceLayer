@@ -1,4 +1,5 @@
 using System;
+using FluentAssertions;
 using NUnit.Framework;
 using Testing.Common.Domain;
 using Testing.Common.Domain.TestClasses;
@@ -9,7 +10,7 @@ namespace ServiceLayer.Core.UnitTests.ServiceExtensions.Conflict
     {
         private IService _service;
         private string[] _errorMessages;
-        private ServiceLayer.ConflictResult _conflictResult;
+        private Core.ConflictResult _conflictResult;
 
         [Test]
         public void Should_Not_Return_Null()

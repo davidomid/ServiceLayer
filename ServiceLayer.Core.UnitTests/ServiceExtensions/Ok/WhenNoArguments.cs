@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using Testing.Common.Domain;
 using Testing.Common.Domain.TestClasses;
@@ -7,7 +8,7 @@ namespace ServiceLayer.Core.UnitTests.ServiceExtensions.Ok
     public class WhenGivenData : UnitTestBase
     {
         private IService _service;
-        private ServiceLayer.OkResult _okResult;
+        private Core.OkResult _okResult;
 
         [Test]
         public void Should_Not_Return_Null()
