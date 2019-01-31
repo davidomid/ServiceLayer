@@ -29,7 +29,6 @@ namespace ServiceLayer.Core
             {
                 case HttpServiceResultTypes.Ok:
                     return controller.Ok(httpServiceResult.Data);
-                
                 default:
                     return controller.FromHttpServiceResult(httpServiceResult); 
             }
