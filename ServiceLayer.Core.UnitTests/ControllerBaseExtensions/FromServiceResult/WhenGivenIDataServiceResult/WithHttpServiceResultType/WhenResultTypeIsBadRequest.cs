@@ -6,9 +6,9 @@ using NUnit.Framework;
 using Testing.Common.Domain;
 using Testing.Common.Domain.TestClasses;
 
-namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult.WhenGivenIDataServiceResultWithHttpServiceResultType
+namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult.WhenGivenIDataServiceResult.WithHttpServiceResultType
 {
-    public class WhenResultTypeIsForbidden : UnitTestBase
+    public class WhenResultTypeIsBadRequest : UnitTestBase
     {
         private IDataServiceResult<string, HttpServiceResultTypes> _dataServiceResult;
 
@@ -23,7 +23,7 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
             _errorMessages = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
             _controller = new TestController();
             Mock<IDataServiceResult<string, HttpServiceResultTypes>> mockServiceResult = new Mock<IDataServiceResult<string, HttpServiceResultTypes>>();
-            mockServiceResult.SetupGet(r => r.ResultType).Returns(HttpServiceResultTypes.Forbidden);
+            mockServiceResult.SetupGet(r => r.ResultType).Returns(HttpServiceResultTypes.BadRequest);
             mockServiceResult.SetupGet(r => r.ErrorMessages).Returns(_errorMessages);
             _dataServiceResult = mockServiceResult.Object;
         }
@@ -40,9 +40,16 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
         }
 
         [Test]
-        public void Should_Return_ForbidResult()
+        public void Should_Return_BadRequestResult()
         {
-            _actionResult.Should().BeOfType<ForbidResult>(); 
+            _actionResult.Should().BeOfType<BadRequestObjectResult>(); 
+        }
+
+        [Test]
+        public void Should_Have_Value_Matching_Given_ErrorMessages()
+        {
+            BadRequestObjectResult badRequestObjectResult = (BadRequestObjectResult)_actionResult;
+            badRequestObjectResult.Value.Should().Be(_errorMessages);
         }
        
     }

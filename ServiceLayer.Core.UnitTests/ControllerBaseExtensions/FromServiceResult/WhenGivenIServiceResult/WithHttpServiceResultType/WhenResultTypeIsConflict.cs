@@ -6,11 +6,11 @@ using NUnit.Framework;
 using Testing.Common.Domain;
 using Testing.Common.Domain.TestClasses;
 
-namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult.WhenGivenIServiceResult
+namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult.WhenGivenIServiceResult.WithHttpServiceResultType
 {
-    public class WhenResultIsNotSuccessful : UnitTestBase
+    public class WhenResultTypeIsConflict : UnitTestBase
     {
-        private IServiceResult _serviceResult;
+        private IServiceResult<HttpServiceResultTypes> _dataServiceResult;
 
         private IActionResult _actionResult;
 
@@ -20,17 +20,17 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
 
         protected override void Arrange()
         {
-            _controller = new TestController();
             _errorMessages = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
-            Mock<IServiceResult> mockServiceResult = new Mock<IServiceResult>();
-            mockServiceResult.SetupGet(r => r.IsSuccessful).Returns(false);
+            _controller = new TestController();
+            Mock<IServiceResult<HttpServiceResultTypes>> mockServiceResult = new Mock<IServiceResult<HttpServiceResultTypes>>();
+            mockServiceResult.SetupGet(r => r.ResultType).Returns(HttpServiceResultTypes.Conflict);
             mockServiceResult.SetupGet(r => r.ErrorMessages).Returns(_errorMessages);
-            _serviceResult = mockServiceResult.Object;
+            _dataServiceResult = mockServiceResult.Object;
         }
 
         protected override void Act()
         {
-            _actionResult = _controller.FromServiceResult(_serviceResult);
+            _actionResult = _controller.FromServiceResult(_dataServiceResult);
         }
 
         [Test]
@@ -42,7 +42,14 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
         [Test]
         public void Should_Return_ObjectResult()
         {
-            _actionResult.Should().BeOfType<ObjectResult>();
+            _actionResult.Should().BeOfType<ObjectResult>(); 
+        }
+
+        [Test]
+        public void Should_Have_409_StatusCode()
+        {
+            ObjectResult objectResult = (ObjectResult)_actionResult;
+            objectResult.StatusCode.Should().Be(409);
         }
 
         [Test]
@@ -51,12 +58,6 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
             ObjectResult objectResult = (ObjectResult)_actionResult;
             objectResult.Value.Should().Be(_errorMessages);
         }
-
-        [Test]
-        public void Should_Have_500_StatusCode()
-        {
-            ObjectResult objectResult = (ObjectResult)_actionResult;
-            objectResult.StatusCode.Should().Be(500);
-        }
+       
     }
 }

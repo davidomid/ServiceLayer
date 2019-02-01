@@ -30,16 +30,11 @@ namespace ServiceLayer.Core
                 case HttpServiceResultTypes.Ok:
                     return controller.Ok(httpServiceResult.Data);
                 default:
-                    return controller.FromHttpServiceResult(httpServiceResult); 
+                    return controller.FromServiceResult((IServiceResult<HttpServiceResultTypes>)httpServiceResult); 
             }
         }
 
         public static IActionResult FromServiceResult(this ControllerBase controller, IServiceResult<HttpServiceResultTypes> httpServiceResult)
-        {
-            return controller.FromHttpServiceResult(httpServiceResult); 
-        }
-
-        private static IActionResult FromHttpServiceResult(this ControllerBase controller, IServiceResult<HttpServiceResultTypes> httpServiceResult)
         {
             switch (httpServiceResult.ResultType)
             {
@@ -58,9 +53,8 @@ namespace ServiceLayer.Core
                 case HttpServiceResultTypes.InternalServerError:
                     return controller.StatusCode(500, httpServiceResult.ErrorMessages);
                 default:
-                    throw new NotSupportedException($"No action result could be returned for service result type {httpServiceResult.ResultType}");
+                    goto case HttpServiceResultTypes.InternalServerError;
             }
         }
-
     }
 }

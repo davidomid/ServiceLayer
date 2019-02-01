@@ -6,11 +6,11 @@ using NUnit.Framework;
 using Testing.Common.Domain;
 using Testing.Common.Domain.TestClasses;
 
-namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult.WhenGivenIDataServiceResultWithHttpServiceResultType
+namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult.WhenGivenIServiceResult.WithHttpServiceResultType
 {
     public class WhenResultTypeIsBadRequest : UnitTestBase
     {
-        private IDataServiceResult<string, HttpServiceResultTypes> _dataServiceResult;
+        private IServiceResult<HttpServiceResultTypes> _dataServiceResult;
 
         private IActionResult _actionResult;
 
@@ -22,7 +22,7 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
         {
             _errorMessages = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
             _controller = new TestController();
-            Mock<IDataServiceResult<string, HttpServiceResultTypes>> mockServiceResult = new Mock<IDataServiceResult<string, HttpServiceResultTypes>>();
+            Mock<IServiceResult<HttpServiceResultTypes>> mockServiceResult = new Mock<IServiceResult<HttpServiceResultTypes>>();
             mockServiceResult.SetupGet(r => r.ResultType).Returns(HttpServiceResultTypes.BadRequest);
             mockServiceResult.SetupGet(r => r.ErrorMessages).Returns(_errorMessages);
             _dataServiceResult = mockServiceResult.Object;

@@ -6,11 +6,11 @@ using NUnit.Framework;
 using Testing.Common.Domain;
 using Testing.Common.Domain.TestClasses;
 
-namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult.WhenGivenIDataServiceResultWithHttpServiceResultType
+namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult.WhenGivenIServiceResult.WithHttpServiceResultType
 {
-    public class WhenResultTypeIsUnauthorized : UnitTestBase
+    public class WhenResultTypeIsNotFound : UnitTestBase
     {
-        private IDataServiceResult<string, HttpServiceResultTypes> _dataServiceResult;
+        private IServiceResult<HttpServiceResultTypes> _dataServiceResult;
 
         private IActionResult _actionResult;
 
@@ -22,8 +22,8 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
         {
             _errorMessages = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
             _controller = new TestController();
-            Mock<IDataServiceResult<string, HttpServiceResultTypes>> mockServiceResult = new Mock<IDataServiceResult<string, HttpServiceResultTypes>>();
-            mockServiceResult.SetupGet(r => r.ResultType).Returns(HttpServiceResultTypes.Unauthorized);
+            Mock<IServiceResult<HttpServiceResultTypes>> mockServiceResult = new Mock<IServiceResult<HttpServiceResultTypes>>();
+            mockServiceResult.SetupGet(r => r.ResultType).Returns(HttpServiceResultTypes.NotFound);
             mockServiceResult.SetupGet(r => r.ErrorMessages).Returns(_errorMessages);
             _dataServiceResult = mockServiceResult.Object;
         }
@@ -40,9 +40,9 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
         }
 
         [Test]
-        public void Should_Return_UnauthorizedResult()
+        public void Should_Return_NotFoundResult()
         {
-            _actionResult.Should().BeOfType<UnauthorizedResult>(); 
+            _actionResult.Should().BeOfType<Microsoft.AspNetCore.Mvc.NotFoundResult>(); 
         }
        
     }

@@ -5,7 +5,7 @@ using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.Core.UnitTests.ServiceExtensions.Ok
 {
-    public class WhenGivenData : UnitTestBase
+    public class WhenNoArguments : UnitTestBase
     {
         private IService _service;
         private Core.OkResult _okResult;

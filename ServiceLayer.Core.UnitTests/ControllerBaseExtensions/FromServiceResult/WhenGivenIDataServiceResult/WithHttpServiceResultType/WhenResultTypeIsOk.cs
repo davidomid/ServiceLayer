@@ -5,7 +5,7 @@ using NUnit.Framework;
 using Testing.Common.Domain;
 using Testing.Common.Domain.TestClasses;
 
-namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult.WhenGivenIDataServiceResultWithHttpServiceResultType
+namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult.WhenGivenIDataServiceResult.WithHttpServiceResultType
 {
     public class WhenResultTypeIsOk : UnitTestBase
     {
@@ -20,6 +20,8 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
             _controller = new TestController();
             Mock<IDataServiceResult<string, HttpServiceResultTypes>> mockServiceResult = new Mock<IDataServiceResult<string, HttpServiceResultTypes>>();
             mockServiceResult.SetupGet(r => r.ResultType).Returns(HttpServiceResultTypes.Ok);
+
+            mockServiceResult.Verify();
             _dataServiceResult = mockServiceResult.Object;
         }
 
