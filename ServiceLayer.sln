@@ -22,7 +22,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testing.Common", "Testing.C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{DC252CAA-DF45-48D3-B468-BEB454B65AEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleAspNetCoreWebApp", "ExampleAspNetCoreWebApp\ExampleAspNetCoreWebApp.csproj", "{AB2BD902-5678-47FA-9D9F-081038C69572}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleAspNetCoreWebApp", "ExampleAspNetCoreWebApp\ExampleAspNetCoreWebApp.csproj", "{AB2BD902-5678-47FA-9D9F-081038C69572}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleServices", "ExampleServices\ExampleServices.csproj", "{04B5F0CC-550D-4D42-B6CD-EB82BF886336}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,6 +56,10 @@ Global
 		{AB2BD902-5678-47FA-9D9F-081038C69572}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB2BD902-5678-47FA-9D9F-081038C69572}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB2BD902-5678-47FA-9D9F-081038C69572}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04B5F0CC-550D-4D42-B6CD-EB82BF886336}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04B5F0CC-550D-4D42-B6CD-EB82BF886336}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04B5F0CC-550D-4D42-B6CD-EB82BF886336}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04B5F0CC-550D-4D42-B6CD-EB82BF886336}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +69,7 @@ Global
 		{9288E49B-023C-4CDF-A034-0FFC729DA698} = {AAF26276-3CA3-42B5-8A4E-EC62655069D8}
 		{106CAB59-5398-4BB5-A017-21F3AEA8ACEF} = {AAF26276-3CA3-42B5-8A4E-EC62655069D8}
 		{AB2BD902-5678-47FA-9D9F-081038C69572} = {DC252CAA-DF45-48D3-B468-BEB454B65AEE}
+		{04B5F0CC-550D-4D42-B6CD-EB82BF886336} = {DC252CAA-DF45-48D3-B468-BEB454B65AEE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {20A85F84-17E3-4B13-AE4D-7117DCC436D8}
