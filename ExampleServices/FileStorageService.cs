@@ -16,14 +16,14 @@ namespace ExampleServices
             _filePath = filePath;
         }
 
-        public IDataServiceResult<IEnumerable<TEntity>> Get()
+        public DataServiceResult<List<TEntity>> Get()
         {
             try
             {
                 if (File.Exists(_filePath))
                 {
                     string json = File.ReadAllText(_filePath);
-                    IEnumerable<TEntity> entities = JsonConvert.DeserializeObject<IEnumerable<TEntity>>(json);
+                    List<TEntity> entities = JsonConvert.DeserializeObject<List<TEntity>>(json);
                     return entities;
                 }
                 return this.Failure($"The file path \"{_filePath}\" does not exist.");
@@ -34,7 +34,7 @@ namespace ExampleServices
             }
         }
 
-        public IServiceResult Add(TEntity entity)
+        public ServiceResult Add(TEntity entity)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace ExampleServices
             }
         }
 
-        public IDataServiceResult<TEntity> GetByKey(string key)
+        public DataServiceResult<TEntity> GetByKey(string key)
         {
             var allEntitiesResult = this.Get();
             if (allEntitiesResult.IsSuccessful)
@@ -64,6 +64,21 @@ namespace ExampleServices
             }
 
             return this.Failure(allEntitiesResult.ErrorMessages);
+        }
+
+        IDataServiceResult<IEnumerable<TEntity>> IStorageService<TEntity>.Get()
+        {
+            return this.Get(); 
+        }
+
+        IServiceResult IStorageService<TEntity>.Add(TEntity entity)
+        {
+            return this.Add(entity); 
+        }
+
+        IDataServiceResult<TEntity> IStorageService<TEntity>.GetByKey(string key)
+        {
+            return this.GetByKey(key);
         }
     }
 }
