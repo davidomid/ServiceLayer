@@ -11,31 +11,35 @@ namespace ExampleServices
     {
         private readonly List<TEntity> _entities = new List<TEntity>();
 
-        public IServiceResult Add(TEntity entity)
+        public ServiceResult Add(TEntity entity)
         {
-            IServiceResult result;
-            //if (_entities.Exists(e => e.Key == entity.Key))
-            //{
-            //    result = this.Failure($"An entity already exists with the key {entity.Key}"); 
-            //}
-            //else
-            //{
-            //    _entities.Add(entity);
-            //    result = this.Success(); 
-            //}
-
             _entities.Add(entity);
-            //return this.Success();
+            return this.Success();
         }
 
-        public IDataServiceResult<IEnumerable<TEntity>> Get()
+        public DataServiceResult<IEnumerable<TEntity>> Get()
         {
             return _entities;  
         }
 
-        public IDataServiceResult<TEntity> GetByKey(string key)
+        public DataServiceResult<TEntity> GetByKey(string key)
         {
             return _entities.FirstOrDefault(e => e.Key == key);
+        }
+
+        IServiceResult IStorageService<TEntity>.Add(TEntity entity)
+        {
+            return this.Add(entity);
+        }
+
+        IDataServiceResult<IEnumerable<TEntity>> IStorageService<TEntity>.Get()
+        {
+            return this.Get();
+        }
+
+        IDataServiceResult<TEntity> IStorageService<TEntity>.GetByKey(string key)
+        {
+            return this.GetByKey(key);
         }
     }
 }

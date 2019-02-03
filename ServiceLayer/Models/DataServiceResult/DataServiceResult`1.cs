@@ -1,8 +1,15 @@
-﻿namespace ServiceLayer
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace ServiceLayer
 {
     public class DataServiceResult<TData> : DataServiceResult<TData, ServiceResultTypes>, IDataServiceResult<TData>
     {
         public DataServiceResult(TData data, ServiceResultTypes resultType, params string[] errorMessages) : base(data, resultType, errorMessages)
+        {
+        }
+
+        public DataServiceResult(TData data, ServiceResultTypes resultType, IEnumerable<string> errorMessages) : base(data, resultType, errorMessages)
         {
         }
 
