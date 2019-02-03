@@ -60,7 +60,7 @@ namespace ExampleServices
             var allEntitiesResult = this.Get();
             if (allEntitiesResult.IsSuccessful)
             {
-                return allEntitiesResult.Data?.FirstOrDefault(); 
+                return allEntitiesResult.Data?.FirstOrDefault(d => d.Key == key); 
             }
 
             return this.Failure(allEntitiesResult.ErrorMessages);
