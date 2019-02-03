@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace ServiceLayer
 {
@@ -20,7 +19,7 @@ namespace ServiceLayer
 
         public static implicit operator DataServiceResult<TData>(FailureResult failureResult)
         {
-            return new DataServiceResult<TData>(default(TData), ServiceResultTypes.Failure, failureResult.ErrorMessages);
+            return new DataServiceResult<TData>(default, ServiceResultTypes.Failure, failureResult.ErrorMessages);
         }
     }
 }
