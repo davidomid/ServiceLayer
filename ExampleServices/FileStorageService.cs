@@ -16,7 +16,7 @@ namespace ExampleServices
             _filePath = filePath;
         }
 
-        public DataServiceResult<List<TEntity>> Get()
+        public DataServiceResult<List<TEntity>, FileStorageServiceResultTypes> Get()
         {
             try
             {
@@ -26,7 +26,9 @@ namespace ExampleServices
                     List<TEntity> entities = JsonConvert.DeserializeObject<List<TEntity>>(json);
                     return entities;
                 }
-                return this.Failure($"The file path \"{_filePath}\" does not exist.");
+
+                return this.DataResult<List<TEntity>, FileStorageServiceResultTypes>(null, FileStorageServiceResultTypes.FilePathNotExists);
+                //return this.Failure($"The file path \"{_filePath}\" does not exist.");
             }
             catch (Exception ex)
             {

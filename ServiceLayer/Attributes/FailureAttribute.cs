@@ -1,6 +1,6 @@
 ﻿namespace ServiceLayer.Attributes
 {
-    public class SuccessAttribute : BaseAttribute
+    public class FailureAttribute : BaseAttribute
     {
     }
 }

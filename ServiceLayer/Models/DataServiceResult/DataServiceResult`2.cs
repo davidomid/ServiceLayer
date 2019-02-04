@@ -15,7 +15,6 @@ namespace ServiceLayer
             this.Data = data;
         }
 
-
         public TData Data { get; }
     }
 }
