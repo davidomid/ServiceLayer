@@ -21,5 +21,10 @@ namespace ServiceLayer
         {
             return new DataServiceResult<TData>(default, ServiceResultTypes.Failure, failureResult.ErrorMessages);
         }
+
+        public static implicit operator DataServiceResult<TData>(ServiceResultTypes resultType)
+        {
+            return new DataServiceResult<TData>(default, resultType);
+        }
     }
 }
