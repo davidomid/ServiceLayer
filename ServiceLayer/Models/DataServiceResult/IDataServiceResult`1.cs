@@ -1,7 +1,7 @@
 ﻿namespace ServiceLayer
 {
-    public interface IDataServiceResult<out TData> : IDataServiceResult<TData, ServiceResultTypes>
+    public interface IDataServiceResult<out TData> : IServiceResult
     {
-        
+        TData Data { get; }
     }
 }

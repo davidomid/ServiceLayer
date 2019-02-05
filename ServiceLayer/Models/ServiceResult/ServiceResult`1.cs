@@ -19,5 +19,7 @@ namespace ServiceLayer
         public TResultType ResultType { get; }
         public IEnumerable<string> ErrorMessages { get; }
         public bool IsSuccessful => this.ResultType.ToServiceResultType() == ServiceResultTypes.Success;
+
+        ServiceResultTypes IServiceResult.ResultType => ResultType.ToServiceResultType();
     }
 }

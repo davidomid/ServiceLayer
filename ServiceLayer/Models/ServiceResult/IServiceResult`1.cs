@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace ServiceLayer
 {
-    public interface IServiceResult<out TResultType> where TResultType : Enum
+    public interface IServiceResult<out TResultType> : IServiceResult where TResultType : Enum
     {
-        TResultType ResultType { get; }
+        new TResultType ResultType { get; }
 
         IEnumerable<string> ErrorMessages { get; }
 
