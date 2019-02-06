@@ -1,24 +1,23 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace ServiceLayer.Core
 {
     public static class ControllerBaseExtensions
     {
-        public static IActionResult FromServiceResult<TResultType, TData>(this ControllerBase controller, IDataServiceResult<TData, TResultType> serviceResult) where TResultType : Enum
-        {
-            if (serviceResult.IsSuccessful)
-            {
-                return controller.Ok(serviceResult.Data); 
-            }
-            return controller.StatusCode(500, serviceResult.ErrorMessages);
-        }
-
-        public static IActionResult FromServiceResult<TResultType>(this ControllerBase controller, IServiceResult<TResultType> serviceResult) where TResultType : Enum
+        public static IActionResult FromServiceResult(this ControllerBase controller, IServiceResult serviceResult)
         {
             if (serviceResult.IsSuccessful)
             {
                 return controller.Ok();
+            }
+            return controller.StatusCode(500, serviceResult.ErrorMessages);
+        }
+
+        public static IActionResult FromServiceResult<TData>(this ControllerBase controller, IDataServiceResult<TData> serviceResult)
+        {
+            if (serviceResult.IsSuccessful)
+            {
+                return controller.Ok(serviceResult.Data);
             }
             return controller.StatusCode(500, serviceResult.ErrorMessages);
         }
@@ -30,7 +29,7 @@ namespace ServiceLayer.Core
                 case HttpServiceResultTypes.Ok:
                     return controller.Ok(httpServiceResult.Data);
                 default:
-                    return controller.FromServiceResult((IServiceResult<HttpServiceResultTypes>)httpServiceResult); 
+                    return controller.FromServiceResult((IServiceResult<HttpServiceResultTypes>)httpServiceResult);
             }
         }
 

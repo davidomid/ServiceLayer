@@ -19,7 +19,7 @@ namespace ServiceLayer
 
         public static implicit operator DataServiceResult<TData, TResultType>(TData data)
         {
-            TResultType resultType = ServiceResultTypes.Success.ToResultType<TResultType>(); 
+            TResultType resultType = ServiceResultTypes.Success.ToResultType<TResultType>();
             return new DataServiceResult<TData, TResultType>(data, resultType);
         }
 
