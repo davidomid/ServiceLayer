@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ServiceLayer
 {
@@ -17,7 +18,7 @@ namespace ServiceLayer
 
         public static FailureResult Failure(this IService service, params string[] errorMessages)
         {
-            return new FailureResult(errorMessages);
+            return service.Failure(errorMessages.AsEnumerable());
         }
 
         public static FailureResult Failure(this IService service, IEnumerable<string> errorMessages)
@@ -27,7 +28,7 @@ namespace ServiceLayer
 
         public static ServiceResult Result(this IService service, ServiceResultTypes resultType, params string[] errorMessages)
         {
-            return new ServiceResult(resultType, errorMessages);
+            return service.Result(resultType, errorMessages.AsEnumerable());
         }
 
         public static ServiceResult Result(this IService service, ServiceResultTypes resultType, IEnumerable<string> errorMessages)
@@ -37,7 +38,7 @@ namespace ServiceLayer
 
         public static ServiceResult<TResultType> Result<TResultType>(this IService service, TResultType resultType, params string[] errorMessages) where TResultType : Enum
         {
-            return new ServiceResult<TResultType>(resultType, errorMessages);
+            return service.Result(resultType, errorMessages.AsEnumerable());
         }
 
         public static ServiceResult<TResultType> Result<TResultType>(this IService service, TResultType resultType, IEnumerable<string> errorMessages) where TResultType : Enum
@@ -47,7 +48,7 @@ namespace ServiceLayer
 
         public static DataServiceResult<TData> DataResult<TData>(this IService service, TData data, ServiceResultTypes resultType, params string[] errorMessages)
         {
-            return new DataServiceResult<TData>(data, resultType, errorMessages);
+            return service.DataResult(data, resultType, errorMessages.AsEnumerable());
         }
 
         public static DataServiceResult<TData> DataResult<TData>(this IService service, TData data, ServiceResultTypes resultType, IEnumerable<string> errorMessages)
@@ -57,7 +58,7 @@ namespace ServiceLayer
 
         public static DataServiceResult<TData, TResultType> DataResult<TData, TResultType>(this IService service, TData data, TResultType resultType, params string[] errorMessages) where TResultType : Enum
         {
-            return new DataServiceResult<TData, TResultType>(data, resultType, errorMessages);
+            return service.DataResult(data, resultType, errorMessages.AsEnumerable());
         }
 
         public static DataServiceResult<TData, TResultType> DataResult<TData, TResultType>(this IService service, TData data, TResultType resultType, IEnumerable<string> errorMessages) where TResultType : Enum
