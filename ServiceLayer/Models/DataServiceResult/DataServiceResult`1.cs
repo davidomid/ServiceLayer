@@ -2,7 +2,7 @@
 {
     public class DataServiceResult<TData> : DataServiceResult<TData, ServiceResultTypes>
     {
-        public DataServiceResult(TData data, ServiceResultTypes resultType) : this(data, resultType, null)
+        public DataServiceResult(TData data, ServiceResultTypes resultType) : base(data, resultType, null)
         {
         }
 

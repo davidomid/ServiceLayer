@@ -3,18 +3,15 @@ using System.Linq;
 
 namespace ServiceLayer
 {
-    public class DataServiceResult<TData, TResultType> : ServiceResult<TResultType>, IDataServiceResult<TData, TResultType> where TResultType : Enum
+    public class DataServiceResult<TData, TResultType> : DataServiceResult<TData, TResultType, object> where TResultType : Enum
     {
-        public DataServiceResult(TData data, TResultType resultType) : this(data, resultType, null)
+        public DataServiceResult(TData data, TResultType resultType) : base(data, resultType, null)
         {
         }
 
-        public DataServiceResult(TData data, TResultType resultType, params object[] errorDetails) : base(resultType, errorDetails)
+        public DataServiceResult(TData data, TResultType resultType, params object[] errorDetails) : base(data, resultType, errorDetails)
         {
-            this.Data = data;
         }
-
-        public TData Data { get; }
 
         public static implicit operator DataServiceResult<TData, TResultType>(TData data)
         {
