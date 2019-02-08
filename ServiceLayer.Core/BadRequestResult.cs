@@ -2,7 +2,7 @@
 {
     public class BadRequestResult : HttpServiceResult
     {
-        public BadRequestResult() : base(HttpServiceResultTypes.BadRequest)
+        public BadRequestResult() : this(null)
         {
         }
 

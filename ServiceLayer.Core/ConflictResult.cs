@@ -2,7 +2,7 @@
 {
     public class ConflictResult : HttpServiceResult
     {
-        public ConflictResult() : base(HttpServiceResultTypes.Conflict)
+        public ConflictResult() : this(null)
         {
         }
 

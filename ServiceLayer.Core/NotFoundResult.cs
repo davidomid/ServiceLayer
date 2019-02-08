@@ -2,7 +2,7 @@
 {
     public class NotFoundResult : HttpServiceResult
     {
-        public NotFoundResult() : base(HttpServiceResultTypes.NotFound)
+        public NotFoundResult() : this(null)
         {
         }
 
