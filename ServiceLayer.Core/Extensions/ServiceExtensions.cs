@@ -12,19 +12,34 @@
             return new OkResult<TData>(data);
         }
 
-        public static BadRequestResult BadRequest(this IService service, params string[] errorMessages)
+        public static BadRequestResult BadRequest(this IService service)
         {
-            return new BadRequestResult(errorMessages);
+            return service.BadRequest(null);
         }
 
-        public static NotFoundResult NotFound(this IService service, params string[] errorMessages)
+        public static BadRequestResult BadRequest(this IService service, params object[] errorDetails)
         {
-            return new NotFoundResult(errorMessages);
+            return new BadRequestResult(errorDetails);
         }
 
-        public static ConflictResult Conflict(this IService service, params string[] errorMessages)
+        public static NotFoundResult NotFound(this IService service)
         {
-            return new ConflictResult(errorMessages);
+            return service.NotFound(null);
+        }
+
+        public static NotFoundResult NotFound(this IService service, params object[] errorDetails)
+        {
+            return new NotFoundResult(errorDetails);
+        }
+
+        public static ConflictResult Conflict(this IService service)
+        {
+            return service.Conflict(null);
+        }
+
+        public static ConflictResult Conflict(this IService service, params object[] errorDetails)
+        {
+            return new ConflictResult(errorDetails);
         }
     }
 }
