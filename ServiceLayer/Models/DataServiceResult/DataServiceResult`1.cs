@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
-
-namespace ServiceLayer
+﻿namespace ServiceLayer
 {
     public class DataServiceResult<TData> : DataServiceResult<TData, ServiceResultTypes>
     {
-        public DataServiceResult(TData data, ServiceResultTypes resultType, params string[] errorMessages) : base(data, resultType, errorMessages)
+        public DataServiceResult(TData data, ServiceResultTypes resultType) : this(data, resultType, null)
         {
         }
 
-        public DataServiceResult(TData data, ServiceResultTypes resultType, IEnumerable<string> errorMessages) : base(data, resultType, errorMessages)
+        public DataServiceResult(TData data, ServiceResultTypes resultType, params object[] errorDetails) : base(data, resultType, errorDetails)
         {
         }
 
@@ -19,7 +17,7 @@ namespace ServiceLayer
 
         public static implicit operator DataServiceResult<TData>(FailureResult failureResult)
         {
-            return new DataServiceResult<TData>(default, ServiceResultTypes.Failure, failureResult.ErrorMessages);
+            return new DataServiceResult<TData>(default, ServiceResultTypes.Failure, failureResult.ErrorDetails);
         }
 
         public static implicit operator DataServiceResult<TData>(ServiceResultTypes resultType)

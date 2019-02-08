@@ -19,7 +19,7 @@ namespace ServiceLayer.Core.UnitTests.ConflictResult
         [Test]
         public void Should_Have_ErrorMessages_Matching_Given_ErrorMessages()
         {
-            _conflictResult.ErrorMessages.Should().BeSameAs(_errorMessages); 
+            _conflictResult.ErrorDetails.Should().BeSameAs(_errorMessages); 
         }
 
         protected override void Arrange()

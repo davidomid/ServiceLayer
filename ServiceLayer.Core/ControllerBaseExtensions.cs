@@ -10,7 +10,7 @@ namespace ServiceLayer.Core
             {
                 return controller.Ok();
             }
-            return controller.StatusCode(500, serviceResult.ErrorMessages);
+            return controller.StatusCode(500, serviceResult.ErrorDetails);
         }
 
         public static IActionResult FromServiceResult<TData>(this ControllerBase controller, IDataServiceResult<TData> serviceResult)
@@ -19,7 +19,7 @@ namespace ServiceLayer.Core
             {
                 return controller.Ok(serviceResult.Data);
             }
-            return controller.StatusCode(500, serviceResult.ErrorMessages);
+            return controller.StatusCode(500, serviceResult.ErrorDetails);
         }
 
         public static IActionResult FromServiceResult<TData>(this ControllerBase controller, IDataServiceResult<TData, HttpServiceResultTypes> httpServiceResult)
@@ -46,11 +46,11 @@ namespace ServiceLayer.Core
                 case HttpServiceResultTypes.Forbidden:
                     return controller.Forbid();
                 case HttpServiceResultTypes.BadRequest:
-                    return controller.BadRequest(httpServiceResult.ErrorMessages);
+                    return controller.BadRequest(httpServiceResult.ErrorDetails);
                 case HttpServiceResultTypes.Conflict:
-                    return controller.StatusCode(409, httpServiceResult.ErrorMessages);
+                    return controller.StatusCode(409, httpServiceResult.ErrorDetails);
                 case HttpServiceResultTypes.InternalServerError:
-                    return controller.StatusCode(500, httpServiceResult.ErrorMessages);
+                    return controller.StatusCode(500, httpServiceResult.ErrorDetails);
                 default:
                     goto case HttpServiceResultTypes.InternalServerError;
             }

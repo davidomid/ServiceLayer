@@ -19,7 +19,7 @@ namespace ServiceLayer.UnitTests.Models.FailureResult.Constructor
         [Test]
         public void Should_Have_ErrorMessages_Matching_Given_ErrorMessages()
         {
-            _failureResult.ErrorMessages.Should().BeSameAs(_errorMessages);
+            _failureResult.ErrorDetails.Should().BeSameAs(_errorMessages);
         }
 
         protected override void Arrange()

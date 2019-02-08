@@ -19,7 +19,7 @@ namespace ServiceLayer.Core.UnitTests.NotFoundResult
         [Test]
         public void Should_Have_ErrorMessages_Matching_Given_ErrorMessages()
         {
-            _notFoundResult.ErrorMessages.Should().BeSameAs(_errorMessages); 
+            _notFoundResult.ErrorDetails.Should().BeSameAs(_errorMessages); 
         }
 
         protected override void Arrange()

@@ -2,7 +2,11 @@
 {
     public class HttpServiceResult : ServiceResult<HttpServiceResultTypes>
     {
-        public HttpServiceResult(HttpServiceResultTypes resultType, params string[] errorMessages) : base(resultType, errorMessages)
+        public HttpServiceResult(HttpServiceResultTypes resultType) : base(resultType, null)
+        {
+        }
+
+        public HttpServiceResult(HttpServiceResultTypes resultType, params object[] errorDetails) : base(resultType, errorDetails)
         {
         }
     }

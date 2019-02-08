@@ -21,7 +21,7 @@ namespace ServiceLayer.Core.UnitTests.ServiceExtensions.NotFound
         [Test]
         public void Should_Return_NotFoundResult_With_Equivalent_ErrorMessages()
         {
-            _notFoundResult.ErrorMessages.Should().BeEquivalentTo(_errorMessages);
+            _notFoundResult.ErrorDetails.Should().BeEquivalentTo(_errorMessages);
         }
 
         protected override void Act()

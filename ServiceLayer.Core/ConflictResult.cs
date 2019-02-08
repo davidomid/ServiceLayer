@@ -2,7 +2,11 @@
 {
     public class ConflictResult : HttpServiceResult
     {
-        public ConflictResult(params string[] errorMessages) : base(HttpServiceResultTypes.Conflict, errorMessages)
+        public ConflictResult() : base(HttpServiceResultTypes.Conflict)
+        {
+        }
+
+        public ConflictResult(params object[] errorDetails) : base(HttpServiceResultTypes.Conflict, errorDetails)
         {
         }
     }

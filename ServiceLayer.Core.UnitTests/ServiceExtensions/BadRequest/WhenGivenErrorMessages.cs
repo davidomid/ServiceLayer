@@ -21,7 +21,7 @@ namespace ServiceLayer.Core.UnitTests.ServiceExtensions.BadRequest
         [Test]
         public void Should_Return_BadRequestResult_With_Equivalent_ErrorMessages()
         {
-            _badRequestResult.ErrorMessages.Should().BeEquivalentTo(_errorMessages);
+            _badRequestResult.ErrorDetails.Should().BeEquivalentTo(_errorMessages);
         }
 
         protected override void Act()

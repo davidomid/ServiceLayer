@@ -48,7 +48,7 @@ namespace ExampleServices
                     File.WriteAllText(_filePath, json);
                 }
 
-                return this.Failure(allEntitiesResult.ErrorMessages);
+                return this.Failure(allEntitiesResult.ErrorDetails);
             }
             catch (Exception ex)
             {
@@ -64,7 +64,7 @@ namespace ExampleServices
                 return allEntitiesResult.Data?.FirstOrDefault(d => d.Key == key); 
             }
 
-            return this.Failure(allEntitiesResult.ErrorMessages);
+            return this.Failure(allEntitiesResult.ErrorDetails);
         }
 
         IDataServiceResult<IEnumerable<TEntity>> IStorageService<TEntity>.Get()

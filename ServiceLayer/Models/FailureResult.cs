@@ -1,15 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace ServiceLayer
+﻿namespace ServiceLayer
 {
     public class FailureResult : ServiceResult
     {
-        public FailureResult(params string[] errorMessages) : this(errorMessages.AsEnumerable())
+        public FailureResult() : this(null)
         {
         }
 
-        public FailureResult(IEnumerable<string> errorMessages) : base(ServiceResultTypes.Failure, errorMessages)
+        public FailureResult(params object[] errorDetails) : base(ServiceResultTypes.Failure, errorDetails)
         {
         }
     }

@@ -27,9 +27,9 @@ namespace ServiceLayer.UnitTests.Models.DataServiceResult_2.Constructor
         }
 
         [Test]
-        public void Should_Have_No_ErrorMessages()
+        public void Should_Have_ErrorDetails_Null()
         {
-            _serviceResult.ErrorMessages.Should().BeEmpty(); 
+            _serviceResult.ErrorDetails.Should().BeNull();
         }
 
         [Test]

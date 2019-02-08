@@ -15,9 +15,9 @@ namespace ServiceLayer.UnitTests.Models.FailureResult.Constructor
         }
 
         [Test]
-        public void Should_Have_No_ErrorMessages()
+        public void Should_Have_ErrorDetails_Null()
         {
-            _failureResult.ErrorMessages.Should().BeEmpty(); 
+            _failureResult.ErrorDetails.Should().BeNull(); 
         }
 
         protected override void Arrange()

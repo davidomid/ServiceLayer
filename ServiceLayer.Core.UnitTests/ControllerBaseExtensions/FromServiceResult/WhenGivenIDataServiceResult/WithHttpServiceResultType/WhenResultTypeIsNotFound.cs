@@ -24,7 +24,7 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
             _controller = new TestController();
             Mock<IDataServiceResult<string, HttpServiceResultTypes>> mockServiceResult = new Mock<IDataServiceResult<string, HttpServiceResultTypes>>();
             mockServiceResult.SetupGet(r => r.ResultType).Returns(HttpServiceResultTypes.NotFound);
-            mockServiceResult.SetupGet(r => r.ErrorMessages).Returns(_errorMessages);
+            mockServiceResult.SetupGet(r => r.ErrorDetails).Returns(_errorMessages);
             _dataServiceResult = mockServiceResult.Object;
         }
 

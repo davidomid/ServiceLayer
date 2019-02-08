@@ -2,7 +2,11 @@
 {
     public class BadRequestResult : HttpServiceResult
     {
-        public BadRequestResult(params string[] errorMessages) : base(HttpServiceResultTypes.BadRequest, errorMessages)
+        public BadRequestResult() : base(HttpServiceResultTypes.BadRequest)
+        {
+        }
+
+        public BadRequestResult(params object[] errorDetails) : base(HttpServiceResultTypes.BadRequest, errorDetails)
         {
         }
     }

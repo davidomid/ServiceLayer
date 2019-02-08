@@ -24,7 +24,7 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
             _errorMessages = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
             Mock<IServiceResult> mockServiceResult = new Mock<IServiceResult>();
             mockServiceResult.SetupGet(r => r.IsSuccessful).Returns(false);
-            mockServiceResult.SetupGet(r => r.ErrorMessages).Returns(_errorMessages);
+            mockServiceResult.SetupGet(r => r.ErrorDetails).Returns(_errorMessages);
             _serviceResult = mockServiceResult.Object;
         }
 

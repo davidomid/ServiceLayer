@@ -2,7 +2,11 @@
 {
     public class NotFoundResult : HttpServiceResult
     {
-        public NotFoundResult(params string[] errorMessages) : base(HttpServiceResultTypes.NotFound, errorMessages)
+        public NotFoundResult() : base(HttpServiceResultTypes.NotFound)
+        {
+        }
+
+        public NotFoundResult(params object[] errorDetails) : base(HttpServiceResultTypes.NotFound, errorDetails)
         {
         }
     }

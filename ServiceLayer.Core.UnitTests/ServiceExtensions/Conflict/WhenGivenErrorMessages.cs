@@ -21,7 +21,7 @@ namespace ServiceLayer.Core.UnitTests.ServiceExtensions.Conflict
         [Test]
         public void Should_Return_ConflictResult_With_Equivalent_ErrorMessages()
         {
-            _conflictResult.ErrorMessages.Should().BeEquivalentTo(_errorMessages);
+            _conflictResult.ErrorDetails.Should().BeEquivalentTo(_errorMessages);
         }
 
         protected override void Act()

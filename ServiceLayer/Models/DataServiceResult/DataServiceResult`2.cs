@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace ServiceLayer
 {
     public class DataServiceResult<TData, TResultType> : ServiceResult<TResultType>, IDataServiceResult<TData, TResultType> where TResultType : Enum
     {
-        public DataServiceResult(TData data, TResultType resultType, params string[] errorMessages) : this(data, resultType, errorMessages.AsEnumerable())
+        public DataServiceResult(TData data, TResultType resultType) : this(data, resultType, null)
         {
         }
 
-        public DataServiceResult(TData data, TResultType resultType, IEnumerable<string> errorMessages) : base(resultType, errorMessages)
+        public DataServiceResult(TData data, TResultType resultType, params object[] errorDetails) : base(resultType, errorDetails)
         {
             this.Data = data;
         }
@@ -26,7 +25,7 @@ namespace ServiceLayer
         public static implicit operator DataServiceResult<TData, TResultType>(FailureResult failureResult)
         {
             TResultType resultType = ServiceResultTypes.Failure.ToResultType<TResultType>();
-            return new DataServiceResult<TData, TResultType>(default, resultType, failureResult.ErrorMessages);
+            return new DataServiceResult<TData, TResultType>(default, resultType, failureResult.ErrorDetails);
         }
 
         public static implicit operator DataServiceResult<TData, TResultType>(TResultType resultType)

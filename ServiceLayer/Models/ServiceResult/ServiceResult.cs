@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
-
-namespace ServiceLayer
+﻿namespace ServiceLayer
 {
     public class ServiceResult : ServiceResult<ServiceResultTypes>
     {
-        public ServiceResult(ServiceResultTypes resultType, params string[] errorMessages) : base(resultType, errorMessages)
+        public ServiceResult(ServiceResultTypes resultType) : this(resultType, null)
         {
         }
 
-        public ServiceResult(ServiceResultTypes resultType, IEnumerable<string> errorMessages) : base(resultType, errorMessages)
+        public ServiceResult(ServiceResultTypes resultType, params object[] errorDetails) : base(resultType, errorDetails)
         {
         }
     }

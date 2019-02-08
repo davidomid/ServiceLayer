@@ -25,7 +25,7 @@ namespace ServiceLayer.UnitTests.Models.DataServiceResult_1.Constructor
         [Test]
         public void Should_Have_ErrorMessages_Matching_Given_ErrorMessages()
         {
-            _serviceResult.ErrorMessages.Should().BeSameAs(_errorMessages); 
+            _serviceResult.ErrorDetails.Should().BeSameAs(_errorMessages); 
         }
 
         [Test]

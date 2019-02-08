@@ -19,7 +19,7 @@ namespace ServiceLayer.Core.UnitTests.BadRequestResult
         [Test]
         public void Should_Have_ErrorMessages_Matching_Given_ErrorMessages()
         {
-            _badRequestResult.ErrorMessages.Should().BeSameAs(_errorMessages); 
+            _badRequestResult.ErrorDetails.Should().BeSameAs(_errorMessages); 
         }
 
         protected override void Arrange()

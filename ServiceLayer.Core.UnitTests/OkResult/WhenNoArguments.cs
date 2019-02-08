@@ -15,9 +15,9 @@ namespace ServiceLayer.Core.UnitTests.OkResult
         }
 
         [Test]
-        public void Should_Have_Empty_ErrorMessages()
+        public void Should_Have_ErrorDetails_Null()
         {
-            _okResult.ErrorMessages.Should().BeEmpty();
+            _okResult.ErrorDetails.Should().BeNull();
         }
 
         protected override void Arrange()

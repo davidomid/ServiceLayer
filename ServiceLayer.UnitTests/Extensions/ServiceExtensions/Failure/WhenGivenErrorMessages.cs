@@ -21,7 +21,7 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.Failure
         [Test]
         public void Should_Return_FailureResult_With_Equivalent_ErrorMessages()
         {
-            _failureResult.ErrorMessages.Should().BeEquivalentTo(_errorMessages);
+            _failureResult.ErrorDetails.Should().BeEquivalentTo(_errorMessages);
         }
 
         protected override void Act()

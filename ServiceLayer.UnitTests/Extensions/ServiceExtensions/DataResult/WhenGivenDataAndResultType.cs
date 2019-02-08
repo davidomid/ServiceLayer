@@ -31,7 +31,7 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.DataResult
         [Test]
         public void Should_Have_Equivalent_ErrorMessages()
         {
-            _serviceResult.ErrorMessages.Should().BeEquivalentTo(_errorMessages);
+            _serviceResult.ErrorDetails.Should().BeEquivalentTo(_errorMessages);
         }
 
         [Test]
