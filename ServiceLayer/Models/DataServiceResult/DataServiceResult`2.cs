@@ -5,7 +5,7 @@ namespace ServiceLayer
 {
     public class DataServiceResult<TData, TResultType> : DataServiceResult<TData, TResultType, object> where TResultType : Enum
     {
-        public DataServiceResult(TData data, TResultType resultType) : base(data, resultType, null)
+        public DataServiceResult(TData data, TResultType resultType) : base(data, resultType)
         {
         }
 

@@ -47,7 +47,6 @@ namespace ExampleServices
                     string json = JsonConvert.SerializeObject(entities);
                     File.WriteAllText(_filePath, json);
                 }
-
                 return this.Failure(allEntitiesResult.ErrorDetails);
             }
             catch (Exception ex)

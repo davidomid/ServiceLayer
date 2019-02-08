@@ -1,12 +1,12 @@
 ﻿namespace ServiceLayer
 {
-    public class FailureResult : ServiceResult
+    public class FailureResult : FailureResult<object>
     {
         public FailureResult() : this(null)
         {
         }
 
-        public FailureResult(params object[] errorDetails) : base(ServiceResultTypes.Failure, errorDetails)
+        public FailureResult(params object[] errorDetails) : base(errorDetails)
         {
         }
     }

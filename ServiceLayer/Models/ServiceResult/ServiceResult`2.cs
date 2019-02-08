@@ -3,11 +3,7 @@ namespace ServiceLayer
 {
     public class ServiceResult<TResultType, TErrorType> : IServiceResult<TResultType, TErrorType> where TResultType : Enum
     {
-        public ServiceResult(TResultType resultType) : this(resultType, default)
-        {
-        }
-
-        public ServiceResult(TResultType resultType, TErrorType errorDetails) 
+        public ServiceResult(TResultType resultType, TErrorType errorDetails = default) 
         {
             this.ResultType = resultType;
             this.ErrorDetails = errorDetails;

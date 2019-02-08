@@ -5,11 +5,7 @@ namespace ServiceLayer
 {
     public class DataServiceResult<TData, TResultType, TErrorType> : ServiceResult<TResultType, TErrorType>, IDataServiceResult<TData, TResultType, TErrorType> where TResultType : Enum
     {
-        public DataServiceResult(TData data, TResultType resultType) : this(data, resultType, default)
-        {
-        }
-
-        public DataServiceResult(TData data, TResultType resultType, TErrorType errorDetails) : base(resultType, errorDetails)
+        public DataServiceResult(TData data, TResultType resultType, TErrorType errorDetails = default) : base(resultType, errorDetails)
         {
             this.Data = data;
         }
