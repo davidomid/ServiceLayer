@@ -16,15 +16,15 @@ namespace ServiceLayer
             return new ServiceResult<TResultType, TErrorType>(resultType);
         }
 
-        public static implicit operator FailureResult<TResultType>(SuccessResult successResult)
+        public static implicit operator ServiceResult<TResultType, TErrorType>(FailureResult<TErrorType> failureResult)
         {
-            TResultType resultType = ServiceResultTypes.Success.ToResultType<TResultType>();
+            TResultType resultType = ServiceResultTypes.Failure.ToResultType<TResultType>();
             return new ServiceResult<TResultType, TErrorType>(resultType);
         }
 
-        //public static implicit operator ServiceResult<TResultType, TErrorType>(TErrorType errorDetails)
-        //{
-        //    return new 
-        //}
+        public static implicit operator ServiceResult<TResultType, TErrorType>(TErrorType errorDetails)
+        {
+            return new FailureResult<TErrorType>(errorDetails);
+        }
     }
 }

@@ -88,31 +88,34 @@ namespace ExampleServices
         }
         public ServiceResult<ServiceResultTypes, string> TestC2()
         {
-            return new FailureResult<string>("test");
+            return new FailureResult<string>("test error");
         }
         public ServiceResult<ServiceResultTypes, string> TestC3()
+        {
+            return this.Failure("test error");
+        }
+        public ServiceResult<ServiceResultTypes, string> TestC4()
         {
             return "test error";
         }
 
-
-        public DataServiceResult<int, FileStorageServiceResultTypes> TestD1()
+        public DataServiceResult<int, FileStorageServiceResultTypes> TestF1()
         {
             return this.Success(100); 
         }
-        public DataServiceResult<int, FileStorageServiceResultTypes> TestD2()
+        public DataServiceResult<int, FileStorageServiceResultTypes> TestF2()
         {
             return 100; 
         }
-        public DataServiceResult<int, FileStorageServiceResultTypes> TestD3()
+        public DataServiceResult<int, FileStorageServiceResultTypes> TestF3()
         {
             return this.Failure(); 
         }
-        public DataServiceResult<int, FileStorageServiceResultTypes> TestD4()
+        public DataServiceResult<int, FileStorageServiceResultTypes> TestF4()
         {
             return this.Failure("test1");
         }
-        public DataServiceResult<int, FileStorageServiceResultTypes> TestD5()
+        public DataServiceResult<int, FileStorageServiceResultTypes> TestF5()
         {
             return this.Failure("test1", "test2", "test3");
         }
