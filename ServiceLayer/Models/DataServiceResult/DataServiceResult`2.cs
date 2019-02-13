@@ -1,16 +1,23 @@
 ﻿using System;
-using System.Linq;
 
 namespace ServiceLayer
 {
-    public class DataServiceResult<TData, TResultType> : DataServiceResult<TData, TResultType, object> where TResultType : Enum
+    public class DataServiceResult<TData, TResultType> : DataServiceResult<TData>, IDataServiceResult<TData, TResultType> where TResultType : Enum
     {
-        public DataServiceResult(TData data, TResultType resultType) : base(data, resultType)
+        public DataServiceResult(TData data, TResultType resultType) : this(data, resultType, null)
         {
         }
 
-        public DataServiceResult(TData data, TResultType resultType, params object[] errorDetails) : base(data, resultType, errorDetails)
+        public DataServiceResult(TData data, TResultType resultType, params object[] errorDetails) : base(data, resultType.ToServiceResultType(), errorDetails)
         {
+            ResultType = resultType;
+        }
+
+        public new TResultType ResultType { get; }
+
+        public static implicit operator DataServiceResult<TData, TResultType>(TResultType resultType)
+        {
+            return new DataServiceResult<TData, TResultType>(default, resultType);
         }
 
         public static implicit operator DataServiceResult<TData, TResultType>(TData data)
@@ -23,11 +30,6 @@ namespace ServiceLayer
         {
             TResultType resultType = ServiceResultTypes.Failure.ToResultType<TResultType>();
             return new DataServiceResult<TData, TResultType>(default, resultType, failureResult.ErrorDetails);
-        }
-
-        public static implicit operator DataServiceResult<TData, TResultType>(TResultType resultType)
-        {
-            return new DataServiceResult<TData, TResultType>(default, resultType);
         }
     }
 }

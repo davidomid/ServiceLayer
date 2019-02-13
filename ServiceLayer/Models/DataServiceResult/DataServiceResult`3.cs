@@ -1,21 +1,20 @@
 ﻿using System;
-using System.Linq;
 
 namespace ServiceLayer
 {
-    public class DataServiceResult<TData, TResultType, TErrorType> : ServiceResult<TResultType, TErrorType>, IDataServiceResult<TData, TResultType, TErrorType> where TResultType : Enum
+    public class DataServiceResult<TData, TResultType, TErrorType> : DataServiceResult<TData, TResultType>, IDataServiceResult<TData, TResultType, TErrorType> where TResultType : Enum
     {
-        public DataServiceResult(TData data, TResultType resultType, TErrorType errorDetails = default) : base(resultType, errorDetails)
-        {
-            this.Data = data;
-        }
+        //public DataServiceResult(TData data, TResultType resultType, TErrorType errorDetails = default) : base(resultType, errorDetails)
+        //{
+        //    this.Data = data;
+        //}
 
-        public TData Data { get; }
+        //public TData Data { get; }
 
         public static implicit operator DataServiceResult<TData, TResultType, TErrorType>(TData data)
         {
             TResultType resultType = ServiceResultTypes.Success.ToResultType<TResultType>();
-            return new DataServiceResult<TData, TResultType, TErrorType>(data, resultType, default);
+            return new DataServiceResult<TData, TResultType, TErrorType>(data, resultType);
         }
 
         public static implicit operator DataServiceResult<TData, TResultType, TErrorType>(FailureResult<TErrorType> failureResult)
@@ -26,7 +25,20 @@ namespace ServiceLayer
 
         public static implicit operator DataServiceResult<TData, TResultType, TErrorType>(TResultType resultType)
         {
-            return new DataServiceResult<TData, TResultType, TErrorType>(default, resultType, default);
+            return new DataServiceResult<TData, TResultType, TErrorType>(default, resultType);
         }
+
+        public static implicit operator DataServiceResult<TData, TResultType, TErrorType>(TErrorType errorDetails)
+        {
+            TResultType resultType = ServiceResultTypes.Failure.ToResultType<TResultType>();
+            return new DataServiceResult<TData, TResultType, TErrorType>(default, resultType, errorDetails);
+        }
+
+        public DataServiceResult(TData data, TResultType resultType, TErrorType errorDetails = default) : base(data, resultType, errorDetails)
+        {
+            ErrorDetails = errorDetails;
+        }
+
+        public new TErrorType ErrorDetails { get; }
     }
 }

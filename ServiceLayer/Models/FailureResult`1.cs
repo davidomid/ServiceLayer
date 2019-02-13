@@ -1,14 +1,12 @@
 ﻿namespace ServiceLayer
 {
-    public class FailureResult<TErrorType> : ServiceResult<ServiceResultTypes, TErrorType>
+    public class FailureResult<TErrorType> : FailureResult
     {
-        public FailureResult(TErrorType errorDetails = default) : base(ServiceResultTypes.Failure, errorDetails)
+        public FailureResult(TErrorType errorDetails = default) : base(errorDetails)
         {
+            ErrorDetails = errorDetails;
         }
 
-        public static implicit operator ServiceResult(FailureResult<TErrorType> failureResult)
-        {
-            return new ServiceResult(failureResult.ResultType, failureResult.ErrorDetails);
-        }
+        public new TErrorType ErrorDetails { get; }
     }
 }

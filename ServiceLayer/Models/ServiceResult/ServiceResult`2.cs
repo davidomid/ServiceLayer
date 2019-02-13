@@ -1,20 +1,13 @@
 ﻿using System;
 namespace ServiceLayer
 {
-    public class ServiceResult<TResultType, TErrorType> : IServiceResult<TResultType, TErrorType> where TResultType : Enum
+    public class ServiceResult<TResultType, TErrorType> : ServiceResult<TResultType>, IServiceResult<TResultType, TErrorType> where TResultType : Enum
     {
-        public ServiceResult(TResultType resultType, TErrorType errorDetails = default) 
+        public ServiceResult(TResultType resultType, TErrorType errorDetails = default) : base(resultType, errorDetails)
         {
-            this.ResultType = resultType;
-            this.ErrorDetails = errorDetails;
+            ErrorDetails = errorDetails;
         }
 
-        public TResultType ResultType { get; }
-        ServiceResultTypes IServiceResult.ResultType => ResultType.ToServiceResultType();
-
-        public TErrorType ErrorDetails { get; }
-        object IServiceResult.ErrorDetails => ErrorDetails;
-
-        public bool IsSuccessful => ResultType.ToServiceResultType() == ServiceResultTypes.Success;
+        public new TErrorType ErrorDetails { get; }
     }
 }

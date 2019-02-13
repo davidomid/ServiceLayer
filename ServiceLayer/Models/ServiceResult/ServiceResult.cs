@@ -1,18 +1,20 @@
 ﻿namespace ServiceLayer
 {
-    public class ServiceResult : ServiceResult<ServiceResultTypes>
+    public class ServiceResult : IServiceResult
     {
-        public ServiceResult(ServiceResultTypes resultType) : base(resultType, null)
+        public ServiceResult(ServiceResultTypes resultType) : this(resultType, null)
         {
         }
 
-        public ServiceResult(ServiceResultTypes resultType, params object[] errorDetails) : base(resultType, errorDetails)
+        public ServiceResult(ServiceResultTypes resultType, params object[] errorDetails)
         {
+            ResultType = resultType;
+            ErrorDetails = errorDetails;
+            IsSuccessful = resultType == ServiceResultTypes.Success;
         }
 
-        public static implicit operator ServiceResult(FailureResult failureResult)
-        {
-            return new ServiceResult(failureResult.ResultType, failureResult.ErrorDetails);
-        }
+        public ServiceResultTypes ResultType { get; }
+        public object ErrorDetails { get; }
+        public bool IsSuccessful { get; }
     }
 }

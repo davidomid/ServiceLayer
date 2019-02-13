@@ -16,7 +16,12 @@ namespace ServiceLayer
 
         public static FailureResult Failure(this IService service, params object[] errorDetails)
         {
-            return new FailureResult(errorDetails);
+            return new FailureResult();
+        }
+
+        public static FailureResult<TErrorType> Failure<TErrorType>(this IService service, TErrorType errorDetails)
+        {
+            return new FailureResult<TErrorType>(errorDetails);
         }
 
         public static ServiceResult Result(this IService service, ServiceResultTypes resultType, params object[] errorDetails)
