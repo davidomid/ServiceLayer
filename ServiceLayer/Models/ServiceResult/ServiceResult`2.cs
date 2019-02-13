@@ -9,5 +9,22 @@ namespace ServiceLayer
         }
 
         public new TErrorType ErrorDetails { get; }
+
+        public static implicit operator ServiceResult<TResultType, TErrorType>(SuccessResult successResult)
+        {
+            TResultType resultType = ServiceResultTypes.Success.ToResultType<TResultType>();
+            return new ServiceResult<TResultType, TErrorType>(resultType);
+        }
+
+        public static implicit operator FailureResult<TResultType>(SuccessResult successResult)
+        {
+            TResultType resultType = ServiceResultTypes.Success.ToResultType<TResultType>();
+            return new ServiceResult<TResultType, TErrorType>(resultType);
+        }
+
+        //public static implicit operator ServiceResult<TResultType, TErrorType>(TErrorType errorDetails)
+        //{
+        //    return new 
+        //}
     }
 }

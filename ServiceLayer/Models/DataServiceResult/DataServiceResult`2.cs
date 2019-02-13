@@ -31,5 +31,11 @@ namespace ServiceLayer
             TResultType resultType = ServiceResultTypes.Failure.ToResultType<TResultType>();
             return new DataServiceResult<TData, TResultType>(default, resultType, failureResult.ErrorDetails);
         }
+
+        public static implicit operator DataServiceResult<TData, TResultType>(SuccessResult<TData> successResult)
+        {
+            TResultType resultType = ServiceResultTypes.Success.ToResultType<TResultType>();
+            return new DataServiceResult<TData, TResultType>(successResult.Data, resultType, successResult.ErrorDetails);
+        }
     }
 }
