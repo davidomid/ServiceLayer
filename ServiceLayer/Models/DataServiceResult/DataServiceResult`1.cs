@@ -22,5 +22,10 @@
         {
             return new DataServiceResult<TData>(default, ServiceResultTypes.Failure, failureResult.ErrorDetails);
         }
+
+        public static implicit operator DataServiceResult<TData>(ServiceResultTypes resultType)
+        {
+            return new DataServiceResult<TData>(default, resultType);
+        }
     }
 }

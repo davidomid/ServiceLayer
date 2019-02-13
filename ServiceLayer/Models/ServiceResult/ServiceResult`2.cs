@@ -26,5 +26,10 @@ namespace ServiceLayer
         {
             return new FailureResult<TErrorType>(errorDetails);
         }
+
+        public static implicit operator ServiceResult<TResultType, TErrorType>(TResultType resultType)
+        {
+            return new ServiceResult<TResultType, TErrorType>(resultType);
+        }
     }
 }
