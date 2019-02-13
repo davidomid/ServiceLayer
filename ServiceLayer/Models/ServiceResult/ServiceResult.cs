@@ -16,5 +16,10 @@
         public ServiceResultTypes ResultType { get; }
         public object ErrorDetails { get; }
         public bool IsSuccessful { get; }
+
+        public static implicit operator ServiceResult(ServiceResultTypes serviceResultType)
+        {
+            return new ServiceResult(serviceResultType);
+        }
     }
 }
