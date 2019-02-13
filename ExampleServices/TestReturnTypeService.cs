@@ -168,6 +168,14 @@ namespace ExampleServices
         {
             return ServiceResultTypes.Success;
         }
+        public DataServiceResult<int> TestE7()
+        {
+            return this.DataResult(100); 
+        }
+        public DataServiceResult<int> TestE8()
+        {
+            return this.DataResult(100, ServiceResultTypes.Success);
+        }
 
         public DataServiceResult<int, ServiceResultTypes> TestF1()
         {
@@ -237,7 +245,7 @@ namespace ExampleServices
         }
         public DataServiceResult<int, FileStorageServiceResultTypes, string> TestH7()
         {
-            return this.DataResult(100, FileStorageServiceResultTypes.Success);
+            return this.DataResult<int, FileStorageServiceResultTypes, string>(100);
         }
     }
 }

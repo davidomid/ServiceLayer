@@ -51,6 +51,10 @@ namespace ServiceLayer
             return new ServiceResult<TResultType, TErrorType>(resultType, errorDetails);
         }
 
+        public static DataServiceResult<TData> DataResult<TData>(this IService service, TData data)
+        {
+            return new DataServiceResult<TData>(data, ServiceResultTypes.Success);
+        }
         public static DataServiceResult<TData> DataResult<TData>(this IService service, TData data, ServiceResultTypes resultType)
         {
             return new DataServiceResult<TData>(data, resultType);
@@ -59,6 +63,12 @@ namespace ServiceLayer
         {
             return new DataServiceResult<TData>(data, resultType, errorDetails);
         }
+
+        public static DataServiceResult<TData, TResultType> DataResult<TData, TResultType>(this IService service, TData data) where TResultType : Enum
+        {
+            TResultType resultType = ServiceResultTypes.Success.ToResultType<TResultType>();
+            return new DataServiceResult<TData, TResultType>(data, resultType);
+        }
         public static DataServiceResult<TData, TResultType> DataResult<TData, TResultType>(this IService service, TData data, TResultType resultType) where TResultType : Enum
         {
             return new DataServiceResult<TData, TResultType>(data, resultType);
@@ -66,6 +76,12 @@ namespace ServiceLayer
         public static DataServiceResult<TData, TResultType> DataResult<TData, TResultType>(this IService service, TData data, TResultType resultType, params object[] errorDetails) where TResultType : Enum
         {
             return new DataServiceResult<TData, TResultType>(data, resultType, errorDetails);
+        }
+
+        public static DataServiceResult<TData, TResultType, TErrorType> DataResult<TData, TResultType, TErrorType>(this IService service, TData data) where TResultType : Enum
+        {
+            TResultType resultType = ServiceResultTypes.Success.ToResultType<TResultType>();
+            return new DataServiceResult<TData, TResultType, TErrorType>(data, resultType);
         }
         public static DataServiceResult<TData, TResultType, TErrorType> DataResult<TData, TResultType, TErrorType>(this IService service, TData data, TResultType resultType) where TResultType : Enum
         {
