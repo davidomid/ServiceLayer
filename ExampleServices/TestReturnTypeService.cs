@@ -40,12 +40,10 @@ namespace ExampleServices
         }
         public ServiceResult TestA8()
         {
-            // todo reconsider this 
             return this.Result(FileStorageServiceResultTypes.Success); 
         }
         public ServiceResult TestA9()
         {
-            // todo reconsider this 
             return this.DataResult(100, ServiceResultTypes.Success);
         }
 
@@ -56,12 +54,12 @@ namespace ExampleServices
 
         public ServiceResult<ServiceResultTypes> TestB2()
         {
-            return new ServiceResult(ServiceResultTypes.Success);
+            return new ServiceResult<ServiceResultTypes>(ServiceResultTypes.Success);
         }
 
         public ServiceResult<ServiceResultTypes> TestB3()
         {
-            return this.Result(ServiceResultTypes.Success);
+            return this.Result<ServiceResultTypes>(ServiceResultTypes.Success);
         }
 
         public ServiceResult<ServiceResultTypes> TestB4()
