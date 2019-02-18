@@ -39,7 +39,7 @@ namespace ExampleServices
         {
             try
             {
-                var allEntitiesResult = this.Get();
+                var allEntitiesResult = Get();
                 if (allEntitiesResult.IsSuccessful)
                 {
                     List<TEntity> entities = allEntitiesResult.Data?.ToList() ?? new List<TEntity>();
@@ -57,7 +57,7 @@ namespace ExampleServices
 
         public DataServiceResult<TEntity> GetByKey(string key)
         {
-            var allEntitiesResult = this.Get();
+            var allEntitiesResult = Get();
             if (allEntitiesResult.IsSuccessful)
             {
                 return allEntitiesResult.Data?.FirstOrDefault(d => d.Key == key); 
@@ -68,17 +68,17 @@ namespace ExampleServices
 
         IDataServiceResult<IEnumerable<TEntity>> IStorageService<TEntity>.Get()
         {
-            return this.Get(); 
+            return Get(); 
         }
 
         IServiceResult IStorageService<TEntity>.Add(TEntity entity)
         {
-            return this.Add(entity); 
+            return Add(entity); 
         }
 
         IDataServiceResult<TEntity> IStorageService<TEntity>.GetByKey(string key)
         {
-            return this.GetByKey(key);
+            return GetByKey(key);
         }
     }
 }
