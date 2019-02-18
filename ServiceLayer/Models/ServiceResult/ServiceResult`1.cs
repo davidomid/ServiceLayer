@@ -7,7 +7,11 @@ namespace ServiceLayer
         {
         }
 
-        public ServiceResult(TResultType resultType, params object[] errorDetails) : base(resultType.ToServiceResultType(), errorDetails)
+        public ServiceResult(TResultType resultType, params object[] errorDetails) : this(resultType, (object)errorDetails)
+        {
+        }
+
+        public ServiceResult(TResultType resultType, object errorDetails) : base(resultType.ToServiceResultType(), errorDetails)
         {
             ResultType = resultType;
         }

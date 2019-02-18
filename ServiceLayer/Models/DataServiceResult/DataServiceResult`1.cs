@@ -6,7 +6,11 @@
         {
         }
 
-        public DataServiceResult(TData data, ServiceResultTypes resultType, params object[] errorDetails) : base(resultType, errorDetails)
+        public DataServiceResult(TData data, ServiceResultTypes resultType, params object[] errorDetails) : this(data, resultType, (object)errorDetails)
+        {
+        }
+
+        public DataServiceResult(TData data, ServiceResultTypes resultType, object errorDetails) : base(resultType, errorDetails)
         {
             Data = data;
         }

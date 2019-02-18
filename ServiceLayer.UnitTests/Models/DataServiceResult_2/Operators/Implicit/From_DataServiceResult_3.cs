@@ -24,9 +24,9 @@ namespace ServiceLayer.UnitTests.Models.DataServiceResult_2.Operators.Implicit
         }
 
         [Test]
-        public void Should_Have_ErrorDetails_Array_Containing_Same_ErrorDetails_Object()
+        public void Should_Have_ErrorMessages_Matching_Given_ErrorMessages()
         {
-            _testNewServiceResult.ErrorDetails.As<object[]>().Should().BeEquivalentTo(_testOriginalServiceResult.ErrorDetails);
+            _testNewServiceResult.ErrorDetails.Should().Be(_testOriginalServiceResult.ErrorDetails);
         }
 
         protected override void Arrange()

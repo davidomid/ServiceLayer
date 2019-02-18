@@ -6,7 +6,11 @@
         {
         }
 
-        public ServiceResult(ServiceResultTypes resultType, params object[] errorDetails)
+        public ServiceResult(ServiceResultTypes resultType, params object[] errorDetails) : this(resultType, (object)errorDetails)
+        {
+        }
+
+        public ServiceResult(ServiceResultTypes resultType, object errorDetails)
         {
             ResultType = resultType;
             ErrorDetails = errorDetails;
