@@ -5,7 +5,7 @@ using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Models.DataServiceResult_2.Operators.Implicit
 {
-    public class From_DataServiceResult_3 : UnitTestBase
+    public class From_ServiceResult : UnitTestBase
     {
         private DataServiceResult<TestData, TestCustomServiceResultTypes, TestErrorType> _testOriginalServiceResult;
 
@@ -24,7 +24,7 @@ namespace ServiceLayer.UnitTests.Models.DataServiceResult_2.Operators.Implicit
         }
 
         [Test]
-        public void Should_Have_ErrorMessages_Matching_Given_ErrorMessages()
+        public void Should_Have_ErrorDetails_Matching_Given_ErrorDetails()
         {
             _testNewServiceResult.ErrorDetails.Should().Be(_testOriginalServiceResult.ErrorDetails);
         }

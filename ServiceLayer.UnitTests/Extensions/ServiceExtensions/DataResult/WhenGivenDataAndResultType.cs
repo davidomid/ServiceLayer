@@ -10,7 +10,7 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.DataResult
     public class WhenGivenDataAndResultType : UnitTestBase
     {
         private IService _service;
-        private string[] _errorMessages;
+        private string[] _errorDetails;
         private DataServiceResult<TestData> _serviceResult;
         private readonly ServiceResultTypes _serviceResultType;
         private readonly TestData _testData = new TestData();
@@ -29,9 +29,9 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.DataResult
         }
 
         [Test]
-        public void Should_Have_Equivalent_ErrorMessages()
+        public void Should_Have_Equivalent_ErrorDetails()
         {
-            _serviceResult.ErrorDetails.Should().BeEquivalentTo(_errorMessages);
+            _serviceResult.ErrorDetails.Should().BeEquivalentTo(_errorDetails);
         }
 
         [Test]
@@ -48,13 +48,13 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.DataResult
 
         protected override void Act()
         {
-            _serviceResult = _service.DataResult(_testData, _serviceResultType, _errorMessages);
+            _serviceResult = _service.DataResult(_testData, _serviceResultType, _errorDetails);
         }
 
         protected override void Arrange()
         {
             _service = new TestService();
-            _errorMessages = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
+            _errorDetails = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
         }
     }
 }

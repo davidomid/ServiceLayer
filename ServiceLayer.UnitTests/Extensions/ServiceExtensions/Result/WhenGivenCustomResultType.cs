@@ -10,7 +10,7 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.Result
     public class WhenGivenCustomResultType : UnitTestBase
     {
         private IService _service;
-        private string[] _errorMessages;
+        private string[] _errorDetails;
         private ServiceResult<TestCustomServiceResultTypes> _serviceResult;
         private readonly TestCustomServiceResultTypes _serviceResultType;
 
@@ -28,9 +28,9 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.Result
         }
 
         [Test]
-        public void Should_Have_Equivalent_ErrorMessages()
+        public void Should_Have_Equivalent_ErrorDetails()
         {
-            _serviceResult.ErrorDetails.Should().BeEquivalentTo(_errorMessages);
+            _serviceResult.ErrorDetails.Should().BeEquivalentTo(_errorDetails);
         }
 
         [Test]
@@ -41,13 +41,13 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.Result
 
         protected override void Act()
         {
-            _serviceResult = _service.Result(_serviceResultType, _errorMessages);
+            _serviceResult = _service.Result(_serviceResultType, _errorDetails);
         }
 
         protected override void Arrange()
         {
             _service = new TestService();
-            _errorMessages = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
+            _errorDetails = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
         }
     }
 }

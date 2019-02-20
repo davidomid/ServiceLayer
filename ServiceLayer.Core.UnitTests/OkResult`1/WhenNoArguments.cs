@@ -4,7 +4,7 @@ using Testing.Common.Domain;
 
 namespace ServiceLayer.Core.UnitTests
 {
-    public class WhenErrorMessages : UnitTestBase
+    public class WhenErrorDetails : UnitTestBase
     {
         private OkResult<string> _okResult;
 

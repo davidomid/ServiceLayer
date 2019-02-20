@@ -16,15 +16,15 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
 
         private TestController _controller;
 
-        private string[] _errorMessages;
+        private string[] _errorDetails;
 
         protected override void Arrange()
         {
             _controller = new TestController();
-            _errorMessages = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
+            _errorDetails = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
             Mock<IServiceResult> mockServiceResult = new Mock<IServiceResult>();
             mockServiceResult.SetupGet(r => r.IsSuccessful).Returns(false);
-            mockServiceResult.SetupGet(r => r.ErrorDetails).Returns(_errorMessages);
+            mockServiceResult.SetupGet(r => r.ErrorDetails).Returns(_errorDetails);
             _serviceResult = mockServiceResult.Object;
         }
 
@@ -46,10 +46,10 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
         }
 
         [Test]
-        public void Should_Have_Value_Matching_Given_ErrorMessages()
+        public void Should_Have_Value_Matching_Given_ErrorDetails()
         {
             ObjectResult objectResult = (ObjectResult)_actionResult;
-            objectResult.Value.Should().Be(_errorMessages);
+            objectResult.Value.Should().Be(_errorDetails);
         }
 
         [Test]

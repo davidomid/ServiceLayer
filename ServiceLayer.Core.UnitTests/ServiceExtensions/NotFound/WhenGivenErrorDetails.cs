@@ -6,10 +6,10 @@ using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.Core.UnitTests.ServiceExtensions.NotFound
 {
-    public class WhenGivenErrorMessages : UnitTestBase
+    public class WhenGivenErrorDetails : UnitTestBase
     {
         private IService _service;
-        private string[] _errorMessages;
+        private string[] _errorDetails;
         private Core.NotFoundResult _notFoundResult;
 
         [Test]
@@ -19,20 +19,20 @@ namespace ServiceLayer.Core.UnitTests.ServiceExtensions.NotFound
         }
 
         [Test]
-        public void Should_Return_NotFoundResult_With_Equivalent_ErrorMessages()
+        public void Should_Return_NotFoundResult_With_Equivalent_ErrorDetails()
         {
-            _notFoundResult.ErrorDetails.Should().BeEquivalentTo(_errorMessages);
+            _notFoundResult.ErrorDetails.Should().BeEquivalentTo(_errorDetails);
         }
 
         protected override void Act()
         {
-            _notFoundResult = _service.NotFound(_errorMessages); 
+            _notFoundResult = _service.NotFound(_errorDetails); 
         }
 
         protected override void Arrange()
         {
             _service = new TestService();
-            _errorMessages = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
+            _errorDetails = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
         }
     }
 }

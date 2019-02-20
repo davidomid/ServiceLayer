@@ -16,15 +16,15 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
 
         private TestController _controller;
 
-        private string[] _errorMessages;
+        private string[] _errorDetails;
 
         protected override void Arrange()
         {
-            _errorMessages = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
+            _errorDetails = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
             _controller = new TestController();
             Mock<IServiceResult<HttpServiceResultTypes>> mockServiceResult = new Mock<IServiceResult<HttpServiceResultTypes>>();
             mockServiceResult.SetupGet(r => r.ResultType).Returns(HttpServiceResultTypes.BadRequest);
-            mockServiceResult.SetupGet(r => r.ErrorDetails).Returns(_errorMessages);
+            mockServiceResult.SetupGet(r => r.ErrorDetails).Returns(_errorDetails);
             _dataServiceResult = mockServiceResult.Object;
         }
 
@@ -46,10 +46,10 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
         }
 
         [Test]
-        public void Should_Have_Value_Matching_Given_ErrorMessages()
+        public void Should_Have_Value_Matching_Given_ErrorDetails()
         {
             BadRequestObjectResult badRequestObjectResult = (BadRequestObjectResult)_actionResult;
-            badRequestObjectResult.Value.Should().Be(_errorMessages);
+            badRequestObjectResult.Value.Should().Be(_errorDetails);
         }
        
     }

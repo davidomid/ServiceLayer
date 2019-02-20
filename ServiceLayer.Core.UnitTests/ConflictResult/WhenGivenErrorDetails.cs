@@ -5,10 +5,10 @@ using Testing.Common.Domain;
 
 namespace ServiceLayer.Core.UnitTests.ConflictResult
 {
-    public class WhenGivenErrorMessages : UnitTestBase
+    public class WhenGivenErrorDetails : UnitTestBase
     {
         private Core.ConflictResult _conflictResult;
-        private string[] _errorMessages;
+        private string[] _errorDetails;
 
         [Test]
         public void Should_Have_Conflict_ResultType()
@@ -17,19 +17,19 @@ namespace ServiceLayer.Core.UnitTests.ConflictResult
         }
 
         [Test]
-        public void Should_Have_ErrorMessages_Matching_Given_ErrorMessages()
+        public void Should_Have_ErrorDetails_Matching_Given_ErrorDetails()
         {
-            _conflictResult.ErrorDetails.Should().BeSameAs(_errorMessages); 
+            _conflictResult.ErrorDetails.Should().BeSameAs(_errorDetails); 
         }
 
         protected override void Arrange()
         {
-            _errorMessages = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
+            _errorDetails = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
         }
 
         protected override void Act()
         {
-            _conflictResult = new Core.ConflictResult(_errorMessages);
+            _conflictResult = new Core.ConflictResult(_errorDetails);
         }
     }
 }

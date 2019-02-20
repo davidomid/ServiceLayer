@@ -3,18 +3,18 @@ using FluentAssertions;
 using NUnit.Framework;
 using Testing.Common.Domain;
 
-namespace ServiceLayer.UnitTests.Models.ServiceResult.Constructor
+namespace ServiceLayer.UnitTests.Models.ServiceResult_1.Constructor
 {
     [TestFixtureSource(nameof(ResultTypes))]
-    public class WhenGivenResultTypeAndErrorMessages : UnitTestBase
+    public class WhenGivenResultTypeAndErrorDetails : UnitTestBase
     {
-        private ServiceLayer.ServiceResult _serviceResult;
-        private string[] _errorMessages;
+        private ServiceResult<ServiceResultTypes> _serviceResult;
+        private string[] _errorDetails;
         private readonly ServiceResultTypes _serviceResultType;
 
         private static readonly ServiceResultTypes[] ResultTypes = (ServiceResultTypes[])Enum.GetValues(typeof(ServiceResultTypes));
 
-        public WhenGivenResultTypeAndErrorMessages(ServiceResultTypes serviceResultType)
+        public WhenGivenResultTypeAndErrorDetails(ServiceResultTypes serviceResultType)
         {
             _serviceResultType = serviceResultType;
         }
@@ -26,19 +26,19 @@ namespace ServiceLayer.UnitTests.Models.ServiceResult.Constructor
         }
 
         [Test]
-        public void Should_Have_ErrorMessages_Matching_Given_ErrorMessages()
+        public void Should_Have_ErrorDetails_Matching_Given_ErrorDetails()
         {
-            _serviceResult.ErrorDetails.Should().BeSameAs(_errorMessages); 
+            _serviceResult.ErrorDetails.Should().BeSameAs(_errorDetails); 
         }
 
         protected override void Arrange()
         {
-            _errorMessages = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
+            _errorDetails = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
         }
 
         protected override void Act()
         {
-            _serviceResult = new ServiceLayer.ServiceResult(_serviceResultType, _errorMessages);
+            _serviceResult = new ServiceResult<ServiceResultTypes>(_serviceResultType, _errorDetails);
         }
     }
 }
