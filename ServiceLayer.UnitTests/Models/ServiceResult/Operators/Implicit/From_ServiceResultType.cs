@@ -1,6 +1,8 @@
 using System;
 using FluentAssertions;
+using Moq;
 using NUnit.Framework;
+using ServiceLayer.Internal;
 using Testing.Common.Domain;
 
 namespace ServiceLayer.UnitTests.Models.ServiceResult.Operators.Implicit
@@ -10,7 +12,11 @@ namespace ServiceLayer.UnitTests.Models.ServiceResult.Operators.Implicit
     {
         private readonly ServiceResultTypes _serviceResultType;
 
-        private ServiceLayer.ServiceResult _serviceResult;
+        private ServiceLayer.ServiceResult _actualServiceResult;
+
+        private ServiceLayer.ServiceResult _expectedServiceResult;
+
+        private Mock<IServiceResultFactory> _mockServiceResultFactory;
 
         private static readonly ServiceResultTypes[] ResultTypes = (ServiceResultTypes[])Enum.GetValues(typeof(ServiceResultTypes));
 
@@ -20,24 +26,22 @@ namespace ServiceLayer.UnitTests.Models.ServiceResult.Operators.Implicit
         }
 
         [Test]
-        public void Should_Have_Same_ResultType()
+        public void Should_Be_Expected_ServiceResult()
         {
-            _serviceResult.ResultType.Should().Be(_serviceResultType);
-        }
-
-        [Test]
-        public void Should_Have_Null_ErrorDetails()
-        {
-            _serviceResult.ErrorDetails.Should().BeNull();
+            _actualServiceResult.Should().Be(_expectedServiceResult);
         }
 
         protected override void Arrange()
         {
+            _expectedServiceResult = new ServiceLayer.ServiceResult(_serviceResultType);
+            _mockServiceResultFactory = new Mock<IServiceResultFactory>();
+            _mockServiceResultFactory.Setup(f => f.Create(_serviceResultType)).Returns(_expectedServiceResult); 
+            ServiceLayer.ServiceResult.ServiceResultFactory = _mockServiceResultFactory.Object;
         }
 
         protected override void Act()
         {
-            _serviceResult = _serviceResultType;
+            _actualServiceResult = _serviceResultType;
         }
     }
 }

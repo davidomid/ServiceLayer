@@ -1,4 +1,6 @@
-﻿namespace ServiceLayer
+﻿using ServiceLayer.Internal;
+
+namespace ServiceLayer
 {
     public class ServiceResult : IServiceResult
     {
@@ -21,9 +23,11 @@
         public object ErrorDetails { get; }
         public bool IsSuccessful { get; }
 
+        internal static IServiceResultFactory ServiceResultFactory = new ServiceResultFactory();
+
         public static implicit operator ServiceResult(ServiceResultTypes serviceResultType)
         {
-            return new ServiceResult(serviceResultType);
+            return ServiceResultFactory.Create(serviceResultType);
         }
     }
 }

@@ -26,4 +26,10 @@
     <ProjectReference Include="..\Testing.Common\Testing.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\..\..\..\..\..\.nuget\packages\moq\4.9.0\lib\netstandard1.3\Moq.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
