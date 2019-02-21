@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace ServiceLayer
 {
     public class ServiceResult<TResultType> : ServiceResult, IServiceResult<TResultType> where TResultType : Enum
@@ -20,19 +21,17 @@ namespace ServiceLayer
 
         public static implicit operator ServiceResult<TResultType>(SuccessResult successResult)
         {
-            TResultType resultType = ServiceResultTypes.Success.ToResultType<TResultType>();
-            return new ServiceResult<TResultType>(resultType);
+            return ServiceResultFactory.Create<TResultType>(successResult);
         }
 
         public static implicit operator ServiceResult<TResultType>(FailureResult failureResult)
         {
-            TResultType resultType = ServiceResultTypes.Failure.ToResultType<TResultType>();
-            return new ServiceResult<TResultType>(resultType);
+            return ServiceResultFactory.Create<TResultType>(failureResult);
         }
 
         public static implicit operator ServiceResult<TResultType>(TResultType resultType)
         {
-            return new ServiceResult<TResultType>(resultType);
+            return ServiceResultFactory.Create(resultType);
         }
     }
 }

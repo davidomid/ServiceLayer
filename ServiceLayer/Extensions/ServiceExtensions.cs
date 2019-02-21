@@ -1,9 +1,12 @@
 ﻿using System;
+using ServiceLayer.Internal;
 
 namespace ServiceLayer
 {
     public static class ServiceExtensions
     {
+        internal static IServiceResultFactory ServiceResultFactory = new ServiceResultFactory();
+
         public static SuccessResult Success(this IService service)
         {
             return new SuccessResult();
@@ -31,7 +34,7 @@ namespace ServiceLayer
 
         public static ServiceResult Result(this IService service, ServiceResultTypes resultType)
         {
-            return new ServiceResult(resultType);
+            return ServiceResultFactory.Create(resultType);
         }
         public static ServiceResult Result(this IService service, ServiceResultTypes resultType, params object[] errorDetails)
         {
