@@ -23,7 +23,7 @@ namespace ServiceLayer
         public object ErrorDetails { get; }
         public bool IsSuccessful { get; }
 
-        internal static IServiceResultFactory ServiceResultFactory = new ServiceResultFactory();
+        internal static IServiceResultFactory ServiceResultFactory = ServiceLocator.Instance.Resolve<IServiceResultFactory>();
 
         public static implicit operator ServiceResult(ServiceResultTypes serviceResultType)
         {

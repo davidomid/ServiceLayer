@@ -12,24 +12,22 @@ namespace ServiceLayer
 
         public static implicit operator ServiceResult<TResultType, TErrorType>(SuccessResult successResult)
         {
-            TResultType resultType = ServiceResultTypes.Success.ToResultType<TResultType>();
-            return new ServiceResult<TResultType, TErrorType>(resultType);
+            return ServiceResultFactory.Create<TResultType, TErrorType>(successResult);
         }
 
         public static implicit operator ServiceResult<TResultType, TErrorType>(FailureResult<TErrorType> failureResult)
         {
-            TResultType resultType = ServiceResultTypes.Failure.ToResultType<TResultType>();
-            return new ServiceResult<TResultType, TErrorType>(resultType);
+            return ServiceResultFactory.Create<TResultType, TErrorType>(failureResult);
         }
 
         public static implicit operator ServiceResult<TResultType, TErrorType>(TErrorType errorDetails)
         {
-            return new FailureResult<TErrorType>(errorDetails);
+            return ServiceResultFactory.Create<TResultType, TErrorType>(errorDetails);
         }
 
         public static implicit operator ServiceResult<TResultType, TErrorType>(TResultType resultType)
         {
-            return new ServiceResult<TResultType, TErrorType>(resultType);
+            return ServiceResultFactory.Create<TResultType, TErrorType>(resultType);
         }
     }
 }
