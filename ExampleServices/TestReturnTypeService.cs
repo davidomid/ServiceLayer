@@ -245,5 +245,13 @@ namespace ExampleServices
         {
             return this.DataResult<int, FileStorageServiceResultTypes, string>(100);
         }
+        public SuccessResult<int> TestJ1()
+        {
+            return 100;
+        }
+        public FailureResult<string> TestJ2()
+        {
+            return "test error";
+        }
     }
 }
