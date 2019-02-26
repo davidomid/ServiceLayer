@@ -5,30 +5,25 @@ namespace ServiceLayer.Internal
     internal class ServiceResultFactory : IServiceResultFactory
     {
         public ServiceResult<TResultType, TErrorType> Create<TResultType, TErrorType>(TResultType resultType,
-            TErrorType errorDetails) where TResultType : Enum
+            TErrorType errorDetails = default) where TResultType : Enum
         {
             return new ServiceResult<TResultType, TErrorType>(resultType, errorDetails);
         }
 
         public ServiceResult<TResultType, TErrorType> Create<TResultType, TErrorType>(ServiceResultTypes serviceResultType,
-            TErrorType errorDetails) where TResultType : Enum
+            TErrorType errorDetails = default) where TResultType : Enum
         {
             return Create(serviceResultType.ToResultType<TResultType>(), errorDetails);
         }
 
-        public ServiceResult<TResultType, TErrorType> Create<TResultType, TErrorType>(TErrorType errorDetails) where TResultType : Enum
+        public ServiceResult<TResultType, TErrorType> Create<TResultType, TErrorType>(TErrorType errorDetails = default) where TResultType : Enum
         {
             return Create<TResultType, TErrorType>(ServiceResultTypes.Failure, errorDetails);
         }
 
-        public ServiceResult<TResultType, TErrorType> Create<TResultType, TErrorType>(ServiceResult serviceResult) where TResultType : Enum
+        public ServiceResult<TResultType, TErrorType> Create<TResultType, TErrorType>(ServiceResult serviceResult, TErrorType errorDetails = default) where TResultType : Enum
         {
-            return Create<TResultType, TErrorType>(serviceResult.ResultType, default);
-        }
-
-        public ServiceResult<TResultType, TErrorType> Create<TResultType, TErrorType>(TResultType resultType) where TResultType : Enum
-        {
-            return Create<TResultType, TErrorType>(resultType, default);
+            return Create<TResultType, TErrorType>(serviceResult.ResultType, errorDetails);
         }
 
         public ServiceResult<TResultType> Create<TResultType>(TResultType resultType) where TResultType : Enum
@@ -38,7 +33,7 @@ namespace ServiceLayer.Internal
 
         public ServiceResult<TResultType> Create<TResultType>(ServiceResultTypes serviceResultType) where TResultType : Enum
         {
-            return Create(serviceResultType.ToResultType<TResultType>());
+            return Create<TResultType, object>(serviceResultType);
         }
 
         public ServiceResult Create(ServiceResultTypes serviceResultType)
