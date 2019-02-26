@@ -15,5 +15,10 @@ namespace ServiceLayer.Internal
         ServiceResult<TResultType, TErrorType> Create<TResultType, TErrorType>(ServiceResult serviceResult) where TResultType : Enum;
         ServiceResult<TResultType, TErrorType> Create<TResultType, TErrorType>(SuccessResult successResult) where TResultType : Enum;
         ServiceResult<TResultType, TErrorType> Create<TResultType, TErrorType>(FailureResult failureResult) where TResultType : Enum;
+        ServiceResult<TResultType, TErrorType> Create<TResultType, TErrorType>(TResultType resultType,
+            TErrorType errorDetails) where TResultType : Enum;
+
+        ServiceResult<TResultType, TErrorType> Create<TResultType, TErrorType>(ServiceResultTypes serviceResultType,
+            TErrorType errorDetails) where TResultType : Enum;
     }
 }
