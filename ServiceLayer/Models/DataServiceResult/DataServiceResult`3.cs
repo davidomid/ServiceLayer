@@ -13,31 +13,27 @@ namespace ServiceLayer
 
         public static implicit operator DataServiceResult<TData, TResultType, TErrorType>(TData data)
         {
-            TResultType resultType = ServiceResultTypes.Success.ToResultType<TResultType>();
-            return new DataServiceResult<TData, TResultType, TErrorType>(data, resultType);
+            return DataServiceResultFactory.Create<TData, TResultType, TErrorType>(data);
         }
 
         public static implicit operator DataServiceResult<TData, TResultType, TErrorType>(FailureResult<TErrorType> failureResult)
         {
-            TResultType resultType = ServiceResultTypes.Failure.ToResultType<TResultType>();
-            return new DataServiceResult<TData, TResultType, TErrorType>(default, resultType, failureResult.ErrorDetails);
+            return DataServiceResultFactory.Create<TData, TResultType, TErrorType>(failureResult);
         }
 
         public static implicit operator DataServiceResult<TData, TResultType, TErrorType>(SuccessResult<TData> successResult)
         {
-            TResultType resultType = ServiceResultTypes.Success.ToResultType<TResultType>();
-            return new DataServiceResult<TData, TResultType, TErrorType>(default, resultType);
+            return DataServiceResultFactory.Create<TData, TResultType, TErrorType>(successResult);
         }
 
         public static implicit operator DataServiceResult<TData, TResultType, TErrorType>(TResultType resultType)
         {
-            return new DataServiceResult<TData, TResultType, TErrorType>(default, resultType);
+            return DataServiceResultFactory.Create<TData, TResultType, TErrorType>(resultType);
         }
 
         public static implicit operator DataServiceResult<TData, TResultType, TErrorType>(TErrorType errorDetails)
         {
-            TResultType resultType = ServiceResultTypes.Failure.ToResultType<TResultType>();
-            return new DataServiceResult<TData, TResultType, TErrorType>(default, resultType, errorDetails);
+            return DataServiceResultFactory.Create<TData, TResultType, TErrorType>(errorDetails);
         }
     }
 }

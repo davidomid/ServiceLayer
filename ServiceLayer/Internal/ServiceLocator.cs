@@ -10,6 +10,10 @@
             {
                 return new ServiceResultFactory() as T;
             }
+            if (typeof(T) == typeof(IDataServiceResultFactory))
+            {
+                return new DataServiceResultFactory() as T;
+            }
             return null;
         }
     }

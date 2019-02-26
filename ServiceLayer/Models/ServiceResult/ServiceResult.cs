@@ -25,6 +25,9 @@ namespace ServiceLayer
 
         internal static IServiceResultFactory ServiceResultFactory = ServiceLocator.Instance.Resolve<IServiceResultFactory>();
 
+        internal static IDataServiceResultFactory DataServiceResultFactory =
+            ServiceLocator.Instance.Resolve<IDataServiceResultFactory>();
+
         public static implicit operator ServiceResult(ServiceResultTypes serviceResultType)
         {
             return ServiceResultFactory.Create(serviceResultType);

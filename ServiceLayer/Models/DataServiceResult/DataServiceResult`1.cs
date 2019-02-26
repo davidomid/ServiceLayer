@@ -1,4 +1,6 @@
-﻿namespace ServiceLayer
+﻿using ServiceLayer.Internal;
+
+namespace ServiceLayer
 {
     public class DataServiceResult<TData> : ServiceResult<ServiceResultTypes, object>, IDataServiceResult<TData>
     {
@@ -19,17 +21,17 @@
 
         public static implicit operator DataServiceResult<TData>(TData data)
         {
-            return new SuccessResult<TData>(data);
+            return DataServiceResultFactory.Create(data);
         }
 
         public static implicit operator DataServiceResult<TData>(FailureResult failureResult)
         {
-            return new DataServiceResult<TData>(default, ServiceResultTypes.Failure, failureResult.ErrorDetails);
+            return DataServiceResultFactory.Create<TData>(failureResult);
         }
 
         public static implicit operator DataServiceResult<TData>(ServiceResultTypes resultType)
         {
-            return new DataServiceResult<TData>(default, resultType);
+            return DataServiceResultFactory.Create<TData>(resultType);
         }
     }
 }
