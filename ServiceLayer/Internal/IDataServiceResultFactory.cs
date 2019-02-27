@@ -12,11 +12,14 @@ namespace ServiceLayer.Internal
         DataServiceResult<TData, TResultType> Create<TData, TResultType>(TData data) where TResultType : Enum;
         DataServiceResult<TData, TResultType> Create<TData, TResultType>(FailureResult failureResult) where TResultType : Enum;
         DataServiceResult<TData, TResultType> Create<TData, TResultType>(SuccessResult<TData> successResult) where TResultType : Enum;
+        DataServiceResult<TData, TResultType> Create<TData, TResultType>(TData data, TResultType resultType, object errorDetails = default) where TResultType : Enum;
 
         DataServiceResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(TData data) where TResultType : Enum;
         DataServiceResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(FailureResult<TErrorType> failureResult) where TResultType : Enum;
         DataServiceResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(SuccessResult<TData> successResult) where TResultType : Enum;
         DataServiceResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(TResultType resultType) where TResultType : Enum;
         DataServiceResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(TErrorType errorDetails) where TResultType : Enum;
+        DataServiceResult<TData> Create<TData>(TData data, ServiceResultTypes resultType, object errorDetails = default);
+        DataServiceResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(TData data, TResultType resultType, TErrorType errorDetails = default) where TResultType : Enum;
     }
 }
