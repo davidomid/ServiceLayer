@@ -32,15 +32,7 @@ namespace ServiceLayer
 
         public static TResultType ToResultType<TResultType>(this ServiceResultTypes serviceResultType)
         {
-            FieldInfo enumField;
-            if (serviceResultType == ServiceResultTypes.Success)
-            {
-                enumField = GetEnumValueField<TResultType, SuccessAttribute>();
-            }
-            else
-            {
-                enumField = GetEnumValueField<TResultType, FailureAttribute>();
-            }
+            FieldInfo enumField = GetEnumValueFieldForServiceResultType<TResultType>(serviceResultType); 
 
             if (enumField != null)
             {
@@ -51,7 +43,22 @@ namespace ServiceLayer
             throw new ArgumentException($"No valid enum value of type {typeof(TResultType)} could be found for the {typeof(ServiceResultTypes)} value \"{serviceResultType}\"");
         }
 
-        private static FieldInfo GetEnumValueField<TResultType, TAttributeType>() where TAttributeType : BaseAttribute
+        private static FieldInfo GetEnumValueFieldForServiceResultType<TResultType>(ServiceResultTypes serviceResultType)
+        {
+            FieldInfo enumField;
+            if (serviceResultType == ServiceResultTypes.Success)
+            {
+                enumField = GetEnumValueFieldWithAttribute<TResultType, SuccessAttribute>();
+            }
+            else
+            {
+                enumField = GetEnumValueFieldWithAttribute<TResultType, FailureAttribute>();
+            }
+
+            return enumField; 
+        }
+
+        private static FieldInfo GetEnumValueFieldWithAttribute<TResultType, TAttributeType>() where TAttributeType : BaseAttribute
         {
             Type enumType = typeof(TResultType);
             FieldInfo enumField = enumType.GetTypeInfo().DeclaredFields.OrderByDescending(f =>
