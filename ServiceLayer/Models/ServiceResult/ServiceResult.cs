@@ -28,6 +28,12 @@ namespace ServiceLayer
         internal static IDataServiceResultFactory DataServiceResultFactory =
             ServiceLocator.Instance.Resolve<IDataServiceResultFactory>();
 
+        internal static ISuccessResultFactory SuccessResultFactory =
+            ServiceLocator.Instance.Resolve<ISuccessResultFactory>();
+
+        internal static IFailureResultFactory FailureResultFactory =
+            ServiceLocator.Instance.Resolve<IFailureResultFactory>();
+
         public static implicit operator ServiceResult(ServiceResultTypes serviceResultType)
         {
             return ServiceResultFactory.Create(serviceResultType);

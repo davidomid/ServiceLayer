@@ -1,0 +1,9 @@
+﻿namespace ServiceLayer.Internal
+{
+    internal interface IFailureResultFactory
+    {
+        FailureResult Create();
+        FailureResult Create(object[] errorDetails);
+        FailureResult<TErrorType> Create<TErrorType>(TErrorType errorDetails);
+    }
+}

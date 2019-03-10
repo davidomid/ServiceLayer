@@ -10,24 +10,30 @@ namespace ServiceLayer
         internal static IDataServiceResultFactory DataServiceResultFactory =
             ServiceLocator.Instance.Resolve<IDataServiceResultFactory>();
 
+        internal static ISuccessResultFactory SuccessResultFactory =
+            ServiceLocator.Instance.Resolve<ISuccessResultFactory>();
+
+        internal static IFailureResultFactory FailureResultFactory =
+            ServiceLocator.Instance.Resolve<IFailureResultFactory>(); 
+
         public static SuccessResult Success(this IService service)
         {
-            return new SuccessResult();
+            return SuccessResultFactory.Create();
         }
 
         public static SuccessResult<TData> Success<TData>(this IService service, TData data)
         {
-            return new SuccessResult<TData>(data);
+            return SuccessResultFactory.Create(data); 
         }
 
         public static FailureResult Failure(this IService service)
         {
-            return new FailureResult();
+            return FailureResultFactory.Create();
         }
 
         public static FailureResult Failure(this IService service, params object[] errorDetails)
         {
-            return new FailureResult(errorDetails);
+            return FailureResultFactory.Create(errorDetails);
         }
 
         public static FailureResult<TErrorType> Failure<TErrorType>(this IService service, TErrorType errorDetails = default)

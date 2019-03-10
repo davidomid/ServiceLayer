@@ -2,7 +2,7 @@
 
 namespace ServiceLayer.Internal
 {
-    public class DataServiceResultFactory : IDataServiceResultFactory
+    internal class DataServiceResultFactory : IDataServiceResultFactory
     {
         public DataServiceResult<TData, TResultType> Create<TData, TResultType>(TResultType resultType)
             where TResultType : Enum

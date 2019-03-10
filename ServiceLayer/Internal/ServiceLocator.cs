@@ -14,6 +14,14 @@
             {
                 return new DataServiceResultFactory() as T;
             }
+            if (typeof(T) == typeof(ISuccessResultFactory))
+            {
+                return new SuccessResultFactory() as T;
+            }
+            if (typeof(T) == typeof(IFailureResultFactory))
+            {
+                return new FailureResultFactory() as T; 
+            }
             return null;
         }
     }
