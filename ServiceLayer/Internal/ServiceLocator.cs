@@ -1,4 +1,6 @@
-﻿namespace ServiceLayer.Internal
+﻿using ServiceLayer.Internal.Factories;
+
+namespace ServiceLayer.Internal
 {
     internal class ServiceLocator : IServiceLocator
     {

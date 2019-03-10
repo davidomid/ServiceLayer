@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ServiceLayer.Internal
+namespace ServiceLayer.Internal.Factories
 {
     internal interface IDataServiceResultFactory
     {

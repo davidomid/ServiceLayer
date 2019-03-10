@@ -1,4 +1,4 @@
-﻿namespace ServiceLayer.Internal
+﻿namespace ServiceLayer.Internal.Factories
 {
     internal class FailureResultFactory : IFailureResultFactory
     {

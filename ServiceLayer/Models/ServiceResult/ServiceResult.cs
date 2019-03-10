@@ -1,4 +1,5 @@
 ﻿using ServiceLayer.Internal;
+using ServiceLayer.Internal.Factories;
 
 namespace ServiceLayer
 {
