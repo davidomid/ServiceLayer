@@ -7,7 +7,7 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceResultTypesExtensions.ToResul
 { 
     public class WhenGivenSuccessServiceResultType : UnitTestBase
     {
-        private readonly ServiceResultTypes _serviceResultType = ServiceResultTypes.Success;
+        private const ServiceResultTypes SuccessServiceResultType = ServiceResultTypes.Success;
 
         private TestCustomServiceResultTypes _testCustomServiceResultType;
 
@@ -24,7 +24,7 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceResultTypesExtensions.ToResul
 
         protected override void Act()
         {
-            _testCustomServiceResultType = _serviceResultType.ToResultType<TestCustomServiceResultTypes>();
+            _testCustomServiceResultType = SuccessServiceResultType.ToResultType<TestCustomServiceResultTypes>();
         }
     }
 }

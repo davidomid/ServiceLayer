@@ -1,7 +1,6 @@
 using System;
 using FluentAssertions;
 using NUnit.Framework;
-using ServiceLayer.UnitTests;
 using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.Failure
@@ -11,17 +10,12 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.Failure
         private IService _service;
         private string[] _errorDetails;
         private FailureResult _failureResult;
+        private FailureResult _expectedResult;
 
         [Test]
-        public void Should_Not_Return_Null()
+        public void Should_Return_Expected_Result()
         {
-            _failureResult.Should().NotBeNull();
-        }
-
-        [Test]
-        public void Should_Have_ErrorDetails_Array_Containing_Same_ErrorDetails_Object()
-        {
-            _failureResult.ErrorDetails.As<object[]>().Should().BeEquivalentTo((object)_errorDetails);
+            _failureResult.Should().Be(_expectedResult);
         }
 
         protected override void Act()
@@ -33,6 +27,7 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.Failure
         {
             _service = new TestService();
             _errorDetails = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
+            _expectedResult = MockFailureResultFactory.Object.Create(_errorDetails);
         }
     }
 }

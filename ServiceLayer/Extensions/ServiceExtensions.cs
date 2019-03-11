@@ -39,7 +39,7 @@ namespace ServiceLayer
 
         public static FailureResult<TErrorType> Failure<TErrorType>(this IService service, TErrorType errorDetails = default)
         {
-            return new FailureResult<TErrorType>(errorDetails);
+            return FailureResultFactory.Create(errorDetails);
         }
 
         public static ServiceResult Result(this IService service, ServiceResultTypes resultType)
