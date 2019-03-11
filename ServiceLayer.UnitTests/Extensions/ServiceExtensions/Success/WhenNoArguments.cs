@@ -1,11 +1,11 @@
 using FluentAssertions;
 using NUnit.Framework;
-using Testing.Common.Domain;
+using ServiceLayer.UnitTests;
 using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.Success
 {
-    public class WhenGivenData : UnitTestBase
+    public class WhenNoArguments : UnitTestBase
     {
         private IService _service;
         private SuccessResult _successResult;

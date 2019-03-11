@@ -1,6 +1,6 @@
 using FluentAssertions;
 using NUnit.Framework;
-using Testing.Common.Domain;
+using ServiceLayer.UnitTests;
 using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Extensions.ServiceResultTypesExtensions.ToResultType

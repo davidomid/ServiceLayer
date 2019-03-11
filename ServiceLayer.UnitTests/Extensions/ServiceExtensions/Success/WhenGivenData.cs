@@ -1,9 +1,9 @@
 using FluentAssertions;
 using NUnit.Framework;
-using Testing.Common.Domain;
+using ServiceLayer.UnitTests;
 using Testing.Common.Domain.TestClasses;
 
-namespace ServiceLayer.Core.UnitTests.ServiceExtensions
+namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.Success
 {
     public class WhenGivenData : UnitTestBase
     {

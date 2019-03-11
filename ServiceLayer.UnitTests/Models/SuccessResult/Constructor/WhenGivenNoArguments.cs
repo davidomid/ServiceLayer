@@ -1,6 +1,6 @@
 using FluentAssertions;
 using NUnit.Framework;
-using Testing.Common.Domain;
+using ServiceLayer.UnitTests;
 
 namespace ServiceLayer.UnitTests.Models.SuccessResult.Constructor
 {

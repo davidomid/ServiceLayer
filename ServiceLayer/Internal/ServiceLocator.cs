@@ -4,7 +4,7 @@ namespace ServiceLayer.Internal
 {
     internal class ServiceLocator : IServiceLocator
     {
-        public static ServiceLocator Instance = new ServiceLocator();
+        public static IServiceLocator Instance = new ServiceLocator();
 
         public T Resolve<T>() where T : class
         {
