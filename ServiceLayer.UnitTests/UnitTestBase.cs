@@ -53,9 +53,21 @@ namespace ServiceLayer.UnitTests
             MockServiceResultFactory
                 .Setup(f => f.Create(It.IsAny<ServiceResultTypes>(), It.IsAny<string[]>()))
                 .Returns(new ServiceResult<ServiceResultTypes, string[]>(default));
+
+            MockServiceResultFactory
+                .Setup(f => f.Create(It.IsAny<TestCustomServiceResultTypes>()))
+                .Returns(new ServiceResult<TestCustomServiceResultTypes>(default)); 
             MockServiceResultFactory
                 .Setup(f => f.Create(It.IsAny<TestCustomServiceResultTypes>(), It.IsAny<string[]>()))
                 .Returns(new ServiceResult<TestCustomServiceResultTypes, string[]>(default));
+
+            MockServiceResultFactory
+                .Setup(f => f.Create<TestCustomServiceResultTypes>(It.IsAny<SuccessResult>()))
+                .Returns(new ServiceResult<TestCustomServiceResultTypes>(TestCustomServiceResultTypes.TestValueWithSuccessAttribute));
+
+            MockServiceResultFactory
+                .Setup(f => f.Create<TestCustomServiceResultTypes>(It.IsAny<FailureResult>()))
+                .Returns(new ServiceResult<TestCustomServiceResultTypes>(TestCustomServiceResultTypes.TestValueWithNoAttribute));
         }
 
         private static void SetupMockDataServiceResultFactory()
