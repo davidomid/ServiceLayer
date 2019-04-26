@@ -6,6 +6,8 @@ namespace Testing.Common.Domain.TestClasses
     {
         TestValueWithNoAttribute,
         [Success]
-        TestValueWithSuccessAttribute
+        TestValueWithSuccessAttribute,
+        [Failure]
+        TestValueWithFailureAttribute
     }
 }

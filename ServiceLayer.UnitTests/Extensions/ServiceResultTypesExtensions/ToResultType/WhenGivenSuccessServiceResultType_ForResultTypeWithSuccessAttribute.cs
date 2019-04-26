@@ -5,7 +5,7 @@ using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Extensions.ServiceResultTypesExtensions.ToResultType
 { 
-    public class WhenGivenSuccessServiceResultType : UnitTestBase
+    public class WhenGivenSuccessServiceResultType_ForResultTypeWithSuccessAttribute : UnitTestBase
     {
         private const ServiceResultTypes SuccessServiceResultType = ServiceResultTypes.Success;
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using ServiceLayer.Attributes;
@@ -60,20 +61,21 @@ namespace ServiceLayer
 
         private static FieldInfo GetEnumValueFieldWithAttribute<TResultType, TAttributeType>() where TAttributeType : BaseAttribute
         {
-            Type enumType = typeof(TResultType);
-            FieldInfo enumField = enumType.GetTypeInfo().DeclaredFields.OrderByDescending(f =>
+            FieldInfo enumField = typeof(TResultType).GetTypeInfo()
+            // Get all the fields of the given enum type. 
+            .DeclaredFields
+            // Match fields with their corresponding custom attribute of the given type.
+            .ToDictionary(k => k, v => 
             {
-                var attribute = f.GetCustomAttribute<TAttributeType>(false);
-                if (attribute != null)
-                {
-                    if (attribute.IsDefault)
-                    {
-                        return 2;
-                    }
-                    return 1;
-                }
-                return 0;
-            }).FirstOrDefault();
+                var attribute = v.GetCustomAttribute<TAttributeType>(false);
+                return attribute;
+            })
+            // Only retrieve fields with a custom attribute.
+            .Where(kvp => kvp.Value != null)
+            // Order the fields in descending order, by the IsDefault property of the attribute, then take the first field.
+            .OrderByDescending(kvp => kvp.Value.IsDefault)
+            .FirstOrDefault().Key; 
+
             return enumField;
         }
 
