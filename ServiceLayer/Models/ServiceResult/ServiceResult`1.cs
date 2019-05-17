@@ -4,7 +4,7 @@ namespace ServiceLayer
 {
     public class ServiceResult<TResultType> : ServiceResult, IServiceResult<TResultType> where TResultType : Enum
     {
-        public ServiceResult(TResultType resultType) : this(resultType, null)
+        public ServiceResult(TResultType resultType) : this(resultType, default)
         {
         }
 

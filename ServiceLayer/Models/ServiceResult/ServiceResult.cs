@@ -5,7 +5,7 @@ namespace ServiceLayer
 {
     public class ServiceResult : IServiceResult
     {
-        public ServiceResult(ServiceResultTypes resultType) : this(resultType, null)
+        public ServiceResult(ServiceResultTypes resultType) : this(resultType, default)
         {
         }
 

@@ -42,7 +42,9 @@ namespace ServiceLayer.UnitTests
         private static void SetupMockFailureResultFactory()
         {
             MockFailureResultFactory.Setup(f => f.Create(It.IsAny<string[]>()))
-                .Returns(new FailureResult<string[]>());
+                .Returns(new FailureResult<string[]>(new []{"test error 1", "test error 2", "test error 3"}));
+            MockFailureResultFactory.Setup(f => f.Create(It.IsAny<TestErrorType>()))
+                .Returns(new FailureResult<TestErrorType>(default));
         }
 
         private static void SetupMockServiceResultFactory()
@@ -52,14 +54,14 @@ namespace ServiceLayer.UnitTests
                 .Returns(new ServiceResult(default));
             MockServiceResultFactory
                 .Setup(f => f.Create(It.IsAny<ServiceResultTypes>(), It.IsAny<string[]>()))
-                .Returns(new ServiceResult<ServiceResultTypes, string[]>(default));
+                .Returns(new ServiceResult<ServiceResultTypes, string[]>(default, default));
 
             MockServiceResultFactory
                 .Setup(f => f.Create(It.IsAny<TestCustomServiceResultTypes>()))
                 .Returns(new ServiceResult<TestCustomServiceResultTypes>(default)); 
             MockServiceResultFactory
                 .Setup(f => f.Create(It.IsAny<TestCustomServiceResultTypes>(), It.IsAny<string[]>()))
-                .Returns(new ServiceResult<TestCustomServiceResultTypes, string[]>(default));
+                .Returns(new ServiceResult<TestCustomServiceResultTypes, string[]>(default, default));
 
             MockServiceResultFactory
                 .Setup(f => f.Create<TestCustomServiceResultTypes>(It.IsAny<SuccessResult>()))
@@ -78,7 +80,7 @@ namespace ServiceLayer.UnitTests
 
             MockDataServiceResultFactory
                 .Setup(f => f.Create(It.IsAny<TestData>(), It.IsAny<TestCustomServiceResultTypes>(), It.IsAny<string[]>()))
-                .Returns(new DataServiceResult<TestData, TestCustomServiceResultTypes, string[]>(default, default));
+                .Returns(new DataServiceResult<TestData, TestCustomServiceResultTypes, string[]>(default, default, default));
         }
     }
 }

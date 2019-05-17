@@ -4,7 +4,7 @@ namespace ServiceLayer
 {
     public class DataServiceResult<TData> : ServiceResult<ServiceResultTypes, object>, IDataServiceResult<TData>
     {
-        public DataServiceResult(TData data, ServiceResultTypes resultType) : this(data, resultType, null)
+        public DataServiceResult(TData data, ServiceResultTypes resultType) : this(data, resultType, default)
         {
         }
 

@@ -2,7 +2,7 @@
 {
     public class FailureResult<TErrorType> : FailureResult
     {
-        public FailureResult(TErrorType errorDetails = default) : base(errorDetails)
+        public FailureResult(TErrorType errorDetails) : base(errorDetails)
         {
             ErrorDetails = errorDetails;
         }
