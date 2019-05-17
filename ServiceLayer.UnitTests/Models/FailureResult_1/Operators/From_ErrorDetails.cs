@@ -4,7 +4,7 @@ using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Models.FailureResult_1.Operators
 {
-    public class From_Data : UnitTestBase
+    public class From_ErrorDetails : UnitTestBase
     {
         private readonly TestErrorType _testErrorType = new TestErrorType();
         private FailureResult<TestErrorType> _actualFailureResult;

@@ -1,6 +1,4 @@
-﻿using ServiceLayer.Internal;
-
-namespace ServiceLayer
+﻿namespace ServiceLayer
 {
     public class DataServiceResult<TData> : ServiceResult<ServiceResultTypes, object>, IDataServiceResult<TData>
     {
