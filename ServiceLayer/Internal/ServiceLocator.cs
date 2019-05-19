@@ -1,4 +1,6 @@
-﻿using ServiceLayer.Internal.Factories;
+﻿using System;
+using System.Collections.Generic;
+using ServiceLayer.Internal.Factories;
 
 namespace ServiceLayer.Internal
 {
@@ -6,25 +8,17 @@ namespace ServiceLayer.Internal
     {
         public static IServiceLocator Instance = new ServiceLocator();
 
+        private readonly Dictionary<Type, object> _instances = new Dictionary<Type, object>
+        {
+            { typeof(IServiceResultFactory), new ServiceResultFactory() },
+            { typeof(IDataServiceResultFactory), new DataServiceResultFactory() },
+            { typeof(ISuccessResultFactory), new SuccessResultFactory() },
+            { typeof(IFailureResultFactory), new FailureResultFactory() }
+        };
+
         public T Resolve<T>() where T : class
         {
-            if (typeof(T) == typeof(IServiceResultFactory))
-            {
-                return new ServiceResultFactory() as T;
-            }
-            if (typeof(T) == typeof(IDataServiceResultFactory))
-            {
-                return new DataServiceResultFactory() as T;
-            }
-            if (typeof(T) == typeof(ISuccessResultFactory))
-            {
-                return new SuccessResultFactory() as T;
-            }
-            if (typeof(T) == typeof(IFailureResultFactory))
-            {
-                return new FailureResultFactory() as T; 
-            }
-            return null;
+            return _instances[typeof(T)] as T;
         }
     }
 }
