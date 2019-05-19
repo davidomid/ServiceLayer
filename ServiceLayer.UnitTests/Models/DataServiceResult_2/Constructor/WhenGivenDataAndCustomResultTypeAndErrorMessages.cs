@@ -7,24 +7,24 @@ using Testing.Common.Domain.TestClasses;
 namespace ServiceLayer.UnitTests.Models.DataServiceResult_2.Constructor
 {
     [TestFixtureSource(nameof(ResultTypes))]
-    public class WhenGivenDataAndErrorDetails : UnitTestBase
+    public class WhenGivenDataAndCustomResultTypeAndErrorMessages : UnitTestBase
     {
-        private DataServiceResult<TestData, ServiceResultTypes> _serviceResult;
+        private DataServiceResult<TestData, TestCustomServiceResultTypes> _serviceResult;
         private string[] _errorDetails;
-        private readonly ServiceResultTypes _serviceResultType;
+        private readonly TestCustomServiceResultTypes _customResultType;
         private TestData _testData;
 
-        private static readonly ServiceResultTypes[] ResultTypes = (ServiceResultTypes[])Enum.GetValues(typeof(ServiceResultTypes));
+        private static readonly TestCustomServiceResultTypes[] ResultTypes = (TestCustomServiceResultTypes[])Enum.GetValues(typeof(TestCustomServiceResultTypes));
 
-        public WhenGivenDataAndErrorDetails(ServiceResultTypes serviceResultType)
+        public WhenGivenDataAndCustomResultTypeAndErrorMessages(TestCustomServiceResultTypes customResultType)
         {
-            _serviceResultType = serviceResultType;
+            _customResultType = customResultType;
         }
 
         [Test]
-        public void Should_Have_ServiceResultType_Matching_Given_Type()
+        public void Should_Have_customResultType_Matching_Given_Type()
         {
-            _serviceResult.ResultType.Should().Be(_serviceResultType);
+            _serviceResult.ResultType.Should().Be(_customResultType);
         }
 
         [Test]
@@ -47,7 +47,7 @@ namespace ServiceLayer.UnitTests.Models.DataServiceResult_2.Constructor
 
         protected override void Act()
         {
-            _serviceResult = new DataServiceResult<TestData, ServiceResultTypes>(_testData, _serviceResultType, _errorDetails);
+            _serviceResult = new DataServiceResult<TestData, TestCustomServiceResultTypes>(_testData, _customResultType, _errorDetails);
         }
     }
 }
