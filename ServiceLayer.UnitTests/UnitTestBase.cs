@@ -62,6 +62,10 @@ namespace ServiceLayer.UnitTests
                 .Returns(new ServiceResult<TestCustomServiceResultTypes>(default));
 
             MockServiceResultFactory
+                .Setup(f => f.Create(It.IsAny<TestCustomServiceResultTypes>(), It.IsAny<object[]>()))
+                .Returns(new ServiceResult<TestCustomServiceResultTypes, object[]>(default, default));
+
+            MockServiceResultFactory
                 .Setup(f => f.Create(It.IsAny<TestCustomServiceResultTypes>(), It.IsAny<TestErrorType>()))
                 .Returns(new ServiceResult<TestCustomServiceResultTypes, TestErrorType>(default, default));
 
