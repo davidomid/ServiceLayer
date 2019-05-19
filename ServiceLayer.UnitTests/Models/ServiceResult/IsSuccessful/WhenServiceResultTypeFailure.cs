@@ -1,12 +1,11 @@
 using FluentAssertions;
 using NUnit.Framework;
-using ServiceLayer.UnitTests;
 
-namespace ServiceLayer.UnitTests.Models.ServiceResult_1.IsSuccessful
+namespace ServiceLayer.UnitTests.Models.ServiceResult.IsSuccessful
 {
     public class WhenServiceResultTypeFailure : UnitTestBase
     {
-        private ServiceResult<ServiceResultTypes> _serviceResult;
+        private ServiceLayer.ServiceResult _serviceResult;
         private bool _isSuccessful;
 
         [Test]
@@ -17,7 +16,7 @@ namespace ServiceLayer.UnitTests.Models.ServiceResult_1.IsSuccessful
 
         protected override void Arrange()
         {
-            _serviceResult = new ServiceResult<ServiceResultTypes>(ServiceResultTypes.Failure);
+            _serviceResult = new ServiceLayer.ServiceResult(ServiceResultTypes.Failure);
         }
 
         protected override void Act()

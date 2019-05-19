@@ -8,7 +8,7 @@ namespace ServiceLayer.UnitTests.Models.FailureResult.Constructor
     public class WhenGivenErrorDetails : UnitTestBase
     {
         private ServiceLayer.FailureResult _failureResult;
-        private string[] _errorDetails;
+        private object[] _errorDetails;
 
         [Test]
         public void Should_Have_Failure_ServiceResultType()
@@ -24,7 +24,7 @@ namespace ServiceLayer.UnitTests.Models.FailureResult.Constructor
 
         protected override void Arrange()
         {
-            _errorDetails = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
+            _errorDetails = new object[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
         }
 
         protected override void Act()
