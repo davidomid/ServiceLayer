@@ -1,6 +1,5 @@
 ﻿using Moq;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 using ServiceLayer.Internal;
 using ServiceLayer.Internal.Factories;
 using Testing.Common.Domain.TestClasses;
@@ -42,8 +41,9 @@ namespace ServiceLayer.UnitTests
 
         private static void SetupMockFailureResultFactory()
         {
-            MockFailureResultFactory.Setup(f => f.Create(It.IsAny<string[]>()))
-                .Returns(new FailureResult<string[]>(new []{"test error 1", "test error 2", "test error 3"}));
+            MockFailureResultFactory.Setup(f => f.Create()).Returns(new FailureResult());
+            MockFailureResultFactory.Setup(f => f.Create(It.IsAny<object[]>()))
+                .Returns(new FailureResult<object[]>(new object[] { default, default, default}));
             MockFailureResultFactory.Setup(f => f.Create(It.IsAny<TestErrorType>()))
                 .Returns(new FailureResult<TestErrorType>(default));
         }

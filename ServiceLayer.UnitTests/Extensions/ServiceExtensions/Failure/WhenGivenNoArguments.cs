@@ -5,10 +5,9 @@ using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.Failure
 {
-    public class WhenGivenErrorDetails : UnitTestBase
+    public class WhenGivenNoArguments : UnitTestBase
     {
         private IService _service;
-        private string[] _errorDetails;
         private FailureResult _failureResult;
         private FailureResult _expectedResult;
 
@@ -20,14 +19,13 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.Failure
 
         protected override void Act()
         {
-            _failureResult = _service.Failure(_errorDetails); 
+            _failureResult = _service.Failure(); 
         }
 
         protected override void Arrange()
         {
             _service = new TestService();
-            _errorDetails = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
-            _expectedResult = MockFailureResultFactory.Object.Create(_errorDetails);
+            _expectedResult = MockFailureResultFactory.Object.Create();
         }
     }
 }
