@@ -3,14 +3,14 @@ using FluentAssertions;
 using NUnit.Framework;
 using Testing.Common.Domain.TestClasses;
 
-namespace ServiceLayer.UnitTests.Models.DataServiceResult_2.Operators.Implicit
+namespace ServiceLayer.UnitTests.Models.DataServiceResult_3.Operators.Implicit
 {
     [TestFixtureSource(nameof(ResultTypes))]
     public class From_CustomResultType : UnitTestBase
     {
         private readonly TestCustomServiceResultTypes _customResultType;
-        private DataServiceResult<TestData, TestCustomServiceResultTypes> _actualDataServiceResult;
-        private DataServiceResult<TestData, TestCustomServiceResultTypes> _expectedDataServiceResult;
+        private DataServiceResult<TestData, TestCustomServiceResultTypes, TestErrorType> _actualDataServiceResult;
+        private DataServiceResult<TestData, TestCustomServiceResultTypes, TestErrorType> _expectedDataServiceResult;
 
         private static readonly TestCustomServiceResultTypes[] ResultTypes = (TestCustomServiceResultTypes[])Enum.GetValues(typeof(TestCustomServiceResultTypes));
 
@@ -32,7 +32,7 @@ namespace ServiceLayer.UnitTests.Models.DataServiceResult_2.Operators.Implicit
 
         protected override void Arrange()
         {
-            _expectedDataServiceResult = MockDataServiceResultFactory.Object.Create<TestData, TestCustomServiceResultTypes>(_customResultType);
+            _expectedDataServiceResult = MockDataServiceResultFactory.Object.Create<TestData, TestCustomServiceResultTypes, TestErrorType>(_customResultType);
         }
     }
 }

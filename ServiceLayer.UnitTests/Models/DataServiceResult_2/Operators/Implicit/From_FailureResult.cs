@@ -18,7 +18,7 @@ namespace ServiceLayer.UnitTests.Models.DataServiceResult_2.Operators.Implicit
         [Test]
         public void Should_Be_Expected_DataServiceResult()
         {
-            _actualDataServiceResult.Should().Be(_expectedDataServiceResult);
+            _actualDataServiceResult.Should().BeSameAs(_expectedDataServiceResult);
         }
 
         protected override void Arrange()

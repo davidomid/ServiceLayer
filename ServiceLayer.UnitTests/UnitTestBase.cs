@@ -1,5 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 using ServiceLayer.Internal;
 using ServiceLayer.Internal.Factories;
 using Testing.Common.Domain.TestClasses;
@@ -99,6 +100,26 @@ namespace ServiceLayer.UnitTests
                 .Returns(new DataServiceResult<TestData, TestCustomServiceResultTypes>(default, default));
 
             MockDataServiceResultFactory
+                .Setup(f => f.Create<TestData, TestCustomServiceResultTypes, TestErrorType>(It.IsAny<TestData>()))
+                .Returns(new DataServiceResult<TestData, TestCustomServiceResultTypes, TestErrorType>(default, default, default));
+
+            MockDataServiceResultFactory
+                .Setup(f => f.Create<TestData, TestCustomServiceResultTypes, TestErrorType>(It.IsAny<TestCustomServiceResultTypes>()))
+                .Returns(new DataServiceResult<TestData, TestCustomServiceResultTypes, TestErrorType>(default, default, default));
+
+            MockDataServiceResultFactory
+                .Setup(f => f.Create<TestData, TestCustomServiceResultTypes, TestErrorType>(It.IsAny<TestErrorType>()))
+                .Returns(new DataServiceResult<TestData, TestCustomServiceResultTypes, TestErrorType>(default, default, default));
+
+            MockDataServiceResultFactory
+                .Setup(f => f.Create<TestData, TestCustomServiceResultTypes, TestErrorType>(It.IsAny<SuccessResult<TestData>>()))
+                .Returns(new DataServiceResult<TestData, TestCustomServiceResultTypes, TestErrorType>(default, default, default));
+
+            MockDataServiceResultFactory
+                .Setup(f => f.Create<TestData, TestCustomServiceResultTypes, TestErrorType>(It.IsAny<FailureResult<TestErrorType>>()))
+                .Returns(new DataServiceResult<TestData, TestCustomServiceResultTypes, TestErrorType>(default, default, default));
+
+            MockDataServiceResultFactory
                 .Setup(f => f.Create(It.IsAny<TestData>()))
                 .Returns(new DataServiceResult<TestData>(default, default)); 
 
@@ -109,6 +130,7 @@ namespace ServiceLayer.UnitTests
             MockDataServiceResultFactory
                 .Setup(f => f.Create(It.IsAny<TestData>(), It.IsAny<TestCustomServiceResultTypes>(), It.IsAny<string[]>()))
                 .Returns(new DataServiceResult<TestData, TestCustomServiceResultTypes, string[]>(default, default, default));
+
         }
     }
 }
