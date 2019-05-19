@@ -6,21 +6,21 @@ namespace ServiceLayer.UnitTests.Models.ServiceResult_2.Operators.Implicit
 {
     public class From_FailureResult : UnitTestBase
     {
-        private readonly ServiceLayer.FailureResult _failureResult = new ServiceLayer.FailureResult();
+        private readonly FailureResult<TestErrorType> _failureResult = new FailureResult<TestErrorType>(new TestErrorType());
 
-        private ServiceResult<TestCustomServiceResultTypes> _actualServiceResult;
+        private ServiceResult<TestCustomServiceResultTypes, TestErrorType> _actualServiceResult;
 
-        private ServiceResult<TestCustomServiceResultTypes> _expectedServiceResult;
+        private ServiceResult<TestCustomServiceResultTypes, TestErrorType> _expectedServiceResult;
 
         [Test]
         public void Should_Be_Expected_ServiceResult()
         {
-            _actualServiceResult.Should().Be(_expectedServiceResult);
+            _actualServiceResult.Should().BeSameAs(_expectedServiceResult);
         }
 
         protected override void Arrange()
         {
-            _expectedServiceResult = MockServiceResultFactory.Object.Create<TestCustomServiceResultTypes>(_failureResult);
+            _expectedServiceResult = MockServiceResultFactory.Object.Create<TestCustomServiceResultTypes, TestErrorType>(_failureResult);
         }
 
         protected override void Act()

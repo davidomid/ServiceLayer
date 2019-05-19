@@ -4,9 +4,9 @@ using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Models.ServiceResult_2.Operators.Implicit
 {
-    public class From_SuccessResult : UnitTestBase
+    public class From_CustomErrorType : UnitTestBase
     {
-        private readonly ServiceLayer.SuccessResult _successResult = new ServiceLayer.SuccessResult();
+        private readonly TestErrorType _customErrorType = new TestErrorType();
 
         private ServiceResult<TestCustomServiceResultTypes, TestErrorType> _actualServiceResult;
 
@@ -20,12 +20,12 @@ namespace ServiceLayer.UnitTests.Models.ServiceResult_2.Operators.Implicit
 
         protected override void Arrange()
         {
-            _expectedServiceResult = MockServiceResultFactory.Object.Create<TestCustomServiceResultTypes, TestErrorType>(_successResult);
+            _expectedServiceResult = MockServiceResultFactory.Object.Create<TestCustomServiceResultTypes, TestErrorType>(_customErrorType);
         }
 
         protected override void Act()
         {
-            _actualServiceResult = _successResult;
+            _actualServiceResult = _customErrorType;
         }
     }
 }
