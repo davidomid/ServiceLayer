@@ -2,12 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>A project for implementing or integrating with a service using .NET Core.</Description>
-    <RepositoryUrl>https://github.com/davidomid/ServiceLayer</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/davidomid/ServiceLayer/tree/master/ServiceLayer.Core</PackageProjectUrl>
-    <PackageTags>Service, Layer, Core, David, Omid</PackageTags>
-    <Version>1.1.5</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -19,7 +13,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.2" />
+    <PackageReference Include="NUnit" Version="3.10.1" />
   </ItemGroup>
 
   <ItemGroup>
