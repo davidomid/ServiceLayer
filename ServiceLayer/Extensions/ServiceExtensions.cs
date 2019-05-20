@@ -59,14 +59,6 @@ namespace ServiceLayer
         {
             return DataServiceResultFactory.Create(data);
         }
-        public static DataServiceResult<TData> DataResult<TData>(this IService service, TData data, ServiceResultTypes resultType)
-        {
-            return DataServiceResultFactory.Create(data, resultType);
-        }
-        public static DataServiceResult<TData> DataResult<TData>(this IService service, TData data, ServiceResultTypes resultType, params object[] errorDetails)
-        {
-            return DataServiceResultFactory.Create(data, resultType, errorDetails);
-        }
         public static DataServiceResult<TData, TResultType> DataResult<TData, TResultType>(this IService service, TData data) where TResultType : Enum
         {
             return DataServiceResultFactory.Create<TData, TResultType>(data);
