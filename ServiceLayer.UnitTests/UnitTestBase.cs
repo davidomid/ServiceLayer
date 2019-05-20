@@ -153,6 +153,14 @@ namespace ServiceLayer.UnitTests
                 .Returns(new DataServiceResult<TestData, TestCustomServiceResultTypes>(default, default));
 
             MockDataServiceResultFactory
+                .Setup(f => f.Create(It.IsAny<TestData>(), It.IsAny<TestCustomServiceResultTypes>(), It.IsAny<TestErrorType>()))
+                .Returns(new DataServiceResult<TestData, TestCustomServiceResultTypes, TestErrorType>(default, default, default));
+
+            MockDataServiceResultFactory
+                .Setup(f => f.Create(It.IsAny<TestData>(), It.IsAny<TestCustomServiceResultTypes>(), It.IsAny<object[]>()))
+                .Returns(new DataServiceResult<TestData, TestCustomServiceResultTypes, object[]>(default, default, default));
+
+            MockDataServiceResultFactory
                 .Setup(f => f.Create(It.IsAny<TestData>(), It.IsAny<TestCustomServiceResultTypes>(), It.IsAny<string[]>()))
                 .Returns(new DataServiceResult<TestData, TestCustomServiceResultTypes, string[]>(default, default, default));
 
