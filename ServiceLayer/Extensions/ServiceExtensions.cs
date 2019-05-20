@@ -42,15 +42,6 @@ namespace ServiceLayer
             return FailureResultFactory.Create(errorDetails);
         }
 
-        public static ServiceResult Result(this IService service, ServiceResultTypes resultType)
-        {
-            return ServiceResultFactory.Create(resultType);
-        }
-        public static ServiceResult Result(this IService service, ServiceResultTypes resultType, params object[] errorDetails)
-        {
-            return ServiceResultFactory.Create(resultType, errorDetails);
-        }
-
         public static ServiceResult<TResultType> Result<TResultType>(this IService service, TResultType resultType) where TResultType : Enum
         {
             return ServiceResultFactory.Create(resultType);

@@ -7,19 +7,18 @@ using Testing.Common.Domain.TestClasses;
 namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.Result
 {
     [TestFixtureSource(nameof(ResultTypes))]
-    public class WhenGivenCustomResultTypeAndErrorObjectArray : UnitTestBase
+    public class WhenGivenCustomResultType : UnitTestBase
     {
         private IService _service;
-        private object[] _errorDetails;
-        private ServiceResult _serviceResult;
-        private ServiceResult _expectedServiceResult;
-        private readonly TestCustomServiceResultTypes _customResultType;
+        private ServiceResult<TestCustomServiceResultTypes> _serviceResult;
+        private ServiceResult<TestCustomServiceResultTypes> _expectedServiceResult;
+        private readonly TestCustomServiceResultTypes _serviceResultType;
 
         private static readonly TestCustomServiceResultTypes[] ResultTypes = (TestCustomServiceResultTypes[])Enum.GetValues(typeof(TestCustomServiceResultTypes));
 
-        public WhenGivenCustomResultTypeAndErrorObjectArray(TestCustomServiceResultTypes customResultType)
+        public WhenGivenCustomResultType(TestCustomServiceResultTypes serviceResultType)
         {
-            _customResultType = customResultType;
+            _serviceResultType = serviceResultType;
         }
 
         [Test]
@@ -30,14 +29,13 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.Result
 
         protected override void Act()
         {
-            _serviceResult = _service.Result(_customResultType, _errorDetails);
+            _serviceResult = _service.Result(_serviceResultType);
         }
 
         protected override void Arrange()
         {
             _service = new TestService();
-            _errorDetails = new[] { Guid.NewGuid().ToString(), 123, new object() };
-            _expectedServiceResult = MockServiceResultFactory.Object.Create(_customResultType, _errorDetails);
+            _expectedServiceResult = MockServiceResultFactory.Object.Create(_serviceResultType);
         }
     }
 }
