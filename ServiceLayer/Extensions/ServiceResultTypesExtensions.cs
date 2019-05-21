@@ -30,8 +30,13 @@ namespace ServiceLayer
             return ServiceResultTypes.Failure; 
         }
 
-        public static TResultType ToResultType<TResultType>(this ServiceResultTypes serviceResultType)
+        public static TResultType ToResultType<TResultType>(this ServiceResultTypes serviceResultType) where TResultType : Enum
         {
+            if (typeof(TResultType) == typeof(ServiceResultTypes))
+            {
+                return (TResultType)(object)serviceResultType;
+            }
+
             FieldInfo enumField = GetEnumValueFieldForServiceResultType<TResultType>(serviceResultType); 
 
             if (enumField != null)
@@ -43,7 +48,7 @@ namespace ServiceLayer
             throw new ArgumentException($"No valid enum value of type {typeof(TResultType)} could be found for the {typeof(ServiceResultTypes)} value \"{serviceResultType}\"");
         }
 
-        private static FieldInfo GetEnumValueFieldForServiceResultType<TResultType>(ServiceResultTypes serviceResultType)
+        private static FieldInfo GetEnumValueFieldForServiceResultType<TResultType>(ServiceResultTypes serviceResultType) where TResultType : Enum
         {
             FieldInfo enumField;
             if (serviceResultType == ServiceResultTypes.Success)
@@ -58,7 +63,7 @@ namespace ServiceLayer
             return enumField; 
         }
 
-        private static FieldInfo GetEnumValueFieldWithAttribute<TResultType, TAttributeType>() where TAttributeType : BaseAttribute
+        private static FieldInfo GetEnumValueFieldWithAttribute<TResultType, TAttributeType>() where TResultType : Enum where TAttributeType : BaseAttribute 
         {
             FieldInfo enumField = typeof(TResultType).GetTypeInfo()
             // Get all the fields of the given enum type. 

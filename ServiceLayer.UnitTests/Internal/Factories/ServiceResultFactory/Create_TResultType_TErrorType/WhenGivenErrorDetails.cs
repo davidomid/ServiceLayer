@@ -5,7 +5,7 @@ using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create_TResultType_TErrorType
 {
-    public class WhenGivenErrorDetails : UnitTestBase
+    public class WhenGivenServiceResultType : UnitTestBase
     {
         private readonly ServiceLayer.Internal.Factories.ServiceResultFactory _serviceResultFactory =
             new ServiceLayer.Internal.Factories.ServiceResultFactory();
