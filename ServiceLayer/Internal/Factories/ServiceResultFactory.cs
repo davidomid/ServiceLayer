@@ -16,10 +16,14 @@ namespace ServiceLayer.Internal.Factories
             return Create<TResultType, TErrorType>(ServiceResultTypes.Failure, errorDetails);
         }
 
-        public ServiceResult<TResultType, TErrorType> Create<TResultType, TErrorType>(ServiceResult serviceResult,
-            TErrorType errorDetails = default) where TResultType : Enum
+        public ServiceResult<TResultType, TErrorType> Create<TResultType, TErrorType>(SuccessResult successResult) where TResultType : Enum
         {
-            return Create<TResultType, TErrorType>(serviceResult.ResultType, errorDetails);
+            return Create<TResultType, TErrorType>(successResult.ResultType);
+        }
+
+        public ServiceResult<TResultType, TErrorType> Create<TResultType, TErrorType>(FailureResult<TErrorType> failureResult) where TResultType : Enum
+        {
+            return Create<TResultType, TErrorType>(failureResult.ResultType, failureResult.ErrorDetails);
         }
 
         public ServiceResult<TResultType> Create<TResultType>(TResultType resultType) where TResultType : Enum
