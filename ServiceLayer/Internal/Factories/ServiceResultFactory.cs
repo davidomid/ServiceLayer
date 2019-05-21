@@ -38,7 +38,7 @@ namespace ServiceLayer.Internal.Factories
 
         public ServiceResult<TResultType> Create<TResultType>(ServiceResult serviceResult) where TResultType : Enum
         {
-            return Create<TResultType>(serviceResult.ResultType);
+            return Create<TResultType>(serviceResult.ResultType, serviceResult.ErrorDetails);
         }
 
         private ServiceResult<TResultType, TErrorType> Create<TResultType, TErrorType>(
@@ -48,10 +48,10 @@ namespace ServiceLayer.Internal.Factories
             return Create(serviceResultType.ToResultType<TResultType>(), errorDetails);
         }
 
-        private ServiceResult<TResultType> Create<TResultType>(ServiceResultTypes serviceResultType)
+        private ServiceResult<TResultType> Create<TResultType>(ServiceResultTypes serviceResultType, object errorDetails)
             where TResultType : Enum
         {
-            return Create<TResultType, object>(serviceResultType);
+            return Create<TResultType, object>(serviceResultType, errorDetails);
         }
     }
 }

@@ -3,7 +3,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using Testing.Common.Domain.TestClasses;
 
-namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create_TResultType_TErrorType
+namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create_TResultType
 {
     [TestFixtureSource(nameof(ResultTypes))]
     public class WhenGivenResultType : UnitTestBase
@@ -11,9 +11,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create_
         private readonly ServiceLayer.Internal.Factories.ServiceResultFactory _serviceResultFactory =
             new ServiceLayer.Internal.Factories.ServiceResultFactory();
 
-        private readonly TestErrorType _errorDetails = new TestErrorType(); 
-
-        private ServiceResult<TestCustomServiceResultTypes, TestErrorType> _serviceResult;
+        private ServiceResult<TestCustomServiceResultTypes> _serviceResult;
 
         private readonly TestCustomServiceResultTypes _resultType;
 
@@ -30,7 +28,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create_
 
         protected override void Act()
         {
-            _serviceResult = _serviceResultFactory.Create(_resultType, _errorDetails); 
+            _serviceResult = _serviceResultFactory.Create(_resultType); 
         }
 
         [Test]
@@ -40,9 +38,9 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create_
         }
 
         [Test]
-        public void Should_Return_Result_With_Given_ErrorDetails()
+        public void Should_Return_Result_With_Null_ErrorDetails()
         {
-            _serviceResult.ErrorDetails.Should().BeSameAs(_errorDetails);
+            _serviceResult.ErrorDetails.Should().BeNull();
         }
 
         [Test]
