@@ -82,6 +82,12 @@ namespace ServiceLayer.Internal.Factories
             return Create<TData, TResultType>(default, failureResult.ResultType, failureResult.ErrorDetails);
         }
 
+        public DataServiceResult<TData, TResultType> Create<TData, TResultType>(TResultType resultType)
+            where TResultType : Enum
+        {
+            return Create<TData, TResultType, object>(default, resultType);
+        }
+
         private DataServiceResult<TData, TResultType, object> Create<TData, TResultType>(TData data,
             ServiceResultTypes serviceResultType, object errorDetails = default) where TResultType : Enum
         {
@@ -92,12 +98,6 @@ namespace ServiceLayer.Internal.Factories
             ServiceResultTypes serviceResultType, TErrorType errorDetails = default) where TResultType : Enum
         {
             return Create(data, serviceResultType.ToResultType<TResultType>(), errorDetails);
-        }
-
-        public DataServiceResult<TData, TResultType> Create<TData, TResultType>(TResultType resultType)
-            where TResultType : Enum
-        {
-            return Create<TData, TResultType, object>(default, resultType);
         }
 
         public DataServiceResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(TData data,
