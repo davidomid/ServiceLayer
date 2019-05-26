@@ -36,6 +36,12 @@ namespace ServiceLayer.Internal.Factories
         }
 
         // top-level
+        public DataServiceResult<TData, TResultType> Create<TData, TResultType>(ServiceResult<TResultType> serviceResult) where TResultType : Enum
+        {
+            return new DataServiceResult<TData,TResultType>(default, serviceResult.ResultType, serviceResult.ErrorDetails);
+        }
+
+        // top-level
         public DataServiceResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(TData data)
             where TResultType : Enum
         {

@@ -38,5 +38,10 @@ namespace ServiceLayer
         {
             return DataServiceResultFactory.Create<TData, TResultType>(successResult);
         }
+
+        public static implicit operator DataServiceResult<TData, TResultType>(ServiceResult<TResultType> serviceResult)
+        {
+            return DataServiceResultFactory.Create<TData, TResultType>(serviceResult);
+        }
     }
 }

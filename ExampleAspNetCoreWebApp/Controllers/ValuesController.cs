@@ -24,10 +24,9 @@ namespace ExampleAspNetCoreWebApp.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return this.FromServiceResult<string>(new SuccessResult<string>(""));
-            //return this.FromServiceResult(new NotFoundResult());
-
-            //return "value";
+            FileStorageService<Entity> fileStorageService = new FileStorageService<Entity>("TestPath.txt");
+            var result = fileStorageService.Get();
+            return this.FromServiceResult(result);
         }
 
         // POST api/values

@@ -13,7 +13,7 @@ namespace ServiceLayer.Internal.Factories
         DataServiceResult<TData, TResultType> Create<TData, TResultType>(FailureResult failureResult) where TResultType : Enum;
         DataServiceResult<TData, TResultType> Create<TData, TResultType>(SuccessResult<TData> successResult) where TResultType : Enum;
         DataServiceResult<TData, TResultType> Create<TData, TResultType>(TData data, TResultType resultType) where TResultType : Enum;
-
+        DataServiceResult<TData, TResultType> Create<TData, TResultType> (ServiceResult<TResultType> serviceResult) where TResultType : Enum;
         DataServiceResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(TData data) where TResultType : Enum;
         DataServiceResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(FailureResult<TErrorType> failureResult) where TResultType : Enum;
         DataServiceResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(SuccessResult<TData> successResult) where TResultType : Enum;
