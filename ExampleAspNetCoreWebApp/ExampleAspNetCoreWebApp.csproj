@@ -13,4 +13,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ExampleServices\ExampleServices.csproj" />
+    <ProjectReference Include="..\ServiceLayer.Core\ServiceLayer.Core.csproj" />
+  </ItemGroup>
+
 </Project>

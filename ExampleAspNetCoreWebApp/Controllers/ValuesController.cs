@@ -1,5 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
+using ExampleServices;
 using Microsoft.AspNetCore.Mvc;
+using ServiceLayer;
+using ServiceLayer.Core;
+using NotFoundResult = ServiceLayer.Core.NotFoundResult;
 
 namespace ExampleAspNetCoreWebApp.Controllers
 {
@@ -18,13 +24,17 @@ namespace ExampleAspNetCoreWebApp.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return "value";
+            return this.FromServiceResult<string>(new SuccessResult<string>(""));
+            //return this.FromServiceResult(new NotFoundResult());
+
+            //return "value";
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult Post([FromBody] string value)
         {
+            return this.FromServiceResult(new FileStorageService<Entity>("TestData.txt").Add(null));
         }
 
         // PUT api/values/5
