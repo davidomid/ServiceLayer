@@ -27,7 +27,7 @@ namespace ExampleServices
                     return entities;
                 }
 
-                return new ServiceResult<FileStorageServiceResultTypes>(FileStorageServiceResultTypes.FilePathNotExists, "The specified file path does not exist.");
+                return this.Result(FileStorageServiceResultTypes.FilePathNotExists, "The specified file path does not exist.");
             }
             catch (Exception ex)
             {

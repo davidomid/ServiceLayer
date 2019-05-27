@@ -141,7 +141,6 @@ namespace ExampleServices
         {
             return this.Result(ServiceResultTypes.Failure, "test error");
         }
-
         public DataServiceResult<int> TestE1()
         {
             return this.Success(100);
@@ -216,6 +215,14 @@ namespace ExampleServices
         {
             return this.Failure("test1", "test2", "test3");
         }
+        public DataServiceResult<int, FileStorageServiceResultTypes> TestG6()
+        {
+            return FileStorageServiceResultTypes.FilePathNotExists;
+        }
+        public DataServiceResult<int, FileStorageServiceResultTypes> TestG7()
+        {
+            return this.Result<FileStorageServiceResultTypes>(FileStorageServiceResultTypes.FilePathNotExists, "The specified file path does not exist");
+        }
 
         public DataServiceResult<int, FileStorageServiceResultTypes, string> TestH1()
         {
@@ -245,6 +252,7 @@ namespace ExampleServices
         {
             return this.DataResult<int, FileStorageServiceResultTypes, string>(100);
         }
+
         public SuccessResult<int> TestJ1()
         {
             return 100;
@@ -253,5 +261,6 @@ namespace ExampleServices
         {
             return "test error";
         }
+
     }
 }
