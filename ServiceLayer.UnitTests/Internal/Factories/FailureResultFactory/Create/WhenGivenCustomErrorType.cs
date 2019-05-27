@@ -4,7 +4,7 @@ using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Internal.Factories.FailureResultFactory.Create
 {
-    public class WhenGivenCustomErrorType : UnitTestBase
+    public class WhenGivenResultTypeAndErrorDetails : UnitTestBase
     {
         private readonly ServiceLayer.Internal.Factories.FailureResultFactory _failureResultFactory =
             new ServiceLayer.Internal.Factories.FailureResultFactory();

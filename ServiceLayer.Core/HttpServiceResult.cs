@@ -1,13 +1,24 @@
-﻿namespace ServiceLayer.Core
+﻿using Microsoft.AspNetCore.Mvc;
+using ServiceLayer.Core.Internal;
+using ServiceLayer.Core.Internal.Factories;
+
+namespace ServiceLayer.Core
 {
     public class HttpServiceResult : ServiceResult<HttpServiceResultTypes>
     {
-        public HttpServiceResult(HttpServiceResultTypes resultType) : base(resultType, null)
+        internal static IActionResultFactory ActionResultFactory = ServiceLocator.Instance.Resolve<IActionResultFactory>();
+
+        public HttpServiceResult(HttpServiceResultTypes resultType) : base(resultType, default)
         {
         }
 
         public HttpServiceResult(HttpServiceResultTypes resultType, params object[] errorDetails) : base(resultType, errorDetails)
         {
+        }
+
+        public static implicit operator ActionResult(HttpServiceResult httpServiceResult)
+        {
+            return ActionResultFactory.Create(httpServiceResult); 
         }
     }
 }

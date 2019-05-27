@@ -16,10 +16,14 @@ namespace ServiceLayer.Internal.Factories
             return Create<TResultType, TErrorType>(ServiceResultTypes.Failure, errorDetails);
         }
 
-        public ServiceResult<TResultType, TErrorType> Create<TResultType, TErrorType>(ServiceResult serviceResult,
-            TErrorType errorDetails = default) where TResultType : Enum
+        public ServiceResult<TResultType, TErrorType> Create<TResultType, TErrorType>(SuccessResult successResult) where TResultType : Enum
         {
-            return Create<TResultType, TErrorType>(serviceResult.ResultType, errorDetails);
+            return Create<TResultType, TErrorType>(successResult.ResultType);
+        }
+
+        public ServiceResult<TResultType, TErrorType> Create<TResultType, TErrorType>(FailureResult<TErrorType> failureResult) where TResultType : Enum
+        {
+            return Create<TResultType, TErrorType>(failureResult.ResultType, failureResult.ErrorDetails);
         }
 
         public ServiceResult<TResultType> Create<TResultType>(TResultType resultType) where TResultType : Enum
@@ -34,7 +38,7 @@ namespace ServiceLayer.Internal.Factories
 
         public ServiceResult<TResultType> Create<TResultType>(ServiceResult serviceResult) where TResultType : Enum
         {
-            return Create<TResultType>(serviceResult.ResultType);
+            return Create<TResultType>(serviceResult.ResultType, serviceResult.ErrorDetails);
         }
 
         private ServiceResult<TResultType, TErrorType> Create<TResultType, TErrorType>(
@@ -44,10 +48,10 @@ namespace ServiceLayer.Internal.Factories
             return Create(serviceResultType.ToResultType<TResultType>(), errorDetails);
         }
 
-        private ServiceResult<TResultType> Create<TResultType>(ServiceResultTypes serviceResultType)
+        private ServiceResult<TResultType> Create<TResultType>(ServiceResultTypes serviceResultType, object errorDetails)
             where TResultType : Enum
         {
-            return Create<TResultType, object>(serviceResultType);
+            return Create<TResultType, object>(serviceResultType, errorDetails);
         }
     }
 }
