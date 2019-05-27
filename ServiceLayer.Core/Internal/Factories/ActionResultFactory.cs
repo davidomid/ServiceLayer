@@ -26,7 +26,7 @@ namespace ServiceLayer.Core.Internal.Factories
                 case HttpServiceResultTypes.Forbidden:
                     return new ForbidResult();
                 case HttpServiceResultTypes.BadRequest:
-                    return new BadRequestObjectResult(httpServiceResult.ResultType);
+                    return new BadRequestObjectResult(httpServiceResult.ErrorDetails);
                 case HttpServiceResultTypes.Conflict:
                     return CreateErrorObjectResult(httpServiceResult, 409);
                 case HttpServiceResultTypes.InternalServerError:
