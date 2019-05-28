@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ServiceLayer.Converters
 {
-    internal interface IResultTypeConverterCollection
+    public interface IResultTypeConverterCollection
     {
         IReadOnlyCollection<IResultTypeConverter> GetAll();
 

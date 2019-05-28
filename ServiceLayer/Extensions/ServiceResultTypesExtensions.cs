@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using ServiceLayer.Attributes;
+using ServiceLayer.Converters;
 
 namespace ServiceLayer
 {
@@ -28,6 +29,36 @@ namespace ServiceLayer
             }
 
             return ServiceResultTypes.Failure; 
+        }
+
+        public static TDestinationResultType ToResultType<TSourceResultType, TDestinationResultType>(this TSourceResultType sourceResultType) where TSourceResultType : Enum where TDestinationResultType : Enum
+        {
+            if (typeof(TSourceResultType) == typeof(TDestinationResultType))
+            {
+                return (TDestinationResultType)(object)sourceResultType;
+            }
+
+            // todo migrate ServiceResultTypes conversion logic over to a separate converter class
+            if (typeof(TSourceResultType) == typeof(ServiceResultTypes))
+            {
+                ServiceResultTypes serviceResultType = (ServiceResultTypes) (object) sourceResultType;
+                return serviceResultType.ToResultType<TDestinationResultType>(); 
+            }
+
+            if (typeof(TDestinationResultType) == typeof(ServiceResultTypes))
+            {
+                ServiceResultTypes serviceResultType = sourceResultType.ToServiceResultType();
+                return (TDestinationResultType)(object)serviceResultType;
+            }
+
+            IResultTypeConverter<TSourceResultType, TDestinationResultType> converter = ServiceLayer.ResultTypeConverters.Get<TSourceResultType, TDestinationResultType>();
+            if (converter == null)
+            {
+                throw new InvalidCastException($"No compatible converter was found for the source type {typeof(TSourceResultType)} and destination type {typeof(TDestinationResultType)}.");
+            }
+
+            TDestinationResultType destinationResultType = converter.Convert(sourceResultType);
+            return destinationResultType;
         }
 
         public static TResultType ToResultType<TResultType>(this ServiceResultTypes serviceResultType) where TResultType : Enum

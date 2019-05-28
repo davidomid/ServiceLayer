@@ -1,6 +1,6 @@
 ﻿namespace ServiceLayer.Converters
 {
-    internal interface IResultTypeConverter
+    public interface IResultTypeConverter
     {
     }
 }
