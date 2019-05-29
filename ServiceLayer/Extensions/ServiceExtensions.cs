@@ -42,15 +42,15 @@ namespace ServiceLayer
             return FailureResultFactory.Create(errorDetails);
         }
 
-        public static ServiceResult<TResultType> Result<TResultType>(this IService service, TResultType resultType) where TResultType : Enum
+        public static ServiceResult<TResultType> Result<TResultType>(this IService service, TResultType resultType) where TResultType : struct, Enum
         {
             return ServiceResultFactory.Create(resultType);
         }
-        public static ServiceResult<TResultType> Result<TResultType>(this IService service, TResultType resultType, params object[] errorDetails) where TResultType : Enum
+        public static ServiceResult<TResultType> Result<TResultType>(this IService service, TResultType resultType, params object[] errorDetails) where TResultType : struct, Enum
         {
             return ServiceResultFactory.Create(resultType, errorDetails);
         }
-        public static ServiceResult<TResultType, TErrorType> Result<TResultType, TErrorType>(this IService service, TResultType resultType, TErrorType errorDetails = default) where TResultType : Enum
+        public static ServiceResult<TResultType, TErrorType> Result<TResultType, TErrorType>(this IService service, TResultType resultType, TErrorType errorDetails = default) where TResultType : struct, Enum
         {
             return ServiceResultFactory.Create(resultType, errorDetails);
         }
@@ -59,27 +59,27 @@ namespace ServiceLayer
         {
             return DataServiceResultFactory.Create(data);
         }
-        public static DataServiceResult<TData, TResultType> DataResult<TData, TResultType>(this IService service, TData data) where TResultType : Enum
+        public static DataServiceResult<TData, TResultType> DataResult<TData, TResultType>(this IService service, TData data) where TResultType : struct, Enum
         {
             return DataServiceResultFactory.Create<TData, TResultType>(data);
         }
-        public static DataServiceResult<TData, TResultType> DataResult<TData, TResultType>(this IService service, TData data, TResultType resultType) where TResultType : Enum
+        public static DataServiceResult<TData, TResultType> DataResult<TData, TResultType>(this IService service, TData data, TResultType resultType) where TResultType : struct, Enum
         {
             return DataServiceResultFactory.Create(data, resultType);
         }
-        public static DataServiceResult<TData, TResultType> DataResult<TData, TResultType>(this IService service, TData data, TResultType resultType, params object[] errorDetails) where TResultType : Enum
+        public static DataServiceResult<TData, TResultType> DataResult<TData, TResultType>(this IService service, TData data, TResultType resultType, params object[] errorDetails) where TResultType : struct, Enum
         {
             return DataServiceResultFactory.Create(data, resultType, errorDetails);
         }
-        public static DataServiceResult<TData, TResultType, TErrorType> DataResult<TData, TResultType, TErrorType>(this IService service, TData data) where TResultType : Enum
+        public static DataServiceResult<TData, TResultType, TErrorType> DataResult<TData, TResultType, TErrorType>(this IService service, TData data) where TResultType : struct, Enum
         {
             return DataServiceResultFactory.Create<TData, TResultType, TErrorType>(data);
         }
-        public static DataServiceResult<TData, TResultType, TErrorType> DataResult<TData, TResultType, TErrorType>(this IService service, TData data, TResultType resultType) where TResultType : Enum
+        public static DataServiceResult<TData, TResultType, TErrorType> DataResult<TData, TResultType, TErrorType>(this IService service, TData data, TResultType resultType) where TResultType : struct, Enum
         {
             return DataServiceResultFactory.Create<TData, TResultType, TErrorType>(data, resultType);
         }
-        public static DataServiceResult<TData, TResultType, TErrorType> DataResult<TData, TResultType, TErrorType>(this IService service, TData data, TResultType resultType, TErrorType errorDetails) where TResultType : Enum
+        public static DataServiceResult<TData, TResultType, TErrorType> DataResult<TData, TResultType, TErrorType>(this IService service, TData data, TResultType resultType, TErrorType errorDetails) where TResultType : struct, Enum
         {
             return DataServiceResultFactory.Create(data, resultType, errorDetails);
         }

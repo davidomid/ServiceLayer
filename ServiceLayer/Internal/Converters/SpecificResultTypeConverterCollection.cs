@@ -15,7 +15,7 @@ namespace ServiceLayer.Internal.Converters
             return new ReadOnlyCollection<IResultTypeConverter>(_specificConverters.SelectMany(sc => sc.Value.Values).ToList());
         }
 
-        public IResultTypeConverter<TDestinationResultType> Get<TDestinationResultType>(Type sourceResultType) where TDestinationResultType : Enum
+        public IResultTypeConverter<TDestinationResultType> Get<TDestinationResultType>(Type sourceResultType) where TDestinationResultType : struct, Enum
         {
             if (_specificConverters.TryGetValue(typeof(TDestinationResultType), out var converterDictionary))
             {
@@ -28,14 +28,18 @@ namespace ServiceLayer.Internal.Converters
             return null;
         }
 
-        public IResultTypeConverter<TSourceResultType, TDestinationResultType> Get<TSourceResultType, TDestinationResultType>() where TSourceResultType : Enum where TDestinationResultType : Enum
+        public IResultTypeConverter<TSourceResultType, TDestinationResultType> Get<TSourceResultType, TDestinationResultType>() where TSourceResultType : struct, Enum where TDestinationResultType : struct, Enum
         {
             return this.Get<TDestinationResultType>(typeof(TSourceResultType)) as IResultTypeConverter<TSourceResultType, TDestinationResultType>;
         }
 
-        public void AddOrReplace<TSourceResultType, TDestinationResultType>(IResultTypeConverter<TSourceResultType, TDestinationResultType> resultTypeConverter) where TSourceResultType : Enum where TDestinationResultType : Enum
+        public void AddOrReplace<TSourceResultType, TDestinationResultType>(IResultTypeConverter<TSourceResultType, TDestinationResultType> resultTypeConverter) where TSourceResultType : struct, Enum where TDestinationResultType : struct, Enum
         {
-            _specificConverters[typeof(TDestinationResultType)][typeof(TSourceResultType)] = resultTypeConverter; 
+            if (!_specificConverters.ContainsKey(typeof(TDestinationResultType)))
+            {
+                _specificConverters[typeof(TDestinationResultType)] = new Dictionary<Type, IResultTypeConverter>();
+            }
+            _specificConverters[typeof(TDestinationResultType)][typeof(TSourceResultType)] = resultTypeConverter;
         }
 
         public void Remove<TSourceResultType, TDestinationResultType>() where TSourceResultType : Enum where TDestinationResultType : Enum

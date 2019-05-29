@@ -2,7 +2,7 @@
 
 namespace ServiceLayer
 {
-    public class DataServiceResult<TData, TResultType, TErrorType> : DataServiceResult<TData, TResultType>, IDataServiceResult<TData, TResultType, TErrorType> where TResultType : Enum
+    public class DataServiceResult<TData, TResultType, TErrorType> : DataServiceResult<TData, TResultType>, IDataServiceResult<TData, TResultType, TErrorType> where TResultType : struct, Enum
     {
         public DataServiceResult(TData data, TResultType resultType, TErrorType errorDetails) : base(data, resultType, errorDetails)
         {

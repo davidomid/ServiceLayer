@@ -2,7 +2,7 @@
 
 namespace ServiceLayer
 {
-    public class ServiceResult<TResultType> : ServiceResult, IServiceResult<TResultType> where TResultType : Enum
+    public class ServiceResult<TResultType> : ServiceResult, IServiceResult<TResultType> where TResultType : struct, Enum
     {
         public ServiceResult(TResultType resultType) : this(resultType, default)
         {

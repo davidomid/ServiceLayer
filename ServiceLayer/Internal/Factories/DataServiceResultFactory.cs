@@ -24,40 +24,40 @@ namespace ServiceLayer.Internal.Factories
 
         // top-level
         public DataServiceResult<TData, TResultType> Create<TData, TResultType>(SuccessResult<TData> successResult)
-            where TResultType : Enum
+            where TResultType : struct, Enum
         {
             return Create<TData, TResultType>(successResult.Data, successResult.ResultType, successResult.ErrorDetails);
         }
 
         // top-level
-        public DataServiceResult<TData, TResultType> Create<TData, TResultType>(TData data, TResultType resultType) where TResultType : Enum
+        public DataServiceResult<TData, TResultType> Create<TData, TResultType>(TData data, TResultType resultType) where TResultType : struct, Enum
         {
             return Create<TData, TResultType, object>(data, resultType);
         }
 
         // top-level
-        public DataServiceResult<TData, TResultType> Create<TData, TResultType>(ServiceResult<TResultType> serviceResult) where TResultType : Enum
+        public DataServiceResult<TData, TResultType> Create<TData, TResultType>(ServiceResult<TResultType> serviceResult) where TResultType : struct, Enum
         {
             return new DataServiceResult<TData,TResultType>(default, serviceResult.ResultType, serviceResult.ErrorDetails);
         }
 
         // top-level
         public DataServiceResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(TData data)
-            where TResultType : Enum
+            where TResultType : struct, Enum
         {
             return Create<TData, TResultType, TErrorType>(data, ServiceResultTypes.Success);
         }
 
         // top-level
         public DataServiceResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(
-            SuccessResult<TData> successResult) where TResultType : Enum
+            SuccessResult<TData> successResult) where TResultType : struct, Enum
         {
             return Create<TData, TResultType, TErrorType>(successResult.Data, successResult.ResultType);
         }
 
         // top-level
         public DataServiceResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(
-            FailureResult<TErrorType> failureResult) where TResultType : Enum
+            FailureResult<TErrorType> failureResult) where TResultType : struct, Enum
         {
             return Create<TData, TResultType, TErrorType>(default, failureResult.ResultType,
                 failureResult.ErrorDetails);
@@ -65,49 +65,49 @@ namespace ServiceLayer.Internal.Factories
 
         // top-level
         public DataServiceResult<TData, TResultType, TErrorType>
-            Create<TData, TResultType, TErrorType>(TErrorType errorDetails) where TResultType : Enum
+            Create<TData, TResultType, TErrorType>(TErrorType errorDetails) where TResultType : struct, Enum
         {
             return Create<TData, TResultType, TErrorType>(default, ServiceResultTypes.Failure, errorDetails);
         }
 
         // top-level
         public DataServiceResult<TData, TResultType, TErrorType>
-            Create<TData, TResultType, TErrorType>(TResultType resultType) where TResultType : Enum
+            Create<TData, TResultType, TErrorType>(TResultType resultType) where TResultType : struct, Enum
         {
             return Create<TData, TResultType, TErrorType>(default, resultType);
         }
 
-        public DataServiceResult<TData, TResultType> Create<TData, TResultType>(TData data) where TResultType : Enum
+        public DataServiceResult<TData, TResultType> Create<TData, TResultType>(TData data) where TResultType : struct, Enum
         {
             return Create<TData, TResultType, object>(data, ServiceResultTypes.Success);
         }
 
         public DataServiceResult<TData, TResultType> Create<TData, TResultType>(FailureResult failureResult)
-            where TResultType : Enum
+            where TResultType : struct, Enum
         {
             return Create<TData, TResultType>(default, failureResult.ResultType, failureResult.ErrorDetails);
         }
 
         public DataServiceResult<TData, TResultType> Create<TData, TResultType>(TResultType resultType)
-            where TResultType : Enum
+            where TResultType : struct, Enum
         {
             return Create<TData, TResultType, object>(default, resultType);
         }
 
         private DataServiceResult<TData, TResultType, object> Create<TData, TResultType>(TData data,
-            ServiceResultTypes serviceResultType, object errorDetails = default) where TResultType : Enum
+            ServiceResultTypes serviceResultType, object errorDetails = default) where TResultType : struct, Enum
         {
             return Create<TData, TResultType, object>(data, serviceResultType, errorDetails);
         }
 
         private DataServiceResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(TData data,
-            ServiceResultTypes serviceResultType, TErrorType errorDetails = default) where TResultType : Enum
+            ServiceResultTypes serviceResultType, TErrorType errorDetails = default) where TResultType : struct, Enum
         {
             return Create(data, serviceResultType.ToResultType<TResultType>(), errorDetails);
         }
 
         public DataServiceResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(TData data,
-            TResultType resultType, TErrorType errorDetails = default) where TResultType : Enum
+            TResultType resultType, TErrorType errorDetails = default) where TResultType : struct, Enum
         {
             return new DataServiceResult<TData, TResultType, TErrorType>(data, resultType, errorDetails);
         }

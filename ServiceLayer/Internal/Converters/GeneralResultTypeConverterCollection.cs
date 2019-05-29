@@ -16,7 +16,7 @@ namespace ServiceLayer.Internal.Converters
             return new ReadOnlyCollection<IResultTypeConverter>(_generalConverters.Values.ToList());
         }
 
-        public IResultTypeConverter<TDestinationResultType> Get<TDestinationResultType>() where TDestinationResultType : Enum
+        public IResultTypeConverter<TDestinationResultType> Get<TDestinationResultType>() where TDestinationResultType : struct, Enum
         {
             if(_generalConverters.TryGetValue(typeof(TDestinationResultType), out var converter))
             {
@@ -25,7 +25,7 @@ namespace ServiceLayer.Internal.Converters
             return null;
         }
 
-        public void AddOrReplace<TDestinationResultType>(IResultTypeConverter<TDestinationResultType> resultTypeConverter) where TDestinationResultType : Enum
+        public void AddOrReplace<TDestinationResultType>(IResultTypeConverter<TDestinationResultType> resultTypeConverter) where TDestinationResultType : struct, Enum
         {
             _generalConverters[typeof(TDestinationResultType)] = resultTypeConverter;
         }

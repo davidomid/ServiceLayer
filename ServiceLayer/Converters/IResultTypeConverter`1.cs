@@ -2,8 +2,9 @@
 
 namespace ServiceLayer.Converters
 {
-    public interface IResultTypeConverter<TDestinationResultType> : IResultTypeConverter where TDestinationResultType : Enum
+    public interface IResultTypeConverter<TResultType> : IResultTypeConverter where TResultType : struct, Enum
     {
-        TDestinationResultType Convert(Enum enumValue);
+        TResultType? Convert(Enum enumValue);
+        TDestinationResultType? Convert<TDestinationResultType>(TResultType resultType) where TDestinationResultType : struct, Enum;
     }
 }
