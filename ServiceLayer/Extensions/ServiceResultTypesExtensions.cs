@@ -10,6 +10,8 @@ namespace ServiceLayer
     {
         public static ServiceResultTypes ToServiceResultType(this Enum enumValue)
         {
+            // todo move to a converter
+
             Type enumType = enumValue.GetType();
             if (enumType == typeof(ServiceResultTypes))
             {
@@ -51,10 +53,16 @@ namespace ServiceLayer
                 return (TDestinationResultType)(object)serviceResultType;
             }
 
-            IResultTypeConverter<TSourceResultType, TDestinationResultType> converter = ServiceLayer.ResultTypeConverters.Get<TSourceResultType, TDestinationResultType>();
+            // Look for a converter for the specific source type and destination type. 
+            IResultTypeConverter<TDestinationResultType> converter = ServiceLayer.ResultTypeConverters.Get<TSourceResultType, TDestinationResultType>();
             if (converter == null)
             {
-                throw new InvalidCastException($"No compatible converter was found for the source type {typeof(TSourceResultType)} and destination type {typeof(TDestinationResultType)}.");
+                // If none is found, look for a the general converter for the destination type.
+                converter = ServiceLayer.ResultTypeConverters.Get<TDestinationResultType>();
+                if (converter == null)
+                {
+                    throw new InvalidCastException($"No compatible converter was found for the source type {typeof(TSourceResultType)} and destination type {typeof(TDestinationResultType)}.");
+                }
             }
 
             TDestinationResultType destinationResultType = converter.Convert(sourceResultType);
@@ -63,6 +71,8 @@ namespace ServiceLayer
 
         public static TResultType ToResultType<TResultType>(this ServiceResultTypes serviceResultType) where TResultType : Enum
         {
+            // todo move this to a converter
+
             if (typeof(TResultType) == typeof(ServiceResultTypes))
             {
                 return (TResultType)(object)serviceResultType;
@@ -81,6 +91,8 @@ namespace ServiceLayer
 
         private static FieldInfo GetEnumValueFieldForServiceResultType<TResultType>(ServiceResultTypes serviceResultType) where TResultType : Enum
         {
+            // todo move to a converter
+
             FieldInfo enumField;
             if (serviceResultType == ServiceResultTypes.Success)
             {
@@ -96,6 +108,8 @@ namespace ServiceLayer
 
         private static FieldInfo GetEnumValueFieldWithAttribute<TResultType, TAttributeType>() where TResultType : Enum where TAttributeType : BaseAttribute 
         {
+            // todo move to a converter
+
             FieldInfo enumField = typeof(TResultType).GetTypeInfo()
             // Get all the fields of the given enum type. 
             .DeclaredFields
