@@ -14,9 +14,9 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceResultTypesExtensions.ToResul
         private Exception _actualException;
 
         [Test]
-        public void Should_Throw_ArgumentException()
+        public void Should_Throw_InvalidCastException()
         {
-            _actualException.Should().BeOfType<ArgumentException>();
+            _actualException.Should().BeOfType<InvalidCastException>();
         }
 
         [Test]
