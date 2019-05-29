@@ -14,15 +14,15 @@ namespace ServiceLayer
 
         public static IResultTypeConverterCollection ResultTypeConverters { get; } = new ResultTypeConverterCollection();
 
-        internal static IServiceResultFactory ServiceResultFactory = ServiceLocator.Instance.Resolve<IServiceResultFactory>();
+        internal static IServiceResultFactory ServiceResultFactory => ServiceLocator.Instance.Resolve<IServiceResultFactory>();
 
-        internal static IDataServiceResultFactory DataServiceResultFactory =
+        internal static IDataServiceResultFactory DataServiceResultFactory =>
             ServiceLocator.Instance.Resolve<IDataServiceResultFactory>();
 
-        internal static ISuccessResultFactory SuccessResultFactory =
+        internal static ISuccessResultFactory SuccessResultFactory =>
             ServiceLocator.Instance.Resolve<ISuccessResultFactory>();
 
-        internal static IFailureResultFactory FailureResultFactory =
+        internal static IFailureResultFactory FailureResultFactory =>
             ServiceLocator.Instance.Resolve<IFailureResultFactory>();
     }
 }
