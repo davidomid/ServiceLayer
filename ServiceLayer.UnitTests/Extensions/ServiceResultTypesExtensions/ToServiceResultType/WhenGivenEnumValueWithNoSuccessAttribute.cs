@@ -26,7 +26,7 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceResultTypesExtensions.ToServi
 
         protected override void Act()
         {
-            _actualServiceResultType = _testCustomServiceResultTypes.ToServiceResultType();
+            _actualServiceResultType = _testCustomServiceResultTypes.ToResultType<ServiceResultTypes>();
         }
     }
 }

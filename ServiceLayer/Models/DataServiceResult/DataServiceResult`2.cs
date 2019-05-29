@@ -12,7 +12,7 @@ namespace ServiceLayer
         {
         }
 
-        public DataServiceResult(TData data, TResultType resultType, object errorDetails) : base(data, resultType.ToServiceResultType(), errorDetails)
+        public DataServiceResult(TData data, TResultType resultType, object errorDetails) : base(data, resultType.ToResultType<ServiceResultTypes>(), errorDetails)
         {
             ResultType = resultType;
         }

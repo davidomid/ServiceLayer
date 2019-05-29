@@ -9,10 +9,10 @@ namespace ServiceLayer
     {
         static ServiceResultConfiguration()
         {
-            ResultTypeConverters = new ResultTypeConverterCollection();
+            ResultTypeConverters.General.AddOrReplace(new GeneralServiceResultTypesConverter());
         }
 
-        public static IResultTypeConverterCollection ResultTypeConverters { get; }
+        public static IResultTypeConverterCollection ResultTypeConverters { get; } = new ResultTypeConverterCollection();
 
         internal static IServiceResultFactory ServiceResultFactory = ServiceLocator.Instance.Resolve<IServiceResultFactory>();
 

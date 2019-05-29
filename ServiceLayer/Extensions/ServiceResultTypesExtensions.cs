@@ -8,64 +8,34 @@ namespace ServiceLayer
 {
     public static class ServiceResultTypesExtensions
     {
-        public static ServiceResultTypes ToServiceResultType(this Enum enumValue)
+        public static TDestinationResultType ToResultType<TDestinationResultType>(this Enum resultType) where TDestinationResultType : Enum
         {
-            // todo move to a converter
-
-            Type enumType = enumValue.GetType();
-            if (enumType == typeof(ServiceResultTypes))
+            Type enumType = resultType.GetType();
+            if (enumType == typeof(TDestinationResultType))
             {
-                return (ServiceResultTypes) enumValue;
-            }
-
-            var name = Enum.GetName(enumType, enumValue);
-            var successAttribute = enumType.GetTypeInfo().DeclaredFields
-                .FirstOrDefault(p => p.Name == name)?
-                .GetCustomAttributes(false)
-                .OfType<SuccessAttribute>()
-                .FirstOrDefault();
-
-            if (successAttribute != null)
-            {
-                return ServiceResultTypes.Success;
-            }
-
-            return ServiceResultTypes.Failure; 
-        }
-
-        public static TDestinationResultType ToResultType<TSourceResultType, TDestinationResultType>(this TSourceResultType sourceResultType) where TSourceResultType : Enum where TDestinationResultType : Enum
-        {
-            if (typeof(TSourceResultType) == typeof(TDestinationResultType))
-            {
-                return (TDestinationResultType)(object)sourceResultType;
+                return (TDestinationResultType)(object)resultType;
             }
 
             // todo migrate ServiceResultTypes conversion logic over to a separate converter class
-            if (typeof(TSourceResultType) == typeof(ServiceResultTypes))
+            if (enumType == typeof(ServiceResultTypes))
             {
-                ServiceResultTypes serviceResultType = (ServiceResultTypes) (object) sourceResultType;
+                ServiceResultTypes serviceResultType = (ServiceResultTypes)resultType;
                 return serviceResultType.ToResultType<TDestinationResultType>(); 
             }
 
-            if (typeof(TDestinationResultType) == typeof(ServiceResultTypes))
-            {
-                ServiceResultTypes serviceResultType = sourceResultType.ToServiceResultType();
-                return (TDestinationResultType)(object)serviceResultType;
-            }
-
             // Look for a converter for the specific source type and destination type. 
-            IResultTypeConverter<TDestinationResultType> converter = ServiceResultConfiguration.ResultTypeConverters.Get<TSourceResultType, TDestinationResultType>();
+            IResultTypeConverter<TDestinationResultType> converter = ServiceResultConfiguration.ResultTypeConverters.Specific.Get<TDestinationResultType>(enumType);
             if (converter == null)
             {
                 // If none is found, look for a the general converter for the destination type.
-                converter = ServiceResultConfiguration.ResultTypeConverters.Get<TDestinationResultType>();
+                converter = ServiceResultConfiguration.ResultTypeConverters.General.Get<TDestinationResultType>();
                 if (converter == null)
                 {
-                    throw new InvalidCastException($"No compatible converter was found for the source type {typeof(TSourceResultType)} and destination type {typeof(TDestinationResultType)}.");
+                    throw new InvalidCastException($"No compatible converter was found for the source type {enumType} and destination type {typeof(TDestinationResultType)}.");
                 }
             }
 
-            TDestinationResultType destinationResultType = converter.Convert(sourceResultType);
+            TDestinationResultType destinationResultType = converter.Convert(resultType);
             return destinationResultType;
         }
 
