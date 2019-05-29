@@ -21,27 +21,27 @@ namespace ServiceLayer
 
         public static implicit operator DataServiceResult<TData, TResultType>(TResultType resultType)
         {
-            return DataServiceResultFactory.Create<TData, TResultType>(resultType);
+            return ServiceResultConfiguration.DataServiceResultFactory.Create<TData, TResultType>(resultType);
         }
 
         public static implicit operator DataServiceResult<TData, TResultType>(TData data)
         {
-            return DataServiceResultFactory.Create<TData, TResultType>(data);
+            return ServiceResultConfiguration.DataServiceResultFactory.Create<TData, TResultType>(data);
         }
 
         public static implicit operator DataServiceResult<TData, TResultType>(FailureResult failureResult)
         {
-            return DataServiceResultFactory.Create<TData, TResultType>(failureResult);
+            return ServiceResultConfiguration.DataServiceResultFactory.Create<TData, TResultType>(failureResult);
         }
 
         public static implicit operator DataServiceResult<TData, TResultType>(SuccessResult<TData> successResult)
         {
-            return DataServiceResultFactory.Create<TData, TResultType>(successResult);
+            return ServiceResultConfiguration.DataServiceResultFactory.Create<TData, TResultType>(successResult);
         }
 
         public static implicit operator DataServiceResult<TData, TResultType>(ServiceResult<TResultType> serviceResult)
         {
-            return DataServiceResultFactory.Create<TData, TResultType>(serviceResult);
+            return ServiceResultConfiguration.DataServiceResultFactory.Create<TData, TResultType>(serviceResult);
         }
     }
 }

@@ -11,7 +11,7 @@
 
         public static implicit operator FailureResult<TErrorType>(TErrorType errorDetails)
         {
-            return FailureResultFactory.Create(errorDetails);
+            return ServiceResultConfiguration.FailureResultFactory.Create(errorDetails);
         }
     }
 }

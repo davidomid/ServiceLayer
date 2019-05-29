@@ -54,11 +54,11 @@ namespace ServiceLayer
             }
 
             // Look for a converter for the specific source type and destination type. 
-            IResultTypeConverter<TDestinationResultType> converter = ServiceLayer.ResultTypeConverters.Get<TSourceResultType, TDestinationResultType>();
+            IResultTypeConverter<TDestinationResultType> converter = ServiceResultConfiguration.ResultTypeConverters.Get<TSourceResultType, TDestinationResultType>();
             if (converter == null)
             {
                 // If none is found, look for a the general converter for the destination type.
-                converter = ServiceLayer.ResultTypeConverters.Get<TDestinationResultType>();
+                converter = ServiceResultConfiguration.ResultTypeConverters.Get<TDestinationResultType>();
                 if (converter == null)
                 {
                     throw new InvalidCastException($"No compatible converter was found for the source type {typeof(TSourceResultType)} and destination type {typeof(TDestinationResultType)}.");

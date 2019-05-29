@@ -8,7 +8,7 @@
 
         public static implicit operator SuccessResult<TData>(TData data)
         {
-            return SuccessResultFactory.Create(data);
+            return ServiceResultConfiguration.SuccessResultFactory.Create(data);
         }
     }
 }

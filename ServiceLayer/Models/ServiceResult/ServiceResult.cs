@@ -1,7 +1,4 @@
-﻿using ServiceLayer.Internal;
-using ServiceLayer.Internal.Factories;
-
-namespace ServiceLayer
+﻿namespace ServiceLayer
 {
     public class ServiceResult : IServiceResult
     {
@@ -24,20 +21,9 @@ namespace ServiceLayer
         public object ErrorDetails { get; }
         public bool IsSuccessful { get; }
 
-        internal static IServiceResultFactory ServiceResultFactory = ServiceLocator.Instance.Resolve<IServiceResultFactory>();
-
-        internal static IDataServiceResultFactory DataServiceResultFactory =
-            ServiceLocator.Instance.Resolve<IDataServiceResultFactory>();
-
-        internal static ISuccessResultFactory SuccessResultFactory =
-            ServiceLocator.Instance.Resolve<ISuccessResultFactory>();
-
-        internal static IFailureResultFactory FailureResultFactory =
-            ServiceLocator.Instance.Resolve<IFailureResultFactory>();
-
         public static implicit operator ServiceResult(ServiceResultTypes serviceResultType)
         {
-            return ServiceResultFactory.Create(serviceResultType);
+            return ServiceResultConfiguration.ServiceResultFactory.Create(serviceResultType);
         }
     }
 }

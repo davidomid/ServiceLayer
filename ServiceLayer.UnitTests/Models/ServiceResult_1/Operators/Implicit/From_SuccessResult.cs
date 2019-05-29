@@ -7,7 +7,7 @@ namespace ServiceLayer.UnitTests.Models.ServiceResult_1.Operators.Implicit
 {
     public class From_SuccessResult : UnitTestBase
     {
-        private readonly ServiceLayer.SuccessResult _successResult = new ServiceLayer.SuccessResult();
+        private readonly global::ServiceLayer.SuccessResult _successResult = new global::ServiceLayer.SuccessResult();
 
         private ServiceResult<TestCustomServiceResultTypes> _actualServiceResult;
 

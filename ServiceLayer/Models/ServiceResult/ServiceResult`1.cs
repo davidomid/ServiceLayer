@@ -21,17 +21,17 @@ namespace ServiceLayer
 
         public static implicit operator ServiceResult<TResultType>(SuccessResult successResult)
         {
-            return ServiceResultFactory.Create<TResultType>(successResult);
+            return ServiceResultConfiguration.ServiceResultFactory.Create<TResultType>(successResult);
         }
 
         public static implicit operator ServiceResult<TResultType>(FailureResult failureResult)
         {
-            return ServiceResultFactory.Create<TResultType>(failureResult);
+            return ServiceResultConfiguration.ServiceResultFactory.Create<TResultType>(failureResult);
         }
 
         public static implicit operator ServiceResult<TResultType>(TResultType resultType)
         {
-            return ServiceResultFactory.Create(resultType);
+            return ServiceResultConfiguration.ServiceResultFactory.Create(resultType);
         }
     }
 }
