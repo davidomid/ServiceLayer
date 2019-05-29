@@ -1,6 +1,8 @@
 ﻿using System;
 using FluentAssertions;
+using Moq;
 using NUnit.Framework;
+using ServiceLayer.Converters;
 using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create_TResultType_TErrorType
@@ -14,10 +16,14 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create_
 
         private ServiceResult<TestCustomServiceResultTypes, TestErrorType> _serviceResult;
 
-        private readonly TestCustomServiceResultTypes _expectedResultType = ServiceResultTypes.Success.ToResultType<TestCustomServiceResultTypes>();
+        private readonly TestCustomServiceResultTypes _expectedResultType =
+            TestCustomServiceResultTypes.TestValueWithSuccessAttribute;
 
         protected override void Arrange()
         {
+            Mock<IResultTypeConverter<ServiceResultTypes, TestCustomServiceResultTypes>> mockConverter = new Mock<IResultTypeConverter<ServiceResultTypes, TestCustomServiceResultTypes>>();
+            mockConverter.Setup(c => c.Convert((Enum)ServiceResultTypes.Success)).Returns(_expectedResultType);
+            ServiceResultConfiguration.ResultTypeConverters.Specific.AddOrReplace(mockConverter.Object);
         }
 
         protected override void Act()

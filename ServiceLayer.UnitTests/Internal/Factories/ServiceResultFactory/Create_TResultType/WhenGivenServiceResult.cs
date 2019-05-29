@@ -34,7 +34,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create_
         protected override void Arrange()
         {
             Mock<IResultTypeConverter<ServiceResultTypes, TestCustomServiceResultTypes>> mockConverter = new Mock<IResultTypeConverter<ServiceResultTypes, TestCustomServiceResultTypes>>();
-            mockConverter.Setup(c => c.Convert(_resultType)).Returns(_expectedCustomResultType); 
+            mockConverter.Setup(c => c.Convert((Enum)_resultType)).Returns(_expectedCustomResultType); 
             ServiceResultConfiguration.ResultTypeConverters.Specific.AddOrReplace(mockConverter.Object);
             _errorDetails = new[] {"test 123", 123, new object()};
             _fromServiceResult = new ServiceResult(_resultType, _errorDetails);

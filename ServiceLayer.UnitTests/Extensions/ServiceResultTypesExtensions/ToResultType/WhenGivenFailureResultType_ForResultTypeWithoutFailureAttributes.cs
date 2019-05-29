@@ -1,7 +1,9 @@
 using System;
 using System.Runtime.Serialization;
 using FluentAssertions;
+using Moq;
 using NUnit.Framework;
+using ServiceLayer.Converters;
 using ServiceLayer.UnitTests;
 using Testing.Common.Domain.TestClasses;
 
@@ -16,7 +18,7 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceResultTypesExtensions.ToResul
         [Test]
         public void Should_Throw_ArgumentException()
         {
-            _actualException.Should().BeOfType<ArgumentException>();
+            _actualException.Should().BeOfType<InvalidCastException>();
         }
 
         [Test]
@@ -29,7 +31,8 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceResultTypesExtensions.ToResul
 
         protected override void Arrange()
         {
-
+            Mock<IResultTypeConverter<ServiceResultTypes, TestCustomServiceResultTypesWithNoAttributes>> mockConverter = new Mock<IResultTypeConverter<ServiceResultTypes, TestCustomServiceResultTypesWithNoAttributes>>();
+            ServiceResultConfiguration.ResultTypeConverters.Specific.AddOrReplace(mockConverter.Object);
         }
 
         protected override void Act()
