@@ -6,14 +6,14 @@ using ServiceLayer.Converters;
 
 namespace ServiceLayer.Internal.Converters
 {
-    internal class GeneralResultTypeConverterCollection : IGeneralResultTypeConverterCollection
+    internal class ConvertToResultTypeConverterCollection : IConvertToResultTypeConverterCollection
     {
-        private readonly Dictionary<Type, IResultTypeConverter> _generalConverters =
-            new Dictionary<Type, IResultTypeConverter>();
+        private readonly Dictionary<Type, IConvertToResultType> _generalConverters =
+            new Dictionary<Type, IConvertToResultType>();
 
-        public IReadOnlyCollection<IResultTypeConverter> GetAll()
+        public IReadOnlyCollection<IConvertToResultType> GetAll()
         {
-            return new ReadOnlyCollection<IResultTypeConverter>(_generalConverters.Values.ToList());
+            return new ReadOnlyCollection<IConvertToResultType>(_generalConverters.Values.ToList());
         }
 
         public IResultTypeConverter<TDestinationResultType> Get<TDestinationResultType>() where TDestinationResultType : struct, Enum

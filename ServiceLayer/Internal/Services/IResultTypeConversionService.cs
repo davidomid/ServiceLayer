@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace ServiceLayer.Internal.Converters
+namespace ServiceLayer.Internal.Services
 {
     internal interface IResultTypeConversionService
     {

@@ -17,11 +17,11 @@ namespace ServiceLayer
             }
 
             // Look for a converter for the specific source type and destination type. 
-            IResultTypeConverter<TDestinationResultType> converter = ServiceResultConfiguration.ResultTypeConverters.Specific.Get<TDestinationResultType>(enumType);
+            IResultTypeConverter<TDestinationResultType> converter = ServiceResultConfiguration.ResultTypeConverters.ConvertToFromSpecific.Get<TDestinationResultType>(enumType);
             if (converter == null)
             {
                 // If none is found, look for a general converter for the destination type.
-                converter = ServiceResultConfiguration.ResultTypeConverters.General.Get<TDestinationResultType>();
+                converter = ServiceResultConfiguration.ResultTypeConverters.ConvertToFromAny.Get<TDestinationResultType>();
                 if (converter == null)
                 {
                     throw new InvalidCastException($"No compatible converter was found for the source type {enumType} and destination type {typeof(TDestinationResultType)}.");

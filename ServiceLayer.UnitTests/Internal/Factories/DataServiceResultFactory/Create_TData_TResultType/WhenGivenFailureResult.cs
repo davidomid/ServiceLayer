@@ -44,7 +44,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Cre
         {
             Mock<IResultTypeConverter<ServiceResultTypes, TestCustomServiceResultTypes>> mockConverter = new Mock<IResultTypeConverter<ServiceResultTypes, TestCustomServiceResultTypes>>();
             mockConverter.Setup(c => c.Convert((Enum)ServiceResultTypes.Failure)).Returns(_expectedResultType);
-            ServiceResultConfiguration.ResultTypeConverters.Specific.AddOrReplace(mockConverter.Object);
+            ServiceResultConfiguration.ResultTypeConverters.ConvertToFromSpecific.AddOrReplace(mockConverter.Object);
             _errorDetails = new[] { "test error 1", "test error 2", "test error 3" };
             _failureResult = new FailureResult(_errorDetails);
         }

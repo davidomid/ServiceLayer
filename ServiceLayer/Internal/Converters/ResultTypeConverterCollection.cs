@@ -4,7 +4,8 @@ namespace ServiceLayer.Internal.Converters
 {
     internal class ResultTypeConverterCollection : IResultTypeConverterCollection
     {
-        public IGeneralResultTypeConverterCollection General { get; } = new GeneralResultTypeConverterCollection();
-        public ISpecificResultTypeConverterCollection Specific { get; } = new SpecificResultTypeConverterCollection();
+        public ISpecificResultTypeConverterCollection ConvertToFromSpecific { get; } = new SpecificResultTypeConverterCollection();
+        public IConvertToResultTypeConverterCollection ConvertToFromAny { get; } = new ConvertToResultTypeConverterCollection();
+        public IConvertFromResultTypeConverterCollection ConvertFromToAny { get; } = new ConvertFromResultTypeConverterCollection();
     }
 }

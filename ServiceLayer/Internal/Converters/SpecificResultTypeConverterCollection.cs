@@ -8,11 +8,11 @@ namespace ServiceLayer.Internal.Converters
 {
     internal class SpecificResultTypeConverterCollection : ISpecificResultTypeConverterCollection
     {
-        private readonly Dictionary<Type, Dictionary<Type, IResultTypeConverter>> _specificConverters = new Dictionary<Type, Dictionary<Type, IResultTypeConverter>>();
+        private readonly Dictionary<Type, Dictionary<Type, IConvertToResultType>> _specificConverters = new Dictionary<Type, Dictionary<Type, IConvertToResultType>>();
 
-        public IReadOnlyCollection<IResultTypeConverter> GetAll()
+        public IReadOnlyCollection<IConvertToResultType> GetAll()
         {
-            return new ReadOnlyCollection<IResultTypeConverter>(_specificConverters.SelectMany(sc => sc.Value.Values).ToList());
+            return new ReadOnlyCollection<IConvertToResultType>(_specificConverters.SelectMany(sc => sc.Value.Values).ToList());
         }
 
         public IResultTypeConverter<TDestinationResultType> Get<TDestinationResultType>(Type sourceResultType) where TDestinationResultType : struct, Enum
@@ -37,7 +37,7 @@ namespace ServiceLayer.Internal.Converters
         {
             if (!_specificConverters.ContainsKey(typeof(TDestinationResultType)))
             {
-                _specificConverters[typeof(TDestinationResultType)] = new Dictionary<Type, IResultTypeConverter>();
+                _specificConverters[typeof(TDestinationResultType)] = new Dictionary<Type, IConvertToResultType>();
             }
             _specificConverters[typeof(TDestinationResultType)][typeof(TSourceResultType)] = resultTypeConverter;
         }

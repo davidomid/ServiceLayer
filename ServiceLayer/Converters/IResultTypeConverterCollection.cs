@@ -2,7 +2,8 @@
 {
     public interface IResultTypeConverterCollection
     {
-        IGeneralResultTypeConverterCollection General { get; }
-        ISpecificResultTypeConverterCollection Specific { get; }
+        ISpecificResultTypeConverterCollection ConvertToFromSpecific { get; }
+        IConvertToResultTypeConverterCollection ConvertToFromAny { get; }
+        IConvertFromResultTypeConverterCollection ConvertFromToAny { get; }
     }
 }

@@ -32,7 +32,7 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceResultTypesExtensions.ToResul
         protected override void Arrange()
         {
             Mock<IResultTypeConverter<ServiceResultTypes, TestCustomServiceResultTypesWithNoAttributes>> mockConverter = new Mock<IResultTypeConverter<ServiceResultTypes, TestCustomServiceResultTypesWithNoAttributes>>();
-            ServiceResultConfiguration.ResultTypeConverters.Specific.AddOrReplace(mockConverter.Object);
+            ServiceResultConfiguration.ResultTypeConverters.ConvertToFromSpecific.AddOrReplace(mockConverter.Object);
         }
 
         protected override void Act()

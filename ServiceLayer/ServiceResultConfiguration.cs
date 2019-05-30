@@ -9,7 +9,7 @@ namespace ServiceLayer
     {
         static ServiceResultConfiguration()
         {
-            ResultTypeConverters.General.AddOrReplace(new GeneralServiceResultTypesConverter());
+            ResultTypeConverters.ConvertToFromAny.AddOrReplace(new GeneralServiceResultTypesConverter());
         }
 
         public static IResultTypeConverterCollection ResultTypeConverters { get; } = new ResultTypeConverterCollection();
