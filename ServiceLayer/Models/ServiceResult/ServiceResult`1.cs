@@ -2,7 +2,7 @@
 
 namespace ServiceLayer
 {
-    public class ServiceResult<TResultType> : ServiceResult, IServiceResult<TResultType> where TResultType : Enum
+    public class ServiceResult<TResultType> : ServiceResult, IServiceResult<TResultType> where TResultType : struct, Enum
     {
         public ServiceResult(TResultType resultType) : this(resultType, default)
         {
@@ -12,7 +12,7 @@ namespace ServiceLayer
         {
         }
 
-        public ServiceResult(TResultType resultType, object errorDetails) : base(resultType.ToServiceResultType(), errorDetails)
+        public ServiceResult(TResultType resultType, object errorDetails) : base(resultType.ToResultType<ServiceResultTypes>(), errorDetails)
         {
             ResultType = resultType;
         }
@@ -21,17 +21,17 @@ namespace ServiceLayer
 
         public static implicit operator ServiceResult<TResultType>(SuccessResult successResult)
         {
-            return ServiceResultFactory.Create<TResultType>(successResult);
+            return ServiceLayerConfiguration.ServiceResultFactory.Create<TResultType>(successResult);
         }
 
         public static implicit operator ServiceResult<TResultType>(FailureResult failureResult)
         {
-            return ServiceResultFactory.Create<TResultType>(failureResult);
+            return ServiceLayerConfiguration.ServiceResultFactory.Create<TResultType>(failureResult);
         }
 
         public static implicit operator ServiceResult<TResultType>(TResultType resultType)
         {
-            return ServiceResultFactory.Create(resultType);
+            return ServiceLayerConfiguration.ServiceResultFactory.Create(resultType);
         }
     }
 }

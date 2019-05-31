@@ -1,5 +1,9 @@
+using System;
 using FluentAssertions;
+using Moq;
 using NUnit.Framework;
+using ServiceLayer.Converters;
+using ServiceLayer.Internal.Services;
 using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Create_TData_TResultType_TErrorType
@@ -9,6 +13,8 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Cre
         private readonly ServiceLayer.Internal.Factories.DataServiceResultFactory _dataServiceResultFactory = new ServiceLayer.Internal.Factories.DataServiceResultFactory();
         private DataServiceResult<TestData, TestCustomServiceResultTypes, TestErrorType> _serviceResult;
 
+        private readonly TestCustomServiceResultTypes _expectedResultType =
+            TestCustomServiceResultTypes.TestValueWithSuccessAttribute;
         private TestData _testData;
         private SuccessResult<TestData> _successResult;
 
@@ -21,7 +27,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Cre
         [Test]
         public void Should_Return_DataServiceResult_With_Expected_ResultType()
         {
-            _serviceResult.ResultType.Should().Be(ServiceResultTypes.Success.ToResultType<TestCustomServiceResultTypes>());
+            _serviceResult.ResultType.Should().Be(_expectedResultType);
         }
 
         [Test]
@@ -37,6 +43,8 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Cre
 
         protected override void Arrange()
         {
+            MockResultTypeConversionService.Setup(s => s.Convert<TestCustomServiceResultTypes>(ServiceResultTypes.Success))
+                .Returns(_expectedResultType);
             _testData = new TestData();
             _successResult = new SuccessResult<TestData>(_testData);
         }
