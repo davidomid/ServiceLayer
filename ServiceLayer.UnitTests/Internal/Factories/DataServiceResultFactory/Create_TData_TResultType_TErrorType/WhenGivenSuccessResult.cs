@@ -43,11 +43,8 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Cre
 
         protected override void Arrange()
         {
-            Mock<IResultTypeConversionService> mockConversionService = new Mock<IResultTypeConversionService>();
-            mockConversionService.Setup(s => s.Convert<TestCustomServiceResultTypes>(ServiceResultTypes.Success))
+            MockResultTypeConversionService.Setup(s => s.Convert<TestCustomServiceResultTypes>(ServiceResultTypes.Success))
                 .Returns(_expectedResultType);
-            MockServiceLocator.Setup(l => l.Resolve<IResultTypeConversionService>())
-                .Returns(mockConversionService.Object);
             _testData = new TestData();
             _successResult = new SuccessResult<TestData>(_testData);
         }

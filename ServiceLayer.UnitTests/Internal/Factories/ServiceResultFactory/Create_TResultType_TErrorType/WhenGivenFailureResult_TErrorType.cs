@@ -26,11 +26,8 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create_
 
         protected override void Act()
         {
-            Mock<IResultTypeConversionService> mockConversionService = new Mock<IResultTypeConversionService>();
-            mockConversionService.Setup(s => s.Convert<TestCustomServiceResultTypes>(ServiceResultTypes.Success))
+            MockResultTypeConversionService.Setup(s => s.Convert<TestCustomServiceResultTypes>(ServiceResultTypes.Failure))
                 .Returns(_expectedResultType);
-            MockServiceLocator.Setup(l => l.Resolve<IResultTypeConversionService>())
-                .Returns(mockConversionService.Object);
             _serviceResult = _serviceResultFactory.Create<TestCustomServiceResultTypes, TestErrorType>(_failureResult); 
         }
 
