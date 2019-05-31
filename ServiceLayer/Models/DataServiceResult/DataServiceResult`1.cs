@@ -19,17 +19,17 @@
 
         public static implicit operator DataServiceResult<TData>(TData data)
         {
-            return ServiceResultConfiguration.DataServiceResultFactory.Create(data);
+            return ServiceLayerConfiguration.DataServiceResultFactory.Create(data);
         }
 
         public static implicit operator DataServiceResult<TData>(FailureResult failureResult)
         {
-            return ServiceResultConfiguration.DataServiceResultFactory.Create<TData>(failureResult);
+            return ServiceLayerConfiguration.DataServiceResultFactory.Create<TData>(failureResult);
         }
 
         public static implicit operator DataServiceResult<TData>(ServiceResultTypes resultType)
         {
-            return ServiceResultConfiguration.DataServiceResultFactory.Create<TData>(resultType);
+            return ServiceLayerConfiguration.DataServiceResultFactory.Create<TData>(resultType);
         }
     }
 }

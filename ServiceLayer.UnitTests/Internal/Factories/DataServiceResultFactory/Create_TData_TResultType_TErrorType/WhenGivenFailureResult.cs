@@ -3,6 +3,7 @@ using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 using ServiceLayer.Converters;
+using ServiceLayer.Internal.Services;
 using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Create_TData_TResultType_TErrorType
@@ -43,9 +44,11 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Cre
 
         protected override void Arrange()
         {
-            Mock<IResultTypeConverter<ServiceResultTypes, TestCustomServiceResultTypes>> mockConverter = new Mock<IResultTypeConverter<ServiceResultTypes, TestCustomServiceResultTypes>>();
-            mockConverter.Setup(c => c.Convert((Enum)ServiceResultTypes.Failure)).Returns(_expectedResultType);
-            ServiceResultConfiguration.ResultTypeConverters.ConvertToFromSpecific.AddOrReplace(mockConverter.Object);
+            Mock<IResultTypeConversionService> mockConversionService = new Mock<IResultTypeConversionService>();
+            mockConversionService.Setup(s => s.Convert<TestCustomServiceResultTypes>(ServiceResultTypes.Success))
+                .Returns(_expectedResultType);
+            MockServiceLocator.Setup(l => l.Resolve<IResultTypeConversionService>())
+                .Returns(mockConversionService.Object);
             _errorDetails = new TestErrorType();
             _failureResult = new FailureResult<TestErrorType>(_errorDetails);
         }

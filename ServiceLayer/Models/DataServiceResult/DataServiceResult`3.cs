@@ -13,27 +13,27 @@ namespace ServiceLayer
 
         public static implicit operator DataServiceResult<TData, TResultType, TErrorType>(TData data)
         {
-            return ServiceResultConfiguration.DataServiceResultFactory.Create<TData, TResultType, TErrorType>(data);
+            return ServiceLayerConfiguration.DataServiceResultFactory.Create<TData, TResultType, TErrorType>(data);
         }
 
         public static implicit operator DataServiceResult<TData, TResultType, TErrorType>(FailureResult<TErrorType> failureResult)
         {
-            return ServiceResultConfiguration.DataServiceResultFactory.Create<TData, TResultType, TErrorType>(failureResult);
+            return ServiceLayerConfiguration.DataServiceResultFactory.Create<TData, TResultType, TErrorType>(failureResult);
         }
 
         public static implicit operator DataServiceResult<TData, TResultType, TErrorType>(SuccessResult<TData> successResult)
         {
-            return ServiceResultConfiguration.DataServiceResultFactory.Create<TData, TResultType, TErrorType>(successResult);
+            return ServiceLayerConfiguration.DataServiceResultFactory.Create<TData, TResultType, TErrorType>(successResult);
         }
 
         public static implicit operator DataServiceResult<TData, TResultType, TErrorType>(TResultType resultType)
         {
-            return ServiceResultConfiguration.DataServiceResultFactory.Create<TData, TResultType, TErrorType>(resultType);
+            return ServiceLayerConfiguration.DataServiceResultFactory.Create<TData, TResultType, TErrorType>(resultType);
         }
 
         public static implicit operator DataServiceResult<TData, TResultType, TErrorType>(TErrorType errorDetails)
         {
-            return ServiceResultConfiguration.DataServiceResultFactory.Create<TData, TResultType, TErrorType>(errorDetails);
+            return ServiceLayerConfiguration.DataServiceResultFactory.Create<TData, TResultType, TErrorType>(errorDetails);
         }
     }
 }

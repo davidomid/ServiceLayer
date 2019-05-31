@@ -1,9 +1,13 @@
-﻿namespace ServiceLayer.Converters
+﻿using System;
+using System.Collections.Generic;
+
+namespace ServiceLayer.Converters
 {
     public interface IResultTypeConverterCollection
     {
-        ISpecificResultTypeConverterCollection ConvertToFromSpecific { get; }
-        IConvertToResultTypeConverterCollection ConvertToFromAny { get; }
-        IConvertFromResultTypeConverterCollection ConvertFromToAny { get; }
+        IReadOnlyCollection<IResultTypeConverter> GetAll();
+        IResultTypeConverter Get(Type sourceResultType, Type destinationResultType);
+        void AddOrReplace(IResultTypeConverter resultTypeConverter);
+        void Remove(IResultTypeConverter resultTypeConverter);
     }
 }

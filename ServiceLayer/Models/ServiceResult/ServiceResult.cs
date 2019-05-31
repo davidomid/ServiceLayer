@@ -23,7 +23,7 @@
 
         public static implicit operator ServiceResult(ServiceResultTypes serviceResultType)
         {
-            return ServiceResultConfiguration.ServiceResultFactory.Create(serviceResultType);
+            return ServiceLayerConfiguration.ServiceResultFactory.Create(serviceResultType);
         }
     }
 }

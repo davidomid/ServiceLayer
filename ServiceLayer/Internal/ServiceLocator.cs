@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ServiceLayer.Internal.Factories;
+using ServiceLayer.Internal.Services;
 
 namespace ServiceLayer.Internal
 {
@@ -13,7 +14,8 @@ namespace ServiceLayer.Internal
             { typeof(IServiceResultFactory), new ServiceResultFactory() },
             { typeof(IDataServiceResultFactory), new DataServiceResultFactory() },
             { typeof(ISuccessResultFactory), new SuccessResultFactory() },
-            { typeof(IFailureResultFactory), new FailureResultFactory() }
+            { typeof(IFailureResultFactory), new FailureResultFactory() },
+            { typeof(IResultTypeConversionService), new ResultTypeConversionService() }
         };
 
         public T Resolve<T>() where T : class

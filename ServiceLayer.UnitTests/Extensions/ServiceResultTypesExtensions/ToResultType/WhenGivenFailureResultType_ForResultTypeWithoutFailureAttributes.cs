@@ -4,6 +4,7 @@ using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 using ServiceLayer.Converters;
+using ServiceLayer.Internal.Services;
 using ServiceLayer.UnitTests;
 using Testing.Common.Domain.TestClasses;
 
@@ -31,8 +32,9 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceResultTypesExtensions.ToResul
 
         protected override void Arrange()
         {
-            Mock<IResultTypeConverter<ServiceResultTypes, TestCustomServiceResultTypesWithNoAttributes>> mockConverter = new Mock<IResultTypeConverter<ServiceResultTypes, TestCustomServiceResultTypesWithNoAttributes>>();
-            ServiceResultConfiguration.ResultTypeConverters.ConvertToFromSpecific.AddOrReplace(mockConverter.Object);
+            Mock<IResultTypeConversionService> mockConversionService = new Mock<IResultTypeConversionService>();
+            MockServiceLocator.Setup(l => l.Resolve<IResultTypeConversionService>())
+                .Returns(mockConversionService.Object);
         }
 
         protected override void Act()

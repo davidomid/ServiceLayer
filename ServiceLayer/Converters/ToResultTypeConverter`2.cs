@@ -1,32 +1,17 @@
 ﻿using System;
 namespace ServiceLayer.Converters
 {
-    public abstract class ToResultTypeConverter<TDestinationResultType, TSourceResultType> : IConvertToResultType<TDestinationResultType, TSourceResultType> where TDestinationResultType : struct, Enum where TSourceResultType : struct, Enum
+    public abstract class ToResultTypeConverter<TDestinationResultType, TSourceResultType> : ResultTypeConverter, IToResultTypeConverter<TDestinationResultType, TSourceResultType> where TDestinationResultType : struct, Enum where TSourceResultType : struct, Enum
     {
-        protected ToResultTypeConverter()
+        protected ToResultTypeConverter() : base(typeof(TSourceResultType), typeof(TDestinationResultType))
         {
-            SourceType = typeof(TSourceResultType);
-            DestinationType = typeof(TDestinationResultType);
         }
-
-        public Type DestinationType { get; }
 
         Enum IResultTypeConverter.Convert(Enum sourceResultType)
         {
-            if (sourceResultType.GetType() == SourceType)
-            {
-                return Convert((TSourceResultType)sourceResultType);
-            }
-
-            return null;
+            return base.Convert(sourceResultType) ?? Convert(sourceResultType);
         }
 
-        public Type SourceType { get; }
-
-        public TDestinationResultType Convert(TSourceResultType sourceResultType)
-        {
-            throw new NotImplementedException();
-        }
-
+        public abstract TDestinationResultType Convert(TSourceResultType sourceResultType); 
     }
 }
