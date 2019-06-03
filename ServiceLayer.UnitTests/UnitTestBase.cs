@@ -1,5 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
+using ServiceLayer.Core;
 using ServiceLayer.Internal;
 using ServiceLayer.Internal.Factories;
 using ServiceLayer.Internal.Services;
@@ -47,6 +48,12 @@ namespace ServiceLayer.UnitTests
                 .Returns(ServiceResultTypes.Failure);
             MockResultTypeConversionService.Setup(s =>
                 s.Convert<ServiceResultTypes>(TestCustomServiceResultTypes.TestValueWithSuccessAttribute))
+                .Returns(ServiceResultTypes.Success);
+            MockResultTypeConversionService.Setup(s =>
+                    s.Convert<HttpServiceResultTypes>(ServiceResultTypes.Success))
+                .Returns(HttpServiceResultTypes.Ok);
+            MockResultTypeConversionService.Setup(s => 
+                s.Convert<ServiceResultTypes>(HttpServiceResultTypes.Ok))
                 .Returns(ServiceResultTypes.Success);
         }
 

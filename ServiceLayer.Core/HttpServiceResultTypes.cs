@@ -1,6 +1,6 @@
 ﻿using ServiceLayer.Attributes;
 
-namespace ServiceLayer
+namespace ServiceLayer.Core
 {
     public enum HttpServiceResultTypes
     {
