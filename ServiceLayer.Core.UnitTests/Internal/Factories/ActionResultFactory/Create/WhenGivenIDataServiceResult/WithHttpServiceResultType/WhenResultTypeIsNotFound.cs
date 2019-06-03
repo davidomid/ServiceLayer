@@ -6,9 +6,9 @@ using NUnit.Framework;
 using ServiceLayer.UnitTests;
 using Testing.Common.Domain.TestClasses;
 
-namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult.WhenGivenIDataServiceResult.WithHttpServiceResultType
+namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIDataServiceResult.WithHttpServiceResultType
 {
-    public class WhenResultTypeIsInternalServerError : UnitTestBase
+    public class WhenResultTypeIsNotFound : UnitTestBase
     {
         private IDataServiceResult<string, HttpServiceResultTypes> _dataServiceResult;
 
@@ -23,7 +23,7 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
             _errorDetails = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
             _controller = new TestController();
             Mock<IDataServiceResult<string, HttpServiceResultTypes>> mockServiceResult = new Mock<IDataServiceResult<string, HttpServiceResultTypes>>();
-            mockServiceResult.SetupGet(r => r.ResultType).Returns(HttpServiceResultTypes.InternalServerError);
+            mockServiceResult.SetupGet(r => r.ResultType).Returns(HttpServiceResultTypes.NotFound);
             mockServiceResult.SetupGet(r => r.ErrorDetails).Returns(_errorDetails);
             _dataServiceResult = mockServiceResult.Object;
         }
@@ -40,23 +40,9 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
         }
 
         [Test]
-        public void Should_Return_ObjectResult()
+        public void Should_Return_NotFoundResult()
         {
-            _actionResult.Should().BeOfType<ObjectResult>(); 
-        }
-
-        [Test]
-        public void Should_Have_500_StatusCode()
-        {
-            ObjectResult objectResult = (ObjectResult)_actionResult;
-            objectResult.StatusCode.Should().Be(500);
-        }
-
-        [Test]
-        public void Should_Have_Value_Matching_Given_ErrorDetails()
-        {
-            ObjectResult objectResult = (ObjectResult)_actionResult;
-            objectResult.Value.Should().Be(_errorDetails);
+            _actionResult.Should().BeOfType<Microsoft.AspNetCore.Mvc.NotFoundResult>(); 
         }
        
     }

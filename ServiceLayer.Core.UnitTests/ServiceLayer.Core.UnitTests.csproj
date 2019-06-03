@@ -28,4 +28,8 @@
     <ProjectReference Include="..\Testing.Common\Testing.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ControllerBaseExtensions\" />
+  </ItemGroup>
+
 </Project>

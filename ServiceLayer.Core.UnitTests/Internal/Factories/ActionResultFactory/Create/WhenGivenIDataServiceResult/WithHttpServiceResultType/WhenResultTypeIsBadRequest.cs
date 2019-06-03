@@ -6,11 +6,11 @@ using NUnit.Framework;
 using ServiceLayer.UnitTests;
 using Testing.Common.Domain.TestClasses;
 
-namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult.WhenGivenIServiceResult.WithHttpServiceResultType
+namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIDataServiceResult.WithHttpServiceResultType
 {
-    public class WhenResultTypeIsNotFound : UnitTestBase
+    public class WhenResultTypeIsBadRequest : UnitTestBase
     {
-        private IServiceResult<HttpServiceResultTypes> _dataServiceResult;
+        private IDataServiceResult<string, HttpServiceResultTypes> _dataServiceResult;
 
         private IActionResult _actionResult;
 
@@ -22,8 +22,8 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
         {
             _errorDetails = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
             _controller = new TestController();
-            Mock<IServiceResult<HttpServiceResultTypes>> mockServiceResult = new Mock<IServiceResult<HttpServiceResultTypes>>();
-            mockServiceResult.SetupGet(r => r.ResultType).Returns(HttpServiceResultTypes.NotFound);
+            Mock<IDataServiceResult<string, HttpServiceResultTypes>> mockServiceResult = new Mock<IDataServiceResult<string, HttpServiceResultTypes>>();
+            mockServiceResult.SetupGet(r => r.ResultType).Returns(HttpServiceResultTypes.BadRequest);
             mockServiceResult.SetupGet(r => r.ErrorDetails).Returns(_errorDetails);
             _dataServiceResult = mockServiceResult.Object;
         }
@@ -40,9 +40,16 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
         }
 
         [Test]
-        public void Should_Return_NotFoundResult()
+        public void Should_Return_BadRequestResult()
         {
-            _actionResult.Should().BeOfType<Microsoft.AspNetCore.Mvc.NotFoundResult>(); 
+            _actionResult.Should().BeOfType<BadRequestObjectResult>(); 
+        }
+
+        [Test]
+        public void Should_Have_Value_Matching_Given_ErrorDetails()
+        {
+            BadRequestObjectResult badRequestObjectResult = (BadRequestObjectResult)_actionResult;
+            badRequestObjectResult.Value.Should().Be(_errorDetails);
         }
        
     }

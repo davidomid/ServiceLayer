@@ -3,9 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
 using ServiceLayer.UnitTests;
-using Testing.Common.Domain.TestClasses;
 
-namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult.WhenGivenIServiceResult
+namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIServiceResult
 {
     public class WhenResultIsSuccessful : UnitTestBase
     {
@@ -13,11 +12,11 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
 
         private IActionResult _actionResult;
 
-        private TestController _controller;
+        private Core.Internal.Factories.ActionResultFactory _actionResultFactory;
 
         protected override void Arrange()
         {
-            _controller = new TestController();
+            _actionResultFactory = new Core.Internal.Factories.ActionResultFactory();
             Mock<IServiceResult> mockServiceResult = new Mock<IServiceResult>();
             mockServiceResult.SetupGet(r => r.IsSuccessful).Returns(true);
             _serviceResult = mockServiceResult.Object;
@@ -25,7 +24,7 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
 
         protected override void Act()
         {
-            _actionResult = _controller.FromServiceResult(_serviceResult);
+            _actionResult = _actionResultFactory.Create(_serviceResult);
         }
 
         [Test]

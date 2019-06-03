@@ -15,7 +15,7 @@ namespace ServiceLayer.UnitTests
         internal static readonly Mock<IDataServiceResultFactory> MockDataServiceResultFactory = new Mock<IDataServiceResultFactory>(MockBehavior.Strict);
         internal static readonly Mock<ISuccessResultFactory> MockSuccessResultFactory = new Mock<ISuccessResultFactory>(MockBehavior.Strict);
         internal static readonly Mock<IFailureResultFactory> MockFailureResultFactory = new Mock<IFailureResultFactory>(MockBehavior.Strict);
-        internal static readonly Mock<IResultTypeConversionService> MockResultTypeConversionService = new Mock<IResultTypeConversionService>();
+        internal static readonly Mock<IResultTypeConversionService> MockResultTypeConversionService = new Mock<IResultTypeConversionService>(MockBehavior.Strict);
 
         static UnitTestBase()
         {
@@ -42,6 +42,12 @@ namespace ServiceLayer.UnitTests
                 .Returns(ServiceResultTypes.Success);
             MockResultTypeConversionService.Setup(s => s.Convert<ServiceResultTypes>(ServiceResultTypes.Failure))
                 .Returns(ServiceResultTypes.Failure);
+            MockResultTypeConversionService.Setup(s =>
+                    s.Convert<ServiceResultTypes>(TestCustomServiceResultTypes.TestValueWithNoAttribute))
+                .Returns(ServiceResultTypes.Failure);
+            MockResultTypeConversionService.Setup(s =>
+                s.Convert<ServiceResultTypes>(TestCustomServiceResultTypes.TestValueWithSuccessAttribute))
+                .Returns(ServiceResultTypes.Success);
         }
 
         private static void SetupMockSuccessResultFactory()

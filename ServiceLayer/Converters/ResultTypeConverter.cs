@@ -27,31 +27,31 @@ namespace ServiceLayer.Converters
             return destinationResultType;
         }
 
-        internal TDestinationResultType ConvertWithValidation<TDestinationResultType>(Enum sourceResultType) where TDestinationResultType : Enum
+        internal Enum ConvertWithValidation(Enum sourceResultType, Type destinationEnumType) 
         {
             if (SourceType != null && sourceResultType.GetType() != SourceType)
             {
                 throw new ArgumentException("The provided source result type does not match the source type of the converter.", nameof(sourceResultType));
             }
 
-            if (DestinationType != null && typeof(TDestinationResultType) != DestinationType)
+            if (DestinationType != null && destinationEnumType != DestinationType)
             {
                 throw new ArgumentException("The provided destination result type does not match the destination type of the converter.", nameof(sourceResultType));
             }
 
             if (sourceResultType.GetType() == DestinationType)
             {
-                return (TDestinationResultType)sourceResultType;
+                return sourceResultType;
             }
 
             try
             {
-                return (TDestinationResultType) Convert(sourceResultType, typeof(TDestinationResultType));
+                return Convert(sourceResultType, destinationEnumType);
             }
             catch (Exception ex)
             {
                 throw new InvalidCastException(
-                    $"Could not convert enum value of type {sourceResultType.GetType()} to a value of type {typeof(TDestinationResultType)}",
+                    $"Could not convert enum value of type {sourceResultType.GetType()} to a value of type {destinationEnumType}",
                     ex);
             }
         }

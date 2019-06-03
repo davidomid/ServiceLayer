@@ -3,14 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
 using ServiceLayer.UnitTests;
-using ServiceLayer.UnitTests;
 using Testing.Common.Domain.TestClasses;
 
-namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult.WhenGivenIDataServiceResult.WithHttpServiceResultType
+namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIDataServiceResult
 {
-    public class WhenResultTypeIsOk : UnitTestBase
+    public class WhenResultIsSuccessful : UnitTestBase
     {
-        private IDataServiceResult<string, HttpServiceResultTypes> _dataServiceResult;
+        private IDataServiceResult<string> _dataServiceResult;
 
         private IActionResult _actionResult;
 
@@ -19,10 +18,8 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
         protected override void Arrange()
         {
             _controller = new TestController();
-            Mock<IDataServiceResult<string, HttpServiceResultTypes>> mockServiceResult = new Mock<IDataServiceResult<string, HttpServiceResultTypes>>();
-            mockServiceResult.SetupGet(r => r.ResultType).Returns(HttpServiceResultTypes.Ok);
-
-            mockServiceResult.Verify();
+            Mock<IDataServiceResult<string>> mockServiceResult = new Mock<IDataServiceResult<string>>();
+            mockServiceResult.SetupGet(r => r.IsSuccessful).Returns(true);
             _dataServiceResult = mockServiceResult.Object;
         }
 
@@ -41,13 +38,6 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
         public void Should_Return_OkObjectResult()
         {
             _actionResult.Should().BeOfType<OkObjectResult>(); 
-        }
-
-        [Test]
-        public void Should_Have_Data_Matching_Given_Data()
-        {
-            OkObjectResult okObjectResult = (OkObjectResult) _actionResult;
-            okObjectResult.Value.Should().Be(_dataServiceResult.Data);
         }
     }
 }

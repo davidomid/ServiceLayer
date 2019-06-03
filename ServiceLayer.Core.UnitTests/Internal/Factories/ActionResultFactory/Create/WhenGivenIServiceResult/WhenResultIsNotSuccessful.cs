@@ -1,12 +1,10 @@
-﻿using System;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
 using ServiceLayer.UnitTests;
-using Testing.Common.Domain.TestClasses;
 
-namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult.WhenGivenIServiceResult
+namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIServiceResult
 {
     public class WhenResultIsNotSuccessful : UnitTestBase
     {
@@ -14,14 +12,13 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
 
         private IActionResult _actionResult;
 
-        private TestController _controller;
+        private readonly object _errorDetails = new object();
 
-        private string[] _errorDetails;
+        private Core.Internal.Factories.ActionResultFactory _actionResultFactory;
 
         protected override void Arrange()
         {
-            _controller = new TestController();
-            _errorDetails = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
+            _actionResultFactory = new Core.Internal.Factories.ActionResultFactory();
             Mock<IServiceResult> mockServiceResult = new Mock<IServiceResult>();
             mockServiceResult.SetupGet(r => r.IsSuccessful).Returns(false);
             mockServiceResult.SetupGet(r => r.ErrorDetails).Returns(_errorDetails);
@@ -30,7 +27,7 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
 
         protected override void Act()
         {
-            _actionResult = _controller.FromServiceResult(_serviceResult);
+            _actionResult = _actionResultFactory.Create(_serviceResult);
         }
 
         [Test]

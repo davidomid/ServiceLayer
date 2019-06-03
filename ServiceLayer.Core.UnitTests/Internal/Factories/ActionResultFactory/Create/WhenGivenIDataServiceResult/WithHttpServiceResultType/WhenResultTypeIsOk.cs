@@ -1,14 +1,13 @@
-﻿using System;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
 using ServiceLayer.UnitTests;
 using Testing.Common.Domain.TestClasses;
 
-namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult.WhenGivenIDataServiceResult.WithHttpServiceResultType
+namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIDataServiceResult.WithHttpServiceResultType
 {
-    public class WhenResultTypeIsBadRequest : UnitTestBase
+    public class WhenResultTypeIsOk : UnitTestBase
     {
         private IDataServiceResult<string, HttpServiceResultTypes> _dataServiceResult;
 
@@ -16,15 +15,13 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
 
         private TestController _controller;
 
-        private string[] _errorDetails;
-
         protected override void Arrange()
         {
-            _errorDetails = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
             _controller = new TestController();
             Mock<IDataServiceResult<string, HttpServiceResultTypes>> mockServiceResult = new Mock<IDataServiceResult<string, HttpServiceResultTypes>>();
-            mockServiceResult.SetupGet(r => r.ResultType).Returns(HttpServiceResultTypes.BadRequest);
-            mockServiceResult.SetupGet(r => r.ErrorDetails).Returns(_errorDetails);
+            mockServiceResult.SetupGet(r => r.ResultType).Returns(HttpServiceResultTypes.Ok);
+
+            mockServiceResult.Verify();
             _dataServiceResult = mockServiceResult.Object;
         }
 
@@ -40,17 +37,16 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
         }
 
         [Test]
-        public void Should_Return_BadRequestResult()
+        public void Should_Return_OkObjectResult()
         {
-            _actionResult.Should().BeOfType<BadRequestObjectResult>(); 
+            _actionResult.Should().BeOfType<OkObjectResult>(); 
         }
 
         [Test]
-        public void Should_Have_Value_Matching_Given_ErrorDetails()
+        public void Should_Have_Data_Matching_Given_Data()
         {
-            BadRequestObjectResult badRequestObjectResult = (BadRequestObjectResult)_actionResult;
-            badRequestObjectResult.Value.Should().Be(_errorDetails);
+            OkObjectResult okObjectResult = (OkObjectResult) _actionResult;
+            okObjectResult.Value.Should().Be(_dataServiceResult.Data);
         }
-       
     }
 }

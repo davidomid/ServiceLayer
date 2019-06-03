@@ -6,9 +6,9 @@ using NUnit.Framework;
 using ServiceLayer.UnitTests;
 using Testing.Common.Domain.TestClasses;
 
-namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult.WhenGivenIDataServiceResult.WithHttpServiceResultType
+namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIDataServiceResult.WithHttpServiceResultType
 {
-    public class WhenInvalidResultType : UnitTestBase
+    public class WhenResultTypeIsInternalServerError : UnitTestBase
     {
         private IDataServiceResult<string, HttpServiceResultTypes> _dataServiceResult;
 
@@ -23,7 +23,7 @@ namespace ServiceLayer.Core.UnitTests.ControllerBaseExtensions.FromServiceResult
             _errorDetails = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
             _controller = new TestController();
             Mock<IDataServiceResult<string, HttpServiceResultTypes>> mockServiceResult = new Mock<IDataServiceResult<string, HttpServiceResultTypes>>();
-            mockServiceResult.SetupGet(r => r.ResultType).Returns((HttpServiceResultTypes)999);
+            mockServiceResult.SetupGet(r => r.ResultType).Returns(HttpServiceResultTypes.InternalServerError);
             mockServiceResult.SetupGet(r => r.ErrorDetails).Returns(_errorDetails);
             _dataServiceResult = mockServiceResult.Object;
         }
