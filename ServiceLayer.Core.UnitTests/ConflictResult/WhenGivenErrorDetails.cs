@@ -1,7 +1,6 @@
 using System;
 using FluentAssertions;
 using NUnit.Framework;
-using ServiceLayer.UnitTests;
 
 namespace ServiceLayer.Core.UnitTests.ConflictResult
 {

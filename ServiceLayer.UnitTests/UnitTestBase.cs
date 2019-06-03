@@ -1,6 +1,5 @@
 ﻿using Moq;
 using NUnit.Framework;
-using ServiceLayer.Core;
 using ServiceLayer.Internal;
 using ServiceLayer.Internal.Factories;
 using ServiceLayer.Internal.Services;
@@ -9,8 +8,7 @@ using Testing.Common.Infrastructure;
 
 namespace ServiceLayer.UnitTests
 {
-    [Parallelizable(ParallelScope.None)]
-    public abstract class UnitTestBase : NUnitTestBase
+    public abstract class UnitTestBase : ScenarioUnitTestBase
     {
         internal static readonly Mock<IServiceResultFactory> MockServiceResultFactory = new Mock<IServiceResultFactory>(MockBehavior.Strict);
         internal static readonly Mock<IDataServiceResultFactory> MockDataServiceResultFactory = new Mock<IDataServiceResultFactory>(MockBehavior.Strict);
@@ -48,12 +46,6 @@ namespace ServiceLayer.UnitTests
                 .Returns(ServiceResultTypes.Failure);
             MockResultTypeConversionService.Setup(s =>
                 s.Convert<ServiceResultTypes>(TestCustomServiceResultTypes.TestValueWithSuccessAttribute))
-                .Returns(ServiceResultTypes.Success);
-            MockResultTypeConversionService.Setup(s =>
-                    s.Convert<HttpServiceResultTypes>(ServiceResultTypes.Success))
-                .Returns(HttpServiceResultTypes.Ok);
-            MockResultTypeConversionService.Setup(s => 
-                s.Convert<ServiceResultTypes>(HttpServiceResultTypes.Ok))
                 .Returns(ServiceResultTypes.Success);
         }
 
