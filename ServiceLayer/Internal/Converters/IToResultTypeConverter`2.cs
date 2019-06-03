@@ -1,8 +1,9 @@
 ﻿using System;
+using ServiceLayer.Converters;
 
-namespace ServiceLayer.Converters
+namespace ServiceLayer.Internal.Converters
 {
-    public interface IToResultTypeConverter<TDestinationResultType, TSourceResultType> : IResultTypeConverter
+    internal interface IToResultTypeConverter<TDestinationResultType, TSourceResultType> : IResultTypeConverter
         where TDestinationResultType : struct, Enum
         where TSourceResultType : struct, Enum
     {

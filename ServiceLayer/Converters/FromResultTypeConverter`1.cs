@@ -1,4 +1,6 @@
 ﻿using System;
+using ServiceLayer.Internal.Converters;
+
 namespace ServiceLayer.Converters
 {
     public abstract class FromResultTypeConverter<TSourceResultType> : ResultTypeConverter, IFromResultTypeConverter<TSourceResultType> where TSourceResultType : struct, Enum
@@ -7,11 +9,12 @@ namespace ServiceLayer.Converters
         {
         }
 
-        Enum IResultTypeConverter.Convert(Enum sourceResultType)
+        TDestinationResultType? IResultTypeConverter.Convert<TDestinationResultType>(Enum sourceResultType)
         {
-            return base.Convert(sourceResultType) ?? Convert(sourceResultType);
+            return base.Convert<TDestinationResultType>(sourceResultType) ?? Convert<TDestinationResultType>((TSourceResultType)sourceResultType);
         }
 
-        public abstract Enum Convert(TSourceResultType sourceResultType);
+        public new abstract TDestinationResultType? Convert<TDestinationResultType>(Enum sourceResultType)
+            where TDestinationResultType : struct, Enum;
     }
 }

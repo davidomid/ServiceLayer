@@ -10,22 +10,26 @@ namespace ServiceLayer.Converters
             DestinationType = destinationType;
         }
 
-        public Type SourceType { get; }
-        public Type DestinationType { get; }
+        private Type SourceType { get; }
+        private Type DestinationType { get; }
 
-        public Enum Convert(Enum sourceResultType)
+        public TDestinationResultType? Convert<TDestinationResultType>(Enum sourceResultType) where TDestinationResultType : struct, Enum
         {
             if (SourceType != null && sourceResultType.GetType() != SourceType)
             {
                 throw new ArgumentException("The provided source result type does not match the source type of the converter.", nameof(sourceResultType));
             }
 
-            if (SourceType == DestinationType)
+            if (SourceType == DestinationType || typeof(TDestinationResultType) == sourceResultType.GetType())
             {
-                return sourceResultType;
+                return (TDestinationResultType)sourceResultType;
             }
 
             return null;
         }
+
+        Type IResultTypeConverter.SourceType => SourceType;
+
+        Type IResultTypeConverter.DestinationType => DestinationType;
     }
 }
