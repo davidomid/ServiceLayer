@@ -7,7 +7,6 @@ namespace ServiceLayer.Converters
         Type SourceType { get; }
         Type DestinationType { get; }
 
-        TDestinationResultType? Convert<TDestinationResultType>(Enum sourceResultType)
-            where TDestinationResultType : struct, Enum;
+        Enum Convert(Enum sourceResultType, Type destinationType); 
     }
 }

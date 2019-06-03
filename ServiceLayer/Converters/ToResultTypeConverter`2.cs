@@ -9,11 +9,11 @@ namespace ServiceLayer.Converters
         {
         }
 
-        Enum IResultTypeConverter.Convert(Enum sourceResultType)
+        internal override Enum Convert(Enum sourceResultType, Type destinationEnumType)
         {
-            return Convert(sourceResultType) ?? Convert((TSourceResultType)sourceResultType);
+            return this.Convert((TSourceResultType) sourceResultType);
         }
 
-        public abstract TDestinationResultType Convert(TSourceResultType sourceResultType); 
+        public abstract TDestinationResultType Convert(TSourceResultType sourceResultType);
     }
 }
