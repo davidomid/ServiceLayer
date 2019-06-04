@@ -8,26 +8,30 @@ namespace ServiceLayer.Internal.Converters
 {
     internal class ResultTypeConverterCollection : IResultTypeConverterCollection
     {
-        private readonly List<IResultTypeConverter> _resultTypeConverters = new List<IResultTypeConverter>();
-
-        public IReadOnlyCollection<IResultTypeConverter> GetAll()
+        private readonly List<ResultTypeConverter> _resultTypeConverters = new List<ResultTypeConverter>
         {
-            return new ReadOnlyCollection<IResultTypeConverter>(_resultTypeConverters);
+            new ToServiceResultTypesConverter(),
+            new FromServiceResultTypesConverter()
+        };
+
+        public IReadOnlyCollection<ResultTypeConverter> GetAll()
+        {
+            return new ReadOnlyCollection<ResultTypeConverter>(_resultTypeConverters);
         }
 
-        public IResultTypeConverter Get(Type sourceResultType, Type destinationResultType)
+        public ResultTypeConverter Get(Type sourceResultType, Type destinationResultType)
         {
             return _resultTypeConverters.FirstOrDefault(c => c.SourceType == sourceResultType && c.DestinationType == destinationResultType);
         }
 
-        public void AddOrReplace(IResultTypeConverter resultTypeConverter)
+        public void AddOrReplace(ResultTypeConverter resultTypeConverter)
         {
             if (_resultTypeConverters.Contains(resultTypeConverter))
             {
                 return;
             }
 
-            IResultTypeConverter existingResultTypeConverter = Get(resultTypeConverter.SourceType, resultTypeConverter.DestinationType);
+            ResultTypeConverter existingResultTypeConverter = Get(resultTypeConverter.SourceType, resultTypeConverter.DestinationType);
             if (existingResultTypeConverter != null)
             {
                 Remove(existingResultTypeConverter);
@@ -35,7 +39,7 @@ namespace ServiceLayer.Internal.Converters
             _resultTypeConverters.Add(resultTypeConverter);
         }
 
-        public void Remove(IResultTypeConverter resultTypeConverter)
+        public void Remove(ResultTypeConverter resultTypeConverter)
         {
             _resultTypeConverters.Remove(resultTypeConverter);
         }

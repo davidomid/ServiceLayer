@@ -5,9 +5,9 @@ namespace ServiceLayer.Converters
 {
     public interface IResultTypeConverterCollection
     {
-        IReadOnlyCollection<IResultTypeConverter> GetAll();
-        IResultTypeConverter Get(Type sourceResultType, Type destinationResultType);
-        void AddOrReplace(IResultTypeConverter resultTypeConverter);
-        void Remove(IResultTypeConverter resultTypeConverter);
+        IReadOnlyCollection<ResultTypeConverter> GetAll();
+        ResultTypeConverter Get(Type sourceResultType, Type destinationResultType);
+        void AddOrReplace(ResultTypeConverter resultTypeConverter);
+        void Remove(ResultTypeConverter resultTypeConverter);
     }
 }

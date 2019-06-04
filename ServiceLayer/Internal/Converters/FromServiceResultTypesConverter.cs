@@ -8,32 +8,35 @@ namespace ServiceLayer.Internal.Converters
 {
     internal class FromServiceResultTypesConverter : FromResultTypeConverter<ServiceResultTypes>
     {
-        public override Enum Convert(ServiceResultTypes sourceResultType)
+        public override TDestinationResultType Convert<TDestinationResultType>(ServiceResultTypes sourceResultType)
         {
-            FieldInfo enumField = GetEnumValueFieldForServiceResultType(sourceResultType);
-
-            Enum destinationResultType = (Enum) enumField?.GetValue(null);
+            FieldInfo enumField = GetEnumValueFieldForServiceResultType<TDestinationResultType>(sourceResultType);
+            if (enumField == null)
+            {
+                throw new InvalidCastException($"Could not determine a suitable value of type {typeof(TDestinationResultType)} to convert the value \"{sourceResultType}\" of type {typeof(ServiceResultTypes)} to. Please ensure that values are annotated with appropriate \"Success\" and \"Failure\" attributes.");
+            }
+            TDestinationResultType destinationResultType = (TDestinationResultType)enumField?.GetValue(null);
             return destinationResultType;
         }
 
-        private FieldInfo GetEnumValueFieldForServiceResultType(ServiceResultTypes serviceResultType)
+        private FieldInfo GetEnumValueFieldForServiceResultType<TDestinationResultType>(ServiceResultTypes serviceResultType)
         {
             FieldInfo enumField;
             if (serviceResultType == ServiceResultTypes.Success)
             {
-                enumField = GetEnumValueFieldWithAttribute<SuccessAttribute>();
+                enumField = GetEnumValueFieldWithAttribute<TDestinationResultType, SuccessAttribute>();
             }
             else
             {
-                enumField = GetEnumValueFieldWithAttribute<FailureAttribute>();
+                enumField = GetEnumValueFieldWithAttribute<TDestinationResultType, FailureAttribute>();
             }
 
             return enumField;
         }
 
-        private FieldInfo GetEnumValueFieldWithAttribute<TAttributeType>() where TAttributeType : BaseAttribute
+        private FieldInfo GetEnumValueFieldWithAttribute<TDestinationResultType, TAttributeType>() where TAttributeType : BaseAttribute
         {
-            FieldInfo enumField = DestinationType.GetTypeInfo()
+            FieldInfo enumField = typeof(TDestinationResultType).GetTypeInfo()
                 // Get all the fields of the given enum type. 
                 .DeclaredFields
                 // Match fields with their corresponding custom attribute of the given type.

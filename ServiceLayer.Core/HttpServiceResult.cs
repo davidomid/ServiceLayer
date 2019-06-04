@@ -12,7 +12,11 @@ namespace ServiceLayer.Core
         {
         }
 
-        public HttpServiceResult(HttpServiceResultTypes resultType, params object[] errorDetails) : base(resultType, errorDetails)
+        public HttpServiceResult(HttpServiceResultTypes resultType, params object[] errorDetails) : this(resultType, (object)errorDetails)
+        {
+        }
+
+        public HttpServiceResult(HttpServiceResultTypes resultType, object errorDetails) : base(resultType, errorDetails)
         {
         }
 

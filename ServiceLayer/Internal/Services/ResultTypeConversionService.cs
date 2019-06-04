@@ -21,13 +21,8 @@ namespace ServiceLayer.Internal.Services
                 throw new InvalidCastException($"No compatible converter was found for the source type {sourceType} and destination type {typeof(TDestinationResultType)}.");
             }
 
-            TDestinationResultType? destinationResultType = (TDestinationResultType?)resultTypeConverter.Convert(sourceResultType);
-            if (destinationResultType != null)
-            {
-                return destinationResultType.Value;
-            }
-
-            throw new InvalidCastException($"No valid enum value of type {typeof(TDestinationResultType)} could be found for the {sourceType} value \"{sourceResultType}\"");
+            return (TDestinationResultType) resultTypeConverter.Convert(sourceResultType,
+                typeof(TDestinationResultType));
         }
     }
 }

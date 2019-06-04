@@ -2,11 +2,11 @@
 
 namespace ServiceLayer.Converters
 {
-    public interface IResultTypeConverter
+    internal interface IResultTypeConverter
     {
         Type SourceType { get; }
         Type DestinationType { get; }
 
-        Enum Convert(Enum sourceResultType);
+        Enum Convert(Enum sourceResultType, Type destinationType); 
     }
 }

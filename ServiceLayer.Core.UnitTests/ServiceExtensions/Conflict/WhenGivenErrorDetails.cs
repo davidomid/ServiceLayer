@@ -1,7 +1,6 @@
 using System;
 using FluentAssertions;
 using NUnit.Framework;
-using ServiceLayer.UnitTests;
 using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.Core.UnitTests.ServiceExtensions.Conflict
@@ -9,7 +8,7 @@ namespace ServiceLayer.Core.UnitTests.ServiceExtensions.Conflict
     public class WhenGivenErrorDetails : UnitTestBase
     {
         private IService _service;
-        private string[] _errorDetails;
+        private object[] _errorDetails;
         private Core.ConflictResult _conflictResult;
 
         [Test]
@@ -32,7 +31,7 @@ namespace ServiceLayer.Core.UnitTests.ServiceExtensions.Conflict
         protected override void Arrange()
         {
             _service = new TestService();
-            _errorDetails = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
+            _errorDetails = new object[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
         }
     }
 }

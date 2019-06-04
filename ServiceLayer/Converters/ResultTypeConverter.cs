@@ -10,22 +10,47 @@ namespace ServiceLayer.Converters
             DestinationType = destinationType;
         }
 
-        public Type SourceType { get; }
-        public Type DestinationType { get; }
+        internal Type SourceType { get; }
+        internal Type DestinationType { get; }
 
-        public Enum Convert(Enum sourceResultType)
+        internal abstract Enum Convert(Enum sourceResultType, Type destinationEnumType);
+
+        Enum IResultTypeConverter.Convert(Enum sourceResultType, Type destinationEnumType)
+        {
+            return ConvertWithValidation(sourceResultType, destinationEnumType);
+        }
+
+        internal Enum ConvertWithValidation(Enum sourceResultType, Type destinationEnumType) 
         {
             if (SourceType != null && sourceResultType.GetType() != SourceType)
             {
                 throw new ArgumentException("The provided source result type does not match the source type of the converter.", nameof(sourceResultType));
             }
 
-            if (SourceType == DestinationType)
+            if (DestinationType != null && destinationEnumType != DestinationType)
+            {
+                throw new ArgumentException("The provided destination result type does not match the destination type of the converter.", nameof(sourceResultType));
+            }
+
+            if (sourceResultType.GetType() == destinationEnumType)
             {
                 return sourceResultType;
             }
 
-            return null;
+            try
+            {
+                return Convert(sourceResultType, destinationEnumType);
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidCastException(
+                    $"Could not convert enum value of type {sourceResultType.GetType()} to a value of type {destinationEnumType}",
+                    ex);
+            }
         }
+
+        Type IResultTypeConverter.SourceType => SourceType;
+
+        Type IResultTypeConverter.DestinationType => DestinationType;
     }
 }

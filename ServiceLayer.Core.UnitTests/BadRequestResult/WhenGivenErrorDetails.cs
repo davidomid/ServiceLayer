@@ -1,14 +1,13 @@
 using System;
 using FluentAssertions;
 using NUnit.Framework;
-using ServiceLayer.UnitTests;
 
 namespace ServiceLayer.Core.UnitTests.BadRequestResult
 {
     public class WhenGivenErrorDetails : UnitTestBase
     {
         private Core.BadRequestResult _badRequestResult;
-        private string[] _errorDetails;
+        private readonly object _errorDetails = new object();
 
         [Test]
         public void Should_Have_BadRequest_ResultType()
@@ -24,7 +23,6 @@ namespace ServiceLayer.Core.UnitTests.BadRequestResult
 
         protected override void Arrange()
         {
-            _errorDetails = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
         }
 
         protected override void Act()

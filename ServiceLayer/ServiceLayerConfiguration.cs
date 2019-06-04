@@ -8,11 +8,6 @@ namespace ServiceLayer
 {
     public static class ServiceLayerConfiguration
     {
-        static ServiceLayerConfiguration()
-        {
-            ResultTypeConverters.AddOrReplace(new ToServiceResultTypesConverter());
-        }
-
         public static IResultTypeConverterCollection ResultTypeConverters { get; } = new ResultTypeConverterCollection();
 
         internal static IResultTypeConversionService ResultTypeConversionService => ServiceLocator.Instance.Resolve<IResultTypeConversionService>();
