@@ -39,17 +39,18 @@ namespace ServiceLayer.Core.Internal.Factories
 
         public ActionResult Create<TResultType>(IServiceResult<TResultType> serviceResult) where TResultType : struct, Enum
         {
-            return new HttpServiceResult(serviceResult.ResultType.ToResultType<HttpServiceResultTypes>(), serviceResult.ErrorDetails);
+            return this.Create(new HttpServiceResult(serviceResult.ResultType.ToResultType<HttpServiceResultTypes>(),
+                serviceResult.ErrorDetails));
         }
 
         public ActionResult Create<TData>(IDataServiceResult<TData> serviceResult)
         {
-            return new HttpServiceResult<TData>(serviceResult.ResultType.ToResultType<HttpServiceResultTypes>(), serviceResult.Data, serviceResult.ErrorDetails);
+            return this.Create(new HttpServiceResult<TData>(serviceResult.ResultType.ToResultType<HttpServiceResultTypes>(), serviceResult.Data, serviceResult.ErrorDetails));
         }
 
         public ActionResult Create<TData, TResultType>(IDataServiceResult<TData, TResultType> serviceResult) where TResultType : struct, Enum
         {
-            return new HttpServiceResult<TData>(serviceResult.ResultType.ToResultType<HttpServiceResultTypes>(), serviceResult.Data, serviceResult.ErrorDetails);
+            return this.Create(new HttpServiceResult<TData>(serviceResult.ResultType.ToResultType<HttpServiceResultTypes>(), serviceResult.Data, serviceResult.ErrorDetails));
         }
 
         public ActionResult Create<TData>(IDataServiceResult<TData, HttpServiceResultTypes> httpServiceResult)

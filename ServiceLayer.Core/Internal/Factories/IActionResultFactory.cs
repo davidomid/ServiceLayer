@@ -7,9 +7,7 @@ namespace ServiceLayer.Core.Internal.Factories
     {
         ActionResult Create(IServiceResult serviceResult);
         ActionResult Create(IServiceResult<HttpServiceResultTypes> httpServiceResult);
-        ActionResult Create<TResultType>(IServiceResult<TResultType> serviceResult) where TResultType : struct, Enum;
         ActionResult Create<TData>(IDataServiceResult<TData> serviceResult);
-        ActionResult Create<TData, TResultType>(IDataServiceResult<TData, TResultType> serviceResult) where TResultType : struct, Enum;
         ActionResult Create<TData>(IDataServiceResult<TData, HttpServiceResultTypes> httpServiceResult);
     }
 }

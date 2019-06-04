@@ -8,7 +8,7 @@ namespace ServiceLayer.Core
     {
         internal static IActionResultFactory ActionResultFactory = ServiceLocator.Instance.Resolve<IActionResultFactory>();
 
-        public HttpServiceResult(HttpServiceResultTypes resultType) : base(resultType, default)
+        public HttpServiceResult(HttpServiceResultTypes resultType) : this(resultType, default)
         {
         }
 
