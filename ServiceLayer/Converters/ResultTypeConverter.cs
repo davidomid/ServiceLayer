@@ -32,7 +32,7 @@ namespace ServiceLayer.Converters
                 throw new ArgumentException("The provided destination result type does not match the destination type of the converter.", nameof(sourceResultType));
             }
 
-            if (sourceResultType.GetType() == DestinationType)
+            if (sourceResultType.GetType() == destinationEnumType)
             {
                 return sourceResultType;
             }

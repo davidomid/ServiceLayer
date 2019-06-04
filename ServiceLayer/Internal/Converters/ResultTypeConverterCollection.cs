@@ -8,7 +8,11 @@ namespace ServiceLayer.Internal.Converters
 {
     internal class ResultTypeConverterCollection : IResultTypeConverterCollection
     {
-        private readonly List<ResultTypeConverter> _resultTypeConverters = new List<ResultTypeConverter>();
+        private readonly List<ResultTypeConverter> _resultTypeConverters = new List<ResultTypeConverter>
+        {
+            new ToServiceResultTypesConverter(),
+            new FromServiceResultTypesConverter()
+        };
 
         public IReadOnlyCollection<ResultTypeConverter> GetAll()
         {
