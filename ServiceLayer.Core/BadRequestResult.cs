@@ -6,7 +6,11 @@
         {
         }
 
-        public BadRequestResult(params object[] errorDetails) : base(HttpServiceResultTypes.BadRequest, errorDetails)
+        public BadRequestResult(params object[] errorDetails) : this((object)errorDetails)
+        {
+        }
+
+        public BadRequestResult(object errorDetails) : base(HttpServiceResultTypes.BadRequest, errorDetails)
         {
         }
     }

@@ -4,10 +4,10 @@ using NUnit.Framework;
 
 namespace ServiceLayer.Core.UnitTests.ConflictResult
 {
-    public class WhenGivenErrorDetails : UnitTestBase
+    public class WhenGivenErrorDetailsArray : UnitTestBase
     {
         private Core.ConflictResult _conflictResult;
-        private string[] _errorDetails;
+        private object[] _errorDetails;
 
         [Test]
         public void Should_Have_Conflict_ResultType()
@@ -23,7 +23,7 @@ namespace ServiceLayer.Core.UnitTests.ConflictResult
 
         protected override void Arrange()
         {
-            _errorDetails = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
+            _errorDetails = new object[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
         }
 
         protected override void Act()

@@ -6,7 +6,11 @@
         {
         }
 
-        public ConflictResult(params object[] errorDetails) : base(HttpServiceResultTypes.Conflict, errorDetails)
+        public ConflictResult(params object[] errorDetails) : this((object)errorDetails)
+        {
+        }
+
+        public ConflictResult(object errorDetails) : base(HttpServiceResultTypes.Conflict, errorDetails)
         {
         }
     }

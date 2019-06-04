@@ -6,7 +6,11 @@
         {
         }
 
-        public NotFoundResult(params object[] errorDetails) : base(HttpServiceResultTypes.NotFound, errorDetails)
+        public NotFoundResult(params object[] errorDetails) : this((object)errorDetails)
+        {
+        }
+
+        public NotFoundResult(object errorDetails) : base(HttpServiceResultTypes.NotFound, errorDetails)
         {
         }
     }

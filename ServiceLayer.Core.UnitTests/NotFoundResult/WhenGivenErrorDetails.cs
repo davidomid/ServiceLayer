@@ -7,7 +7,7 @@ namespace ServiceLayer.Core.UnitTests.NotFoundResult
     public class WhenGivenErrorDetails : UnitTestBase
     {
         private Core.NotFoundResult _notFoundResult;
-        private string[] _errorDetails;
+        private object[] _errorDetails;
 
         [Test]
         public void Should_Have_NotFound_ResultType()
@@ -23,7 +23,7 @@ namespace ServiceLayer.Core.UnitTests.NotFoundResult
 
         protected override void Arrange()
         {
-            _errorDetails = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
+            _errorDetails = new object[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
         }
 
         protected override void Act()

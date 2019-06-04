@@ -2,7 +2,7 @@
 
 namespace ServiceLayer.Converters
 {
-    public interface IResultTypeConverter
+    internal interface IResultTypeConverter
     {
         Type SourceType { get; }
         Type DestinationType { get; }

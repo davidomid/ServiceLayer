@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 
 namespace ServiceLayer.Converters
 {
@@ -18,13 +17,7 @@ namespace ServiceLayer.Converters
 
         Enum IResultTypeConverter.Convert(Enum sourceResultType, Type destinationEnumType)
         {
-            var convertWithValidationMethod = typeof(ResultTypeConverter)
-                .GetTypeInfo()
-                .GetDeclaredMethod(nameof(ConvertWithValidation))
-                .MakeGenericMethod(destinationEnumType);
-            object result = convertWithValidationMethod.Invoke(this, new object[] { sourceResultType });
-            Enum destinationResultType = (Enum)System.Convert.ChangeType(result, destinationEnumType);
-            return destinationResultType;
+            return ConvertWithValidation(sourceResultType, destinationEnumType);
         }
 
         internal Enum ConvertWithValidation(Enum sourceResultType, Type destinationEnumType) 

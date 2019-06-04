@@ -8,7 +8,7 @@ namespace ServiceLayer.Core.UnitTests.ServiceExtensions.NotFound
     public class WhenGivenErrorDetails : UnitTestBase
     {
         private IService _service;
-        private string[] _errorDetails;
+        private object[] _errorDetails;
         private Core.NotFoundResult _notFoundResult;
 
         [Test]
@@ -31,7 +31,7 @@ namespace ServiceLayer.Core.UnitTests.ServiceExtensions.NotFound
         protected override void Arrange()
         {
             _service = new TestService();
-            _errorDetails = new[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
+            _errorDetails = new object[] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
         }
     }
 }

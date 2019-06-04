@@ -1,5 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
+using ServiceLayer.Converters;
 using ServiceLayer.Internal;
 using ServiceLayer.Internal.Factories;
 using ServiceLayer.Internal.Services;
@@ -12,17 +13,20 @@ namespace ServiceLayer.Core.UnitTests
     {
         static UnitTestBase()
         {
-            SetupMockResultTypeConversionService();
+            SetupMockConverters();
         }
 
-        private static void SetupMockResultTypeConversionService()
+        private static void SetupMockConverters()
         {
-            //MockResultTypeConversionService.Setup(s =>
-            //s.Convert<HttpServiceResultTypes>(ServiceResultTypes.Success))
-            //.Returns(HttpServiceResultTypes.Ok);
-            //MockResultTypeConversionService.Setup(s =>
-            //s.Convert<ServiceResultTypes>(HttpServiceResultTypes.Ok))
-            //.Returns(ServiceResultTypes.Success);
+            Mock<FromResultTypeConverter<ServiceResultTypes>> mockServiceResultTypeConverter = new Mock<FromResultTypeConverter<ServiceResultTypes>>();
+            mockServiceResultTypeConverter.Setup(c =>
+                    c.Convert<HttpServiceResultTypes>(It.IsAny<ServiceResultTypes>()))
+                .Returns(HttpServiceResultTypes.Ok);
+            mockServiceResultTypeConverter.Setup(c =>
+                    c.Convert<ServiceResultTypes>(It.IsAny<ServiceResultTypes>()))
+                .Returns(ServiceResultTypes.Success);
+
+            ServiceLayerConfiguration.ResultTypeConverters.AddOrReplace(mockServiceResultTypeConverter.Object);
         }
     }
 }
