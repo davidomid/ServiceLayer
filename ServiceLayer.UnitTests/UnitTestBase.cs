@@ -50,6 +50,9 @@ namespace ServiceLayer.UnitTests
             MockResultTypeConversionService.Setup(s =>
                     s.Convert<ServiceResultTypes>(TestCustomServiceResultTypes.TestValueWithFailureAttribute))
                 .Returns(ServiceResultTypes.Failure);
+            MockResultTypeConversionService.Setup(s =>
+                    s.Convert<ServiceResultTypes>((TestCustomServiceResultTypes) 1000))
+                .Returns(ServiceResultTypes.Failure);
         }
 
         private static void SetupMockSuccessResultFactory()
