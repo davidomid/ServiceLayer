@@ -20,9 +20,16 @@ namespace ServiceLayer.Converters
                 .GetDeclaredMethod(nameof(Convert))
                 .MakeGenericMethod(destinationEnumType);
 
-            object result = genericConvertMethod.Invoke(this, new object[] { sourceResultType });
-            Enum destinationResultType = (Enum)System.Convert.ChangeType(result, destinationEnumType);
-            return destinationResultType;
+            try
+            {
+                object result = genericConvertMethod.Invoke(this, new object[] {sourceResultType});
+                Enum destinationResultType = (Enum) System.Convert.ChangeType(result, destinationEnumType);
+                return destinationResultType;
+            }
+            catch (TargetInvocationException tie)
+            {
+                throw tie.InnerException;
+            }
         }
     }
 }

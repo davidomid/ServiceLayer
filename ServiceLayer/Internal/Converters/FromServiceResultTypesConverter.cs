@@ -11,6 +11,10 @@ namespace ServiceLayer.Internal.Converters
         public override TDestinationResultType Convert<TDestinationResultType>(ServiceResultTypes sourceResultType)
         {
             FieldInfo enumField = GetEnumValueFieldForServiceResultType<TDestinationResultType>(sourceResultType);
+            if (enumField == null)
+            {
+                throw new InvalidCastException($"Could not determine a suitable value of type {typeof(TDestinationResultType)} to convert the value \"{sourceResultType}\" of type {typeof(ServiceResultTypes)} to. Please ensure that values are annotated with appropriate \"Success\" and \"Failure\" attributes.");
+            }
             TDestinationResultType destinationResultType = (TDestinationResultType)enumField?.GetValue(null);
             return destinationResultType;
         }
