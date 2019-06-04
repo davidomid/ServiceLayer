@@ -13,20 +13,20 @@ namespace ServiceLayer.Core.UnitTests
     {
         static UnitTestBase()
         {
-            SetupMockConverters();
+
         }
 
         private static void SetupMockConverters()
         {
-            Mock<FromResultTypeConverter<ServiceResultTypes>> mockServiceResultTypeConverter = new Mock<FromResultTypeConverter<ServiceResultTypes>>();
-            mockServiceResultTypeConverter.Setup(c =>
-                    c.Convert<HttpServiceResultTypes>(It.IsAny<ServiceResultTypes>()))
-                .Returns(HttpServiceResultTypes.Ok);
-            mockServiceResultTypeConverter.Setup(c =>
-                    c.Convert<ServiceResultTypes>(It.IsAny<ServiceResultTypes>()))
-                .Returns(ServiceResultTypes.Success);
+            //Mock<FromResultTypeConverter<ServiceResultTypes>> mockServiceResultTypeConverter = new Mock<FromResultTypeConverter<ServiceResultTypes>>();
+            //mockServiceResultTypeConverter.Setup(c =>
+            //        c.Convert<HttpServiceResultTypes>(It.IsAny<ServiceResultTypes>()))
+            //    .Returns(HttpServiceResultTypes.Ok);
+            //mockServiceResultTypeConverter.Setup(c =>
+            //        c.Convert<ServiceResultTypes>(It.IsAny<ServiceResultTypes>()))
+            //    .Returns(ServiceResultTypes.Success);
 
-            ServiceLayerConfiguration.ResultTypeConverters.AddOrReplace(mockServiceResultTypeConverter.Object);
+            //ServiceLayerConfiguration.ResultTypeConverters.AddOrReplace(mockServiceResultTypeConverter.Object);
         }
     }
 }
