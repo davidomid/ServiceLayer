@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ServiceLayer.Core.Extensions;
 using ServiceLayer.Core.Internal;
 using ServiceLayer.Core.Internal.Factories;
 
@@ -6,26 +7,24 @@ namespace ServiceLayer.Core
 {
     public static class ControllerBaseExtensions
     {
-        internal static IActionResultFactory ActionResultFactory = ServiceLocator.Instance.Resolve<IActionResultFactory>();
-
         public static ActionResult FromServiceResult(this ControllerBase controller, IServiceResult serviceResult)
         {
-            return ActionResultFactory.Create(serviceResult); 
+            return serviceResult.ToActionResult();
         }
 
         public static ActionResult FromServiceResult<TData>(this ControllerBase controller, IDataServiceResult<TData> serviceResult)
         {
-            return ActionResultFactory.Create(serviceResult);
+            return serviceResult.ToActionResult();
         }
 
         public static ActionResult FromServiceResult<TData>(this ControllerBase controller, IDataServiceResult<TData, HttpServiceResultTypes> httpServiceResult)
         {
-            return ActionResultFactory.Create(httpServiceResult);
+            return httpServiceResult.ToActionResult();
         }
 
         public static ActionResult FromServiceResult(this ControllerBase controller, IServiceResult<HttpServiceResultTypes> httpServiceResult)
         {
-            return ActionResultFactory.Create(httpServiceResult); 
+            return httpServiceResult.ToActionResult();
         }
     }
 }

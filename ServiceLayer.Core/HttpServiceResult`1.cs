@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Runtime.CompilerServices;
+using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.Core.Internal;
 using ServiceLayer.Core.Internal.Factories;
 
@@ -8,11 +9,15 @@ namespace ServiceLayer.Core
     {
         internal static IActionResultFactory ActionResultFactory = ServiceLocator.Instance.Resolve<IActionResultFactory>();
 
-        public HttpServiceResult(HttpServiceResultTypes resultType, TData data) : base(data, resultType)
+        public HttpServiceResult(HttpServiceResultTypes resultType, TData data) : this(resultType, data, default)
         {
         }
 
-        public HttpServiceResult(HttpServiceResultTypes resultType, TData data, params object[] errorDetails) : base(data, resultType, errorDetails)
+        public HttpServiceResult(HttpServiceResultTypes resultType, TData data, params object[] errorDetails) : this(resultType, data, (object)errorDetails)
+        {
+        }
+
+        public HttpServiceResult(HttpServiceResultTypes resultType, TData data, object errorDetails) : base(data, resultType, errorDetails)
         {
         }
 
