@@ -1,6 +1,9 @@
 ﻿namespace ServiceLayer.Attributes
 {
-    public class FailureAttribute : BaseAttribute
+    public class FailureAttribute : ResultTypeAttribute
     {
+        public FailureAttribute() : base(ServiceResultTypes.Failure)
+        {
+        }
     }
 }
