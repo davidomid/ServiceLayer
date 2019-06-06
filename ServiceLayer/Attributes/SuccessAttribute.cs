@@ -1,6 +1,9 @@
 ﻿namespace ServiceLayer.Attributes
 {
-    public class SuccessAttribute : BaseAttribute
+    public class SuccessAttribute : ResultTypeAttribute
     {
+        public SuccessAttribute() : base(ServiceResultTypes.Success)
+        {
+        }
     }
 }

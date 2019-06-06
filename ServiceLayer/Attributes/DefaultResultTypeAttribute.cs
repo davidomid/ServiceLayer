@@ -1,10 +1,8 @@
 ﻿using System;
-
 namespace ServiceLayer.Attributes
 {
     [AttributeUsage(AttributeTargets.Field)]
-    public abstract class BaseAttribute : Attribute
+    public class DefaultResultTypeAttribute : Attribute
     {
-        public bool IsDefault { get; set; }
     }
 }
