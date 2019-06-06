@@ -17,9 +17,8 @@ namespace ServiceLayer.Internal.Converters
             var name = Enum.GetName(sourceType, sourceResultType);
             var successAttribute = sourceType.GetTypeInfo().DeclaredFields
                 .FirstOrDefault(p => p.Name == name)?
-                .GetCustomAttributes(false)
-                .OfType<SuccessAttribute>()
-                .FirstOrDefault();
+                .GetCustomAttributes<ResultTypeAttribute>(false)
+                .FirstOrDefault(a => a.ResultType.Equals(ServiceResultTypes.Success));
 
             if (successAttribute != null)
             {

@@ -10,7 +10,7 @@ namespace ServiceLayer.Internal.Converters
     {
         public override TDestinationResultType Convert<TDestinationResultType>(ServiceResultTypes sourceResultType)
         {
-            FieldInfo enumField = GetEnumValueFieldForServiceResultType<TDestinationResultType>(sourceResultType);
+            FieldInfo enumField = GetEnumValueFieldWithResultTypeAttribute<TDestinationResultType>(sourceResultType);
             if (enumField == null)
             {
                 throw new InvalidCastException($"Could not determine a suitable value of type {typeof(TDestinationResultType)} to convert the value \"{sourceResultType}\" of type {typeof(ServiceResultTypes)} to. Please ensure that values are annotated with appropriate \"Success\" and \"Failure\" attributes.");
@@ -19,22 +19,7 @@ namespace ServiceLayer.Internal.Converters
             return destinationResultType;
         }
 
-        private FieldInfo GetEnumValueFieldForServiceResultType<TDestinationResultType>(ServiceResultTypes serviceResultType)
-        {
-            FieldInfo enumField;
-            if (serviceResultType == ServiceResultTypes.Success)
-            {
-                enumField = GetEnumValueFieldWithAttribute<TDestinationResultType, SuccessAttribute>();
-            }
-            else
-            {
-                enumField = GetEnumValueFieldWithAttribute<TDestinationResultType, FailureAttribute>();
-            }
-
-            return enumField;
-        }
-
-        private FieldInfo GetEnumValueFieldWithAttribute<TDestinationResultType, TAttributeType>() where TAttributeType : BaseAttribute
+        private FieldInfo GetEnumValueFieldWithResultTypeAttribute<TDestinationResultType>(Enum resultType)
         {
             FieldInfo enumField = typeof(TDestinationResultType).GetTypeInfo()
                 // Get all the fields of the given enum type. 
@@ -42,7 +27,8 @@ namespace ServiceLayer.Internal.Converters
                 // Match fields with their corresponding custom attribute of the given type.
                 .ToDictionary(k => k, v =>
                 {
-                    var attribute = v.GetCustomAttribute<TAttributeType>(false);
+                    var attributes = v.GetCustomAttributes<ResultTypeAttribute>(false);
+                    var attribute = attributes.FirstOrDefault(a => Equals(a.ResultType, resultType));
                     return attribute;
                 })
                 // Only retrieve fields with a custom attribute.
