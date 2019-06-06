@@ -6,7 +6,9 @@ namespace ServiceLayer.Core
     {
         [Success]
         Ok,
+        [Failure]
         BadRequest, 
+        [ResultType(ServiceResultTypes.Failure)]
         NotFound,
         Forbidden,
         Unauthorized,

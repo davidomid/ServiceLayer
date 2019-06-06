@@ -4,9 +4,9 @@ namespace ServiceLayer.Attributes
     [AttributeUsage(AttributeTargets.Field)]
     public class ResultTypeAttribute : Attribute
     {
-        public ResultTypeAttribute(Enum resultType)
+        public ResultTypeAttribute(object resultType)
         {
-            ResultType = resultType;
+            ResultType = (Enum)resultType;
         }
 
         public Enum ResultType { get; }
