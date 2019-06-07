@@ -34,13 +34,7 @@ namespace ServiceLayer.Internal.Converters
             // If no attribute can be found, try to find a default destination value by checking for a DefaultResultType attribute on the destination type.
             destinationValue = GetDestinationValueByDefaultResultTypeAttributeForValueOnDestinationType(destinationEnumType);
 
-            if (destinationValue == null)
-            {
-                // If a destination value still can't be determined, throw an exception.
-                throw new InvalidCastException($"Could not determine a suitable value of type {destinationEnumType} to convert the value \"{sourceResultType}\" of type {sourceResultType.GetType()} to. Please ensure that either the source or destination values are annotated with appropriate \"ResultType\" attributes, or implement a custom converter.");
-            }
-
-            return destinationValue;
+            return destinationValue; 
         }
 
         private Enum GetDestinationValueByDefaultResultTypeAttributeForValueOnDestinationType(Type destinationEnumType)

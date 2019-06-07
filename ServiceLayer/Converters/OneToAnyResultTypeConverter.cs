@@ -27,8 +27,13 @@ namespace ServiceLayer.Converters
             }
             catch (TargetInvocationException tie)
             {
-                throw tie.InnerException;
+                if (tie.InnerException != null)
+                {
+                    throw tie.InnerException;
+                }
             }
+
+            return null;
         }
     }
 }
