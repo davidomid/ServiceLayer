@@ -7,6 +7,6 @@ namespace ServiceLayer.Internal.Converters
         where TDestinationResultType : struct, Enum
         where TSourceResultType : struct, Enum
     {
-        TDestinationResultType Convert(TSourceResultType sourceResultType);
+        TDestinationResultType? Convert(TSourceResultType sourceResultType);
     }
 }

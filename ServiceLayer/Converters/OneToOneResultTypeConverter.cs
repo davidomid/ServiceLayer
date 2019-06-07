@@ -14,6 +14,6 @@ namespace ServiceLayer.Converters
             return this.Convert((TSourceResultType) sourceResultType);
         }
 
-        public abstract TDestinationResultType Convert(TSourceResultType sourceResultType);
+        public abstract TDestinationResultType? Convert(TSourceResultType sourceResultType);
     }
 }

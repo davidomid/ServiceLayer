@@ -10,8 +10,7 @@ namespace ServiceLayer.Converters
         {
         }
 
-        public abstract TDestinationResultType Convert<TDestinationResultType>(TSourceResultType sourceResultType)
-            where TDestinationResultType : Enum;
+        public abstract TDestinationResultType? Convert<TDestinationResultType>(TSourceResultType sourceResultType) where TDestinationResultType : struct, Enum;
 
         internal override Enum Convert(Enum sourceResultType, Type destinationEnumType)
         {
