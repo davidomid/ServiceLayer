@@ -4,9 +4,9 @@ using ServiceLayer.Internal.Converters;
 
 namespace ServiceLayer.Converters
 {
-    public abstract class FromResultTypeConverter<TSourceResultType> : ResultTypeConverter, IFromResultTypeConverter<TSourceResultType> where TSourceResultType : Enum
+    public abstract class OneToAnyResultTypeConverter<TSourceResultType> : ResultTypeConverter, IFromResultTypeConverter<TSourceResultType> where TSourceResultType : Enum
     {
-        protected FromResultTypeConverter() : base(typeof(TSourceResultType), null)
+        protected OneToAnyResultTypeConverter() : base(typeof(TSourceResultType), null)
         {
         }
 

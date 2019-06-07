@@ -3,7 +3,7 @@ using ServiceLayer.Converters;
 
 namespace ServiceLayer.Internal.Converters
 {
-    internal interface IToResultTypeConverter<TDestinationResultType> : IResultTypeConverter
+    internal interface IAnyToOneResultConverter<TDestinationResultType> : IResultTypeConverter
         where TDestinationResultType : struct, Enum
     {
         TDestinationResultType Convert(Enum sourceResultType);

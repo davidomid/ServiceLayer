@@ -2,15 +2,12 @@
 using System.Linq;
 using System.Reflection;
 using ServiceLayer.Attributes;
+using ServiceLayer.Converters;
 
-namespace ServiceLayer.Converters
+namespace ServiceLayer.Internal.Converters
 {
-    public class DefaultResultTypeConverter : ResultTypeConverter
+    internal class AttributeResultTypeConverter : AnyToAnyResultTypeConverter
     {
-        public DefaultResultTypeConverter() : base(null, null)
-        {
-        }
-
         internal override Enum Convert(Enum sourceResultType, Type destinationEnumType)
         {
             // Check if there is an attribute on the source result type value which maps is to the destination type.

@@ -3,7 +3,7 @@ using ServiceLayer.Converters;
 
 namespace ServiceLayer.Core
 {
-    internal class HttpServiceResultConverter : ToResultTypeConverter<HttpServiceResultTypes>
+    internal class HttpServiceResultConverter : AnyToOneResultConverter<HttpServiceResultTypes>
     {
         public override HttpServiceResultTypes Convert(Enum sourceResultType)
         {
