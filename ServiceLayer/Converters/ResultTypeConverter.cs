@@ -48,9 +48,5 @@ namespace ServiceLayer.Converters
                     ex);
             }
         }
-
-        Type IResultTypeConverter.SourceType => SourceType;
-
-        Type IResultTypeConverter.DestinationType => DestinationType;
     }
 }
