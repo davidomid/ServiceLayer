@@ -2,15 +2,12 @@
 using System.Linq;
 using System.Reflection;
 using ServiceLayer.Attributes;
+using ServiceLayer.Converters;
 
-namespace ServiceLayer.Converters
+namespace ServiceLayer.Internal.Converters
 {
-    public class DefaultResultTypeConverter : ResultTypeConverter
+    internal class AttributeResultTypeConverter : AnyToAnyResultTypeConverter
     {
-        public DefaultResultTypeConverter() : base(null, null)
-        {
-        }
-
         internal override Enum Convert(Enum sourceResultType, Type destinationEnumType)
         {
             // Check if there is an attribute on the source result type value which maps is to the destination type.
@@ -37,13 +34,7 @@ namespace ServiceLayer.Converters
             // If no attribute can be found, try to find a default destination value by checking for a DefaultResultType attribute on the destination type.
             destinationValue = GetDestinationValueByDefaultResultTypeAttributeForValueOnDestinationType(destinationEnumType);
 
-            if (destinationValue == null)
-            {
-                // If a destination value still can't be determined, throw an exception.
-                throw new InvalidCastException($"Could not determine a suitable value of type {destinationEnumType} to convert the value \"{sourceResultType}\" of type {sourceResultType.GetType()} to. Please ensure that either the source or destination values are annotated with appropriate \"ResultType\" attributes, or implement a custom converter.");
-            }
-
-            return destinationValue;
+            return destinationValue; 
         }
 
         private Enum GetDestinationValueByDefaultResultTypeAttributeForValueOnDestinationType(Type destinationEnumType)

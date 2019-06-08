@@ -4,14 +4,13 @@ using ServiceLayer.Internal.Converters;
 
 namespace ServiceLayer.Converters
 {
-    public abstract class FromResultTypeConverter<TSourceResultType> : ResultTypeConverter, IFromResultTypeConverter<TSourceResultType> where TSourceResultType : Enum
+    public abstract class OneToAnyResultTypeConverter<TSourceResultType> : ResultTypeConverter, IFromResultTypeConverter<TSourceResultType> where TSourceResultType : Enum
     {
-        protected FromResultTypeConverter() : base(typeof(TSourceResultType), null)
+        protected OneToAnyResultTypeConverter() : base(typeof(TSourceResultType), null)
         {
         }
 
-        public abstract TDestinationResultType Convert<TDestinationResultType>(TSourceResultType sourceResultType)
-            where TDestinationResultType : Enum;
+        public abstract TDestinationResultType? Convert<TDestinationResultType>(TSourceResultType sourceResultType) where TDestinationResultType : struct, Enum;
 
         internal override Enum Convert(Enum sourceResultType, Type destinationEnumType)
         {
@@ -28,8 +27,13 @@ namespace ServiceLayer.Converters
             }
             catch (TargetInvocationException tie)
             {
-                throw tie.InnerException;
+                if (tie.InnerException != null)
+                {
+                    throw tie.InnerException;
+                }
             }
+
+            return null;
         }
     }
 }
