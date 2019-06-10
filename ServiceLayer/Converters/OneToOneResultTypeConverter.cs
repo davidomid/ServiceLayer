@@ -3,7 +3,7 @@ using ServiceLayer.Internal.Converters;
 
 namespace ServiceLayer.Converters
 {
-    public abstract class OneToOneResultTypeConverter<TDestinationResultType, TSourceResultType> : ResultTypeConverter, IOneToOneResultTypeConverter<TDestinationResultType, TSourceResultType> where TDestinationResultType : struct, Enum where TSourceResultType : struct, Enum
+    public abstract class OneToOneResultTypeConverter<TSourceResultType, TDestinationResultType> : ResultTypeConverter, IOneToOneResultTypeConverter<TSourceResultType, TDestinationResultType> where TDestinationResultType : struct, Enum where TSourceResultType : struct, Enum
     {
         protected OneToOneResultTypeConverter() : base(typeof(TSourceResultType), typeof(TDestinationResultType))
         {
