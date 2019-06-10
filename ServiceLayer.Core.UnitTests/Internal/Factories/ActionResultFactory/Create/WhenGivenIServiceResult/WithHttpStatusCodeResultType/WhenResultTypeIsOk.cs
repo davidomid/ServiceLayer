@@ -1,11 +1,12 @@
-﻿using FluentAssertions;
+﻿using System.Net;
+using FluentAssertions;
 using NUnit.Framework;
 
-namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIServiceResult.WithHttpServiceResultType
+namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIServiceResult.WithHttpStatusCodeResultType
 {
     public class WhenResultTypeIsOk : GivenAnHttpServiceResultType
     {
-        public WhenResultTypeIsOk() : base(HttpServiceResultTypes.Ok)
+        public WhenResultTypeIsOk() : base(HttpStatusCode.OK)
         {
         }
 

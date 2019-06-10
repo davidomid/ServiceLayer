@@ -1,4 +1,5 @@
-﻿using ServiceLayer.Attributes;
+﻿using ServiceLayer;
+using ServiceLayer.Attributes;
 
 namespace ExampleServices
 {
@@ -8,7 +9,8 @@ namespace ExampleServices
         Success,
         [Failure(IsDefault = true)]
         Failure,
-        [Failure]
+        [ResultType(ServiceResultTypes.Failure)]
         FilePathNotExists
+
     }
 }

@@ -1,19 +1,20 @@
-﻿using FluentAssertions;
+﻿using System.Net;
+using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
 
-namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIDataServiceResult.WithHttpServiceResultType
+namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIServiceResult.WithHttpStatusCodeResultType
 {
     public class WhenInvalidResultType : GivenAnHttpServiceResultType
     {
-        public WhenInvalidResultType() : base((HttpServiceResultTypes)999)
+        public WhenInvalidResultType() : base((HttpStatusCode)999)
         {
         }
 
         [Test]
         public void Should_Return_ObjectResult()
         {
-            ActionResult.Should().BeOfType<ObjectResult>(); 
+            ActionResult.Should().BeOfType<ObjectResult>();
         }
 
         [Test]

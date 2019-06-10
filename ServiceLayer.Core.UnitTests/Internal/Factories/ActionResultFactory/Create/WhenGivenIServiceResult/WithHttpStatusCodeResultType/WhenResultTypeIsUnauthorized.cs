@@ -1,12 +1,13 @@
-﻿using FluentAssertions;
+﻿using System.Net;
+using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
 
-namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIServiceResult.WithHttpServiceResultType
+namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIServiceResult.WithHttpStatusCodeResultType
 {
     public class WhenResultTypeIsUnauthorized : GivenAnHttpServiceResultType
     {
-        public WhenResultTypeIsUnauthorized() : base(HttpServiceResultTypes.Unauthorized)
+        public WhenResultTypeIsUnauthorized() : base(HttpStatusCode.Unauthorized)
         {
         }
 

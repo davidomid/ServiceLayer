@@ -1,12 +1,13 @@
-﻿using FluentAssertions;
+﻿using System.Net;
+using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
 
-namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIDataServiceResult.WithHttpServiceResultType
+namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIDataServiceResult.WithHttpStatusCodeResultType
 {
     public class WhenResultTypeIsBadRequest : GivenAnHttpServiceResultType
     {
-        public WhenResultTypeIsBadRequest() : base(HttpServiceResultTypes.BadRequest)
+        public WhenResultTypeIsBadRequest() : base(HttpStatusCode.BadRequest)
         {
         }
 

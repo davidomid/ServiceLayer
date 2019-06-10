@@ -1,11 +1,12 @@
-﻿using FluentAssertions;
+﻿using System.Net;
+using FluentAssertions;
 using NUnit.Framework;
 
-namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIServiceResult.WithHttpServiceResultType
+namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIServiceResult.WithHttpStatusCodeResultType
 {
     public class WhenResultTypeIsNotFound : GivenAnHttpServiceResultType
     {
-        public WhenResultTypeIsNotFound() : base(HttpServiceResultTypes.NotFound)
+        public WhenResultTypeIsNotFound() : base(HttpStatusCode.NotFound)
         {
         }
 

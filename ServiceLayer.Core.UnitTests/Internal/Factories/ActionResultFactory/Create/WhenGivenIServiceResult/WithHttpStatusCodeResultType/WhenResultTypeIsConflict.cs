@@ -1,12 +1,13 @@
-﻿using FluentAssertions;
+﻿using System.Net;
+using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
 
-namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIServiceResult.WithHttpServiceResultType
+namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIServiceResult.WithHttpStatusCodeResultType
 {
-    public class WhenResultTypeIsInternalServerError : GivenAnHttpServiceResultType
+    public class WhenResultTypeIsConflict : GivenAnHttpServiceResultType
     {
-        public WhenResultTypeIsInternalServerError() : base(HttpServiceResultTypes.InternalServerError)
+        public WhenResultTypeIsConflict() : base(HttpStatusCode.Conflict)
         {
         }
 
@@ -17,10 +18,10 @@ namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Cre
         }
 
         [Test]
-        public void Should_Have_500_StatusCode()
+        public void Should_Have_409_StatusCode()
         {
             ObjectResult objectResult = (ObjectResult)ActionResult;
-            objectResult.StatusCode.Should().Be(500);
+            objectResult.StatusCode.Should().Be(409);
         }
 
         [Test]
