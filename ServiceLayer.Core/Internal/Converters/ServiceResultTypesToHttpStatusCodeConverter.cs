@@ -3,7 +3,7 @@ using ServiceLayer.Converters;
 
 namespace ServiceLayer.Core.Internal.Converters
 {
-    internal class ServiceResultTypeToHttpStatusCodeConverter : OneToOneResultTypeConverter<ServiceResultTypes, HttpStatusCode>
+    internal class ServiceResultTypesToHttpStatusCodeConverter : OneToOneResultTypeConverter<ServiceResultTypes, HttpStatusCode>
     {
         public override HttpStatusCode? Convert(ServiceResultTypes sourceResultType)
         {
