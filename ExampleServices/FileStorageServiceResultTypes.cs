@@ -1,4 +1,5 @@
-﻿using ServiceLayer;
+﻿using System.Net;
+using ServiceLayer;
 using ServiceLayer.Attributes;
 
 namespace ExampleServices
@@ -10,7 +11,7 @@ namespace ExampleServices
         [Failure(IsDefault = true)]
         Failure,
         [ResultType(ServiceResultTypes.Failure)]
+        [ResultType(HttpStatusCode.BadRequest)]
         FilePathNotExists
-
     }
 }
