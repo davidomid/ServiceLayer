@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
+using ServiceLayer.Core.Internal.Converters;
 
 namespace ServiceLayer.Core.Internal.Factories
 {
     internal class ActionResultFactory : IActionResultFactory
     {
+        public ActionResultFactory()
+        {
+            ServiceLayerConfiguration.ResultTypeConverters.AddOrReplace(new ServiceResultTypeToHttpStatusCodeConverter());
+        }
+
         public ActionResult Create(IServiceResult serviceResult)
         {
             if (serviceResult.IsSuccessful)
