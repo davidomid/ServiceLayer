@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ServiceLayer.Converters
+namespace ServiceLayer
 {
     public interface IResultTypeConverterCollection
     {

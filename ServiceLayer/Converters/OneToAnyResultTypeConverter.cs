@@ -2,7 +2,7 @@
 using System.Reflection;
 using ServiceLayer.Internal.Converters;
 
-namespace ServiceLayer.Converters
+namespace ServiceLayer
 {
     public abstract class OneToAnyResultTypeConverter<TSourceResultType> : ResultTypeConverter, IFromResultTypeConverter<TSourceResultType> where TSourceResultType : Enum
     {

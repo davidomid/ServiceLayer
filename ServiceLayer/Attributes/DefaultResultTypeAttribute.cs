@@ -1,5 +1,5 @@
 ﻿using System;
-namespace ServiceLayer.Attributes
+namespace ServiceLayer
 {
     [AttributeUsage(AttributeTargets.Field)]
     public class DefaultResultTypeAttribute : Attribute

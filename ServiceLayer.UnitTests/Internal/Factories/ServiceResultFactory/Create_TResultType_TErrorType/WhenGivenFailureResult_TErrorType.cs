@@ -2,7 +2,7 @@
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
-using ServiceLayer.Converters;
+using ServiceLayer;
 using ServiceLayer.Internal.Services;
 using Testing.Common.Domain.TestClasses;
 
