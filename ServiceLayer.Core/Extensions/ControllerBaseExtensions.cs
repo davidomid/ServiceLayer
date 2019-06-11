@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
-using ServiceLayer.Core.Extensions;
 
 namespace ServiceLayer.Core
 {
