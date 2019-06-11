@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.Core.Extensions;
 using ServiceLayer.Core.Internal;
@@ -18,7 +19,7 @@ namespace ServiceLayer.Core
             return serviceResult.ToActionResult();
         }
 
-        public static ActionResult FromServiceResult(this ControllerBase controller, IServiceResult<HttpServiceResultTypes> httpServiceResult)
+        public static ActionResult FromServiceResult(this ControllerBase controller, IServiceResult<HttpStatusCode> httpServiceResult)
         {
             return httpServiceResult.ToActionResult();
         }
@@ -33,7 +34,7 @@ namespace ServiceLayer.Core
             return serviceResult.ToActionResult();
         }
 
-        public static ActionResult FromServiceResult<TData>(this ControllerBase controller, IDataServiceResult<TData, HttpServiceResultTypes> httpServiceResult)
+        public static ActionResult FromServiceResult<TData>(this ControllerBase controller, IDataServiceResult<TData, HttpStatusCode> httpServiceResult)
         {
             return httpServiceResult.ToActionResult();
         }

@@ -5,7 +5,6 @@ using ExampleServices;
 using Microsoft.AspNetCore.Mvc;
 using ServiceLayer;
 using ServiceLayer.Core;
-using NotFoundResult = ServiceLayer.Core.NotFoundResult;
 
 namespace ExampleAspNetCoreWebApp.Controllers
 {

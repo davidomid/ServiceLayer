@@ -1,7 +1,7 @@
 ﻿using System;
 namespace ServiceLayer.Attributes
 {
-    [AttributeUsage(AttributeTargets.Field)]
+    [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
     public class ResultTypeAttribute : Attribute
     {
         public ResultTypeAttribute(object resultType)
