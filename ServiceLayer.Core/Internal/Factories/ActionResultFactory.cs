@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
-using ServiceLayer.Core.Internal.Converters;
 
 namespace ServiceLayer.Core.Internal.Factories
 {

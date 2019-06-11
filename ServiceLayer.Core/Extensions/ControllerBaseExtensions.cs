@@ -2,8 +2,6 @@
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.Core.Extensions;
-using ServiceLayer.Core.Internal;
-using ServiceLayer.Core.Internal.Factories;
 
 namespace ServiceLayer.Core
 {

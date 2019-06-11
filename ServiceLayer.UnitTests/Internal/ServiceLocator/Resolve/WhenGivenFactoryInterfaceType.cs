@@ -1,8 +1,6 @@
-using System;
 using FluentAssertions;
 using NUnit.Framework;
 using ServiceLayer.Internal.Factories;
-using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Internal.ServiceLocator.Resolve
 {

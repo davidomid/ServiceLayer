@@ -1,11 +1,4 @@
-﻿using Moq;
-using NUnit.Framework;
-using ServiceLayer;
-using ServiceLayer.Internal;
-using ServiceLayer.Internal.Factories;
-using ServiceLayer.Internal.Services;
-using Testing.Common.Domain.TestClasses;
-using Testing.Common.Infrastructure;
+﻿using Testing.Common.Infrastructure;
 
 namespace ServiceLayer.Core.UnitTests
 {

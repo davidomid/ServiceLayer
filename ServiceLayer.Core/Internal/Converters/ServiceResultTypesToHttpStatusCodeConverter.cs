@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using ServiceLayer;
 
 namespace ServiceLayer.Core.Internal.Converters
 {

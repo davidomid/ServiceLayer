@@ -1,10 +1,5 @@
-using System;
 using FluentAssertions;
-using Moq;
 using NUnit.Framework;
-using ServiceLayer.Internal;
-using ServiceLayer.Internal.Factories;
-using ServiceLayer.UnitTests;
 using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.DataResult

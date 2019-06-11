@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
+﻿using System.Collections.Generic;
 using ExampleServices;
 using Microsoft.AspNetCore.Mvc;
-using ServiceLayer;
 using ServiceLayer.Core;
 
 namespace ExampleAspNetCoreWebApp.Controllers

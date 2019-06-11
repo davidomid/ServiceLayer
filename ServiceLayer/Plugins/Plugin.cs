@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ServiceLayer
+﻿namespace ServiceLayer
 {
     public abstract class Plugin
     {

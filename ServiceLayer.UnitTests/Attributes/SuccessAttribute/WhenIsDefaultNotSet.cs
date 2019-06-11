@@ -1,6 +1,6 @@
 using FluentAssertions;
 using NUnit.Framework;
-using ServiceLayer.UnitTests;
+
 namespace ServiceLayer.UnitTests.Attributes.SuccessAttribute
 {
     public class WhenIsDefaultNotSet : UnitTestBase
