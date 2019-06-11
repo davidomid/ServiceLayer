@@ -14,13 +14,13 @@ namespace ServiceLayer.Internal.Services
             IResultTypeConverter[] resultTypeConverters = new IResultTypeConverter[]
             {
                 // Check if there is a particular converter for converting from TSourceResultType to TDestinationSourceResultType.
-                ServiceLayerConfiguration.ResultTypeConverters.Get(sourceType, typeof(TDestinationResultType)),
+                Engine.ResultTypeConverters.Get(sourceType, typeof(TDestinationResultType)),
                 // Check if there is a particular converter for converting from TSourceResultType to any enum type.
-                ServiceLayerConfiguration.ResultTypeConverters.Get(sourceType, null),
+                Engine.ResultTypeConverters.Get(sourceType, null),
                 // Check if there is a particular converter for converting from any enum type to TDestinationResultType. 
-                ServiceLayerConfiguration.ResultTypeConverters.Get(null, typeof(TDestinationResultType)),
+                Engine.ResultTypeConverters.Get(null, typeof(TDestinationResultType)),
                 // Check if there is a particular converter for converting from any enum type to any enum type. 
-                ServiceLayerConfiguration.ResultTypeConverters.Get(null, null)
+                Engine.ResultTypeConverters.Get(null, null)
             }.Where(c => c != null).ToArray();
 
             if (!resultTypeConverters.Any())

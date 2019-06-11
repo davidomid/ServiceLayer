@@ -7,7 +7,7 @@ namespace ServiceLayer.UnitTests.Attributes.FailureAttribute
     [TestFixtureSource(nameof(Values))]
     public class WhenIsDefaultIsSet : UnitTestBase
     {
-        private ServiceLayer.Attributes.FailureAttribute _failureAttribute;
+        private ServiceLayer.FailureAttribute _failureAttribute;
 
         private static readonly bool[] Values = { true, false };
 
@@ -24,7 +24,7 @@ namespace ServiceLayer.UnitTests.Attributes.FailureAttribute
 
         protected override void Act()
         {
-            _failureAttribute = new ServiceLayer.Attributes.FailureAttribute
+            _failureAttribute = new ServiceLayer.FailureAttribute
             {
                 IsDefault = _value
             };

@@ -7,12 +7,6 @@ namespace ServiceLayer.Core.Internal.Factories
 {
     internal class ActionResultFactory : IActionResultFactory
     {
-        static ActionResultFactory()
-        {
-            ServiceLayerConfiguration.ResultTypeConverters.AddOrReplace(new HttpStatusCodeToServiceResultTypesConverter());
-            ServiceLayerConfiguration.ResultTypeConverters.AddOrReplace(new ServiceResultTypesToHttpStatusCodeConverter());
-        }
-
         public ActionResult Create(IServiceResult serviceResult)
         {
             if (serviceResult.IsSuccessful)

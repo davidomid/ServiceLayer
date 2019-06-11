@@ -1,4 +1,6 @@
-﻿namespace ServiceLayer
+﻿using ServiceLayer.Internal;
+
+namespace ServiceLayer
 {
     public class SuccessResult<TData> : DataServiceResult<TData>
     {
@@ -8,7 +10,7 @@
 
         public static implicit operator SuccessResult<TData>(TData data)
         {
-            return ServiceLayerConfiguration.SuccessResultFactory.Create(data);
+            return Engine.SuccessResultFactory.Create(data);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace ServiceLayer.UnitTests.Attributes.FailureAttribute
 {
     public class WhenIsDefaultNotSet : UnitTestBase
     {
-        private ServiceLayer.Attributes.FailureAttribute _failureAttribute;
+        private ServiceLayer.FailureAttribute _failureAttribute;
 
         protected override void Arrange()
         {
@@ -14,7 +14,7 @@ namespace ServiceLayer.UnitTests.Attributes.FailureAttribute
 
         protected override void Act()
         {
-            _failureAttribute = new ServiceLayer.Attributes.FailureAttribute();
+            _failureAttribute = new ServiceLayer.FailureAttribute();
         }
 
         [Test]

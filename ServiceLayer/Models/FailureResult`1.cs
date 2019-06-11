@@ -1,4 +1,6 @@
-﻿namespace ServiceLayer
+﻿using ServiceLayer.Internal;
+
+namespace ServiceLayer
 {
     public class FailureResult<TErrorType> : FailureResult
     {
@@ -11,7 +13,7 @@
 
         public static implicit operator FailureResult<TErrorType>(TErrorType errorDetails)
         {
-            return ServiceLayerConfiguration.FailureResultFactory.Create(errorDetails);
+            return Engine.FailureResultFactory.Create(errorDetails);
         }
     }
 }

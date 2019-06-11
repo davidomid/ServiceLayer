@@ -1,4 +1,4 @@
-﻿using ServiceLayer.Attributes;
+﻿using ServiceLayer;
 
 namespace Testing.Common.Domain.TestClasses
 {

@@ -1,4 +1,6 @@
-﻿namespace ServiceLayer
+﻿using ServiceLayer.Internal;
+
+namespace ServiceLayer
 {
     public class ServiceResult : IServiceResult
     {
@@ -23,7 +25,7 @@
 
         public static implicit operator ServiceResult(ServiceResultTypes serviceResultType)
         {
-            return ServiceLayerConfiguration.ServiceResultFactory.Create(serviceResultType);
+            return Engine.ServiceResultFactory.Create(serviceResultType);
         }
     }
 }

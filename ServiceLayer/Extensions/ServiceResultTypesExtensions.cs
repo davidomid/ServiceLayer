@@ -1,4 +1,5 @@
 ﻿using System;
+using ServiceLayer.Internal;
 
 namespace ServiceLayer
 {
@@ -6,7 +7,7 @@ namespace ServiceLayer
     {
         public static TDestinationResultType ToResultType<TDestinationResultType>(this Enum resultType) where TDestinationResultType : struct, Enum
         {
-            return ServiceLayerConfiguration.ResultTypeConversionService.Convert<TDestinationResultType>(resultType);
+            return Engine.ResultTypeConversionService.Convert<TDestinationResultType>(resultType);
         }
     }
 }

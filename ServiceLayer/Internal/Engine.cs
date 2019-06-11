@@ -1,14 +1,15 @@
-﻿using ServiceLayer;
-using ServiceLayer.Internal;
-using ServiceLayer.Internal.Converters;
+﻿using ServiceLayer.Internal.Converters;
 using ServiceLayer.Internal.Factories;
+using ServiceLayer.Internal.Plugins;
 using ServiceLayer.Internal.Services;
 
-namespace ServiceLayer
+namespace ServiceLayer.Internal
 {
-    public static class ServiceLayerConfiguration
+    internal static class Engine
     {
-        public static IResultTypeConverterCollection ResultTypeConverters { get; } = new ResultTypeConverterCollection();
+        internal static IResultTypeConverterCollection ResultTypeConverters { get; } = new ResultTypeConverterCollection();
+
+        internal static IPluginCollection Plugins { get; } = new PluginCollection();
 
         internal static IResultTypeConversionService ResultTypeConversionService => ServiceLocator.Instance.Resolve<IResultTypeConversionService>();
 

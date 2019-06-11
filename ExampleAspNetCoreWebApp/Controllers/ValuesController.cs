@@ -25,6 +25,8 @@ namespace ExampleAspNetCoreWebApp.Controllers
         {
             FileStorageService<Entity> fileStorageService = new FileStorageService<Entity>("TestPath.txt");
             var result = fileStorageService.Get();
+            //var result = new ServiceResult<HttpStatusCode>(HttpStatusCode.OK);
+            //var result = new ServiceResult<HttpStatusCode>(ServiceResultTypes.Success.ToResultType<HttpStatusCode>());
             return this.FromServiceResult(result);
         }
 
