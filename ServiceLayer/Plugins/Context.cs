@@ -8,6 +8,6 @@ namespace ServiceLayer
         public IResultTypeConverterCollection ResultTypeConverters =
             Engine.ResultTypeConverters;
 
-        public IReadOnlyCollection<Plugin> InstalledPlugins => Engine.Plugins.Installed();
+        public IPluginCollection Plugins => Engine.Plugins;
     }
 }

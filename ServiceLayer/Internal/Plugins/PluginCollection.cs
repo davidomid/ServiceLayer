@@ -13,11 +13,6 @@ namespace ServiceLayer.Internal.Plugins
             return new ReadOnlyCollection<Plugin>(_installedPlugins);
         }
 
-        public Plugin FindByName(string name)
-        {
-            return _installedPlugins.FirstOrDefault(p => p.Name == name);
-        }
-
         public void Install(Plugin plugin)
         {
             if (_installedPlugins.Contains(plugin))
@@ -25,7 +20,7 @@ namespace ServiceLayer.Internal.Plugins
                 return;
             }
 
-            Plugin existingPlugin = FindByName(plugin.Name);
+            Plugin existingPlugin = _installedPlugins.FirstOrDefault(p => p.Name == plugin.Name);
             if (existingPlugin != null)
             {
                 Uninstall(existingPlugin);
