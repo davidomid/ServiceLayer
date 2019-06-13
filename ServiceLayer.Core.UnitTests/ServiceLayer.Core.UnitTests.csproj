@@ -15,6 +15,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ControllerBaseExtensions\**" />
+    <EmbeddedResource Remove="ControllerBaseExtensions\**" />
+    <None Remove="ControllerBaseExtensions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
@@ -25,10 +31,6 @@
   <ItemGroup>
     <ProjectReference Include="..\ServiceLayer.Core\ServiceLayer.Core.csproj" />
     <ProjectReference Include="..\Testing.Common\Testing.Common.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ControllerBaseExtensions\" />
   </ItemGroup>
 
 </Project>

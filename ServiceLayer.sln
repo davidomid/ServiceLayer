@@ -10,7 +10,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BC3AC4C8-1D9F-4645-8457-9BFB3F8B731C}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
-		ExampleServices\User.cs = ExampleServices\User.cs
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AAF26276-3CA3-42B5-8A4E-EC62655069D8}"
