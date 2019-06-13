@@ -19,7 +19,7 @@ namespace ServiceLayer.Core.UnitTests
             //        c.Convert<ServiceResultTypes>(It.IsAny<ServiceResultTypes>()))
             //    .Returns(ServiceResultTypes.Success);
 
-            //ServiceLayerConfiguration.ResultTypeConverters.AddOrReplace(mockServiceResultTypeConverter.Object);
+            //ServiceLayerConfiguration.ResultTypeConverters.Add(mockServiceResultTypeConverter.Object);
         }
     }
 }

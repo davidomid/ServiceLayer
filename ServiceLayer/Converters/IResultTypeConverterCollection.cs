@@ -7,7 +7,7 @@ namespace ServiceLayer
     {
         IReadOnlyCollection<ResultTypeConverter> GetAll();
         ResultTypeConverter Get(Type sourceResultType, Type destinationResultType);
-        void AddOrReplace(ResultTypeConverter resultTypeConverter);
+        void Add(ResultTypeConverter resultTypeConverter);
         void Remove(ResultTypeConverter resultTypeConverter);
     }
 }

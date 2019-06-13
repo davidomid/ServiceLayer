@@ -10,8 +10,8 @@ namespace ServiceLayer.Core
 
         public override void Install()
         {
-            Context.ResultTypeConverters.AddOrReplace(new HttpStatusCodeToServiceResultTypesConverter());
-            Context.ResultTypeConverters.AddOrReplace(new ServiceResultTypesToHttpStatusCodeConverter());
+            Context.ResultTypeConverters.Add(new HttpStatusCodeToServiceResultTypesConverter());
+            Context.ResultTypeConverters.Add(new ServiceResultTypesToHttpStatusCodeConverter());
         }
     }
 }
