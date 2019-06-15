@@ -1,7 +1,5 @@
 ﻿using System.Net;
 using ServiceLayer;
-using ServiceLayer.Attributes;
-
 namespace ExampleServices
 {
     public enum FileStorageServiceResultTypes

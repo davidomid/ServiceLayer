@@ -1,11 +1,11 @@
 using FluentAssertions;
 using NUnit.Framework;
-using ServiceLayer.UnitTests;
+
 namespace ServiceLayer.UnitTests.Attributes.SuccessAttribute
 {
     public class WhenIsDefaultNotSet : UnitTestBase
     {
-        private ServiceLayer.Attributes.SuccessAttribute _successAttribute;
+        private ServiceLayer.SuccessAttribute _successAttribute;
 
         protected override void Arrange()
         {
@@ -13,7 +13,7 @@ namespace ServiceLayer.UnitTests.Attributes.SuccessAttribute
 
         protected override void Act()
         {
-            _successAttribute = new ServiceLayer.Attributes.SuccessAttribute();
+            _successAttribute = new ServiceLayer.SuccessAttribute();
         }
 
         [Test]

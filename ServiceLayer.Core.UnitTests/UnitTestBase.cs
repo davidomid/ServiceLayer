@@ -1,11 +1,4 @@
-﻿using Moq;
-using NUnit.Framework;
-using ServiceLayer.Converters;
-using ServiceLayer.Internal;
-using ServiceLayer.Internal.Factories;
-using ServiceLayer.Internal.Services;
-using Testing.Common.Domain.TestClasses;
-using Testing.Common.Infrastructure;
+﻿using Testing.Common.Infrastructure;
 
 namespace ServiceLayer.Core.UnitTests
 {
@@ -26,7 +19,7 @@ namespace ServiceLayer.Core.UnitTests
             //        c.Convert<ServiceResultTypes>(It.IsAny<ServiceResultTypes>()))
             //    .Returns(ServiceResultTypes.Success);
 
-            //ServiceLayerConfiguration.ResultTypeConverters.AddOrReplace(mockServiceResultTypeConverter.Object);
+            //ServiceLayerConfiguration.ResultTypeConverters.Add(mockServiceResultTypeConverter.Object);
         }
     }
 }

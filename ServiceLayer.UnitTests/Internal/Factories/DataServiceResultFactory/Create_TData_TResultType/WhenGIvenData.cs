@@ -1,7 +1,5 @@
 using FluentAssertions;
-using Moq;
 using NUnit.Framework;
-using ServiceLayer.Internal.Services;
 using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Create_TData_TResultType

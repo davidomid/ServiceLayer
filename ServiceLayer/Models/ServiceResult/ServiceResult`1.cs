@@ -1,4 +1,5 @@
 ﻿using System;
+using ServiceLayer.Internal;
 
 namespace ServiceLayer
 {
@@ -21,17 +22,17 @@ namespace ServiceLayer
 
         public static implicit operator ServiceResult<TResultType>(SuccessResult successResult)
         {
-            return ServiceLayerConfiguration.ServiceResultFactory.Create<TResultType>(successResult);
+            return Engine.ServiceResultFactory.Create<TResultType>(successResult);
         }
 
         public static implicit operator ServiceResult<TResultType>(FailureResult failureResult)
         {
-            return ServiceLayerConfiguration.ServiceResultFactory.Create<TResultType>(failureResult);
+            return Engine.ServiceResultFactory.Create<TResultType>(failureResult);
         }
 
         public static implicit operator ServiceResult<TResultType>(TResultType resultType)
         {
-            return ServiceLayerConfiguration.ServiceResultFactory.Create(resultType);
+            return Engine.ServiceResultFactory.Create(resultType);
         }
     }
 }

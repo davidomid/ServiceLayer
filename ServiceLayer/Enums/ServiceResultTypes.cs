@@ -1,6 +1,4 @@
-﻿using ServiceLayer.Attributes;
-
-namespace ServiceLayer
+﻿namespace ServiceLayer
 {
     public enum ServiceResultTypes
     {

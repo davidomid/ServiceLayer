@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ServiceLayer;
+using ServiceLayer.Core;
 
 namespace ExampleAspNetCoreWebApp
 {
@@ -19,6 +21,7 @@ namespace ExampleAspNetCoreWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            ServiceLayerConfig.Plugins.Install(new AspNetCorePlugin());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

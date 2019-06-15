@@ -1,10 +1,6 @@
 using System;
 using FluentAssertions;
-using Moq;
 using NUnit.Framework;
-using ServiceLayer.Internal;
-using ServiceLayer.Internal.Factories;
-using ServiceLayer.UnitTests;
 
 namespace ServiceLayer.UnitTests.Models.ServiceResult.Operators.Implicit
 {

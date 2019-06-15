@@ -1,6 +1,5 @@
 using System;
 using FluentAssertions;
-using Moq;
 using NUnit.Framework;
 using Testing.Common.Domain.TestClasses;
 

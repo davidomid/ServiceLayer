@@ -1,4 +1,4 @@
-﻿namespace ServiceLayer.Attributes
+﻿namespace ServiceLayer
 {
     public class FailureAttribute : ResultTypeAttribute
     {

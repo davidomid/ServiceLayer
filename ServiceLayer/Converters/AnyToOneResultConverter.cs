@@ -1,7 +1,7 @@
 ﻿using System;
 using ServiceLayer.Internal.Converters;
 
-namespace ServiceLayer.Converters
+namespace ServiceLayer
 {
     public abstract class AnyToOneResultConverter<TDestinationResultType> : ResultTypeConverter, IAnyToOneResultConverter<TDestinationResultType> where TDestinationResultType : struct, Enum
     {

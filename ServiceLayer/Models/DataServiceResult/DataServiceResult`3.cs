@@ -1,4 +1,5 @@
 ﻿using System;
+using ServiceLayer.Internal;
 
 namespace ServiceLayer
 {
@@ -13,27 +14,27 @@ namespace ServiceLayer
 
         public static implicit operator DataServiceResult<TData, TResultType, TErrorType>(TData data)
         {
-            return ServiceLayerConfiguration.DataServiceResultFactory.Create<TData, TResultType, TErrorType>(data);
+            return Engine.DataServiceResultFactory.Create<TData, TResultType, TErrorType>(data);
         }
 
         public static implicit operator DataServiceResult<TData, TResultType, TErrorType>(FailureResult<TErrorType> failureResult)
         {
-            return ServiceLayerConfiguration.DataServiceResultFactory.Create<TData, TResultType, TErrorType>(failureResult);
+            return Engine.DataServiceResultFactory.Create<TData, TResultType, TErrorType>(failureResult);
         }
 
         public static implicit operator DataServiceResult<TData, TResultType, TErrorType>(SuccessResult<TData> successResult)
         {
-            return ServiceLayerConfiguration.DataServiceResultFactory.Create<TData, TResultType, TErrorType>(successResult);
+            return Engine.DataServiceResultFactory.Create<TData, TResultType, TErrorType>(successResult);
         }
 
         public static implicit operator DataServiceResult<TData, TResultType, TErrorType>(TResultType resultType)
         {
-            return ServiceLayerConfiguration.DataServiceResultFactory.Create<TData, TResultType, TErrorType>(resultType);
+            return Engine.DataServiceResultFactory.Create<TData, TResultType, TErrorType>(resultType);
         }
 
         public static implicit operator DataServiceResult<TData, TResultType, TErrorType>(TErrorType errorDetails)
         {
-            return ServiceLayerConfiguration.DataServiceResultFactory.Create<TData, TResultType, TErrorType>(errorDetails);
+            return Engine.DataServiceResultFactory.Create<TData, TResultType, TErrorType>(errorDetails);
         }
     }
 }

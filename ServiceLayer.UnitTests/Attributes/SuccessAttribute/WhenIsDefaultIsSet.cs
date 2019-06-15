@@ -1,13 +1,12 @@
 using FluentAssertions;
 using NUnit.Framework;
-using ServiceLayer.UnitTests;
 
 namespace ServiceLayer.UnitTests.Attributes.SuccessAttribute
 {
     [TestFixtureSource(nameof(Values))]
     public class WhenIsDefaultIsSet : UnitTestBase
     {
-        private ServiceLayer.Attributes.SuccessAttribute _successAttribute;
+        private ServiceLayer.SuccessAttribute _successAttribute;
 
         private static readonly bool[] Values = { true, false };
 
@@ -24,7 +23,7 @@ namespace ServiceLayer.UnitTests.Attributes.SuccessAttribute
 
         protected override void Act()
         {
-            _successAttribute = new ServiceLayer.Attributes.SuccessAttribute
+            _successAttribute = new ServiceLayer.SuccessAttribute
             {
                 IsDefault = _value
             };

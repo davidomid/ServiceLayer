@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
+﻿using System.Collections.Generic;
 using ExampleServices;
 using Microsoft.AspNetCore.Mvc;
-using ServiceLayer;
 using ServiceLayer.Core;
 
 namespace ExampleAspNetCoreWebApp.Controllers
@@ -25,6 +22,8 @@ namespace ExampleAspNetCoreWebApp.Controllers
         {
             FileStorageService<Entity> fileStorageService = new FileStorageService<Entity>("TestPath.txt");
             var result = fileStorageService.Get();
+            //var result = new ServiceResult<HttpStatusCode>(HttpStatusCode.OK);
+            //var result = new ServiceResult<HttpStatusCode>(ServiceResultTypes.Success.ToResultType<HttpStatusCode>());
             return this.FromServiceResult(result);
         }
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ServiceLayer.Converters
+namespace ServiceLayer
 {
     internal interface IResultTypeConverter
     {
