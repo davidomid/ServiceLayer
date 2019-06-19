@@ -11,7 +11,11 @@ namespace ServiceLayer.Core.Internal.Converters
             {
                 return ServiceResultTypes.Success;
             }
-            return ServiceResultTypes.Failure;
+            if (statusCode >= 400 && statusCode <= 599)
+            {
+                return ServiceResultTypes.Failure;
+            }
+            return ServiceResultTypes.Inconclusive;
         }
     }
 }

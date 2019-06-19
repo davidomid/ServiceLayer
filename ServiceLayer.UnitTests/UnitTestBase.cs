@@ -40,6 +40,8 @@ namespace ServiceLayer.UnitTests
                 .Returns(ServiceResultTypes.Success);
             MockResultTypeConversionService.Setup(s => s.Convert<ServiceResultTypes>(ServiceResultTypes.Failure))
                 .Returns(ServiceResultTypes.Failure);
+            MockResultTypeConversionService.Setup(s => s.Convert<ServiceResultTypes>(ServiceResultTypes.Inconclusive))
+                .Returns(ServiceResultTypes.Inconclusive);
             MockResultTypeConversionService.Setup(s =>
                     s.Convert<ServiceResultTypes>(TestCustomServiceResultTypes.TestValueWithNoAttribute))
                 .Returns(ServiceResultTypes.Failure);
