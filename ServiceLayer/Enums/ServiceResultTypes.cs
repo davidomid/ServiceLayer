@@ -2,8 +2,9 @@
 {
     public enum ServiceResultTypes
     {
-        Success,
         [DefaultResultType]
+        Inconclusive,
+        Success,
         Failure
     }
 }
