@@ -21,7 +21,6 @@ namespace ServiceLayer
         internal static IInconclusiveResultFactory InconclusiveResultFactory =
             ServiceLocator.Instance.Resolve<IInconclusiveResultFactory>();
 
-
         public static InconclusiveResult Inconclusive(this IService service)
         {
             return InconclusiveResultFactory.Create();
