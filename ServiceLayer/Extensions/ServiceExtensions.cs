@@ -1,6 +1,7 @@
 ﻿using System;
 using ServiceLayer.Internal;
 using ServiceLayer.Internal.Factories;
+using ServiceLayer.Models;
 
 namespace ServiceLayer
 {
@@ -15,7 +16,16 @@ namespace ServiceLayer
             ServiceLocator.Instance.Resolve<ISuccessResultFactory>();
 
         internal static IFailureResultFactory FailureResultFactory =
-            ServiceLocator.Instance.Resolve<IFailureResultFactory>(); 
+            ServiceLocator.Instance.Resolve<IFailureResultFactory>();
+
+        internal static IInconclusiveResultFactory InconclusiveResultFactory =
+            ServiceLocator.Instance.Resolve<IInconclusiveResultFactory>();
+
+
+        public static InconclusiveResult Inconclusive(this IService service)
+        {
+            return InconclusiveResultFactory.Create();
+        }
 
         public static SuccessResult Success(this IService service)
         {

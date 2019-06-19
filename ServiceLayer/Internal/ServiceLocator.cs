@@ -15,6 +15,7 @@ namespace ServiceLayer.Internal
             { typeof(IDataServiceResultFactory), new DataServiceResultFactory() },
             { typeof(ISuccessResultFactory), new SuccessResultFactory() },
             { typeof(IFailureResultFactory), new FailureResultFactory() },
+            { typeof(IInconclusiveResultFactory), new InconclusiveResultFactory() },
             { typeof(IResultTypeConversionService), new ResultTypeConversionService() }
         };
 
