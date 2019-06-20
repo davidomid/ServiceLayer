@@ -8,10 +8,7 @@ namespace ServiceLayer.Internal.Plugins
     {
         private readonly List<Plugin> _installedPlugins = new List<Plugin>();
 
-        public IReadOnlyCollection<Plugin> Installed()
-        {
-            return new ReadOnlyCollection<Plugin>(_installedPlugins);
-        }
+        public IReadOnlyCollection<Plugin> Installed => new ReadOnlyCollection<Plugin>(_installedPlugins);
 
         public void Install(Plugin plugin)
         {

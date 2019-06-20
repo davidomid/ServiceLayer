@@ -12,19 +12,12 @@ namespace ServiceLayer.Internal.Converters
             new AttributeResultTypeConverter()
         };
 
-        public IReadOnlyCollection<ResultTypeConverter> GetAll()
-        {
-            return new ReadOnlyCollection<ResultTypeConverter>(_resultTypeConverters.ToList());
-        }
+        public IReadOnlyCollection<ResultTypeConverter> Installed => new ReadOnlyCollection<ResultTypeConverter>(_resultTypeConverters.ToList());
 
-        public ResultTypeConverter Get(Type sourceResultType, Type destinationResultType)
+        public void Install(ResultTypeConverter resultTypeConverter)
         {
-            return _resultTypeConverters.FirstOrDefault(c => c.SourceType == sourceResultType && c.DestinationType == destinationResultType);
-        }
-
-        public void Add(ResultTypeConverter resultTypeConverter)
-        {
-            ResultTypeConverter existingResultTypeConverter = Get(resultTypeConverter.SourceType, resultTypeConverter.DestinationType);
+            ResultTypeConverter existingResultTypeConverter = _resultTypeConverters.FirstOrDefault(c => c.SourceType == resultTypeConverter.SourceType 
+                                                                                                        && c.DestinationType == resultTypeConverter.DestinationType);
             if (existingResultTypeConverter != null)
             {
                 string sourceTypeName = resultTypeConverter.SourceType.ToString() ?? "any";
@@ -37,7 +30,7 @@ namespace ServiceLayer.Internal.Converters
             _resultTypeConverters.Add(resultTypeConverter);
         }
 
-        public void Remove(ResultTypeConverter resultTypeConverter)
+        public void Uninstall(ResultTypeConverter resultTypeConverter)
         {
             _resultTypeConverters.Remove(resultTypeConverter);
         }

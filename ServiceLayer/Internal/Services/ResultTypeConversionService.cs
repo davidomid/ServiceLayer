@@ -10,16 +10,17 @@ namespace ServiceLayer.Internal.Services
         {
             Type sourceType = sourceResultType.GetType();
 
+            var installedResultTypeConverters = Engine.ResultTypeConverters.Installed;
             IResultTypeConverter[] resultTypeConverters = new IResultTypeConverter[]
             {
                 // Check if there is a particular converter for converting from TSourceResultType to TDestinationSourceResultType.
-                Engine.ResultTypeConverters.Get(sourceType, typeof(TDestinationResultType)),
+                installedResultTypeConverters.FirstOrDefault(c => c.SourceType == sourceType && c.DestinationType == typeof(TDestinationResultType)),
                 // Check if there is a particular converter for converting from TSourceResultType to any enum type.
-                Engine.ResultTypeConverters.Get(sourceType, null),
+                installedResultTypeConverters.FirstOrDefault(c => c.SourceType == sourceType && c.DestinationType == null),
                 // Check if there is a particular converter for converting from any enum type to TDestinationResultType. 
-                Engine.ResultTypeConverters.Get(null, typeof(TDestinationResultType)),
+                installedResultTypeConverters.FirstOrDefault(c => c.SourceType == null && c.DestinationType == typeof(TDestinationResultType)),
                 // Check if there is a particular converter for converting from any enum type to any enum type. 
-                Engine.ResultTypeConverters.Get(null, null)
+                installedResultTypeConverters.FirstOrDefault(c => c.SourceType == null && c.DestinationType == null)
             }.Where(c => c != null).ToArray();
 
             if (!resultTypeConverters.Any())

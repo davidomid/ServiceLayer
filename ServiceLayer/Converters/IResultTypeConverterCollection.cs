@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace ServiceLayer
 {
     public interface IResultTypeConverterCollection
     {
-        IReadOnlyCollection<ResultTypeConverter> GetAll();
-        ResultTypeConverter Get(Type sourceResultType, Type destinationResultType);
-        void Add(ResultTypeConverter resultTypeConverter);
-        void Remove(ResultTypeConverter resultTypeConverter);
+        IReadOnlyCollection<ResultTypeConverter> Installed { get; }
+        void Install(ResultTypeConverter resultTypeConverter);
+        void Uninstall(ResultTypeConverter resultTypeConverter);
     }
 }
