@@ -13,7 +13,7 @@ namespace ServiceLayer.Internal.Factories
         public Result<TResultType, TErrorType> Create<TResultType, TErrorType>(TErrorType errorDetails = default)
             where TResultType : struct, Enum
         {
-            return Create<TResultType, TErrorType>(ResultTypes.Failure, errorDetails);
+            return Create<TResultType, TErrorType>(ResultType.Failure, errorDetails);
         }
 
         public Result<TResultType, TErrorType> Create<TResultType, TErrorType>(SuccessResult successResult) where TResultType : struct, Enum
@@ -31,9 +31,9 @@ namespace ServiceLayer.Internal.Factories
             return Create<TResultType, object>(resultType);
         }
 
-        public Result Create(ResultTypes resultType)
+        public Result Create(ResultType resultType)
         {
-            return Create<ResultTypes>(resultType);
+            return Create<ResultType>(resultType);
         }
 
         public Result<TResultType> Create<TResultType>(Result result) where TResultType : struct, Enum
@@ -42,13 +42,13 @@ namespace ServiceLayer.Internal.Factories
         }
 
         private Result<TResultType, TErrorType> Create<TResultType, TErrorType>(
-            ResultTypes resultType,
+            ResultType resultType,
             TErrorType errorDetails = default) where TResultType : struct, Enum
         {
             return Create(resultType.ToResultType<TResultType>(), errorDetails);
         }
 
-        private Result<TResultType> Create<TResultType>(ResultTypes resultType, object errorDetails)
+        private Result<TResultType> Create<TResultType>(ResultType resultType, object errorDetails)
             where TResultType : struct, Enum
         {
             return Create<TResultType, object>(resultType, errorDetails);

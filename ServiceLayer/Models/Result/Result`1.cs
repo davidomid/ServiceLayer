@@ -13,7 +13,7 @@ namespace ServiceLayer
         {
         }
 
-        public Result(TResultType resultType, object errorDetails) : base(resultType.ToResultType<ResultTypes>(), errorDetails)
+        public Result(TResultType resultType, object errorDetails) : base(resultType.ToResultType<ResultType>(), errorDetails)
         {
             ResultType = resultType;
         }

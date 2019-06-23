@@ -5,7 +5,7 @@ using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create_TResultType
 {
-    [TestFixtureSource(nameof(ResultTypes))]
+    [TestFixtureSource(nameof(ResultType))]
     public class WhenGivenServiceResult : UnitTestBase
     {
         private readonly ServiceLayer.Internal.Factories.ResultFactory _resultFactory =
@@ -15,15 +15,15 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create_
 
         private Result _fromResult;
 
-        private readonly ResultTypes _resultType;
+        private readonly ResultType _resultType;
 
         private readonly TestCustomServiceResultTypes _expectedCustomResultType = (TestCustomServiceResultTypes) 1000;
 
         private object[] _errorDetails; 
 
-        private static readonly ResultTypes[] ResultTypes = (ResultTypes[])Enum.GetValues(typeof(ResultTypes));
+        private static readonly ResultType[] ResultType = (ResultType[])Enum.GetValues(typeof(ResultType));
 
-        public WhenGivenServiceResult(ResultTypes resultType)
+        public WhenGivenServiceResult(ResultType resultType)
         {
             _resultType = resultType;
         }

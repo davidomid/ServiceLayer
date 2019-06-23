@@ -41,7 +41,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Cre
         {
             _testData = new TestData();
             _successResult = new SuccessResult<TestData>(_testData);
-            MockResultTypeConversionService.Setup(s => s.Convert<TestCustomServiceResultTypes>(ResultTypes.Success))
+            MockResultTypeConversionService.Setup(s => s.Convert<TestCustomServiceResultTypes>(ResultType.Success))
                 .Returns(_expectedResultType);
         }
     }

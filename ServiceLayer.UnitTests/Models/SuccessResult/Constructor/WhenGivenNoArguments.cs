@@ -10,7 +10,7 @@ namespace ServiceLayer.UnitTests.Models.SuccessResult.Constructor
         [Test]
         public void Should_Have_Success_ServiceResultType()
         {
-            _successResult.ResultType.Should().Be(ResultTypes.Success);
+            _successResult.ResultType.Should().Be(ResultType.Success);
         }
 
         protected override void Arrange()

@@ -16,7 +16,7 @@ namespace ServiceLayer.UnitTests.Models.ServiceResult.IsSuccessful
 
         protected override void Arrange()
         {
-            _result = new ServiceLayer.Result(ResultTypes.Failure);
+            _result = new ServiceLayer.Result(ResultType.Failure);
         }
 
         protected override void Act()

@@ -18,7 +18,7 @@ namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Cre
             ServiceLayerConfig.Plugins.Install(new AspNetCorePlugin());
             _actionResultFactory = new Core.Internal.Factories.ActionResultFactory();
             Mock<IDataResult<string>> mockServiceResult = new Mock<IDataResult<string>>();
-            mockServiceResult.SetupGet(r => r.ResultType).Returns(ResultTypes.Success);
+            mockServiceResult.SetupGet(r => r.ResultType).Returns(ResultType.Success);
             _dataResult = mockServiceResult.Object;
         }
 

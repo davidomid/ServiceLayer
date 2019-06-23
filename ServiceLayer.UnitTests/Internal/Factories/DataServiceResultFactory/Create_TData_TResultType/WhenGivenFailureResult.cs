@@ -39,7 +39,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Cre
 
         protected override void Arrange()
         {
-            MockResultTypeConversionService.Setup(s => s.Convert<TestCustomServiceResultTypes>(ResultTypes.Failure))
+            MockResultTypeConversionService.Setup(s => s.Convert<TestCustomServiceResultTypes>(ResultType.Failure))
                 .Returns(_expectedResultType);
             _errorDetails = new[] { "test error 1", "test error 2", "test error 3" };
             _failureResult = new FailureResult(_errorDetails);

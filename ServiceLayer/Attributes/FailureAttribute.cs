@@ -2,7 +2,7 @@
 {
     public class FailureAttribute : ResultTypeAttribute
     {
-        public FailureAttribute() : base(ResultTypes.Failure)
+        public FailureAttribute() : base(ServiceLayer.ResultType.Failure)
         {
         }
     }

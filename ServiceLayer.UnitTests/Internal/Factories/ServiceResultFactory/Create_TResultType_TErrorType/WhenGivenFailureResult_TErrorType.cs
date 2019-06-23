@@ -22,7 +22,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create_
 
         protected override void Act()
         {
-            MockResultTypeConversionService.Setup(s => s.Convert<TestCustomServiceResultTypes>(ResultTypes.Failure))
+            MockResultTypeConversionService.Setup(s => s.Convert<TestCustomServiceResultTypes>(ResultType.Failure))
                 .Returns(_expectedResultType);
             _result = _resultFactory.Create<TestCustomServiceResultTypes, TestErrorType>(_failureResult); 
         }

@@ -20,7 +20,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Cre
         [Test]
         public void Should_Return_DataServiceResult_With_Expected_ResultType()
         {
-            _result.ResultType.Should().Be(ResultTypes.Success);
+            _result.ResultType.Should().Be(ResultType.Success);
         }
 
         [Test]

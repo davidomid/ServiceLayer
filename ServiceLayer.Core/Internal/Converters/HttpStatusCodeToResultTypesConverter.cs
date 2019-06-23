@@ -2,20 +2,20 @@
 
 namespace ServiceLayer.Core.Internal.Converters
 {
-    internal class HttpStatusCodeToResultTypesConverter : OneToOneResultTypeConverter<HttpStatusCode, ResultTypes>
+    internal class HttpStatusCodeToResultTypesConverter : OneToOneResultTypeConverter<HttpStatusCode, ResultType>
     {
-        public override ResultTypes? Convert(HttpStatusCode sourceResultType)
+        public override ResultType? Convert(HttpStatusCode sourceResultType)
         {
             int statusCode = (int) sourceResultType;
             if (statusCode >= 200 && statusCode <= 299)
             {
-                return ResultTypes.Success;
+                return ResultType.Success;
             }
             if (statusCode >= 400 && statusCode <= 599)
             {
-                return ResultTypes.Failure;
+                return ResultType.Failure;
             }
-            return ResultTypes.Inconclusive;
+            return ResultType.Inconclusive;
         }
     }
 }

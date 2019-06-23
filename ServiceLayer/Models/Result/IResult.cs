@@ -2,7 +2,7 @@
 {
     public interface IResult
     {
-        ResultTypes ResultType { get; }
+        ResultType ResultType { get; }
 
         object ErrorDetails { get; }
 

@@ -11,17 +11,17 @@ namespace ExampleServices
 
         public Result TestA2()
         {
-            return new Result(ResultTypes.Success);
+            return new Result(ResultType.Success);
         }
 
         public Result TestA3()
         {
-            return this.Result(ResultTypes.Success);
+            return this.Result(ResultType.Success);
         }
 
         public Result TestA4()
         {
-            return ResultTypes.Success;
+            return ResultType.Success;
         }
 
         public Result TestA5()
@@ -31,12 +31,12 @@ namespace ExampleServices
 
         public Result TestA6()
         {
-            return new Result(ResultTypes.Failure);
+            return new Result(ResultType.Failure);
         }
 
         public Result TestA7()
         {
-            return ResultTypes.Failure;
+            return ResultType.Failure;
         }
         public Result TestA8()
         {
@@ -44,37 +44,37 @@ namespace ExampleServices
         }
         public Result TestA9()
         {
-            return this.DataResult(100, ResultTypes.Success);
+            return this.DataResult(100, ResultType.Success);
         }
 
-        public Result<ResultTypes> TestB1()
+        public Result<ResultType> TestB1()
         {
             return new SuccessResult();
         }
 
-        public Result<ResultTypes> TestB2()
+        public Result<ResultType> TestB2()
         {
-            return new Result<ResultTypes>(ResultTypes.Success);
+            return new Result<ResultType>(ResultType.Success);
         }
 
-        public Result<ResultTypes> TestB3()
+        public Result<ResultType> TestB3()
         {
-            return this.Result<ResultTypes>(ResultTypes.Success);
+            return this.Result<ResultType>(ResultType.Success);
         }
 
-        public Result<ResultTypes> TestB4()
+        public Result<ResultType> TestB4()
         {
-            return ResultTypes.Success;
+            return ResultType.Success;
         }
 
-        public Result<ResultTypes> TestB5()
+        public Result<ResultType> TestB5()
         {
             return new FailureResult();
         }
 
-        public Result<ResultTypes> TestB6()
+        public Result<ResultType> TestB6()
         {
-            return ResultTypes.Failure;
+            return ResultType.Failure;
         }
 
         public Result<FileStorageServiceResultTypes> TestC1()
@@ -117,29 +117,29 @@ namespace ExampleServices
             return this.Result(FileStorageServiceResultTypes.Success);
         }
 
-        public Result<ResultTypes, string> TestD1()
+        public Result<ResultType, string> TestD1()
         {
             return this.Success();
         }
-        public Result<ResultTypes, string> TestD2()
+        public Result<ResultType, string> TestD2()
         {
             return new FailureResult<string>("test error");
         }
-        public Result<ResultTypes, string> TestD3()
+        public Result<ResultType, string> TestD3()
         {
             return this.Failure("test error");
         }
-        public Result<ResultTypes, string> TestD4()
+        public Result<ResultType, string> TestD4()
         {
             return "test error";
         }
-        public Result<ResultTypes, string> TestD5()
+        public Result<ResultType, string> TestD5()
         {
-            return ResultTypes.Success;
+            return ResultType.Success;
         }
-        public Result<ResultTypes, string> TestD6()
+        public Result<ResultType, string> TestD6()
         {
-            return this.Result(ResultTypes.Failure, "test error");
+            return this.Result(ResultType.Failure, "test error");
         }
         public DataResult<int> TestE1()
         {
@@ -163,7 +163,7 @@ namespace ExampleServices
         }
         public DataResult<int> TestE6()
         {
-            return ResultTypes.Success;
+            return ResultType.Success;
         }
         public DataResult<int> TestE7()
         {
@@ -171,26 +171,26 @@ namespace ExampleServices
         }
         public DataResult<int> TestE8()
         {
-            return this.DataResult(100, ResultTypes.Success);
+            return this.DataResult(100, ResultType.Success);
         }
 
-        public DataResult<int, ResultTypes> TestF1()
+        public DataResult<int, ResultType> TestF1()
         {
             return this.Success(100);
         }
-        public DataResult<int, ResultTypes> TestF2()
+        public DataResult<int, ResultType> TestF2()
         {
             return 100;
         }
-        public DataResult<int, ResultTypes> TestF3()
+        public DataResult<int, ResultType> TestF3()
         {
             return this.Failure();
         }
-        public DataResult<int, ResultTypes> TestF4()
+        public DataResult<int, ResultType> TestF4()
         {
             return this.Failure("test1");
         }
-        public DataResult<int, ResultTypes> TestF5()
+        public DataResult<int, ResultType> TestF5()
         {
             return this.Failure("test1", "test2", "test3");
         }

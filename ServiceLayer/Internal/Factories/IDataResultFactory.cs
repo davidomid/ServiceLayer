@@ -6,7 +6,7 @@ namespace ServiceLayer.Internal.Factories
     {
         DataResult<TData> Create<TData>(TData data);
         DataResult<TData> Create<TData>(FailureResult failureResult);
-        DataResult<TData> Create<TData>(ResultTypes resultType);
+        DataResult<TData> Create<TData>(ResultType resultType);
 
         DataResult<TData, TResultType> Create<TData, TResultType>(TResultType resultType) where TResultType : struct, Enum;
         DataResult<TData, TResultType> Create<TData, TResultType>(TData data) where TResultType : struct, Enum;

@@ -11,13 +11,13 @@ namespace ServiceLayer.Core.UnitTests
 
         private static void SetupMockConverters()
         {
-            //Mock<FromResultTypeConverter<ResultTypes>> mockServiceResultTypeConverter = new Mock<FromResultTypeConverter<ResultTypes>>();
+            //Mock<FromResultTypeConverter<ResultType>> mockServiceResultTypeConverter = new Mock<FromResultTypeConverter<ResultType>>();
             //mockServiceResultTypeConverter.Setup(c =>
-            //        c.Convert<HttpStatusCode>(It.IsAny<ResultTypes>()))
+            //        c.Convert<HttpStatusCode>(It.IsAny<ResultType>()))
             //    .Returns(HttpStatusCode.Ok);
             //mockServiceResultTypeConverter.Setup(c =>
-            //        c.Convert<ResultTypes>(It.IsAny<ResultTypes>()))
-            //    .Returns(ResultTypes.Success);
+            //        c.Convert<ResultType>(It.IsAny<ResultType>()))
+            //    .Returns(ResultType.Success);
 
             //ServiceLayerConfiguration.ResultTypeConverters.Add(mockServiceResultTypeConverter.Object);
         }

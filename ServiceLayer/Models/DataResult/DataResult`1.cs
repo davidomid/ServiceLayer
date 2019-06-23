@@ -2,17 +2,17 @@
 
 namespace ServiceLayer
 {
-    public class DataResult<TData> : Result<ResultTypes, object>, IDataResult<TData>
+    public class DataResult<TData> : Result<ResultType, object>, IDataResult<TData>
     {
-        public DataResult(TData data, ResultTypes resultType) : this(data, resultType, default)
+        public DataResult(TData data, ResultType resultType) : this(data, resultType, default)
         {
         }
 
-        public DataResult(TData data, ResultTypes resultType, params object[] errorDetails) : this(data, resultType, (object)errorDetails)
+        public DataResult(TData data, ResultType resultType, params object[] errorDetails) : this(data, resultType, (object)errorDetails)
         {
         }
 
-        public DataResult(TData data, ResultTypes resultType, object errorDetails) : base(resultType, errorDetails)
+        public DataResult(TData data, ResultType resultType, object errorDetails) : base(resultType, errorDetails)
         {
             Data = data;
         }
@@ -29,7 +29,7 @@ namespace ServiceLayer
             return Engine.DataResultFactory.Create<TData>(failureResult);
         }
 
-        public static implicit operator DataResult<TData>(ResultTypes resultType)
+        public static implicit operator DataResult<TData>(ResultType resultType)
         {
             return Engine.DataResultFactory.Create<TData>(resultType);
         }

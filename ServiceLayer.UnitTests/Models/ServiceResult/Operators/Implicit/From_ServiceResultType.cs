@@ -4,18 +4,18 @@ using NUnit.Framework;
 
 namespace ServiceLayer.UnitTests.Models.ServiceResult.Operators.Implicit
 {
-    [TestFixtureSource(nameof(ResultTypes))]
+    [TestFixtureSource(nameof(ResultType))]
     public class From_ServiceResultType : UnitTestBase
     {
-        private readonly ResultTypes _resultType;
+        private readonly ResultType _resultType;
 
         private ServiceLayer.Result _actualResult;
 
         private ServiceLayer.Result _expectedResult;
 
-        private static readonly ResultTypes[] ResultTypes = (ResultTypes[])Enum.GetValues(typeof(ResultTypes));
+        private static readonly ResultType[] ResultType = (ResultType[])Enum.GetValues(typeof(ResultType));
 
-        public From_ServiceResultType(ResultTypes resultType)
+        public From_ServiceResultType(ResultType resultType)
         {
             _resultType = resultType;
         }

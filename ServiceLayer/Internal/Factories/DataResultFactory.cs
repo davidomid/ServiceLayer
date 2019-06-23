@@ -5,21 +5,21 @@ namespace ServiceLayer.Internal.Factories
     internal class DataResultFactory : IDataResultFactory
     {
         // top-level
-        public DataResult<TData> Create<TData>(ResultTypes resultType)
+        public DataResult<TData> Create<TData>(ResultType resultType)
         {
-            return Create<TData, ResultTypes>(resultType);
+            return Create<TData, ResultType>(resultType);
         }
 
         // top-level
         public DataResult<TData> Create<TData>(TData data)
         {
-            return Create<TData, ResultTypes>(data);
+            return Create<TData, ResultType>(data);
         }
 
         // top-level
         public DataResult<TData> Create<TData>(FailureResult failureResult)
         {
-            return Create<TData, ResultTypes>(failureResult);
+            return Create<TData, ResultType>(failureResult);
         }
 
         // top-level
@@ -45,7 +45,7 @@ namespace ServiceLayer.Internal.Factories
         public DataResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(TData data)
             where TResultType : struct, Enum
         {
-            return Create<TData, TResultType, TErrorType>(data, ResultTypes.Success);
+            return Create<TData, TResultType, TErrorType>(data, ResultType.Success);
         }
 
         // top-level
@@ -67,7 +67,7 @@ namespace ServiceLayer.Internal.Factories
         public DataResult<TData, TResultType, TErrorType>
             Create<TData, TResultType, TErrorType>(TErrorType errorDetails) where TResultType : struct, Enum
         {
-            return Create<TData, TResultType, TErrorType>(default, ResultTypes.Failure, errorDetails);
+            return Create<TData, TResultType, TErrorType>(default, ResultType.Failure, errorDetails);
         }
 
         // top-level
@@ -79,7 +79,7 @@ namespace ServiceLayer.Internal.Factories
 
         public DataResult<TData, TResultType> Create<TData, TResultType>(TData data) where TResultType : struct, Enum
         {
-            return Create<TData, TResultType, object>(data, ResultTypes.Success);
+            return Create<TData, TResultType, object>(data, ResultType.Success);
         }
 
         public DataResult<TData, TResultType> Create<TData, TResultType>(FailureResult failureResult)
@@ -95,13 +95,13 @@ namespace ServiceLayer.Internal.Factories
         }
 
         private DataResult<TData, TResultType, object> Create<TData, TResultType>(TData data,
-            ResultTypes resultType, object errorDetails = default) where TResultType : struct, Enum
+            ResultType resultType, object errorDetails = default) where TResultType : struct, Enum
         {
             return Create<TData, TResultType, object>(data, resultType, errorDetails);
         }
 
         private DataResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(TData data,
-            ResultTypes resultType, TErrorType errorDetails = default) where TResultType : struct, Enum
+            ResultType resultType, TErrorType errorDetails = default) where TResultType : struct, Enum
         {
             return Create(data, resultType.ToResultType<TResultType>(), errorDetails);
         }

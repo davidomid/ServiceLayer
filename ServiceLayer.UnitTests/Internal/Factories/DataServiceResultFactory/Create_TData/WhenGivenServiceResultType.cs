@@ -5,16 +5,16 @@ using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Create_TData
 {
-    [TestFixtureSource(nameof(ResultTypes))]
+    [TestFixtureSource(nameof(ResultType))]
     public class WhenGivenServiceResultType : UnitTestBase
     {
         private readonly ServiceLayer.Internal.Factories.DataResultFactory _dataResultFactory = new ServiceLayer.Internal.Factories.DataResultFactory();
         private DataResult<TestData> _result;
 
-        private readonly ResultTypes _resultType;
-        private static readonly ResultTypes[] ResultTypes = (ResultTypes[])Enum.GetValues(typeof(ResultTypes));
+        private readonly ResultType _resultType;
+        private static readonly ResultType[] ResultType = (ResultType[])Enum.GetValues(typeof(ResultType));
 
-        public WhenGivenServiceResultType(ResultTypes resultType)
+        public WhenGivenServiceResultType(ResultType resultType)
         {
             _resultType = resultType;
         }

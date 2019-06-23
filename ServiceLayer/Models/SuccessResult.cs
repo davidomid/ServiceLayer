@@ -2,7 +2,7 @@
 {
     public class SuccessResult : Result
     {
-        public SuccessResult() : base(ResultTypes.Success)
+        public SuccessResult() : base(ResultType.Success)
         {
         }
     }

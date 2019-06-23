@@ -36,24 +36,24 @@ namespace ServiceLayer.UnitTests
 
         private static void SetupMockResultTypeConversionService()
         {
-            MockResultTypeConversionService.Setup(s => s.Convert<ResultTypes>(ResultTypes.Success))
-                .Returns(ResultTypes.Success);
-            MockResultTypeConversionService.Setup(s => s.Convert<ResultTypes>(ResultTypes.Failure))
-                .Returns(ResultTypes.Failure);
-            MockResultTypeConversionService.Setup(s => s.Convert<ResultTypes>(ResultTypes.Inconclusive))
-                .Returns(ResultTypes.Inconclusive);
+            MockResultTypeConversionService.Setup(s => s.Convert<ResultType>(ResultType.Success))
+                .Returns(ResultType.Success);
+            MockResultTypeConversionService.Setup(s => s.Convert<ResultType>(ResultType.Failure))
+                .Returns(ResultType.Failure);
+            MockResultTypeConversionService.Setup(s => s.Convert<ResultType>(ResultType.Inconclusive))
+                .Returns(ResultType.Inconclusive);
             MockResultTypeConversionService.Setup(s =>
-                    s.Convert<ResultTypes>(TestCustomServiceResultTypes.TestValueWithNoAttribute))
-                .Returns(ResultTypes.Failure);
+                    s.Convert<ResultType>(TestCustomServiceResultTypes.TestValueWithNoAttribute))
+                .Returns(ResultType.Failure);
             MockResultTypeConversionService.Setup(s =>
-                s.Convert<ResultTypes>(TestCustomServiceResultTypes.TestValueWithSuccessAttribute))
-                .Returns(ResultTypes.Success);
+                s.Convert<ResultType>(TestCustomServiceResultTypes.TestValueWithSuccessAttribute))
+                .Returns(ResultType.Success);
             MockResultTypeConversionService.Setup(s =>
-                    s.Convert<ResultTypes>(TestCustomServiceResultTypes.TestValueWithFailureAttribute))
-                .Returns(ResultTypes.Failure);
+                    s.Convert<ResultType>(TestCustomServiceResultTypes.TestValueWithFailureAttribute))
+                .Returns(ResultType.Failure);
             MockResultTypeConversionService.Setup(s =>
-                    s.Convert<ResultTypes>((TestCustomServiceResultTypes) 1000))
-                .Returns(ResultTypes.Failure);
+                    s.Convert<ResultType>((TestCustomServiceResultTypes) 1000))
+                .Returns(ResultType.Failure);
         }
 
         private static void SetupMockSuccessResultFactory()
@@ -76,11 +76,11 @@ namespace ServiceLayer.UnitTests
         private static void SetupMockServiceResultFactory()
         {
             MockServiceResultFactory
-                .Setup(f => f.Create(It.IsAny<ResultTypes>()))
+                .Setup(f => f.Create(It.IsAny<ResultType>()))
                 .Returns(new Result(default));
             MockServiceResultFactory
-                .Setup(f => f.Create(It.IsAny<ResultTypes>(), It.IsAny<string[]>()))
-                .Returns(new Result<ResultTypes, string[]>(default, default));
+                .Setup(f => f.Create(It.IsAny<ResultType>(), It.IsAny<string[]>()))
+                .Returns(new Result<ResultType, string[]>(default, default));
 
             MockServiceResultFactory
                 .Setup(f => f.Create(It.IsAny<TestCustomServiceResultTypes>()))
@@ -91,8 +91,8 @@ namespace ServiceLayer.UnitTests
                 .Returns(new Result<TestCustomServiceResultTypes, object[]>(default, default));
 
             MockServiceResultFactory
-                .Setup(f => f.Create(It.IsAny<ResultTypes>(), It.IsAny<object[]>()))
-                .Returns(new Result<ResultTypes, object[]>(default, default));
+                .Setup(f => f.Create(It.IsAny<ResultType>(), It.IsAny<object[]>()))
+                .Returns(new Result<ResultType, object[]>(default, default));
 
             MockServiceResultFactory
                 .Setup(f => f.Create(It.IsAny<TestCustomServiceResultTypes>(), It.IsAny<TestErrorType>()))
@@ -126,7 +126,7 @@ namespace ServiceLayer.UnitTests
         private static void SetupMockDataServiceResultFactory()
         {
             MockDataServiceResultFactory
-                .Setup(f => f.Create<TestData>(It.IsAny<ResultTypes>()))
+                .Setup(f => f.Create<TestData>(It.IsAny<ResultType>()))
                 .Returns(new DataResult<TestData>(default, default));
 
             MockDataServiceResultFactory

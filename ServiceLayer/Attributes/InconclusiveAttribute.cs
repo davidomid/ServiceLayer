@@ -2,7 +2,7 @@
 {
     public class InconclusiveAttribute : ResultTypeAttribute
     {
-        public InconclusiveAttribute() : base(ResultTypes.Inconclusive)
+        public InconclusiveAttribute() : base(ServiceLayer.ResultType.Inconclusive)
         {
         }
     }

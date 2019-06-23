@@ -1,6 +1,6 @@
 ﻿namespace ServiceLayer
 {
-    public enum ResultTypes
+    public enum ResultType
     {
         [DefaultResultType]
         Inconclusive,

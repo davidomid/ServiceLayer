@@ -6,7 +6,7 @@
         {
         }
 
-        public FailureResult(params object[] errorDetails) : base(ResultTypes.Failure, errorDetails)
+        public FailureResult(params object[] errorDetails) : base(ServiceLayer.ResultType.Failure, errorDetails)
         {
         }
     }
