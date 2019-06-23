@@ -6,7 +6,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Cre
 {
     public class WhenGivenCustomErrorType : UnitTestBase
     {
-        private readonly ServiceLayer.Internal.Factories.DataServiceResultFactory _dataServiceResultFactory = new ServiceLayer.Internal.Factories.DataServiceResultFactory();
+        private readonly ServiceLayer.Internal.Factories.DataResultFactory _dataResultFactory = new ServiceLayer.Internal.Factories.DataResultFactory();
         private DataResult<TestData, TestCustomServiceResultTypes, TestErrorType> _result;
 
         private readonly TestErrorType _errorDetails = new TestErrorType();
@@ -34,7 +34,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Cre
 
         protected override void Act()
         {
-            _result = _dataServiceResultFactory.Create<TestData, TestCustomServiceResultTypes, TestErrorType>(_errorDetails);
+            _result = _dataResultFactory.Create<TestData, TestCustomServiceResultTypes, TestErrorType>(_errorDetails);
         }
 
         protected override void Arrange()

@@ -6,8 +6,8 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create_
 {
     public class WhenGivenSuccessResult : UnitTestBase
     {
-        private readonly ServiceLayer.Internal.Factories.ServiceResultFactory _serviceResultFactory =
-            new ServiceLayer.Internal.Factories.ServiceResultFactory();
+        private readonly ServiceLayer.Internal.Factories.ResultFactory _resultFactory =
+            new ServiceLayer.Internal.Factories.ResultFactory();
 
         private readonly SuccessResult _successResult = new SuccessResult();
 
@@ -24,7 +24,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create_
 
         protected override void Act()
         {
-            _result = _serviceResultFactory.Create<TestCustomServiceResultTypes, TestErrorType>(_successResult); 
+            _result = _resultFactory.Create<TestCustomServiceResultTypes, TestErrorType>(_successResult); 
         }
 
         [Test]

@@ -2,7 +2,7 @@
 
 namespace ServiceLayer.Internal.Factories
 {
-    internal class ServiceResultFactory : IServiceResultFactory
+    internal class ResultFactory : IResultFactory
     {
         public Result<TResultType, TErrorType> Create<TResultType, TErrorType>(TResultType resultType,
             TErrorType errorDetails = default) where TResultType : struct, Enum

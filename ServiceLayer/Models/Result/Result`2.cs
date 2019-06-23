@@ -14,22 +14,22 @@ namespace ServiceLayer
 
         public static implicit operator Result<TResultType, TErrorType>(SuccessResult successResult)
         {
-            return Engine.ServiceResultFactory.Create<TResultType, TErrorType>(successResult);
+            return Engine.ResultFactory.Create<TResultType, TErrorType>(successResult);
         }
 
         public static implicit operator Result<TResultType, TErrorType>(FailureResult<TErrorType> failureResult)
         {
-            return Engine.ServiceResultFactory.Create<TResultType, TErrorType>(failureResult);
+            return Engine.ResultFactory.Create<TResultType, TErrorType>(failureResult);
         }
 
         public static implicit operator Result<TResultType, TErrorType>(TErrorType errorDetails)
         {
-            return Engine.ServiceResultFactory.Create<TResultType, TErrorType>(errorDetails);
+            return Engine.ResultFactory.Create<TResultType, TErrorType>(errorDetails);
         }
 
         public static implicit operator Result<TResultType, TErrorType>(TResultType resultType)
         {
-            return Engine.ServiceResultFactory.Create<TResultType, TErrorType>(resultType);
+            return Engine.ResultFactory.Create<TResultType, TErrorType>(resultType);
         }
     }
 }

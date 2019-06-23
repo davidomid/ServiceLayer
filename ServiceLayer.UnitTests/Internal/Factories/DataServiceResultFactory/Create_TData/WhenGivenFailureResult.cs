@@ -6,7 +6,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Cre
 {
     public class WhenGivenFailureResult : UnitTestBase
     {
-        private readonly ServiceLayer.Internal.Factories.DataServiceResultFactory _dataServiceResultFactory = new ServiceLayer.Internal.Factories.DataServiceResultFactory();
+        private readonly ServiceLayer.Internal.Factories.DataResultFactory _dataResultFactory = new ServiceLayer.Internal.Factories.DataResultFactory();
         private DataResult<TestData> _result;
 
         private object[] _errorDetails;
@@ -32,7 +32,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Cre
 
         protected override void Act()
         {
-            _result = _dataServiceResultFactory.Create<TestData>(_failureResult);
+            _result = _dataResultFactory.Create<TestData>(_failureResult);
         }
 
         protected override void Arrange()

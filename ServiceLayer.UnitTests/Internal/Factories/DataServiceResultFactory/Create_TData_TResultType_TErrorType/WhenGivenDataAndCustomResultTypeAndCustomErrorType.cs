@@ -8,7 +8,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Cre
     [TestFixtureSource(nameof(ResultTypes))]
     public class WhenGivenDataAndCustomResultTypeAndCustomErrorType : UnitTestBase
     {
-        private readonly ServiceLayer.Internal.Factories.DataServiceResultFactory _dataServiceResultFactory = new ServiceLayer.Internal.Factories.DataServiceResultFactory();
+        private readonly ServiceLayer.Internal.Factories.DataResultFactory _dataResultFactory = new ServiceLayer.Internal.Factories.DataResultFactory();
         private string[] _errorDetails;
         private DataResult<TestData, TestCustomServiceResultTypes, string[]> _result;
 
@@ -41,7 +41,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Cre
 
         protected override void Act()
         {
-            _result = _dataServiceResultFactory.Create(_testData, _serviceResultType, _errorDetails);
+            _result = _dataResultFactory.Create(_testData, _serviceResultType, _errorDetails);
         }
 
         protected override void Arrange()

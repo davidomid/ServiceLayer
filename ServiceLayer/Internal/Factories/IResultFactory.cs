@@ -2,7 +2,7 @@
 
 namespace ServiceLayer.Internal.Factories
 {
-    internal interface IServiceResultFactory
+    internal interface IResultFactory
     {
         Result Create(ResultTypes resultType);
         Result<TResultType> Create<TResultType>(TResultType resultType) where TResultType : struct, Enum;

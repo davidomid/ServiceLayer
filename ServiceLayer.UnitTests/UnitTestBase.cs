@@ -9,8 +9,8 @@ namespace ServiceLayer.UnitTests
 {
     public abstract class UnitTestBase : ScenarioUnitTestBase
     {
-        internal static readonly Mock<IServiceResultFactory> MockServiceResultFactory = new Mock<IServiceResultFactory>(MockBehavior.Strict);
-        internal static readonly Mock<IDataServiceResultFactory> MockDataServiceResultFactory = new Mock<IDataServiceResultFactory>(MockBehavior.Strict);
+        internal static readonly Mock<IResultFactory> MockServiceResultFactory = new Mock<IResultFactory>(MockBehavior.Strict);
+        internal static readonly Mock<IDataResultFactory> MockDataServiceResultFactory = new Mock<IDataResultFactory>(MockBehavior.Strict);
         internal static readonly Mock<ISuccessResultFactory> MockSuccessResultFactory = new Mock<ISuccessResultFactory>(MockBehavior.Strict);
         internal static readonly Mock<IFailureResultFactory> MockFailureResultFactory = new Mock<IFailureResultFactory>(MockBehavior.Strict);
         internal static readonly Mock<IResultTypeConversionService> MockResultTypeConversionService = new Mock<IResultTypeConversionService>(MockBehavior.Strict);
@@ -20,8 +20,8 @@ namespace ServiceLayer.UnitTests
             Mock<IServiceLocator> mockServiceLocator = new Mock<IServiceLocator>();
             mockServiceLocator.Setup(l => l.Resolve<IResultTypeConversionService>())
                 .Returns(MockResultTypeConversionService.Object);
-            mockServiceLocator.Setup(l => l.Resolve<IServiceResultFactory>()).Returns(MockServiceResultFactory.Object);
-            mockServiceLocator.Setup(l => l.Resolve<IDataServiceResultFactory>()).Returns(MockDataServiceResultFactory.Object);
+            mockServiceLocator.Setup(l => l.Resolve<IResultFactory>()).Returns(MockServiceResultFactory.Object);
+            mockServiceLocator.Setup(l => l.Resolve<IDataResultFactory>()).Returns(MockDataServiceResultFactory.Object);
             mockServiceLocator.Setup(l => l.Resolve<ISuccessResultFactory>()).Returns(MockSuccessResultFactory.Object);
             mockServiceLocator.Setup(l => l.Resolve<IFailureResultFactory>()).Returns(MockFailureResultFactory.Object);
             ServiceLocator.Instance = mockServiceLocator.Object;

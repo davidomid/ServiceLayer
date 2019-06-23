@@ -4,8 +4,8 @@ using ServiceLayer.Internal.Factories;
 
 namespace ServiceLayer.UnitTests.Internal.ServiceLocator.Resolve
 {
-    [TestFixture(TypeArgs  = new[]{ typeof(IServiceResultFactory), typeof(ServiceResultFactory)})]
-    [TestFixture(TypeArgs = new[] { typeof(IDataServiceResultFactory), typeof(DataServiceResultFactory) })]
+    [TestFixture(TypeArgs  = new[]{ typeof(IResultFactory), typeof(ResultFactory)})]
+    [TestFixture(TypeArgs = new[] { typeof(IDataResultFactory), typeof(DataResultFactory) })]
     [TestFixture(TypeArgs = new[] { typeof(ISuccessResultFactory), typeof(SuccessResultFactory) })]
     [TestFixture(TypeArgs = new[] { typeof(IFailureResultFactory), typeof(FailureResultFactory) })]
     public class WhenGivenFactoryInterfaceType<TFactoryInterfaceType, TFactoryConcreteType> : UnitTestBase where TFactoryConcreteType : TFactoryInterfaceType where TFactoryInterfaceType : class

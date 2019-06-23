@@ -3,7 +3,7 @@ using ServiceLayer.Internal;
 
 namespace ServiceLayer
 {
-    public static class ServiceResultTypesExtensions
+    public static class ResultTypesExtensions
     {
         public static TDestinationResultType ToResultType<TDestinationResultType>(this Enum resultType) where TDestinationResultType : struct, Enum
         {

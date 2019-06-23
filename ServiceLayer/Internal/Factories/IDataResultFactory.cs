@@ -2,7 +2,7 @@
 
 namespace ServiceLayer.Internal.Factories
 {
-    internal interface IDataServiceResultFactory
+    internal interface IDataResultFactory
     {
         DataResult<TData> Create<TData>(TData data);
         DataResult<TData> Create<TData>(FailureResult failureResult);

@@ -6,7 +6,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Cre
 {
     public class WhenGivenSuccessResult : UnitTestBase
     {
-        private readonly ServiceLayer.Internal.Factories.DataServiceResultFactory _dataServiceResultFactory = new ServiceLayer.Internal.Factories.DataServiceResultFactory();
+        private readonly ServiceLayer.Internal.Factories.DataResultFactory _dataResultFactory = new ServiceLayer.Internal.Factories.DataResultFactory();
         private DataResult<TestData, TestCustomServiceResultTypes> _result;
 
         private TestCustomServiceResultTypes _expectedResultType =
@@ -34,7 +34,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Cre
 
         protected override void Act()
         {
-            _result = _dataServiceResultFactory.Create<TestData, TestCustomServiceResultTypes>(_successResult);
+            _result = _dataResultFactory.Create<TestData, TestCustomServiceResultTypes>(_successResult);
         }
 
         protected override void Arrange()

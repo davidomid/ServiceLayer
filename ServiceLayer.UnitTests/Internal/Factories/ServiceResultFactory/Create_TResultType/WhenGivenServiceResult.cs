@@ -8,8 +8,8 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create_
     [TestFixtureSource(nameof(ResultTypes))]
     public class WhenGivenServiceResult : UnitTestBase
     {
-        private readonly ServiceLayer.Internal.Factories.ServiceResultFactory _serviceResultFactory =
-            new ServiceLayer.Internal.Factories.ServiceResultFactory();
+        private readonly ServiceLayer.Internal.Factories.ResultFactory _resultFactory =
+            new ServiceLayer.Internal.Factories.ResultFactory();
 
         private Result<TestCustomServiceResultTypes> _result;
 
@@ -38,7 +38,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create_
 
         protected override void Act()
         {
-            _result = _serviceResultFactory.Create<TestCustomServiceResultTypes>(_fromResult); 
+            _result = _resultFactory.Create<TestCustomServiceResultTypes>(_fromResult); 
         }
 
         [Test]

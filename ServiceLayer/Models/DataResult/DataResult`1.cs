@@ -21,17 +21,17 @@ namespace ServiceLayer
 
         public static implicit operator DataResult<TData>(TData data)
         {
-            return Engine.DataServiceResultFactory.Create(data);
+            return Engine.DataResultFactory.Create(data);
         }
 
         public static implicit operator DataResult<TData>(FailureResult failureResult)
         {
-            return Engine.DataServiceResultFactory.Create<TData>(failureResult);
+            return Engine.DataResultFactory.Create<TData>(failureResult);
         }
 
         public static implicit operator DataResult<TData>(ResultTypes resultType)
         {
-            return Engine.DataServiceResultFactory.Create<TData>(resultType);
+            return Engine.DataResultFactory.Create<TData>(resultType);
         }
     }
 }

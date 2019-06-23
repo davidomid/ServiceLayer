@@ -25,7 +25,7 @@ namespace ServiceLayer
 
         public static implicit operator Result(ResultTypes resultType)
         {
-            return Engine.ServiceResultFactory.Create(resultType);
+            return Engine.ResultFactory.Create(resultType);
         }
     }
 }

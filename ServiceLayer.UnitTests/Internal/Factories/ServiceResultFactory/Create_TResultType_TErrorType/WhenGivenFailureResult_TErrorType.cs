@@ -6,8 +6,8 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create_
 {
     public class WhenGivenFailureResult_TErrorType : UnitTestBase
     {
-        private readonly ServiceLayer.Internal.Factories.ServiceResultFactory _serviceResultFactory =
-            new ServiceLayer.Internal.Factories.ServiceResultFactory();
+        private readonly ServiceLayer.Internal.Factories.ResultFactory _resultFactory =
+            new ServiceLayer.Internal.Factories.ResultFactory();
 
         private readonly FailureResult<TestErrorType> _failureResult = new FailureResult<TestErrorType>(new TestErrorType());
 
@@ -24,7 +24,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create_
         {
             MockResultTypeConversionService.Setup(s => s.Convert<TestCustomServiceResultTypes>(ResultTypes.Failure))
                 .Returns(_expectedResultType);
-            _result = _serviceResultFactory.Create<TestCustomServiceResultTypes, TestErrorType>(_failureResult); 
+            _result = _resultFactory.Create<TestCustomServiceResultTypes, TestErrorType>(_failureResult); 
         }
 
         [Test]

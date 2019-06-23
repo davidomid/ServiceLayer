@@ -2,7 +2,7 @@
 
 namespace ServiceLayer.Internal.Factories
 {
-    internal class DataServiceResultFactory : IDataServiceResultFactory
+    internal class DataResultFactory : IDataResultFactory
     {
         // top-level
         public DataResult<TData> Create<TData>(ResultTypes resultType)

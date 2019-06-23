@@ -2,7 +2,7 @@
 
 namespace ServiceLayer.Core.Internal.Converters
 {
-    internal class HttpStatusCodeToServiceResultTypesConverter : OneToOneResultTypeConverter<HttpStatusCode, ResultTypes>
+    internal class HttpStatusCodeToResultTypesConverter : OneToOneResultTypeConverter<HttpStatusCode, ResultTypes>
     {
         public override ResultTypes? Convert(HttpStatusCode sourceResultType)
         {
