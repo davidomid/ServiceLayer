@@ -7,23 +7,23 @@ namespace ServiceLayer.UnitTests.Models.DataServiceResult_1.Operators.Implicit
     public class From_FailureResult : UnitTestBase
     {
         private readonly ServiceLayer.FailureResult _failureResult = new ServiceLayer.FailureResult();
-        private DataServiceResult<TestData> _actualDataServiceResult;
-        private DataServiceResult<TestData> _expectedDataServiceResult;    
+        private DataResult<TestData> _actualDataResult;
+        private DataResult<TestData> _expectedDataResult;    
 
         protected override void Act()
         {
-            _actualDataServiceResult = _failureResult;
+            _actualDataResult = _failureResult;
         }
 
         [Test]
         public void Should_Be_Expected_DataServiceResult()
         {
-            _actualDataServiceResult.Should().Be(_expectedDataServiceResult);
+            _actualDataResult.Should().Be(_expectedDataResult);
         }
 
         protected override void Arrange()
         {
-            _expectedDataServiceResult = MockDataServiceResultFactory.Object.Create<TestData>(_failureResult);
+            _expectedDataResult = MockDataServiceResultFactory.Object.Create<TestData>(_failureResult);
         }
     }
 }

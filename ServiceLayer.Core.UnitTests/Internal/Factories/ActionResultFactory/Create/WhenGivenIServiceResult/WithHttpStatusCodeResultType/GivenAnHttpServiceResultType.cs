@@ -11,7 +11,7 @@ namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Cre
         private readonly HttpStatusCode _httpServiceResultType;
         protected readonly object ErrorDetails = new object();
 
-        private IServiceResult<HttpStatusCode> _httpServiceResult;
+        private IResult<HttpStatusCode> _httpResult;
 
         protected IActionResult ActionResult;
 
@@ -24,15 +24,15 @@ namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Cre
 
         protected override void Arrange()
         {
-            Mock<IServiceResult<HttpStatusCode>> mockServiceResult = new Mock<IServiceResult<HttpStatusCode>>();
+            Mock<IResult<HttpStatusCode>> mockServiceResult = new Mock<IResult<HttpStatusCode>>();
             mockServiceResult.SetupGet(r => r.ResultType).Returns(_httpServiceResultType);
             mockServiceResult.SetupGet(r => r.ErrorDetails).Returns(ErrorDetails);
-            _httpServiceResult = mockServiceResult.Object;
+            _httpResult = mockServiceResult.Object;
         }
 
         protected override void Act()
         {
-            ActionResult = _actionResultFactory.Create(_httpServiceResult);
+            ActionResult = _actionResultFactory.Create(_httpResult);
         }
 
         [Test]

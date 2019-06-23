@@ -16,7 +16,7 @@ namespace ExampleServices
             _filePath = filePath;
         }
 
-        public DataServiceResult<List<TEntity>, FileStorageServiceResultTypes> Get()
+        public DataResult<List<TEntity>, FileStorageServiceResultTypes> Get()
         {
             try
             {
@@ -35,7 +35,7 @@ namespace ExampleServices
             }
         }
 
-        public ServiceResult Add(TEntity entity)
+        public Result Add(TEntity entity)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace ExampleServices
             }
         }
 
-        public DataServiceResult<TEntity> GetByKey(string key)
+        public DataResult<TEntity> GetByKey(string key)
         {
             var allEntitiesResult = Get();
             if (allEntitiesResult.IsSuccessful)
@@ -66,17 +66,17 @@ namespace ExampleServices
             return this.Failure(allEntitiesResult.ErrorDetails);
         }
 
-        IDataServiceResult<IEnumerable<TEntity>> IStorageService<TEntity>.Get()
+        IDataResult<IEnumerable<TEntity>> IStorageService<TEntity>.Get()
         {
             return Get(); 
         }
 
-        IServiceResult IStorageService<TEntity>.Add(TEntity entity)
+        IResult IStorageService<TEntity>.Add(TEntity entity)
         {
             return Add(entity); 
         }
 
-        IDataServiceResult<TEntity> IStorageService<TEntity>.GetByKey(string key)
+        IDataResult<TEntity> IStorageService<TEntity>.GetByKey(string key)
         {
             return GetByKey(key);
         }

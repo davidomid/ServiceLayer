@@ -5,7 +5,7 @@ namespace ServiceLayer.UnitTests.Models.ServiceResult.IsSuccessful
 {
     public class WhenServiceResultTypeFailure : UnitTestBase
     {
-        private ServiceLayer.ServiceResult _serviceResult;
+        private ServiceLayer.Result _result;
         private bool _isSuccessful;
 
         [Test]
@@ -16,12 +16,12 @@ namespace ServiceLayer.UnitTests.Models.ServiceResult.IsSuccessful
 
         protected override void Arrange()
         {
-            _serviceResult = new ServiceLayer.ServiceResult(ServiceResultTypes.Failure);
+            _result = new ServiceLayer.Result(ResultTypes.Failure);
         }
 
         protected override void Act()
         {
-            _isSuccessful = _serviceResult.IsSuccessful;
+            _isSuccessful = _result.IsSuccessful;
         }
     }
 }

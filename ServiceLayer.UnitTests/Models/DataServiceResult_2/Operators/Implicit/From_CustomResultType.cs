@@ -9,8 +9,8 @@ namespace ServiceLayer.UnitTests.Models.DataServiceResult_2.Operators.Implicit
     public class From_CustomResultType : UnitTestBase
     {
         private readonly TestCustomServiceResultTypes _customResultType;
-        private DataServiceResult<TestData, TestCustomServiceResultTypes> _actualDataServiceResult;
-        private DataServiceResult<TestData, TestCustomServiceResultTypes> _expectedDataServiceResult;
+        private DataResult<TestData, TestCustomServiceResultTypes> _actualDataResult;
+        private DataResult<TestData, TestCustomServiceResultTypes> _expectedDataResult;
 
         private static readonly TestCustomServiceResultTypes[] ResultTypes = (TestCustomServiceResultTypes[])Enum.GetValues(typeof(TestCustomServiceResultTypes));
 
@@ -21,18 +21,18 @@ namespace ServiceLayer.UnitTests.Models.DataServiceResult_2.Operators.Implicit
 
         protected override void Act()
         {
-            _actualDataServiceResult = _customResultType;
+            _actualDataResult = _customResultType;
         }
 
         [Test]
         public void Should_Be_Expected_DataServiceResult()
         {
-            _actualDataServiceResult.Should().BeSameAs(_expectedDataServiceResult);
+            _actualDataResult.Should().BeSameAs(_expectedDataResult);
         }
 
         protected override void Arrange()
         {
-            _expectedDataServiceResult = MockDataServiceResultFactory.Object.Create<TestData, TestCustomServiceResultTypes>(_customResultType);
+            _expectedDataResult = MockDataServiceResultFactory.Object.Create<TestData, TestCustomServiceResultTypes>(_customResultType);
         }
     }
 }

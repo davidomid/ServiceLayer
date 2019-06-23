@@ -7,23 +7,23 @@ namespace ServiceLayer.UnitTests.Models.DataServiceResult_3.Operators.Implicit
     public class From_CustomErrorType : UnitTestBase
     {
         private readonly TestErrorType _customErrorType = new TestErrorType();
-        private DataServiceResult<TestData, TestCustomServiceResultTypes, TestErrorType> _actualDataServiceResult;
-        private DataServiceResult<TestData, TestCustomServiceResultTypes, TestErrorType> _expectedDataServiceResult;
+        private DataResult<TestData, TestCustomServiceResultTypes, TestErrorType> _actualDataResult;
+        private DataResult<TestData, TestCustomServiceResultTypes, TestErrorType> _expectedDataResult;
 
         protected override void Act()
         {
-            _actualDataServiceResult = _customErrorType;
+            _actualDataResult = _customErrorType;
         }
 
         [Test]
         public void Should_Be_Expected_DataServiceResult()
         {
-            _actualDataServiceResult.Should().BeSameAs(_expectedDataServiceResult);
+            _actualDataResult.Should().BeSameAs(_expectedDataResult);
         }
 
         protected override void Arrange()
         {
-            _expectedDataServiceResult = MockDataServiceResultFactory.Object.Create<TestData, TestCustomServiceResultTypes, TestErrorType>(_customErrorType);
+            _expectedDataResult = MockDataServiceResultFactory.Object.Create<TestData, TestCustomServiceResultTypes, TestErrorType>(_customErrorType);
         }
     }
 }

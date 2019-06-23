@@ -8,24 +8,24 @@ namespace ServiceLayer.UnitTests.Models.ServiceResult_1.Operators.Implicit
     {
         private readonly global::ServiceLayer.SuccessResult _successResult = new global::ServiceLayer.SuccessResult();
 
-        private ServiceResult<TestCustomServiceResultTypes> _actualServiceResult;
+        private Result<TestCustomServiceResultTypes> _actualResult;
 
-        private ServiceResult<TestCustomServiceResultTypes> _expectedServiceResult;
+        private Result<TestCustomServiceResultTypes> _expectedResult;
 
         [Test]
         public void Should_Be_Expected_ServiceResult()
         {
-            _actualServiceResult.Should().Be(_expectedServiceResult);
+            _actualResult.Should().Be(_expectedResult);
         }
 
         protected override void Arrange()
         {
-            _expectedServiceResult = MockServiceResultFactory.Object.Create<TestCustomServiceResultTypes>(_successResult);
+            _expectedResult = MockServiceResultFactory.Object.Create<TestCustomServiceResultTypes>(_successResult);
         }
 
         protected override void Act()
         {
-            _actualServiceResult = _successResult;
+            _actualResult = _successResult;
         }
     }
 }

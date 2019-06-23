@@ -8,31 +8,31 @@ namespace ServiceLayer.UnitTests.Models.DataServiceResult_1.Operators.Implicit
     [TestFixtureSource(nameof(ResultTypes))]
     public class From_ServiceResultType : UnitTestBase
     {
-        private readonly ServiceResultTypes _serviceResultType;
-        private DataServiceResult<TestData> _actualDataServiceResult;
-        private DataServiceResult<TestData> _expectedDataServiceResult;
+        private readonly ResultTypes _resultType;
+        private DataResult<TestData> _actualDataResult;
+        private DataResult<TestData> _expectedDataResult;
 
-        private static readonly ServiceResultTypes[] ResultTypes = (ServiceResultTypes[])Enum.GetValues(typeof(ServiceResultTypes));
+        private static readonly ResultTypes[] ResultTypes = (ResultTypes[])Enum.GetValues(typeof(ResultTypes));
 
-        public From_ServiceResultType(ServiceResultTypes serviceResultType)
+        public From_ServiceResultType(ResultTypes resultType)
         {
-            _serviceResultType = serviceResultType;
+            _resultType = resultType;
         }
 
         protected override void Act()
         {
-            _actualDataServiceResult = _serviceResultType;
+            _actualDataResult = _resultType;
         }
 
         [Test]
         public void Should_Be_Expected_DataServiceResult()
         {
-            _actualDataServiceResult.Should().Be(_expectedDataServiceResult);
+            _actualDataResult.Should().Be(_expectedDataResult);
         }
 
         protected override void Arrange()
         {
-            _expectedDataServiceResult = MockDataServiceResultFactory.Object.Create<TestData>(_serviceResultType);
+            _expectedDataResult = MockDataServiceResultFactory.Object.Create<TestData>(_resultType);
         }
     }
 }

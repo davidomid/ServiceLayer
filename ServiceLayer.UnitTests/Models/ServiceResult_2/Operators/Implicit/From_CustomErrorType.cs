@@ -8,24 +8,24 @@ namespace ServiceLayer.UnitTests.Models.ServiceResult_2.Operators.Implicit
     {
         private readonly TestErrorType _customErrorType = new TestErrorType();
 
-        private ServiceResult<TestCustomServiceResultTypes, TestErrorType> _actualServiceResult;
+        private Result<TestCustomServiceResultTypes, TestErrorType> _actualResult;
 
-        private ServiceResult<TestCustomServiceResultTypes, TestErrorType> _expectedServiceResult;
+        private Result<TestCustomServiceResultTypes, TestErrorType> _expectedResult;
 
         [Test]
         public void Should_Be_Expected_ServiceResult()
         {
-            _actualServiceResult.Should().BeSameAs(_expectedServiceResult);
+            _actualResult.Should().BeSameAs(_expectedResult);
         }
 
         protected override void Arrange()
         {
-            _expectedServiceResult = MockServiceResultFactory.Object.Create<TestCustomServiceResultTypes, TestErrorType>(_customErrorType);
+            _expectedResult = MockServiceResultFactory.Object.Create<TestCustomServiceResultTypes, TestErrorType>(_customErrorType);
         }
 
         protected override void Act()
         {
-            _actualServiceResult = _customErrorType;
+            _actualResult = _customErrorType;
         }
     }
 }

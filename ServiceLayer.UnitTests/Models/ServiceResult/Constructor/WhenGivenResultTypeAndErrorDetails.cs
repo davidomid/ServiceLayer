@@ -7,27 +7,27 @@ namespace ServiceLayer.UnitTests.Models.ServiceResult.Constructor
     [TestFixtureSource(nameof(ResultTypes))]
     public class WhenGivenResultTypeAndErrorDetails : UnitTestBase
     {
-        private ServiceLayer.ServiceResult _serviceResult;
+        private ServiceLayer.Result _result;
         private string[] _errorDetails;
-        private readonly ServiceResultTypes _serviceResultType;
+        private readonly ResultTypes _resultType;
 
-        private static readonly ServiceResultTypes[] ResultTypes = (ServiceResultTypes[])Enum.GetValues(typeof(ServiceResultTypes));
+        private static readonly ResultTypes[] ResultTypes = (ResultTypes[])Enum.GetValues(typeof(ResultTypes));
 
-        public WhenGivenResultTypeAndErrorDetails(ServiceResultTypes serviceResultType)
+        public WhenGivenResultTypeAndErrorDetails(ResultTypes resultType)
         {
-            _serviceResultType = serviceResultType;
+            _resultType = resultType;
         }
 
         [Test]
         public void Should_Have_ServiceResultType_Matching_Given_Type()
         {
-            _serviceResult.ResultType.Should().Be(_serviceResultType);
+            _result.ResultType.Should().Be(_resultType);
         }
 
         [Test]
         public void Should_Have_ErrorDetails_Matching_Given_ErrorDetails()
         {
-            _serviceResult.ErrorDetails.Should().BeSameAs(_errorDetails); 
+            _result.ErrorDetails.Should().BeSameAs(_errorDetails); 
         }
 
         protected override void Arrange()
@@ -37,7 +37,7 @@ namespace ServiceLayer.UnitTests.Models.ServiceResult.Constructor
 
         protected override void Act()
         {
-            _serviceResult = new ServiceLayer.ServiceResult(_serviceResultType, _errorDetails);
+            _result = new ServiceLayer.Result(_resultType, _errorDetails);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace ServiceLayer.UnitTests.Models.FailureResult.Constructor
         [Test]
         public void Should_Have_Failure_ServiceResultType()
         {
-            _failureResult.ResultType.Should().Be(ServiceResultTypes.Failure);
+            _failureResult.ResultType.Should().Be(ResultTypes.Failure);
         }
 
         [Test]

@@ -7,33 +7,33 @@ namespace ServiceLayer.UnitTests.Models.ServiceResult.Operators.Implicit
     [TestFixtureSource(nameof(ResultTypes))]
     public class From_ServiceResultType : UnitTestBase
     {
-        private readonly ServiceResultTypes _serviceResultType;
+        private readonly ResultTypes _resultType;
 
-        private ServiceLayer.ServiceResult _actualServiceResult;
+        private ServiceLayer.Result _actualResult;
 
-        private ServiceLayer.ServiceResult _expectedServiceResult;
+        private ServiceLayer.Result _expectedResult;
 
-        private static readonly ServiceResultTypes[] ResultTypes = (ServiceResultTypes[])Enum.GetValues(typeof(ServiceResultTypes));
+        private static readonly ResultTypes[] ResultTypes = (ResultTypes[])Enum.GetValues(typeof(ResultTypes));
 
-        public From_ServiceResultType(ServiceResultTypes serviceResultType)
+        public From_ServiceResultType(ResultTypes resultType)
         {
-            _serviceResultType = serviceResultType;
+            _resultType = resultType;
         }
 
         [Test]
         public void Should_Be_Expected_ServiceResult()
         {
-            _actualServiceResult.Should().Be(_expectedServiceResult);
+            _actualResult.Should().Be(_expectedResult);
         }
 
         protected override void Arrange()
         {
-            _expectedServiceResult = MockServiceResultFactory.Object.Create(_serviceResultType);
+            _expectedResult = MockServiceResultFactory.Object.Create(_resultType);
         }
 
         protected override void Act()
         {
-            _actualServiceResult = _serviceResultType;
+            _actualResult = _resultType;
         }
     }
 }

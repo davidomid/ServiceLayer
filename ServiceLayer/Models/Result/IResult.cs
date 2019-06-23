@@ -1,8 +1,8 @@
 ﻿namespace ServiceLayer
 {
-    public interface IServiceResult
+    public interface IResult
     {
-        ServiceResultTypes ResultType { get; }
+        ResultTypes ResultType { get; }
 
         object ErrorDetails { get; }
 

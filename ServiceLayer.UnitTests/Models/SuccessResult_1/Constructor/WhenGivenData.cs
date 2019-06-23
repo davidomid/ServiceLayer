@@ -12,7 +12,7 @@ namespace ServiceLayer.UnitTests.Models.SuccessResult_1.Constructor
         [Test]
         public void Should_Have_Success_ServiceResultType()
         {
-            _successResult.ResultType.Should().Be(ServiceResultTypes.Success);
+            _successResult.ResultType.Should().Be(ResultTypes.Success);
         }
 
         [Test]

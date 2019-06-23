@@ -1,6 +1,6 @@
 ﻿namespace ServiceLayer
 {
-    public interface IDataServiceResult<out TData> : IServiceResult
+    public interface IDataResult<out TData> : IResult
     {
         TData Data { get; }
     }

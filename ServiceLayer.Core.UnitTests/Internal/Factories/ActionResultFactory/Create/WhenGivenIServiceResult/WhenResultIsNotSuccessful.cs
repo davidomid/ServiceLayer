@@ -7,7 +7,7 @@ namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Cre
 {
     public class WhenResultIsNotSuccessful : UnitTestBase
     {
-        private IServiceResult _serviceResult;
+        private IResult _result;
 
         private IActionResult _actionResult;
 
@@ -18,15 +18,15 @@ namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Cre
         protected override void Arrange()
         {
             _actionResultFactory = new Core.Internal.Factories.ActionResultFactory();
-            Mock<IServiceResult> mockServiceResult = new Mock<IServiceResult>();
+            Mock<IResult> mockServiceResult = new Mock<IResult>();
             mockServiceResult.SetupGet(r => r.IsSuccessful).Returns(false);
             mockServiceResult.SetupGet(r => r.ErrorDetails).Returns(_errorDetails);
-            _serviceResult = mockServiceResult.Object;
+            _result = mockServiceResult.Object;
         }
 
         protected override void Act()
         {
-            _actionResult = _actionResultFactory.Create(_serviceResult);
+            _actionResult = _actionResultFactory.Create(_result);
         }
 
         [Test]

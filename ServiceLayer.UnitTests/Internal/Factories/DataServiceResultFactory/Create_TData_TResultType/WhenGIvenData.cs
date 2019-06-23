@@ -7,36 +7,36 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Cre
     public class WhenGivenData : UnitTestBase
     {
         private readonly ServiceLayer.Internal.Factories.DataServiceResultFactory _dataServiceResultFactory = new ServiceLayer.Internal.Factories.DataServiceResultFactory();
-        private DataServiceResult<TestData, TestCustomServiceResultTypes> _serviceResult;
+        private DataResult<TestData, TestCustomServiceResultTypes> _result;
         private TestCustomServiceResultTypes _expectedResultType = TestCustomServiceResultTypes.TestValueWithSuccessAttribute;
         private readonly TestData _testData = new TestData();
 
         [Test]
         public void Should_Return_DataServiceResult_With_Expected_Data()
         {
-            _serviceResult.Data.Should().BeSameAs(_testData);
+            _result.Data.Should().BeSameAs(_testData);
         }
 
         [Test]
         public void Should_Return_DataServiceResult_With_Expected_ResultType()
         {
-            _serviceResult.ResultType.Should().Be(_expectedResultType);
+            _result.ResultType.Should().Be(_expectedResultType);
         }
 
         [Test]
         public void Should_Return_DataServiceResult_With_Null_ErrorDetails()
         {
-            _serviceResult.ErrorDetails.Should().BeNull();
+            _result.ErrorDetails.Should().BeNull();
         }
 
         protected override void Act()
         {
-            _serviceResult = _dataServiceResultFactory.Create<TestData, TestCustomServiceResultTypes>(_testData);
+            _result = _dataServiceResultFactory.Create<TestData, TestCustomServiceResultTypes>(_testData);
         }
 
         protected override void Arrange()
         {
-            MockResultTypeConversionService.Setup(s => s.Convert<TestCustomServiceResultTypes>(ServiceResultTypes.Success))
+            MockResultTypeConversionService.Setup(s => s.Convert<TestCustomServiceResultTypes>(ResultTypes.Success))
                 .Returns(_expectedResultType);
         }
     }

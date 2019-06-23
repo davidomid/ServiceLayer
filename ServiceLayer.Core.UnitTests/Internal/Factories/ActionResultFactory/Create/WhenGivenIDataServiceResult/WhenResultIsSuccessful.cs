@@ -7,7 +7,7 @@ namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Cre
 {
     public class WhenResultIsSuccessful : UnitTestBase
     {
-        private IDataServiceResult<string> _dataServiceResult;
+        private IDataResult<string> _dataResult;
 
         private IActionResult _actionResult;
 
@@ -17,14 +17,14 @@ namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Cre
         {
             ServiceLayerConfig.Plugins.Install(new AspNetCorePlugin());
             _actionResultFactory = new Core.Internal.Factories.ActionResultFactory();
-            Mock<IDataServiceResult<string>> mockServiceResult = new Mock<IDataServiceResult<string>>();
-            mockServiceResult.SetupGet(r => r.ResultType).Returns(ServiceResultTypes.Success);
-            _dataServiceResult = mockServiceResult.Object;
+            Mock<IDataResult<string>> mockServiceResult = new Mock<IDataResult<string>>();
+            mockServiceResult.SetupGet(r => r.ResultType).Returns(ResultTypes.Success);
+            _dataResult = mockServiceResult.Object;
         }
 
         protected override void Act()
         {
-            _actionResult = _actionResultFactory.Create(_dataServiceResult);
+            _actionResult = _actionResultFactory.Create(_dataResult);
         }
 
         [Test]

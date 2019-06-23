@@ -2,11 +2,11 @@
 
 namespace ServiceLayer.Core.Internal.Converters
 {
-    internal class ServiceResultTypesToHttpStatusCodeConverter : OneToOneResultTypeConverter<ServiceResultTypes, HttpStatusCode>
+    internal class ServiceResultTypesToHttpStatusCodeConverter : OneToOneResultTypeConverter<ResultTypes, HttpStatusCode>
     {
-        public override HttpStatusCode? Convert(ServiceResultTypes sourceResultType)
+        public override HttpStatusCode? Convert(ResultTypes sourceResultType)
         {
-            return sourceResultType == ServiceResultTypes.Success ? HttpStatusCode.OK : HttpStatusCode.InternalServerError;
+            return sourceResultType == ResultTypes.Success ? HttpStatusCode.OK : HttpStatusCode.InternalServerError;
         }
     }
 }

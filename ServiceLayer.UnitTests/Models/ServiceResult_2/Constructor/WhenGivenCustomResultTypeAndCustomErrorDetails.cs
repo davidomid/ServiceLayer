@@ -8,7 +8,7 @@ namespace ServiceLayer.UnitTests.Models.ServiceResult_2.Constructor
     [TestFixtureSource(nameof(ResultTypes))]
     public class WhenGivenCustomResultTypeAndCustomErrorDetails : UnitTestBase
     {
-        private ServiceResult<TestCustomServiceResultTypes, TestErrorType> _serviceResult;
+        private Result<TestCustomServiceResultTypes, TestErrorType> _result;
         private TestErrorType _errorDetails;
         private readonly TestCustomServiceResultTypes _customResultType;
 
@@ -22,13 +22,13 @@ namespace ServiceLayer.UnitTests.Models.ServiceResult_2.Constructor
         [Test]
         public void Should_Have_ServiceResultType_Matching_Given_Type()
         {
-            _serviceResult.ResultType.Should().Be(_customResultType);
+            _result.ResultType.Should().Be(_customResultType);
         }
 
         [Test]
         public void Should_Have_ErrorDetails_Matching_Given_ErrorDetails()
         {
-            _serviceResult.ErrorDetails.Should().BeSameAs(_errorDetails); 
+            _result.ErrorDetails.Should().BeSameAs(_errorDetails); 
         }
 
         protected override void Arrange()
@@ -38,7 +38,7 @@ namespace ServiceLayer.UnitTests.Models.ServiceResult_2.Constructor
 
         protected override void Act()
         {
-            _serviceResult = new ServiceResult<TestCustomServiceResultTypes, TestErrorType>(_customResultType, _errorDetails);
+            _result = new Result<TestCustomServiceResultTypes, TestErrorType>(_customResultType, _errorDetails);
         }
     }
 }

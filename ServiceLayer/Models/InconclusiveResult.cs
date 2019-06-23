@@ -1,8 +1,8 @@
 ﻿namespace ServiceLayer.Models
 {
-    public class InconclusiveResult : ServiceResult
+    public class InconclusiveResult : Result
     {
-        public InconclusiveResult() : base(ServiceResultTypes.Inconclusive)
+        public InconclusiveResult() : base(ResultTypes.Inconclusive)
         {
         }
     }

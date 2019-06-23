@@ -7,7 +7,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Cre
     public class WhenGivenFailureResult : UnitTestBase
     {
         private readonly ServiceLayer.Internal.Factories.DataServiceResultFactory _dataServiceResultFactory = new ServiceLayer.Internal.Factories.DataServiceResultFactory();
-        private DataServiceResult<TestData, TestCustomServiceResultTypes, TestErrorType> _serviceResult;
+        private DataResult<TestData, TestCustomServiceResultTypes, TestErrorType> _result;
 
         private TestErrorType _errorDetails;
         private FailureResult<TestErrorType> _failureResult;
@@ -18,29 +18,29 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Cre
         [Test]
         public void Should_Return_DataServiceResult_With_Expected_ErrorDetails()
         {
-            _serviceResult.ErrorDetails.Should().BeSameAs(_errorDetails);
+            _result.ErrorDetails.Should().BeSameAs(_errorDetails);
         }
 
         [Test]
         public void Should_Return_DataServiceResult_With_Expected_ResultType()
         {
-            _serviceResult.ResultType.Should().Be(_expectedResultType);
+            _result.ResultType.Should().Be(_expectedResultType);
         }
 
         [Test]
         public void Should_Return_DataServiceResult_With_Null_Data()
         {
-            _serviceResult.Data.Should().BeNull();
+            _result.Data.Should().BeNull();
         }
 
         protected override void Act()
         {
-            _serviceResult = _dataServiceResultFactory.Create<TestData, TestCustomServiceResultTypes, TestErrorType>(_failureResult);
+            _result = _dataServiceResultFactory.Create<TestData, TestCustomServiceResultTypes, TestErrorType>(_failureResult);
         }
 
         protected override void Arrange()
         {
-            MockResultTypeConversionService.Setup(s => s.Convert<TestCustomServiceResultTypes>(ServiceResultTypes.Success))
+            MockResultTypeConversionService.Setup(s => s.Convert<TestCustomServiceResultTypes>(ResultTypes.Success))
                 .Returns(_expectedResultType);
             _errorDetails = new TestErrorType();
             _failureResult = new FailureResult<TestErrorType>(_errorDetails);

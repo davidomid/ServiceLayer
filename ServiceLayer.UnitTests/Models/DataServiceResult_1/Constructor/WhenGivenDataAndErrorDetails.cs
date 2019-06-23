@@ -8,35 +8,35 @@ namespace ServiceLayer.UnitTests.Models.DataServiceResult_1.Constructor
     [TestFixtureSource(nameof(ResultTypes))]
     public class WhenGivenDataAndErrorDetails : UnitTestBase
     {
-        private DataServiceResult<TestData> _serviceResult;
+        private DataResult<TestData> _result;
         private string[] _errorDetails;
         private TestData _testData;
 
-        private readonly ServiceResultTypes _serviceResultType;
+        private readonly ResultTypes _resultType;
 
-        private static readonly ServiceResultTypes[] ResultTypes = (ServiceResultTypes[])Enum.GetValues(typeof(ServiceResultTypes));
+        private static readonly ResultTypes[] ResultTypes = (ResultTypes[])Enum.GetValues(typeof(ResultTypes));
 
-        public WhenGivenDataAndErrorDetails(ServiceResultTypes serviceResultType)
+        public WhenGivenDataAndErrorDetails(ResultTypes resultType)
         {
-            _serviceResultType = serviceResultType;
+            _resultType = resultType;
         }
 
         [Test]
         public void Should_Have_ErrorDetails_Matching_Given_ErrorDetails()
         {
-            _serviceResult.ErrorDetails.Should().BeSameAs(_errorDetails); 
+            _result.ErrorDetails.Should().BeSameAs(_errorDetails); 
         }
 
         [Test]
         public void Should_Have_Data_Matching_Given_Data()
         {
-            _serviceResult.Data.Should().BeSameAs(_testData);
+            _result.Data.Should().BeSameAs(_testData);
         }
 
         [Test]
         public void Should_Have_ServiceResultType_Matching_Given_Type()
         {
-            _serviceResult.ResultType.Should().Be(_serviceResultType);
+            _result.ResultType.Should().Be(_resultType);
         }
 
         protected override void Arrange()
@@ -47,7 +47,7 @@ namespace ServiceLayer.UnitTests.Models.DataServiceResult_1.Constructor
 
         protected override void Act()
         {
-            _serviceResult = new DataServiceResult<TestData>(_testData, _serviceResultType, _errorDetails);
+            _result = new DataResult<TestData>(_testData, _resultType, _errorDetails);
         }
     }
 }

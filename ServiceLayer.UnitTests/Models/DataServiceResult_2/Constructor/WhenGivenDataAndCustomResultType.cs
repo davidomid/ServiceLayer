@@ -8,7 +8,7 @@ namespace ServiceLayer.UnitTests.Models.DataServiceResult_2.Constructor
     [TestFixtureSource(nameof(ResultTypes))]
     public class WhenGivenDataAndCustomResultType : UnitTestBase
     {
-        private DataServiceResult<TestData, TestCustomServiceResultTypes> _serviceResult;
+        private DataResult<TestData, TestCustomServiceResultTypes> _result;
         private readonly TestCustomServiceResultTypes _customResultType;
         private readonly TestData _testData = new TestData();
 
@@ -22,19 +22,19 @@ namespace ServiceLayer.UnitTests.Models.DataServiceResult_2.Constructor
         [Test]
         public void Should_Have_customResultType_Matching_Given_Type()
         {
-            _serviceResult.ResultType.Should().Be(_customResultType);
+            _result.ResultType.Should().Be(_customResultType);
         }
 
         [Test]
         public void Should_Have_ErrorDetails_Null()
         {
-            _serviceResult.ErrorDetails.Should().BeNull();
+            _result.ErrorDetails.Should().BeNull();
         }
 
         [Test]
         public void Should_Have_Data_Matching_Given_Data()
         {
-            _serviceResult.Data.Should().BeSameAs(_testData);
+            _result.Data.Should().BeSameAs(_testData);
         }
 
         protected override void Arrange()
@@ -43,7 +43,7 @@ namespace ServiceLayer.UnitTests.Models.DataServiceResult_2.Constructor
 
         protected override void Act()
         {
-            _serviceResult = new DataServiceResult<TestData, TestCustomServiceResultTypes>(_testData, _customResultType);
+            _result = new DataResult<TestData, TestCustomServiceResultTypes>(_testData, _customResultType);
         }
     }
 }

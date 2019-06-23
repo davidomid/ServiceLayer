@@ -9,7 +9,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Cre
     public class WhenGivenServiceResultType : UnitTestBase
     {
         private readonly ServiceLayer.Internal.Factories.DataServiceResultFactory _dataServiceResultFactory = new ServiceLayer.Internal.Factories.DataServiceResultFactory();
-        private DataServiceResult<TestData, TestCustomServiceResultTypes> _serviceResult;
+        private DataResult<TestData, TestCustomServiceResultTypes> _result;
 
         private readonly TestCustomServiceResultTypes _serviceResultType;
         private static readonly TestCustomServiceResultTypes[] ResultTypes = (TestCustomServiceResultTypes[])Enum.GetValues(typeof(TestCustomServiceResultTypes));
@@ -22,24 +22,24 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Cre
         [Test]
         public void Should_Return_DataServiceResult_With_Null_Data()
         {
-            _serviceResult.Data.Should().BeNull();
+            _result.Data.Should().BeNull();
         }
 
         [Test]
         public void Should_Return_DataServiceResult_With_Null_ErrorDetails()
         {
-            _serviceResult.ErrorDetails.Should().BeNull();
+            _result.ErrorDetails.Should().BeNull();
         }
 
         [Test]
         public void Should_Return_DataServiceResult_With_Expected_ResultType()
         {
-            _serviceResult.ResultType.Should().Be(_serviceResultType);
+            _result.ResultType.Should().Be(_serviceResultType);
         }
 
         protected override void Act()
         {
-            _serviceResult = _dataServiceResultFactory.Create<TestData, TestCustomServiceResultTypes>(_serviceResultType);
+            _result = _dataServiceResultFactory.Create<TestData, TestCustomServiceResultTypes>(_serviceResultType);
         }
 
         protected override void Arrange()

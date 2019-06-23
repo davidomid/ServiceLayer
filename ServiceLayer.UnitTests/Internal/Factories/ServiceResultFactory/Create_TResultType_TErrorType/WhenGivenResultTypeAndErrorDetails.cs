@@ -13,7 +13,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create_
 
         private readonly TestErrorType _errorDetails = new TestErrorType(); 
 
-        private ServiceResult<TestCustomServiceResultTypes, TestErrorType> _serviceResult;
+        private Result<TestCustomServiceResultTypes, TestErrorType> _result;
 
         private readonly TestCustomServiceResultTypes _resultType;
 
@@ -30,25 +30,25 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create_
 
         protected override void Act()
         {
-            _serviceResult = _serviceResultFactory.Create(_resultType, _errorDetails); 
+            _result = _serviceResultFactory.Create(_resultType, _errorDetails); 
         }
 
         [Test]
         public void Should_Not_Return_Null()
         {
-            _serviceResult.Should().NotBeNull();
+            _result.Should().NotBeNull();
         }
 
         [Test]
         public void Should_Return_Result_With_Given_ErrorDetails()
         {
-            _serviceResult.ErrorDetails.Should().BeSameAs(_errorDetails);
+            _result.ErrorDetails.Should().BeSameAs(_errorDetails);
         }
 
         [Test]
         public void Should_Return_Result_With_Given_ResultType()
         {
-            _serviceResult.ResultType.Should().Be(_resultType);
+            _result.ResultType.Should().Be(_resultType);
         }
     }
 }

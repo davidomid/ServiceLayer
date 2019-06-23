@@ -11,7 +11,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create_
 
         private readonly FailureResult<TestErrorType> _failureResult = new FailureResult<TestErrorType>(new TestErrorType());
 
-        private ServiceResult<TestCustomServiceResultTypes, TestErrorType> _serviceResult;
+        private Result<TestCustomServiceResultTypes, TestErrorType> _result;
 
         private readonly TestCustomServiceResultTypes _expectedResultType =
             TestCustomServiceResultTypes.TestValueWithFailureAttribute;
@@ -22,27 +22,27 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create_
 
         protected override void Act()
         {
-            MockResultTypeConversionService.Setup(s => s.Convert<TestCustomServiceResultTypes>(ServiceResultTypes.Failure))
+            MockResultTypeConversionService.Setup(s => s.Convert<TestCustomServiceResultTypes>(ResultTypes.Failure))
                 .Returns(_expectedResultType);
-            _serviceResult = _serviceResultFactory.Create<TestCustomServiceResultTypes, TestErrorType>(_failureResult); 
+            _result = _serviceResultFactory.Create<TestCustomServiceResultTypes, TestErrorType>(_failureResult); 
         }
 
         [Test]
         public void Should_Not_Return_Null()
         {
-            _serviceResult.Should().NotBeNull();
+            _result.Should().NotBeNull();
         }
 
         [Test]
         public void Should_Return_Result_With_Given_ErrorDetails()
         {
-            _serviceResult.ErrorDetails.Should().Be(_failureResult.ErrorDetails);
+            _result.ErrorDetails.Should().Be(_failureResult.ErrorDetails);
         }
 
         [Test]
         public void Should_Return_Result_With_Expected_ResultType()
         {
-            _serviceResult.ResultType.Should().Be(_expectedResultType);
+            _result.ResultType.Should().Be(_expectedResultType);
         }
     }
 }

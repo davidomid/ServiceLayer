@@ -10,9 +10,9 @@ namespace ServiceLayer.UnitTests.Models.ServiceResult_2.Operators.Implicit
     {
         private readonly TestCustomServiceResultTypes _customResultType;
 
-        private ServiceResult<TestCustomServiceResultTypes, TestErrorType> _actualServiceResult;
+        private Result<TestCustomServiceResultTypes, TestErrorType> _actualResult;
 
-        private ServiceResult<TestCustomServiceResultTypes, TestErrorType> _expectedServiceResult;
+        private Result<TestCustomServiceResultTypes, TestErrorType> _expectedResult;
 
         private static readonly TestCustomServiceResultTypes[] ResultTypes = (TestCustomServiceResultTypes[])Enum.GetValues(typeof(TestCustomServiceResultTypes));
 
@@ -24,17 +24,17 @@ namespace ServiceLayer.UnitTests.Models.ServiceResult_2.Operators.Implicit
         [Test]
         public void Should_Be_Expected_ServiceResult()
         {
-            _actualServiceResult.Should().BeSameAs(_expectedServiceResult);
+            _actualResult.Should().BeSameAs(_expectedResult);
         }
 
         protected override void Arrange()
         {
-            _expectedServiceResult = MockServiceResultFactory.Object.Create<TestCustomServiceResultTypes, TestErrorType>(_customResultType);
+            _expectedResult = MockServiceResultFactory.Object.Create<TestCustomServiceResultTypes, TestErrorType>(_customResultType);
         }
 
         protected override void Act()
         {
-            _actualServiceResult = _customResultType;
+            _actualResult = _customResultType;
         }
     }
 }

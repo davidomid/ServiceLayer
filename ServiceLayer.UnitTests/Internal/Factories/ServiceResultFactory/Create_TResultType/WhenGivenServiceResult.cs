@@ -11,19 +11,19 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create_
         private readonly ServiceLayer.Internal.Factories.ServiceResultFactory _serviceResultFactory =
             new ServiceLayer.Internal.Factories.ServiceResultFactory();
 
-        private ServiceResult<TestCustomServiceResultTypes> _serviceResult;
+        private Result<TestCustomServiceResultTypes> _result;
 
-        private ServiceResult _fromServiceResult;
+        private Result _fromResult;
 
-        private readonly ServiceResultTypes _resultType;
+        private readonly ResultTypes _resultType;
 
         private readonly TestCustomServiceResultTypes _expectedCustomResultType = (TestCustomServiceResultTypes) 1000;
 
         private object[] _errorDetails; 
 
-        private static readonly ServiceResultTypes[] ResultTypes = (ServiceResultTypes[])Enum.GetValues(typeof(ServiceResultTypes));
+        private static readonly ResultTypes[] ResultTypes = (ResultTypes[])Enum.GetValues(typeof(ResultTypes));
 
-        public WhenGivenServiceResult(ServiceResultTypes resultType)
+        public WhenGivenServiceResult(ResultTypes resultType)
         {
             _resultType = resultType;
         }
@@ -33,30 +33,30 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create_
             MockResultTypeConversionService.Setup(s => s.Convert<TestCustomServiceResultTypes>(_resultType))
                 .Returns(_expectedCustomResultType);
             _errorDetails = new[] {"test 123", 123, new object()};
-            _fromServiceResult = new ServiceResult(_resultType, _errorDetails);
+            _fromResult = new Result(_resultType, _errorDetails);
         }
 
         protected override void Act()
         {
-            _serviceResult = _serviceResultFactory.Create<TestCustomServiceResultTypes>(_fromServiceResult); 
+            _result = _serviceResultFactory.Create<TestCustomServiceResultTypes>(_fromResult); 
         }
 
         [Test]
         public void Should_Not_Return_Null()
         {
-            _serviceResult.Should().NotBeNull();
+            _result.Should().NotBeNull();
         }
 
         [Test]
         public void Should_Return_Result_With_Given_ErrorDetails()
         {
-            _serviceResult.ErrorDetails.Should().Be(_errorDetails); 
+            _result.ErrorDetails.Should().Be(_errorDetails); 
         }
 
         [Test]
         public void Should_Return_Result_With_Expected_ResultType()
         {
-            _serviceResult.ResultType.Should().Be(_expectedCustomResultType);
+            _result.ResultType.Should().Be(_expectedCustomResultType);
         }
     }
 }

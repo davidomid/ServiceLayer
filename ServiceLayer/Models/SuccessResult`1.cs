@@ -2,9 +2,9 @@
 
 namespace ServiceLayer
 {
-    public class SuccessResult<TData> : DataServiceResult<TData>
+    public class SuccessResult<TData> : DataResult<TData>
     {
-        public SuccessResult(TData data) : base(data, ServiceResultTypes.Success, default)
+        public SuccessResult(TData data) : base(data, ResultTypes.Success, default)
         {
         }
 

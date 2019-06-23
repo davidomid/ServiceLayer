@@ -10,7 +10,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Cre
     {
         private readonly ServiceLayer.Internal.Factories.DataServiceResultFactory _dataServiceResultFactory = new ServiceLayer.Internal.Factories.DataServiceResultFactory();
         private string[] _errorDetails;
-        private DataServiceResult<TestData, TestCustomServiceResultTypes, string[]> _serviceResult;
+        private DataResult<TestData, TestCustomServiceResultTypes, string[]> _result;
 
         private readonly TestCustomServiceResultTypes _serviceResultType;
         private readonly TestData _testData = new TestData();
@@ -24,24 +24,24 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Cre
         [Test]
         public void Should_Return_DataServiceResult_With_Expected_Data()
         {
-            _serviceResult.Data.Should().BeSameAs(_testData);
+            _result.Data.Should().BeSameAs(_testData);
         }
 
         [Test]
         public void Should_Return_DataServiceResult_With_Expected_ErrorDetails()
         {
-            _serviceResult.ErrorDetails.Should().BeSameAs(_errorDetails);
+            _result.ErrorDetails.Should().BeSameAs(_errorDetails);
         }
 
         [Test]
         public void Should_Return_DataServiceResult_With_Expected_ResultType()
         {
-            _serviceResult.ResultType.Should().Be(_serviceResultType);
+            _result.ResultType.Should().Be(_serviceResultType);
         }
 
         protected override void Act()
         {
-            _serviceResult = _dataServiceResultFactory.Create(_testData, _serviceResultType, _errorDetails);
+            _result = _dataServiceResultFactory.Create(_testData, _serviceResultType, _errorDetails);
         }
 
         protected override void Arrange()

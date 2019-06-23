@@ -5,10 +5,10 @@ namespace ExampleServices
 {
     public interface IStorageService<TEntity> : IService where TEntity : Entity
     {
-        IDataServiceResult<IEnumerable<TEntity>> Get();
+        IDataResult<IEnumerable<TEntity>> Get();
 
-        IServiceResult Add(TEntity entity);
+        IResult Add(TEntity entity);
 
-        IDataServiceResult<TEntity> GetByKey(string key); 
+        IDataResult<TEntity> GetByKey(string key); 
     }
 }

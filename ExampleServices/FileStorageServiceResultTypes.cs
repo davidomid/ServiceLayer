@@ -8,7 +8,7 @@ namespace ExampleServices
         Success,
         [Failure(IsDefault = true)]
         Failure,
-        [ResultType(ServiceResultTypes.Failure)]
+        [ResultType(ResultTypes.Failure)]
         [ResultType(HttpStatusCode.BadRequest)]
         FilePathNotExists
     }

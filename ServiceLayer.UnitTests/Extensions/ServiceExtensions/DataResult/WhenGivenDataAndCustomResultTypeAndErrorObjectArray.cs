@@ -10,8 +10,8 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.DataResult
     {
         private IService _service;
         private object[] _errorDetails;
-        private DataServiceResult<TestData, TestCustomServiceResultTypes> _serviceResult;
-        private DataServiceResult<TestData, TestCustomServiceResultTypes> _expectedServiceResult;
+        private DataResult<TestData, TestCustomServiceResultTypes> _result;
+        private DataResult<TestData, TestCustomServiceResultTypes> _expectedResult;
 
         private readonly TestCustomServiceResultTypes _serviceResultType;
         private readonly TestData _testData = new TestData();
@@ -25,19 +25,19 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.DataResult
         [Test]
         public void Should_Return_Expected_Result()
         {
-            _serviceResult.Should().BeSameAs(_expectedServiceResult);
+            _result.Should().BeSameAs(_expectedResult);
         }
 
         protected override void Act()
         {
-            _serviceResult = _service.DataResult(_testData, _serviceResultType, _errorDetails);
+            _result = _service.DataResult(_testData, _serviceResultType, _errorDetails);
         }
 
         protected override void Arrange()
         {
             _service = new TestService();
             _errorDetails = new[] { Guid.NewGuid().ToString(), 123, new object() };
-            _expectedServiceResult =
+            _expectedResult =
                 MockDataServiceResultFactory.Object.Create(_testData, _serviceResultType, _errorDetails);
         }
     }
