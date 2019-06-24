@@ -43,16 +43,16 @@ namespace ServiceLayer.UnitTests
             MockResultTypeConversionService.Setup(s => s.Convert<ResultType>(ResultType.Inconclusive))
                 .Returns(ResultType.Inconclusive);
             MockResultTypeConversionService.Setup(s =>
-                    s.Convert<ResultType>(TestCustomResultTypes.TestValueWithNoAttribute))
+                    s.Convert<ResultType>(TestCustomResultType.TestValueWithNoAttribute))
                 .Returns(ResultType.Failure);
             MockResultTypeConversionService.Setup(s =>
-                s.Convert<ResultType>(TestCustomResultTypes.TestValueWithSuccessAttribute))
+                s.Convert<ResultType>(TestCustomResultType.TestValueWithSuccessAttribute))
                 .Returns(ResultType.Success);
             MockResultTypeConversionService.Setup(s =>
-                    s.Convert<ResultType>(TestCustomResultTypes.TestValueWithFailureAttribute))
+                    s.Convert<ResultType>(TestCustomResultType.TestValueWithFailureAttribute))
                 .Returns(ResultType.Failure);
             MockResultTypeConversionService.Setup(s =>
-                    s.Convert<ResultType>((TestCustomResultTypes) 1000))
+                    s.Convert<ResultType>((TestCustomResultType) 1000))
                 .Returns(ResultType.Failure);
         }
 
@@ -83,44 +83,44 @@ namespace ServiceLayer.UnitTests
                 .Returns(new Result<ResultType, string[]>(default, default));
 
             MockServiceResultFactory
-                .Setup(f => f.Create(It.IsAny<TestCustomResultTypes>()))
-                .Returns(new Result<TestCustomResultTypes>(default));
+                .Setup(f => f.Create(It.IsAny<TestCustomResultType>()))
+                .Returns(new Result<TestCustomResultType>(default));
 
             MockServiceResultFactory
-                .Setup(f => f.Create(It.IsAny<TestCustomResultTypes>(), It.IsAny<object[]>()))
-                .Returns(new Result<TestCustomResultTypes, object[]>(default, default));
+                .Setup(f => f.Create(It.IsAny<TestCustomResultType>(), It.IsAny<object[]>()))
+                .Returns(new Result<TestCustomResultType, object[]>(default, default));
 
             MockServiceResultFactory
                 .Setup(f => f.Create(It.IsAny<ResultType>(), It.IsAny<object[]>()))
                 .Returns(new Result<ResultType, object[]>(default, default));
 
             MockServiceResultFactory
-                .Setup(f => f.Create(It.IsAny<TestCustomResultTypes>(), It.IsAny<TestErrorType>()))
-                .Returns(new Result<TestCustomResultTypes, TestErrorType>(default, default));
+                .Setup(f => f.Create(It.IsAny<TestCustomResultType>(), It.IsAny<TestErrorType>()))
+                .Returns(new Result<TestCustomResultType, TestErrorType>(default, default));
 
             MockServiceResultFactory
-                .Setup(f => f.Create<TestCustomResultTypes, TestErrorType>(It.IsAny<SuccessResult>()))
-                .Returns(new Result<TestCustomResultTypes, TestErrorType>(default, default));
+                .Setup(f => f.Create<TestCustomResultType, TestErrorType>(It.IsAny<SuccessResult>()))
+                .Returns(new Result<TestCustomResultType, TestErrorType>(default, default));
 
             MockServiceResultFactory
-                .Setup(f => f.Create<TestCustomResultTypes, TestErrorType>(It.IsAny<FailureResult<TestErrorType>>()))
-                .Returns(new Result<TestCustomResultTypes, TestErrorType>(default, default));
+                .Setup(f => f.Create<TestCustomResultType, TestErrorType>(It.IsAny<FailureResult<TestErrorType>>()))
+                .Returns(new Result<TestCustomResultType, TestErrorType>(default, default));
 
             MockServiceResultFactory
-                .Setup(f => f.Create<TestCustomResultTypes, TestErrorType>(It.IsAny<TestErrorType>()))
-                .Returns(new Result<TestCustomResultTypes, TestErrorType>(default, default));
+                .Setup(f => f.Create<TestCustomResultType, TestErrorType>(It.IsAny<TestErrorType>()))
+                .Returns(new Result<TestCustomResultType, TestErrorType>(default, default));
 
             MockServiceResultFactory
-                .Setup(f => f.Create(It.IsAny<TestCustomResultTypes>(), It.IsAny<string[]>()))
-                .Returns(new Result<TestCustomResultTypes, string[]>(default, default));
+                .Setup(f => f.Create(It.IsAny<TestCustomResultType>(), It.IsAny<string[]>()))
+                .Returns(new Result<TestCustomResultType, string[]>(default, default));
 
             MockServiceResultFactory
-                .Setup(f => f.Create<TestCustomResultTypes>(It.IsAny<SuccessResult>()))
-                .Returns(new Result<TestCustomResultTypes>(TestCustomResultTypes.TestValueWithSuccessAttribute));
+                .Setup(f => f.Create<TestCustomResultType>(It.IsAny<SuccessResult>()))
+                .Returns(new Result<TestCustomResultType>(TestCustomResultType.TestValueWithSuccessAttribute));
 
             MockServiceResultFactory
-                .Setup(f => f.Create<TestCustomResultTypes>(It.IsAny<FailureResult>()))
-                .Returns(new Result<TestCustomResultTypes>(TestCustomResultTypes.TestValueWithNoAttribute));
+                .Setup(f => f.Create<TestCustomResultType>(It.IsAny<FailureResult>()))
+                .Returns(new Result<TestCustomResultType>(TestCustomResultType.TestValueWithNoAttribute));
         }
 
         private static void SetupMockDataServiceResultFactory()
@@ -134,60 +134,60 @@ namespace ServiceLayer.UnitTests
                 .Returns(new DataResult<TestData>(default, default));
 
             MockDataServiceResultFactory
-                .Setup(f => f.Create<TestData, TestCustomResultTypes>(It.IsAny<TestData>()))
-                .Returns(new DataResult<TestData, TestCustomResultTypes>(default, default));
+                .Setup(f => f.Create<TestData, TestCustomResultType>(It.IsAny<TestData>()))
+                .Returns(new DataResult<TestData, TestCustomResultType>(default, default));
 
             MockDataServiceResultFactory
-                .Setup(f => f.Create<TestData, TestCustomResultTypes>(It.IsAny<FailureResult>()))
-                .Returns(new DataResult<TestData, TestCustomResultTypes>(default, default));
+                .Setup(f => f.Create<TestData, TestCustomResultType>(It.IsAny<FailureResult>()))
+                .Returns(new DataResult<TestData, TestCustomResultType>(default, default));
 
             MockDataServiceResultFactory
-                .Setup(f => f.Create<TestData, TestCustomResultTypes>(It.IsAny<TestCustomResultTypes>()))
-                .Returns(new DataResult<TestData, TestCustomResultTypes>(default, default));
+                .Setup(f => f.Create<TestData, TestCustomResultType>(It.IsAny<TestCustomResultType>()))
+                .Returns(new DataResult<TestData, TestCustomResultType>(default, default));
 
             MockDataServiceResultFactory
-                .Setup(f => f.Create<TestData, TestCustomResultTypes>(It.IsAny<SuccessResult<TestData>>()))
-                .Returns(new DataResult<TestData, TestCustomResultTypes>(default, default));
+                .Setup(f => f.Create<TestData, TestCustomResultType>(It.IsAny<SuccessResult<TestData>>()))
+                .Returns(new DataResult<TestData, TestCustomResultType>(default, default));
 
             MockDataServiceResultFactory
-                .Setup(f => f.Create<TestData, TestCustomResultTypes, TestErrorType>(It.IsAny<TestData>()))
-                .Returns(new DataResult<TestData, TestCustomResultTypes, TestErrorType>(default, default, default));
+                .Setup(f => f.Create<TestData, TestCustomResultType, TestErrorType>(It.IsAny<TestData>()))
+                .Returns(new DataResult<TestData, TestCustomResultType, TestErrorType>(default, default, default));
 
             MockDataServiceResultFactory
-                .Setup(f => f.Create<TestData, TestCustomResultTypes, TestErrorType>(It.IsAny<TestCustomResultTypes>()))
-                .Returns(new DataResult<TestData, TestCustomResultTypes, TestErrorType>(default, default, default));
+                .Setup(f => f.Create<TestData, TestCustomResultType, TestErrorType>(It.IsAny<TestCustomResultType>()))
+                .Returns(new DataResult<TestData, TestCustomResultType, TestErrorType>(default, default, default));
 
             MockDataServiceResultFactory
-                .Setup(f => f.Create<TestData, TestCustomResultTypes, TestErrorType>(It.IsAny<TestErrorType>()))
-                .Returns(new DataResult<TestData, TestCustomResultTypes, TestErrorType>(default, default, default));
+                .Setup(f => f.Create<TestData, TestCustomResultType, TestErrorType>(It.IsAny<TestErrorType>()))
+                .Returns(new DataResult<TestData, TestCustomResultType, TestErrorType>(default, default, default));
 
             MockDataServiceResultFactory
-                .Setup(f => f.Create<TestData, TestCustomResultTypes, TestErrorType>(It.IsAny<SuccessResult<TestData>>()))
-                .Returns(new DataResult<TestData, TestCustomResultTypes, TestErrorType>(default, default, default));
+                .Setup(f => f.Create<TestData, TestCustomResultType, TestErrorType>(It.IsAny<SuccessResult<TestData>>()))
+                .Returns(new DataResult<TestData, TestCustomResultType, TestErrorType>(default, default, default));
 
             MockDataServiceResultFactory
-                .Setup(f => f.Create<TestData, TestCustomResultTypes, TestErrorType>(It.IsAny<FailureResult<TestErrorType>>()))
-                .Returns(new DataResult<TestData, TestCustomResultTypes, TestErrorType>(default, default, default));
+                .Setup(f => f.Create<TestData, TestCustomResultType, TestErrorType>(It.IsAny<FailureResult<TestErrorType>>()))
+                .Returns(new DataResult<TestData, TestCustomResultType, TestErrorType>(default, default, default));
 
             MockDataServiceResultFactory
                 .Setup(f => f.Create(It.IsAny<TestData>()))
                 .Returns(new DataResult<TestData>(default, default)); 
 
             MockDataServiceResultFactory
-                .Setup(f => f.Create(It.IsAny<TestData>(), It.IsAny<TestCustomResultTypes>()))
-                .Returns(new DataResult<TestData, TestCustomResultTypes>(default, default));
+                .Setup(f => f.Create(It.IsAny<TestData>(), It.IsAny<TestCustomResultType>()))
+                .Returns(new DataResult<TestData, TestCustomResultType>(default, default));
 
             MockDataServiceResultFactory
-                .Setup(f => f.Create(It.IsAny<TestData>(), It.IsAny<TestCustomResultTypes>(), It.IsAny<TestErrorType>()))
-                .Returns(new DataResult<TestData, TestCustomResultTypes, TestErrorType>(default, default, default));
+                .Setup(f => f.Create(It.IsAny<TestData>(), It.IsAny<TestCustomResultType>(), It.IsAny<TestErrorType>()))
+                .Returns(new DataResult<TestData, TestCustomResultType, TestErrorType>(default, default, default));
 
             MockDataServiceResultFactory
-                .Setup(f => f.Create(It.IsAny<TestData>(), It.IsAny<TestCustomResultTypes>(), It.IsAny<object[]>()))
-                .Returns(new DataResult<TestData, TestCustomResultTypes, object[]>(default, default, default));
+                .Setup(f => f.Create(It.IsAny<TestData>(), It.IsAny<TestCustomResultType>(), It.IsAny<object[]>()))
+                .Returns(new DataResult<TestData, TestCustomResultType, object[]>(default, default, default));
 
             MockDataServiceResultFactory
-                .Setup(f => f.Create(It.IsAny<TestData>(), It.IsAny<TestCustomResultTypes>(), It.IsAny<string[]>()))
-                .Returns(new DataResult<TestData, TestCustomResultTypes, string[]>(default, default, default));
+                .Setup(f => f.Create(It.IsAny<TestData>(), It.IsAny<TestCustomResultType>(), It.IsAny<string[]>()))
+                .Returns(new DataResult<TestData, TestCustomResultType, string[]>(default, default, default));
 
         }
     }

@@ -5,19 +5,19 @@ using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Internal.Factories.ResultFactory.Create_TResultType
 {
-    [TestFixtureSource(nameof(ResultTypes))]
+    [TestFixtureSource(nameof(ResultType))]
     public class WhenGivenResultType : UnitTestBase
     {
         private readonly ServiceLayer.Internal.Factories.ResultFactory _resultFactory =
             new ServiceLayer.Internal.Factories.ResultFactory();
 
-        private Result<TestCustomResultTypes> _result;
+        private Result<TestCustomResultType> _result;
 
-        private readonly TestCustomResultTypes _resultType;
+        private readonly TestCustomResultType _resultType;
 
-        private static readonly TestCustomResultTypes[] ResultTypes = (TestCustomResultTypes[])Enum.GetValues(typeof(TestCustomResultTypes));
+        private static readonly TestCustomResultType[] ResultType = (TestCustomResultType[])Enum.GetValues(typeof(TestCustomResultType));
 
-        public WhenGivenResultType(TestCustomResultTypes resultType)
+        public WhenGivenResultType(TestCustomResultType resultType)
         {
             _resultType = resultType;
         }

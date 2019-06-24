@@ -1,6 +1,6 @@
 ﻿namespace Testing.Common.Domain.TestClasses
 {
-    public enum TestCustomResultTypesWithNoAttributes
+    public enum TestCustomResultTypeWithNoAttributes
     {
         TestValue1,
         TestValue2,

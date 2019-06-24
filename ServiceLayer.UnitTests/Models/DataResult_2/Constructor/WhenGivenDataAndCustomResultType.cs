@@ -5,16 +5,16 @@ using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Models.DataResult_2.Constructor
 {
-    [TestFixtureSource(nameof(ResultTypes))]
+    [TestFixtureSource(nameof(ResultType))]
     public class WhenGivenDataAndCustomResultType : UnitTestBase
     {
-        private DataResult<TestData, TestCustomResultTypes> _result;
-        private readonly TestCustomResultTypes _customResultType;
+        private DataResult<TestData, TestCustomResultType> _result;
+        private readonly TestCustomResultType _customResultType;
         private readonly TestData _testData = new TestData();
 
-        private static readonly TestCustomResultTypes[] ResultTypes = (TestCustomResultTypes[])Enum.GetValues(typeof(TestCustomResultTypes));
+        private static readonly TestCustomResultType[] ResultType = (TestCustomResultType[])Enum.GetValues(typeof(TestCustomResultType));
 
-        public WhenGivenDataAndCustomResultType(TestCustomResultTypes customResultType)
+        public WhenGivenDataAndCustomResultType(TestCustomResultType customResultType)
         {
             _customResultType = customResultType;
         }
@@ -43,7 +43,7 @@ namespace ServiceLayer.UnitTests.Models.DataResult_2.Constructor
 
         protected override void Act()
         {
-            _result = new DataResult<TestData, TestCustomResultTypes>(_testData, _customResultType);
+            _result = new DataResult<TestData, TestCustomResultType>(_testData, _customResultType);
         }
     }
 }

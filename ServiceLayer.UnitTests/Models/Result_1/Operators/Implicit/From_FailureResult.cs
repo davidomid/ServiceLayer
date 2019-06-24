@@ -8,9 +8,9 @@ namespace ServiceLayer.UnitTests.Models.Result_1.Operators.Implicit
     {
         private readonly ServiceLayer.FailureResult _failureResult = new ServiceLayer.FailureResult();
 
-        private Result<TestCustomResultTypes> _actualResult;
+        private Result<TestCustomResultType> _actualResult;
 
-        private Result<TestCustomResultTypes> _expectedResult;
+        private Result<TestCustomResultType> _expectedResult;
 
         [Test]
         public void Should_Be_Expected_ServiceResult()
@@ -20,7 +20,7 @@ namespace ServiceLayer.UnitTests.Models.Result_1.Operators.Implicit
 
         protected override void Arrange()
         {
-            _expectedResult = MockServiceResultFactory.Object.Create<TestCustomResultTypes>(_failureResult);
+            _expectedResult = MockServiceResultFactory.Object.Create<TestCustomResultType>(_failureResult);
         }
 
         protected override void Act()

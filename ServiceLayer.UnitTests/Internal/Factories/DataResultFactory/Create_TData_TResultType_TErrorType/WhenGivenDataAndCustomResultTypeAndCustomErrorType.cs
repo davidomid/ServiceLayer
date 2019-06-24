@@ -5,18 +5,18 @@ using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Internal.Factories.DataResultFactory.Create_TData_TResultType_TErrorType
 {
-    [TestFixtureSource(nameof(ResultTypes))]
+    [TestFixtureSource(nameof(ResultType))]
     public class WhenGivenDataAndCustomResultTypeAndCustomErrorType : UnitTestBase
     {
         private readonly ServiceLayer.Internal.Factories.DataResultFactory _dataResultFactory = new ServiceLayer.Internal.Factories.DataResultFactory();
         private string[] _errorDetails;
-        private DataResult<TestData, TestCustomResultTypes, string[]> _result;
+        private DataResult<TestData, TestCustomResultType, string[]> _result;
 
-        private readonly TestCustomResultTypes _resultType;
+        private readonly TestCustomResultType _resultType;
         private readonly TestData _testData = new TestData();
-        private static readonly TestCustomResultTypes[] ResultTypes = (TestCustomResultTypes[])Enum.GetValues(typeof(TestCustomResultTypes));
+        private static readonly TestCustomResultType[] ResultType = (TestCustomResultType[])Enum.GetValues(typeof(TestCustomResultType));
 
-        public WhenGivenDataAndCustomResultTypeAndCustomErrorType(TestCustomResultTypes resultType)
+        public WhenGivenDataAndCustomResultTypeAndCustomErrorType(TestCustomResultType resultType)
         {
             _resultType = resultType;
         }

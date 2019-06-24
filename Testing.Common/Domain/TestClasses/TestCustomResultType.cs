@@ -2,7 +2,7 @@
 
 namespace Testing.Common.Domain.TestClasses
 {
-    public enum TestCustomResultTypes
+    public enum TestCustomResultType
     {
         TestValueWithNoAttribute,
         [Success]

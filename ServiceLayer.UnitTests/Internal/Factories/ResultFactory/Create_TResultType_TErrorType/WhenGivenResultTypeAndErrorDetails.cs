@@ -5,7 +5,7 @@ using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Internal.Factories.ResultFactory.Create_TResultType_TErrorType
 {
-    [TestFixtureSource(nameof(ResultTypes))]
+    [TestFixtureSource(nameof(ResultType))]
     public class WhenGivenResultType : UnitTestBase
     {
         private readonly ServiceLayer.Internal.Factories.ResultFactory _resultFactory =
@@ -13,13 +13,13 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ResultFactory.Create_TResult
 
         private readonly TestErrorType _errorDetails = new TestErrorType(); 
 
-        private Result<TestCustomResultTypes, TestErrorType> _result;
+        private Result<TestCustomResultType, TestErrorType> _result;
 
-        private readonly TestCustomResultTypes _resultType;
+        private readonly TestCustomResultType _resultType;
 
-        private static readonly TestCustomResultTypes[] ResultTypes = (TestCustomResultTypes[])Enum.GetValues(typeof(TestCustomResultTypes));
+        private static readonly TestCustomResultType[] ResultType = (TestCustomResultType[])Enum.GetValues(typeof(TestCustomResultType));
 
-        public WhenGivenResultType(TestCustomResultTypes resultType)
+        public WhenGivenResultType(TestCustomResultType resultType)
         {
             _resultType = resultType;
         }

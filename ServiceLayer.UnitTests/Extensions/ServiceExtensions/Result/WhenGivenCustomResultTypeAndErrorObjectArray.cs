@@ -5,18 +5,18 @@ using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.Result
 {
-    [TestFixtureSource(nameof(ResultTypes))]
+    [TestFixtureSource(nameof(ResultType))]
     public class WhenGivenCustomResultTypeAndErrorObjectArray : UnitTestBase
     {
         private IService _service;
         private object[] _errorDetails;
         private ServiceLayer.Result _result;
         private ServiceLayer.Result _expectedResult;
-        private readonly TestCustomResultTypes _customResultType;
+        private readonly TestCustomResultType _customResultType;
 
-        private static readonly TestCustomResultTypes[] ResultTypes = (TestCustomResultTypes[])Enum.GetValues(typeof(TestCustomResultTypes));
+        private static readonly TestCustomResultType[] ResultType = (TestCustomResultType[])Enum.GetValues(typeof(TestCustomResultType));
 
-        public WhenGivenCustomResultTypeAndErrorObjectArray(TestCustomResultTypes customResultType)
+        public WhenGivenCustomResultTypeAndErrorObjectArray(TestCustomResultType customResultType)
         {
             _customResultType = customResultType;
         }

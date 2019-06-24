@@ -1,6 +1,7 @@
 ﻿using System;
 using FluentAssertions;
 using NUnit.Framework;
+using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Internal.Factories.ResultFactory.Create_TResultType
 {
@@ -10,13 +11,13 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ResultFactory.Create_TResult
         private readonly ServiceLayer.Internal.Factories.ResultFactory _resultFactory =
             new ServiceLayer.Internal.Factories.ResultFactory();
 
-        private Result<TestCustomResultTypes> _result;
+        private Result<TestCustomResultType> _result;
 
         private Result _fromResult;
 
         private readonly ResultType _resultType;
 
-        private readonly TestCustomResultTypes _expectedCustomResultType = (TestCustomResultTypes) 1000;
+        private readonly TestCustomResultType _expectedCustomResultType = (TestCustomResultType) 1000;
 
         private object[] _errorDetails; 
 
@@ -29,7 +30,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ResultFactory.Create_TResult
 
         protected override void Arrange()
         {
-            MockResultTypeConversionService.Setup(s => s.Convert<TestCustomResultTypes>(_resultType))
+            MockResultTypeConversionService.Setup(s => s.Convert<TestCustomResultType>(_resultType))
                 .Returns(_expectedCustomResultType);
             _errorDetails = new[] {"test 123", 123, new object()};
             _fromResult = new Result(_resultType, _errorDetails);
@@ -37,7 +38,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ResultFactory.Create_TResult
 
         protected override void Act()
         {
-            _result = _resultFactory.Create<TestCustomResultTypes>(_fromResult); 
+            _result = _resultFactory.Create<TestCustomResultType>(_fromResult); 
         }
 
         [Test]

@@ -7,8 +7,8 @@ namespace ServiceLayer.UnitTests.Models.DataResult_2.Operators.Implicit
     public class From_Data : UnitTestBase
     {
         private readonly TestData _testData = new TestData();
-        private DataResult<TestData, TestCustomResultTypes> _actualDataResult;
-        private DataResult<TestData, TestCustomResultTypes> _expectedDataResult;    
+        private DataResult<TestData, TestCustomResultType> _actualDataResult;
+        private DataResult<TestData, TestCustomResultType> _expectedDataResult;    
 
         protected override void Act()
         {
@@ -23,7 +23,7 @@ namespace ServiceLayer.UnitTests.Models.DataResult_2.Operators.Implicit
 
         protected override void Arrange()
         {
-            _expectedDataResult = MockDataServiceResultFactory.Object.Create<TestData, TestCustomResultTypes>(_testData);
+            _expectedDataResult = MockDataServiceResultFactory.Object.Create<TestData, TestCustomResultType>(_testData);
         }
     }
 }

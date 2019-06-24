@@ -7,10 +7,10 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataResultFactory.Create_TDa
     public class WhenGivenData : UnitTestBase
     {
         private readonly ServiceLayer.Internal.Factories.DataResultFactory _dataResultFactory = new ServiceLayer.Internal.Factories.DataResultFactory();
-        private DataResult<TestData, TestCustomResultTypes, TestErrorType> _result;
+        private DataResult<TestData, TestCustomResultType, TestErrorType> _result;
 
-        private readonly TestCustomResultTypes _expectedResultType =
-            TestCustomResultTypes.TestValueWithSuccessAttribute;
+        private readonly TestCustomResultType _expectedResultType =
+            TestCustomResultType.TestValueWithSuccessAttribute;
         private readonly TestData _testData = new TestData();
 
         [Test]
@@ -33,12 +33,12 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataResultFactory.Create_TDa
 
         protected override void Act()
         {
-            _result = _dataResultFactory.Create<TestData, TestCustomResultTypes, TestErrorType>(_testData);
+            _result = _dataResultFactory.Create<TestData, TestCustomResultType, TestErrorType>(_testData);
         }
 
         protected override void Arrange()
         {
-            MockResultTypeConversionService.Setup(s => s.Convert<TestCustomResultTypes>(ResultType.Success))
+            MockResultTypeConversionService.Setup(s => s.Convert<TestCustomResultType>(ResultType.Success))
                 .Returns(_expectedResultType);
         }
     }

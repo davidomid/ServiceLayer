@@ -5,18 +5,18 @@ using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Models.Result_2.Operators.Implicit
 {
-    [TestFixtureSource(nameof(ResultTypes))]
+    [TestFixtureSource(nameof(ResultType))]
     public class From_CustomResultType : UnitTestBase
     {
-        private readonly TestCustomResultTypes _customResultType;
+        private readonly TestCustomResultType _customResultType;
 
-        private Result<TestCustomResultTypes, TestErrorType> _actualResult;
+        private Result<TestCustomResultType, TestErrorType> _actualResult;
 
-        private Result<TestCustomResultTypes, TestErrorType> _expectedResult;
+        private Result<TestCustomResultType, TestErrorType> _expectedResult;
 
-        private static readonly TestCustomResultTypes[] ResultTypes = (TestCustomResultTypes[])Enum.GetValues(typeof(TestCustomResultTypes));
+        private static readonly TestCustomResultType[] ResultType = (TestCustomResultType[])Enum.GetValues(typeof(TestCustomResultType));
 
-        public From_CustomResultType(TestCustomResultTypes customResultType)
+        public From_CustomResultType(TestCustomResultType customResultType)
         {
             _customResultType = customResultType; 
         }
@@ -29,7 +29,7 @@ namespace ServiceLayer.UnitTests.Models.Result_2.Operators.Implicit
 
         protected override void Arrange()
         {
-            _expectedResult = MockServiceResultFactory.Object.Create<TestCustomResultTypes, TestErrorType>(_customResultType);
+            _expectedResult = MockServiceResultFactory.Object.Create<TestCustomResultType, TestErrorType>(_customResultType);
         }
 
         protected override void Act()

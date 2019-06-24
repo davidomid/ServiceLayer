@@ -11,20 +11,20 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ResultFactory.Create_TResult
 
         private readonly SuccessResult _successResult = new SuccessResult();
 
-        private Result<TestCustomResultTypes, TestErrorType> _result;
+        private Result<TestCustomResultType, TestErrorType> _result;
 
-        private readonly TestCustomResultTypes _expectedResultType =
-            TestCustomResultTypes.TestValueWithSuccessAttribute;
+        private readonly TestCustomResultType _expectedResultType =
+            TestCustomResultType.TestValueWithSuccessAttribute;
 
         protected override void Arrange()
         {
-            MockResultTypeConversionService.Setup(s => s.Convert<TestCustomResultTypes>(ResultType.Success))
+            MockResultTypeConversionService.Setup(s => s.Convert<TestCustomResultType>(ResultType.Success))
                 .Returns(_expectedResultType);
         }
 
         protected override void Act()
         {
-            _result = _resultFactory.Create<TestCustomResultTypes, TestErrorType>(_successResult); 
+            _result = _resultFactory.Create<TestCustomResultType, TestErrorType>(_successResult); 
         }
 
         [Test]

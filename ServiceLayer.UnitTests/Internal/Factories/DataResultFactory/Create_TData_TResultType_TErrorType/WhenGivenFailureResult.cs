@@ -7,13 +7,13 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataResultFactory.Create_TDa
     public class WhenGivenFailureResult : UnitTestBase
     {
         private readonly ServiceLayer.Internal.Factories.DataResultFactory _dataResultFactory = new ServiceLayer.Internal.Factories.DataResultFactory();
-        private DataResult<TestData, TestCustomResultTypes, TestErrorType> _result;
+        private DataResult<TestData, TestCustomResultType, TestErrorType> _result;
 
         private TestErrorType _errorDetails;
         private FailureResult<TestErrorType> _failureResult;
 
-        private TestCustomResultTypes _expectedResultType =
-            TestCustomResultTypes.TestValueWithFailureAttribute;
+        private TestCustomResultType _expectedResultType =
+            TestCustomResultType.TestValueWithFailureAttribute;
 
         [Test]
         public void Should_Return_DataServiceResult_With_Expected_ErrorDetails()
@@ -35,12 +35,12 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataResultFactory.Create_TDa
 
         protected override void Act()
         {
-            _result = _dataResultFactory.Create<TestData, TestCustomResultTypes, TestErrorType>(_failureResult);
+            _result = _dataResultFactory.Create<TestData, TestCustomResultType, TestErrorType>(_failureResult);
         }
 
         protected override void Arrange()
         {
-            MockResultTypeConversionService.Setup(s => s.Convert<TestCustomResultTypes>(ResultType.Success))
+            MockResultTypeConversionService.Setup(s => s.Convert<TestCustomResultType>(ResultType.Success))
                 .Returns(_expectedResultType);
             _errorDetails = new TestErrorType();
             _failureResult = new FailureResult<TestErrorType>(_errorDetails);

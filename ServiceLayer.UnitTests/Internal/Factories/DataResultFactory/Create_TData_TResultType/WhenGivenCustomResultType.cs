@@ -5,16 +5,16 @@ using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Internal.Factories.DataResultFactory.Create_TData_TResultType
 {
-    [TestFixtureSource(nameof(ResultTypes))]
+    [TestFixtureSource(nameof(ResultType))]
     public class WhenGivenServiceResultType : UnitTestBase
     {
         private readonly ServiceLayer.Internal.Factories.DataResultFactory _dataResultFactory = new ServiceLayer.Internal.Factories.DataResultFactory();
-        private DataResult<TestData, TestCustomResultTypes> _result;
+        private DataResult<TestData, TestCustomResultType> _result;
 
-        private readonly TestCustomResultTypes _resultType;
-        private static readonly TestCustomResultTypes[] ResultTypes = (TestCustomResultTypes[])Enum.GetValues(typeof(TestCustomResultTypes));
+        private readonly TestCustomResultType _resultType;
+        private static readonly TestCustomResultType[] ResultType = (TestCustomResultType[])Enum.GetValues(typeof(TestCustomResultType));
 
-        public WhenGivenServiceResultType(TestCustomResultTypes resultType)
+        public WhenGivenServiceResultType(TestCustomResultType resultType)
         {
             _resultType = resultType;
         }
@@ -39,7 +39,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataResultFactory.Create_TDa
 
         protected override void Act()
         {
-            _result = _dataResultFactory.Create<TestData, TestCustomResultTypes>(_resultType);
+            _result = _dataResultFactory.Create<TestData, TestCustomResultType>(_resultType);
         }
 
         protected override void Arrange()

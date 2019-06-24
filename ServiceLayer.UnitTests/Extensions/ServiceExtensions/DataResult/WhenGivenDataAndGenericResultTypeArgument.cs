@@ -7,8 +7,8 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.DataResult
     public class WhenGivenDataAndGenericResultTypeArgument : UnitTestBase
     {
         private IService _service;
-        private DataResult<TestData, TestCustomResultTypes> _result;
-        private DataResult<TestData, TestCustomResultTypes> _expectedResult; 
+        private DataResult<TestData, TestCustomResultType> _result;
+        private DataResult<TestData, TestCustomResultType> _expectedResult; 
 
         private readonly TestData _testData = new TestData();
 
@@ -20,13 +20,13 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.DataResult
 
         protected override void Act()
         {
-            _result = _service.DataResult<TestData, TestCustomResultTypes>(_testData);
+            _result = _service.DataResult<TestData, TestCustomResultType>(_testData);
         }
 
         protected override void Arrange()
         {
             _service = new TestService();
-            _expectedResult = MockDataServiceResultFactory.Object.Create<TestData, TestCustomResultTypes>(_testData);
+            _expectedResult = MockDataServiceResultFactory.Object.Create<TestData, TestCustomResultType>(_testData);
         }
     }
 }

@@ -11,10 +11,10 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ResultFactory.Create_TResult
 
         private readonly FailureResult<TestErrorType> _failureResult = new FailureResult<TestErrorType>(new TestErrorType());
 
-        private Result<TestCustomResultTypes, TestErrorType> _result;
+        private Result<TestCustomResultType, TestErrorType> _result;
 
-        private readonly TestCustomResultTypes _expectedResultType =
-            TestCustomResultTypes.TestValueWithFailureAttribute;
+        private readonly TestCustomResultType _expectedResultType =
+            TestCustomResultType.TestValueWithFailureAttribute;
 
         protected override void Arrange()
         {
@@ -22,9 +22,9 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ResultFactory.Create_TResult
 
         protected override void Act()
         {
-            MockResultTypeConversionService.Setup(s => s.Convert<TestCustomResultTypes>(ResultType.Failure))
+            MockResultTypeConversionService.Setup(s => s.Convert<TestCustomResultType>(ResultType.Failure))
                 .Returns(_expectedResultType);
-            _result = _resultFactory.Create<TestCustomResultTypes, TestErrorType>(_failureResult); 
+            _result = _resultFactory.Create<TestCustomResultType, TestErrorType>(_failureResult); 
         }
 
         [Test]

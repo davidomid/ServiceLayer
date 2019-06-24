@@ -5,19 +5,19 @@ using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.DataResult
 {
-    [TestFixtureSource(nameof(ResultTypes))]
+    [TestFixtureSource(nameof(ResultType))]
     public class WhenGivenDataAndCustomResultTypeAndGenericErrorTypeArgument : UnitTestBase
     {
         private IService _service;
-        private DataResult<TestData, TestCustomResultTypes, TestErrorType> _result;
-        private DataResult<TestData, TestCustomResultTypes, TestErrorType> _expectedResult; 
+        private DataResult<TestData, TestCustomResultType, TestErrorType> _result;
+        private DataResult<TestData, TestCustomResultType, TestErrorType> _expectedResult; 
 
         private readonly TestData _testData = new TestData();
-        private readonly TestCustomResultTypes _customResultType;
+        private readonly TestCustomResultType _customResultType;
 
-        private static readonly TestCustomResultTypes[] ResultTypes = (TestCustomResultTypes[])Enum.GetValues(typeof(TestCustomResultTypes));
+        private static readonly TestCustomResultType[] ResultType = (TestCustomResultType[])Enum.GetValues(typeof(TestCustomResultType));
 
-        public WhenGivenDataAndCustomResultTypeAndGenericErrorTypeArgument(TestCustomResultTypes customResultType)
+        public WhenGivenDataAndCustomResultTypeAndGenericErrorTypeArgument(TestCustomResultType customResultType)
         {
             _customResultType = customResultType;
         }
@@ -30,13 +30,13 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.DataResult
 
         protected override void Act()
         {
-            _result = _service.DataResult<TestData, TestCustomResultTypes, TestErrorType>(_testData, _customResultType);
+            _result = _service.DataResult<TestData, TestCustomResultType, TestErrorType>(_testData, _customResultType);
         }
 
         protected override void Arrange()
         {
             _service = new TestService();
-            _expectedResult = MockDataServiceResultFactory.Object.Create<TestData, TestCustomResultTypes, TestErrorType>(_testData, _customResultType);
+            _expectedResult = MockDataServiceResultFactory.Object.Create<TestData, TestCustomResultType, TestErrorType>(_testData, _customResultType);
         }
     }
 }

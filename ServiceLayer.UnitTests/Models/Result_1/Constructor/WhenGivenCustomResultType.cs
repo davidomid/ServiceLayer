@@ -5,15 +5,15 @@ using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Models.Result_1.Constructor
 {
-    [TestFixtureSource(nameof(ResultTypes))]
+    [TestFixtureSource(nameof(ResultType))]
     public class WhenGivenCustomResultType : UnitTestBase
     {
-        private Result<TestCustomResultTypes> _result;
-        private readonly TestCustomResultTypes _customResultType;
+        private Result<TestCustomResultType> _result;
+        private readonly TestCustomResultType _customResultType;
 
-        private static readonly TestCustomResultTypes[] ResultTypes = (TestCustomResultTypes[])Enum.GetValues(typeof(TestCustomResultTypes));
+        private static readonly TestCustomResultType[] ResultType = (TestCustomResultType[])Enum.GetValues(typeof(TestCustomResultType));
 
-        public WhenGivenCustomResultType(TestCustomResultTypes customResultType)
+        public WhenGivenCustomResultType(TestCustomResultType customResultType)
         {
             _customResultType = customResultType;
         }
@@ -37,7 +37,7 @@ namespace ServiceLayer.UnitTests.Models.Result_1.Constructor
 
         protected override void Act()
         {
-            _result = new Result<TestCustomResultTypes>(_customResultType);
+            _result = new Result<TestCustomResultType>(_customResultType);
         }
     }
 }
