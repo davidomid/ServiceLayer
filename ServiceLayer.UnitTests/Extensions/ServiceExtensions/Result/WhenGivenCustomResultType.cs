@@ -34,7 +34,7 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.Result
         protected override void Arrange()
         {
             _service = new TestService();
-            _expectedResult = MockServiceResultFactory.Object.Create(_resultType);
+            _expectedResult = MockResultFactory.Object.Create(_resultType);
         }
     }
 }

@@ -2,7 +2,7 @@
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace ServiceLayer.UnitTests.Internal.Factories.ServiceResultFactory.Create
+namespace ServiceLayer.UnitTests.Internal.Factories.ResultFactory.Create
 {
     [TestFixtureSource(nameof(ResultTypes))]
     public class WhenGivenServiceResultType : UnitTestBase

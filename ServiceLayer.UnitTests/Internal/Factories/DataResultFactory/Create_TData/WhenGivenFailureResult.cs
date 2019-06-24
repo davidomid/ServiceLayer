@@ -2,7 +2,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using Testing.Common.Domain.TestClasses;
 
-namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Create_TData
+namespace ServiceLayer.UnitTests.Internal.Factories.DataResultFactory.Create_TData
 {
     public class WhenGivenFailureResult : UnitTestBase
     {
@@ -13,19 +13,19 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataServiceResultFactory.Cre
         private FailureResult _failureResult;
 
         [Test]
-        public void Should_Return_DataServiceResult_With_Expected_ErrorDetails()
+        public void Should_Return_DataResult_With_Expected_ErrorDetails()
         {
             _result.ErrorDetails.Should().BeSameAs(_errorDetails);
         }
 
         [Test]
-        public void Should_Return_DataServiceResult_With_Expected_ResultType()
+        public void Should_Return_DataResult_With_Expected_ResultType()
         {
             _result.ResultType.Should().Be(ResultType.Failure);
         }
 
         [Test]
-        public void Should_Return_DataServiceResult_With_Null_Data()
+        public void Should_Return_DataResult_With_Null_Data()
         {
             _result.Data.Should().BeNull();
         }

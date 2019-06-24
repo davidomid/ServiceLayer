@@ -1,7 +1,7 @@
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace ServiceLayer.UnitTests.Models.ServiceResult.IsSuccessful
+namespace ServiceLayer.UnitTests.Models.Result.IsSuccessful
 {
     public class WhenServiceResultTypeSuccess : UnitTestBase
     {

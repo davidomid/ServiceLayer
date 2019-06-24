@@ -36,7 +36,7 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.Result
         {
             _service = new TestService();
             _errorDetails = new[] { Guid.NewGuid().ToString(), 123, new object() };
-            _expectedResult = MockServiceResultFactory.Object.Create(_customResultType, _errorDetails);
+            _expectedResult = MockResultFactory.Object.Create(_customResultType, _errorDetails);
         }
     }
 }

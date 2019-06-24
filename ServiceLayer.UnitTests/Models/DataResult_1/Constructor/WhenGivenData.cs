@@ -3,7 +3,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using Testing.Common.Domain.TestClasses;
 
-namespace ServiceLayer.UnitTests.Models.DataServiceResult_1.Constructor
+namespace ServiceLayer.UnitTests.Models.DataResult_1.Constructor
 {
     [TestFixtureSource(nameof(ResultTypes))]
     public class WhenGivenData : UnitTestBase

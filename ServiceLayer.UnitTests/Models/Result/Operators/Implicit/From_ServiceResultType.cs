@@ -2,7 +2,7 @@ using System;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace ServiceLayer.UnitTests.Models.ServiceResult.Operators.Implicit
+namespace ServiceLayer.UnitTests.Models.Result.Operators.Implicit
 {
     [TestFixtureSource(nameof(ResultTypes))]
     public class From_ServiceResultType : UnitTestBase
@@ -28,7 +28,7 @@ namespace ServiceLayer.UnitTests.Models.ServiceResult.Operators.Implicit
 
         protected override void Arrange()
         {
-            _expectedResult = MockServiceResultFactory.Object.Create(_resultType);
+            _expectedResult = MockResultFactory.Object.Create(_resultType);
         }
 
         protected override void Act()

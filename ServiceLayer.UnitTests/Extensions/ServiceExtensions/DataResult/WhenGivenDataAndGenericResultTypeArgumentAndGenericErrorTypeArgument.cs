@@ -26,7 +26,7 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.DataResult
         protected override void Arrange()
         {
             _service = new TestService();
-            _expectedResult = MockDataServiceResultFactory.Object.Create<TestData, TestCustomResultType, TestErrorType>(_testData);
+            _expectedResult = MockDataResultFactory.Object.Create<TestData, TestCustomResultType, TestErrorType>(_testData);
         }
     }
 }

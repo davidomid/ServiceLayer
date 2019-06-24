@@ -20,7 +20,7 @@ namespace ServiceLayer.UnitTests.Models.Result_2.Operators.Implicit
 
         protected override void Arrange()
         {
-            _expectedResult = MockServiceResultFactory.Object.Create<TestCustomResultType, TestErrorType>(_successResult);
+            _expectedResult = MockResultFactory.Object.Create<TestCustomResultType, TestErrorType>(_successResult);
         }
 
         protected override void Act()

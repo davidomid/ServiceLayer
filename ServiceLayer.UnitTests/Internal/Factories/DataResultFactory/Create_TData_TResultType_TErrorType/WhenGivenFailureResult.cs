@@ -16,19 +16,19 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataResultFactory.Create_TDa
             TestCustomResultType.TestValueWithFailureAttribute;
 
         [Test]
-        public void Should_Return_DataServiceResult_With_Expected_ErrorDetails()
+        public void Should_Return_DataResult_With_Expected_ErrorDetails()
         {
             _result.ErrorDetails.Should().BeSameAs(_errorDetails);
         }
 
         [Test]
-        public void Should_Return_DataServiceResult_With_Expected_ResultType()
+        public void Should_Return_DataResult_With_Expected_ResultType()
         {
             _result.ResultType.Should().Be(_expectedResultType);
         }
 
         [Test]
-        public void Should_Return_DataServiceResult_With_Null_Data()
+        public void Should_Return_DataResult_With_Null_Data()
         {
             _result.Data.Should().BeNull();
         }

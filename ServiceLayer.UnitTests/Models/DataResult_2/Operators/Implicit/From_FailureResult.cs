@@ -16,14 +16,14 @@ namespace ServiceLayer.UnitTests.Models.DataResult_2.Operators.Implicit
         }
 
         [Test]
-        public void Should_Be_Expected_DataServiceResult()
+        public void Should_Be_Expected_DataResult()
         {
             _actualDataResult.Should().BeSameAs(_expectedDataResult);
         }
 
         protected override void Arrange()
         {
-            _expectedDataResult = MockDataServiceResultFactory.Object.Create<TestData, TestCustomResultType>(_failureResult);
+            _expectedDataResult = MockDataResultFactory.Object.Create<TestData, TestCustomResultType>(_failureResult);
         }
     }
 }
