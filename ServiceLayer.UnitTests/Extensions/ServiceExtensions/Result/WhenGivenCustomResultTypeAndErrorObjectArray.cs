@@ -12,11 +12,11 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.Result
         private object[] _errorDetails;
         private ServiceLayer.Result _result;
         private ServiceLayer.Result _expectedResult;
-        private readonly TestCustomServiceResultTypes _customResultType;
+        private readonly TestCustomResultTypes _customResultType;
 
-        private static readonly TestCustomServiceResultTypes[] ResultTypes = (TestCustomServiceResultTypes[])Enum.GetValues(typeof(TestCustomServiceResultTypes));
+        private static readonly TestCustomResultTypes[] ResultTypes = (TestCustomResultTypes[])Enum.GetValues(typeof(TestCustomResultTypes));
 
-        public WhenGivenCustomResultTypeAndErrorObjectArray(TestCustomServiceResultTypes customResultType)
+        public WhenGivenCustomResultTypeAndErrorObjectArray(TestCustomResultTypes customResultType)
         {
             _customResultType = customResultType;
         }

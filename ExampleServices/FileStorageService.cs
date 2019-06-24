@@ -16,7 +16,7 @@ namespace ExampleServices
             _filePath = filePath;
         }
 
-        public DataResult<List<TEntity>, FileStorageServiceResultTypes> Get()
+        public DataResult<List<TEntity>, FileStorageResultTypes> Get()
         {
             try
             {
@@ -27,7 +27,7 @@ namespace ExampleServices
                     return entities;
                 }
 
-                return this.Result(FileStorageServiceResultTypes.FilePathNotExists, "The specified file path does not exist.");
+                return this.Result(FileStorageResultTypes.FilePathNotExists, "The specified file path does not exist.");
             }
             catch (Exception ex)
             {
