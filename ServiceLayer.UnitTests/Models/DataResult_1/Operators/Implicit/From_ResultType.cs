@@ -6,7 +6,7 @@ using Testing.Common.Domain.TestClasses;
 namespace ServiceLayer.UnitTests.Models.DataResult_1.Operators.Implicit
 {
     [TestFixtureSource(nameof(ResultTypes))]
-    public class From_ServiceResultType : UnitTestBase
+    public class From_ResultType : UnitTestBase
     {
         private readonly ResultType _resultType;
         private DataResult<TestData> _actualDataResult;
@@ -14,7 +14,7 @@ namespace ServiceLayer.UnitTests.Models.DataResult_1.Operators.Implicit
 
         private static readonly ResultType[] ResultTypes = (ResultType[])Enum.GetValues(typeof(ResultType));
 
-        public From_ServiceResultType(ResultType resultType)
+        public From_ResultType(ResultType resultType)
         {
             _resultType = resultType;
         }

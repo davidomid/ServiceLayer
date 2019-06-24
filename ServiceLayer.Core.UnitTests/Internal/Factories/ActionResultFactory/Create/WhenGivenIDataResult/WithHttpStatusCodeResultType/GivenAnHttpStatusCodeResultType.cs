@@ -18,9 +18,9 @@ namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Cre
 
         private readonly Core.Internal.Factories.ActionResultFactory _actionResultFactory = new Core.Internal.Factories.ActionResultFactory();
 
-        protected GivenAnHttpStatusCodeResultType(HttpStatusCode httpServiceResultType)
+        protected GivenAnHttpStatusCodeResultType(HttpStatusCode httpResultType)
         {
-            _httpStatusCode = httpServiceResultType;
+            _httpStatusCode = httpResultType;
         }
 
         protected override void Arrange()

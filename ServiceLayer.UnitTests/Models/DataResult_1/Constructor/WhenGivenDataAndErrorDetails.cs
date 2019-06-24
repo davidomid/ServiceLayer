@@ -34,7 +34,7 @@ namespace ServiceLayer.UnitTests.Models.DataResult_1.Constructor
         }
 
         [Test]
-        public void Should_Have_ServiceResultType_Matching_Given_Type()
+        public void Should_Have_ResultType_Matching_Given_Type()
         {
             _result.ResultType.Should().Be(_resultType);
         }

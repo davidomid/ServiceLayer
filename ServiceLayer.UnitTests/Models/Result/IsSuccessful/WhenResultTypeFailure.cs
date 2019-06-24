@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace ServiceLayer.UnitTests.Models.Result.IsSuccessful
 {
-    public class WhenServiceResultTypeFailure : UnitTestBase
+    public class WhenResultTypeFailure : UnitTestBase
     {
         private ServiceLayer.Result _result;
         private bool _isSuccessful;

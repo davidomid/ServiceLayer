@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace ServiceLayer.UnitTests.Internal.Factories.ResultFactory.Create
 {
     [TestFixtureSource(nameof(ResultTypes))]
-    public class WhenGivenServiceResultType : UnitTestBase
+    public class WhenGivenResultType : UnitTestBase
     {
         private readonly ServiceLayer.Internal.Factories.ResultFactory _resultFactory =
             new ServiceLayer.Internal.Factories.ResultFactory();
@@ -16,7 +16,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ResultFactory.Create
 
         private static readonly ResultType[] ResultTypes = (ResultType[])Enum.GetValues(typeof(ResultType));
 
-        public WhenGivenServiceResultType(ResultType resultType)
+        public WhenGivenResultType(ResultType resultType)
         {
             _resultType = resultType;
         }

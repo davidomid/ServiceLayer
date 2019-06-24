@@ -13,7 +13,7 @@ namespace ServiceLayer.UnitTests.Models.Result_2.Operators.Implicit
         private Result<TestCustomResultType, TestErrorType> _expectedResult;
 
         [Test]
-        public void Should_Be_Expected_ServiceResult()
+        public void Should_Be_Expected_Result()
         {
             _actualResult.Should().BeSameAs(_expectedResult);
         }

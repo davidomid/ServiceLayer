@@ -22,7 +22,7 @@ namespace ServiceLayer.UnitTests.Models.Result_1.Operators.Implicit
         }
 
         [Test]
-        public void Should_Be_Expected_ServiceResult()
+        public void Should_Be_Expected_Result()
         {
             _actualResult.Should().Be(_expectedResult);
         }

@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace ServiceLayer.UnitTests.Models.Result.Operators.Implicit
 {
     [TestFixtureSource(nameof(ResultTypes))]
-    public class From_ServiceResultType : UnitTestBase
+    public class From_ResultType : UnitTestBase
     {
         private readonly ResultType _resultType;
 
@@ -15,13 +15,13 @@ namespace ServiceLayer.UnitTests.Models.Result.Operators.Implicit
 
         private static readonly ResultType[] ResultTypes = (ResultType[])Enum.GetValues(typeof(ResultType));
 
-        public From_ServiceResultType(ResultType resultType)
+        public From_ResultType(ResultType resultType)
         {
             _resultType = resultType;
         }
 
         [Test]
-        public void Should_Be_Expected_ServiceResult()
+        public void Should_Be_Expected_Result()
         {
             _actualResult.Should().Be(_expectedResult);
         }
