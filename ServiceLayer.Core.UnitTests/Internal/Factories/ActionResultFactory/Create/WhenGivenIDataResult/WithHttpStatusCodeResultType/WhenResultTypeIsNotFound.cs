@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIDataResult.WithHttpStatusCodeResultType
 {
-    public class WhenResultTypeIsNotFound : GivenAnHttpServiceResultType
+    public class WhenResultTypeIsNotFound : GivenAnHttpStatusCodeResultType
     {
         public WhenResultTypeIsNotFound() : base(HttpStatusCode.NotFound)
         {

@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIResult.WithHttpStatusCodeResultType
 {
-    public class WhenResultTypeIsInternalServerError : GivenAnHttpServiceResultType
+    public class WhenResultTypeIsInternalServerError : GivenAnHttpStatusCodeResultType
     {
         public WhenResultTypeIsInternalServerError() : base(HttpStatusCode.InternalServerError)
         {

@@ -18,10 +18,10 @@ namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Cre
         protected override void Arrange()
         {
             _actionResultFactory = new Core.Internal.Factories.ActionResultFactory();
-            Mock<IResult> mockServiceResult = new Mock<IResult>();
-            mockServiceResult.SetupGet(r => r.IsSuccessful).Returns(false);
-            mockServiceResult.SetupGet(r => r.ErrorDetails).Returns(_errorDetails);
-            _result = mockServiceResult.Object;
+            Mock<IResult> mockResult = new Mock<IResult>();
+            mockResult.SetupGet(r => r.IsSuccessful).Returns(false);
+            mockResult.SetupGet(r => r.ErrorDetails).Returns(_errorDetails);
+            _result = mockResult.Object;
         }
 
         protected override void Act()

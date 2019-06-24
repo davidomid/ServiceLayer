@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIDataResult.WithHttpStatusCodeResultType
 {
-    public class WhenResultTypeIsConflict : GivenAnHttpServiceResultType
+    public class WhenResultTypeIsConflict : GivenAnHttpStatusCodeResultType
     {
         public WhenResultTypeIsConflict() : base(HttpStatusCode.Conflict)
         {

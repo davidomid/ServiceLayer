@@ -7,9 +7,9 @@ using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIDataResult.WithHttpStatusCodeResultType
 {
-    public abstract class GivenAnHttpServiceResultType : UnitTestBase
+    public abstract class GivenAnHttpStatusCodeResultType : UnitTestBase
     {
-        private readonly HttpStatusCode _httpServiceResultType;
+        private readonly HttpStatusCode _httpStatusCode;
         protected readonly object ErrorDetails = new object();
         protected readonly TestData Data = new TestData();
         private IDataResult<TestData, HttpStatusCode> _httpDataResult;
@@ -18,18 +18,18 @@ namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Cre
 
         private readonly Core.Internal.Factories.ActionResultFactory _actionResultFactory = new Core.Internal.Factories.ActionResultFactory();
 
-        protected GivenAnHttpServiceResultType(HttpStatusCode httpServiceResultType)
+        protected GivenAnHttpStatusCodeResultType(HttpStatusCode httpServiceResultType)
         {
-            _httpServiceResultType = httpServiceResultType;
+            _httpStatusCode = httpServiceResultType;
         }
 
         protected override void Arrange()
         {
-            Mock<IDataResult<TestData, HttpStatusCode>> mockServiceResult = new Mock<IDataResult<TestData, HttpStatusCode>>();
-            mockServiceResult.SetupGet(r => r.ResultType).Returns(_httpServiceResultType);
-            mockServiceResult.SetupGet(r => r.ErrorDetails).Returns(ErrorDetails);
-            mockServiceResult.SetupGet(r => r.Data).Returns(Data);
-            _httpDataResult = mockServiceResult.Object;
+            Mock<IDataResult<TestData, HttpStatusCode>> mockResult = new Mock<IDataResult<TestData, HttpStatusCode>>();
+            mockResult.SetupGet(r => r.ResultType).Returns(_httpStatusCode);
+            mockResult.SetupGet(r => r.ErrorDetails).Returns(ErrorDetails);
+            mockResult.SetupGet(r => r.Data).Returns(Data);
+            _httpDataResult = mockResult.Object;
         }
 
         protected override void Act()

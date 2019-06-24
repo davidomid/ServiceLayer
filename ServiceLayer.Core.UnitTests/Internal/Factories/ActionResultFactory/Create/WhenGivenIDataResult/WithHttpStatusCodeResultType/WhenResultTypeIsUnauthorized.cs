@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIDataResult.WithHttpStatusCodeResultType
 {
-    public class WhenResultTypeIsUnauthorized : GivenAnHttpServiceResultType
+    public class WhenResultTypeIsUnauthorized : GivenAnHttpStatusCodeResultType
     {
         public WhenResultTypeIsUnauthorized() : base(HttpStatusCode.Unauthorized)
         {

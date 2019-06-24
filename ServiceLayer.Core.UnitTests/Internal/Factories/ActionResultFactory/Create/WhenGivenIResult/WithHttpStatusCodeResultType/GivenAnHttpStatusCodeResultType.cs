@@ -6,9 +6,9 @@ using NUnit.Framework;
 
 namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIResult.WithHttpStatusCodeResultType
 {
-    public abstract class GivenAnHttpServiceResultType : UnitTestBase
+    public abstract class GivenAnHttpStatusCodeResultType : UnitTestBase
     {
-        private readonly HttpStatusCode _httpServiceResultType;
+        private readonly HttpStatusCode _httpStatusCode;
         protected readonly object ErrorDetails = new object();
 
         private IResult<HttpStatusCode> _httpResult;
@@ -17,17 +17,17 @@ namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Cre
 
         private readonly Core.Internal.Factories.ActionResultFactory _actionResultFactory = new Core.Internal.Factories.ActionResultFactory();
 
-        protected GivenAnHttpServiceResultType(HttpStatusCode httpServiceResultType)
+        protected GivenAnHttpStatusCodeResultType(HttpStatusCode httpServiceResultType)
         {
-            _httpServiceResultType = httpServiceResultType;
+            _httpStatusCode = httpServiceResultType;
         }
 
         protected override void Arrange()
         {
-            Mock<IResult<HttpStatusCode>> mockServiceResult = new Mock<IResult<HttpStatusCode>>();
-            mockServiceResult.SetupGet(r => r.ResultType).Returns(_httpServiceResultType);
-            mockServiceResult.SetupGet(r => r.ErrorDetails).Returns(ErrorDetails);
-            _httpResult = mockServiceResult.Object;
+            Mock<IResult<HttpStatusCode>> mockResult = new Mock<IResult<HttpStatusCode>>();
+            mockResult.SetupGet(r => r.ResultType).Returns(_httpStatusCode);
+            mockResult.SetupGet(r => r.ErrorDetails).Returns(ErrorDetails);
+            _httpResult = mockResult.Object;
         }
 
         protected override void Act()

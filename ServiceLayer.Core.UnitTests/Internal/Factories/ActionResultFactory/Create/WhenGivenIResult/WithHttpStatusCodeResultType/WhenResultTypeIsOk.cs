@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIResult.WithHttpStatusCodeResultType
 {
-    public class WhenResultTypeIsOk : GivenAnHttpServiceResultType
+    public class WhenResultTypeIsOk : GivenAnHttpStatusCodeResultType
     {
         public WhenResultTypeIsOk() : base(HttpStatusCode.OK)
         {

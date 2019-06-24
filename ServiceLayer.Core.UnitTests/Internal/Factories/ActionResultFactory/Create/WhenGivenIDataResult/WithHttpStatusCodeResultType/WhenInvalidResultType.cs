@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIDataResult.WithHttpStatusCodeResultType
 {
-    public class WhenInvalidResultType : GivenAnHttpServiceResultType
+    public class WhenInvalidResultType : GivenAnHttpStatusCodeResultType
     {
         public WhenInvalidResultType() : base((HttpStatusCode)999)
         {

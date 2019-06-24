@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Create.WhenGivenIResult.WithHttpStatusCodeResultType
 {
-    public class WhenResultTypeIsForbidden : GivenAnHttpServiceResultType
+    public class WhenResultTypeIsForbidden : GivenAnHttpStatusCodeResultType
     {
         public WhenResultTypeIsForbidden() : base(HttpStatusCode.Forbidden)
         {
