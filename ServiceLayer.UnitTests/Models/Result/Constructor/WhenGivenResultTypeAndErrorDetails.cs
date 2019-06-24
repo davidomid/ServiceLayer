@@ -4,14 +4,14 @@ using NUnit.Framework;
 
 namespace ServiceLayer.UnitTests.Models.ServiceResult.Constructor
 {
-    [TestFixtureSource(nameof(ResultType))]
+    [TestFixtureSource(nameof(ResultTypes))]
     public class WhenGivenResultTypeAndErrorDetails : UnitTestBase
     {
         private ServiceLayer.Result _result;
         private string[] _errorDetails;
         private readonly ResultType _resultType;
 
-        private static readonly ResultType[] ResultType = (ResultType[])Enum.GetValues(typeof(ResultType));
+        private static readonly ResultType[] ResultTypes = (ResultType[])Enum.GetValues(typeof(ResultType));
 
         public WhenGivenResultTypeAndErrorDetails(ResultType resultType)
         {

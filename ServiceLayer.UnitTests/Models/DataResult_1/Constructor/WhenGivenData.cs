@@ -5,7 +5,7 @@ using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Models.DataServiceResult_1.Constructor
 {
-    [TestFixtureSource(nameof(ResultType))]
+    [TestFixtureSource(nameof(ResultTypes))]
     public class WhenGivenData : UnitTestBase
     {
         private DataResult<TestData> _result;
@@ -13,7 +13,7 @@ namespace ServiceLayer.UnitTests.Models.DataServiceResult_1.Constructor
 
         private readonly ResultType _resultType;
 
-        private static readonly ResultType[] ResultType = (ResultType[])Enum.GetValues(typeof(ResultType));
+        private static readonly ResultType[] ResultTypes = (ResultType[])Enum.GetValues(typeof(ResultType));
 
         public WhenGivenData(ResultType resultType)
         {

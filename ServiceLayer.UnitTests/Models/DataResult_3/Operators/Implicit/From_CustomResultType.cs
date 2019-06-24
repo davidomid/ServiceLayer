@@ -5,14 +5,14 @@ using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Models.DataResult_3.Operators.Implicit
 {
-    [TestFixtureSource(nameof(ResultType))]
+    [TestFixtureSource(nameof(ResultTypes))]
     public class From_CustomResultType : UnitTestBase
     {
         private readonly TestCustomResultType _customResultType;
         private DataResult<TestData, TestCustomResultType, TestErrorType> _actualDataResult;
         private DataResult<TestData, TestCustomResultType, TestErrorType> _expectedDataResult;
 
-        private static readonly TestCustomResultType[] ResultType = (TestCustomResultType[])Enum.GetValues(typeof(TestCustomResultType));
+        private static readonly TestCustomResultType[] ResultTypes = (TestCustomResultType[])Enum.GetValues(typeof(TestCustomResultType));
 
         public From_CustomResultType(TestCustomResultType customResultType)
         {

@@ -5,7 +5,7 @@ using Testing.Common.Domain.TestClasses;
 
 namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.Result
 {
-    [TestFixtureSource(nameof(ResultType))]
+    [TestFixtureSource(nameof(ResultTypes))]
     public class WhenGivenCustomResultType : UnitTestBase
     {
         private IService _service;
@@ -13,7 +13,7 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.Result
         private Result<TestCustomResultType> _expectedResult;
         private readonly TestCustomResultType _resultType;
 
-        private static readonly TestCustomResultType[] ResultType = (TestCustomResultType[])Enum.GetValues(typeof(TestCustomResultType));
+        private static readonly TestCustomResultType[] ResultTypes = (TestCustomResultType[])Enum.GetValues(typeof(TestCustomResultType));
 
         public WhenGivenCustomResultType(TestCustomResultType resultType)
         {
