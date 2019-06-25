@@ -7,13 +7,90 @@ A C# library for developing SOLID services with consistent error handling.
 
 This library can dramatically simplify your error handling logic across your projects and allow you to write code in a truly SOLID way.
 
-### Example code
+It alleviates considerable problems which may developers face when writing logic for services and their consumers such as:
 
-Say you have a service class which looks like this. 
+- Accidentally couping your service logic to your hosting logic, like this [insert link here].
+- Having to create lots of custom exception classes, like this [insert link here to example].
+- Implementing a lot of ugly try-catch blocks for handling various exception types, like this [insert link here].
+- Needing to create lot of custom "result" classes which wrap some form of result type, error details and data, like this [insert link here].
+- Possible ambiguity between success and failure, like this [insert link here].
+- Requiring knowledge of the internal workings of a concrete implementation of services you're consuming, like this [insert link here].
+
+### "Before" and "After" using ServiceLayer
+
+#### Your API Controller
+##### Before
 ```csharp
+[HttpGet]
+public ActionResult<Document> Get(string documentPath, string accessToken)
+{
+    try
+    {
+        Document document = _documentStorageService.GetDocument(documentPath, accessToken);
+        if (document == null)
+        {
+            return NotFound();
+        }
 
+        return Ok(document);
+    }
+    catch (ValidationException validationException)
+    {
+        return BadRequest(validationException.ValidationResult.ErrorMessage);
+    }
+    catch (InvalidAccessTokenException)
+    {
+        return Forbid();
+    }
+    catch (Exception)
+    {
+        return StatusCode(500, "An unexpected error occurred while retrieving the document.");
+    }
+}
+```
+##### After
+```csharp
+[HttpGet]
+public ActionResult<Document> Get(string documentPath, string accessToken)
+{
+    return _documentStorageService.GetDocument(documentPath, accessToken).ToActionResult();
+}
 ```
 
+#### Your service
+##### Before
+```csharp
+public Document GetDocument(string documentPath, string accessToken)
+{
+    if (documentPath == null) throw new ValidationException("Document path is required.");
+    if (accessToken == null) throw new ValidationException("Access token is required.");
+    if (!_authService.IsAccessTokenValid()) throw new InvalidAccessTokenException();
+    if (!File.Exists(documentPath)) return null;
+    string json = File.ReadAllText(documentPath);
+    Document document = JsonConvert.DeserializeObject<Document>(json);
+    return document;
+}
+```
+##### After
+```csharp
+public DataResult<Document, DocumentStorageResultType, string> GetDocument(string documentPath, string accessToken)
+{
+    if (documentPath == null) return this.Result(DocumentStorageResultType.ValidationError, "Document path is required.");
+    if (accessToken == null) return this.Result(DocumentStorageResultType.ValidationError, "Access token is required.");
+    if (!_authService.IsAccessTokenValid()) return DocumentStorageResultType.InvalidAccessToken;
+    if (!File.Exists(documentPath)) return DocumentStorageResultType.FileNotFound;
+    try
+    {
+        string json = File.ReadAllText(documentPath);
+        Document document = JsonConvert.DeserializeObject<Document>(json);
+        return document;
+    }
+    catch (Exception exception)
+    {
+        return "An unexpected error occurred while retrieving the document."; 
+    }
+}
+```
 
 ## Installation
 

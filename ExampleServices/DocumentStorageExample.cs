@@ -38,16 +38,12 @@ namespace ExampleServices
             _authService = authService;
         }
 
-        public DataResult<Document, DocumentStorageResultType, string> GetDocument(string documentPath,
-            string accessToken)
+        public DataResult<Document, DocumentStorageResultType, string> GetDocument(string documentPath, string accessToken)
         {
             if (documentPath == null) return this.Result(DocumentStorageResultType.ValidationError, "Document path is required.");
             if (accessToken == null) return this.Result(DocumentStorageResultType.ValidationError, "Access token is required.");
-
             if (!_authService.IsAccessTokenValid()) return DocumentStorageResultType.InvalidAccessToken;
-
             if (!File.Exists(documentPath)) return DocumentStorageResultType.FileNotFound;
-
             try
             {
                 string json = File.ReadAllText(documentPath);
