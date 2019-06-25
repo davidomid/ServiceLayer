@@ -1,7 +1,18 @@
-# ServiceLayer
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/davidomid/ServiceLayer/Operator-improvements/LICENSE)
 
+# ServiceLayer
 A C# library for developing SOLID services with consistent error handling. 
+
+## What can this library do for me? 
+
+This library can dramatically simplify your error handling logic across your projects and allow you to write code in a truly SOLID way.
+
+### Example code
+
+Say you have a service class which looks like this. 
+```csharp
+
+```
 
 
 ## Installation
