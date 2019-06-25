@@ -18,7 +18,7 @@ namespace ExampleServices
         UnexpectedError,
         [Success]
         [ResultType(HttpStatusCode.OK)]
-        FileRetrievalSuccessful,
+        Successful,
         FileNotFound,
         InvalidAccessToken,
         ValidationError
