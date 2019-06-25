@@ -20,5 +20,6 @@ namespace ServiceLayer.Internal.Factories
         DataResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(TResultType resultType) where TResultType : struct, Enum;
         DataResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(TErrorType errorDetails) where TResultType : struct, Enum;
         DataResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(TData data, TResultType resultType, TErrorType errorDetails = default) where TResultType : struct, Enum;
+        DataResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(Result<TResultType, TErrorType> result) where TResultType : struct, Enum;
     }
 }
