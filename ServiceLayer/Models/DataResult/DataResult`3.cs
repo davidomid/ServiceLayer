@@ -36,5 +36,11 @@ namespace ServiceLayer
         {
             return Engine.DataResultFactory.Create<TData, TResultType, TErrorType>(errorDetails);
         }
+
+        public static implicit operator DataResult<TData, TResultType, TErrorType>(
+            Result<TResultType, TErrorType> result)
+        {
+            return Engine.DataResultFactory.Create<TData, TResultType, TErrorType>(result);
+        }
     }
 }
