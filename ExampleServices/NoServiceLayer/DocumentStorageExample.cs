@@ -23,8 +23,11 @@ namespace ExampleServices.NoServiceLayer
         {
             if (documentPath == null) throw new ValidationException("Document path is required.");
             if (accessToken == null) throw new ValidationException("Access token is required.");
+
             if (!_authService.IsAccessTokenValid()) throw new InvalidAccessTokenException();
+
             if (!File.Exists(documentPath)) return null;
+
             string json = File.ReadAllText(documentPath);
             Document document = JsonConvert.DeserializeObject<Document>(json);
             return document;

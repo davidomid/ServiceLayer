@@ -24,7 +24,7 @@ namespace ExampleAspNetCoreWebApp.Controllers
             {
                 return _documentStorageService.GetDocument(documentPath, accessToken).ToActionResult();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return StatusCode(500, "An unexpected error occurred while retrieving the document.");
             }

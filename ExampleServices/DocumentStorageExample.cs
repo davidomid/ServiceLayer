@@ -1,14 +1,32 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
+﻿using System.IO;
+using System.Net;
 using Newtonsoft.Json;
 using ServiceLayer;
 
 namespace ExampleServices
 {
+
     public interface IDocumentStorageService : IService
     {
          DataResult<Document, DocumentStorageResultType, string> GetDocument(string documentPath, string accessToken);
+    }
+
+    public enum DocumentStorageResultType
+    {
+        [Failure]
+        [ResultType(HttpStatusCode.InternalServerError)]
+        UnexpectedError,
+        [Success]
+        [ResultType(HttpStatusCode.OK)]
+        FileRetrievalSuccessful,
+        FileNotFound,
+        InvalidAccessToken,
+        ValidationError
+    }
+
+    public interface IAuthService
+    {
+        bool IsAccessTokenValid();
     }
 
     public class DocumentStorageService : IDocumentStorageService
@@ -24,10 +42,12 @@ namespace ExampleServices
             string accessToken)
         {
             if (documentPath == null) return this.Result(DocumentStorageResultType.ValidationError, "Document path is required.");
+            if (accessToken == null) return this.Result(DocumentStorageResultType.ValidationError, "Access token is required.");
 
-            if (accessToken == null) return "Access token is required.";
             if (!_authService.IsAccessTokenValid()) return DocumentStorageResultType.InvalidAccessToken;
+
             if (!File.Exists(documentPath)) return DocumentStorageResultType.FileNotFound;
+
             string json = File.ReadAllText(documentPath);
             Document document = JsonConvert.DeserializeObject<Document>(json);
             return document;
@@ -37,20 +57,39 @@ namespace ExampleServices
     public class Document
     {
     }
-
-    public interface IAuthService
+    public class AuthService : IAuthService
     {
-        bool IsAccessTokenValid();
+        public bool IsAccessTokenValid()
+        {
+            return true;
+        }
     }
 
-    public enum DocumentStorageResultType
+    public class DocumentServicePlugin : Plugin
     {
-        [Failure]
-        UnexpectedError,
-        [Success]
-        FileRetrievalSuccessful,
-        FileNotFound,
-        InvalidAccessToken,
-        ValidationError
+        public DocumentServicePlugin() : base("Document Service")
+        {
+        }
+
+        public override void Install()
+        {
+            Context.ResultTypeConverters.Install(new DocumentResultTypeHttpConverter());
+        }
+
+        private class DocumentResultTypeHttpConverter : OneToOneResultTypeConverter<DocumentStorageResultType, HttpStatusCode>
+        {
+            public override HttpStatusCode? Convert(DocumentStorageResultType sourceResultType)
+            {
+                switch (sourceResultType)
+                {
+                    case DocumentStorageResultType.FileNotFound: return HttpStatusCode.NotFound;
+                    case DocumentStorageResultType.InvalidAccessToken: return HttpStatusCode.Forbidden;
+                    case DocumentStorageResultType.ValidationError: return HttpStatusCode.BadRequest;
+                }
+
+                return null;
+            }
+        }
     }
+
 }
