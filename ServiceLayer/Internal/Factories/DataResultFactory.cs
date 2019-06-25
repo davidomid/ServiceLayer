@@ -111,5 +111,10 @@ namespace ServiceLayer.Internal.Factories
         {
             return new DataResult<TData, TResultType, TErrorType>(data, resultType, errorDetails);
         }
+
+        public DataResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(Result<TResultType, TErrorType> result) where TResultType : struct, Enum
+        {
+            return new DataResult<TData, TResultType, TErrorType>(default, result.ResultType, result.ErrorDetails);
+        }
     }
 }
