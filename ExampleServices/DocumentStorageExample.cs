@@ -1,11 +1,11 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
 using Newtonsoft.Json;
 using ServiceLayer;
 
 namespace ExampleServices
 {
-
     public interface IDocumentStorageService : IService
     {
          DataResult<Document, DocumentStorageResultType, string> GetDocument(string documentPath, string accessToken);
@@ -48,9 +48,16 @@ namespace ExampleServices
 
             if (!File.Exists(documentPath)) return DocumentStorageResultType.FileNotFound;
 
-            string json = File.ReadAllText(documentPath);
-            Document document = JsonConvert.DeserializeObject<Document>(json);
-            return document;
+            try
+            {
+                string json = File.ReadAllText(documentPath);
+                Document document = JsonConvert.DeserializeObject<Document>(json);
+                return document;
+            }
+            catch (Exception exception)
+            {
+                return "An unexpected error occurred while retrieving the document."; 
+            }
         }
     }
 

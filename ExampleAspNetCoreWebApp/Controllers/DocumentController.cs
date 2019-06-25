@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Document = ExampleServices.Document;
 using IDocumentStorageService = ExampleServices.IDocumentStorageService;
 using ServiceLayer.Core;
@@ -20,14 +18,7 @@ namespace ExampleAspNetCoreWebApp.Controllers
         [HttpGet]
         public ActionResult<Document> Get(string documentPath, string accessToken)
         {
-            try
-            {
-                return _documentStorageService.GetDocument(documentPath, accessToken).ToActionResult();
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "An unexpected error occurred while retrieving the document.");
-            }
+            return _documentStorageService.GetDocument(documentPath, accessToken).ToActionResult();
         }
     }
 }
