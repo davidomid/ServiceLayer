@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using ExampleServices;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -21,7 +22,9 @@ namespace ExampleAspNetCoreWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSingleton<IDocumentStorageService>(new DocumentStorageService(new AuthService()));
             ServiceLayerConfig.Plugins.Install(new AspNetCorePlugin());
+            ServiceLayerConfig.Plugins.Install(new DocumentServicePlugin());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
