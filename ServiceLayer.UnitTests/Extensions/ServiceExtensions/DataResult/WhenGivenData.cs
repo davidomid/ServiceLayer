@@ -7,26 +7,26 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.DataResult
     public class WhenGivenData : UnitTestBase
     {
         private IService _service;
-        private DataServiceResult<TestData> _serviceResult;
-        private DataServiceResult<TestData> _expectedServiceResult; 
+        private DataResult<TestData> _result;
+        private DataResult<TestData> _expectedResult; 
 
         private readonly TestData _testData = new TestData();
 
         [Test]
         public void Should_Return_Expected_Result()
         {
-            _serviceResult.Should().BeSameAs(_expectedServiceResult);
+            _result.Should().BeSameAs(_expectedResult);
         }
 
         protected override void Act()
         {
-            _serviceResult = _service.DataResult(_testData);
+            _result = _service.DataResult(_testData);
         }
 
         protected override void Arrange()
         {
             _service = new TestService();
-            _expectedServiceResult = MockDataServiceResultFactory.Object.Create(_testData);
+            _expectedResult = MockDataResultFactory.Object.Create(_testData);
         }
     }
 }

@@ -13,10 +13,10 @@ namespace ServiceLayer.Internal
 
         internal static IResultTypeConversionService ResultTypeConversionService => ServiceLocator.Instance.Resolve<IResultTypeConversionService>();
 
-        internal static IServiceResultFactory ServiceResultFactory => ServiceLocator.Instance.Resolve<IServiceResultFactory>();
+        internal static IResultFactory ResultFactory => ServiceLocator.Instance.Resolve<IResultFactory>();
 
-        internal static IDataServiceResultFactory DataServiceResultFactory =>
-            ServiceLocator.Instance.Resolve<IDataServiceResultFactory>();
+        internal static IDataResultFactory DataResultFactory =>
+            ServiceLocator.Instance.Resolve<IDataResultFactory>();
 
         internal static ISuccessResultFactory SuccessResultFactory =>
             ServiceLocator.Instance.Resolve<ISuccessResultFactory>();

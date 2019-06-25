@@ -9,32 +9,32 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.Result
     public class WhenGivenCustomResultType : UnitTestBase
     {
         private IService _service;
-        private ServiceResult<TestCustomServiceResultTypes> _serviceResult;
-        private ServiceResult<TestCustomServiceResultTypes> _expectedServiceResult;
-        private readonly TestCustomServiceResultTypes _serviceResultType;
+        private Result<TestCustomResultType> _result;
+        private Result<TestCustomResultType> _expectedResult;
+        private readonly TestCustomResultType _resultType;
 
-        private static readonly TestCustomServiceResultTypes[] ResultTypes = (TestCustomServiceResultTypes[])Enum.GetValues(typeof(TestCustomServiceResultTypes));
+        private static readonly TestCustomResultType[] ResultTypes = (TestCustomResultType[])Enum.GetValues(typeof(TestCustomResultType));
 
-        public WhenGivenCustomResultType(TestCustomServiceResultTypes serviceResultType)
+        public WhenGivenCustomResultType(TestCustomResultType resultType)
         {
-            _serviceResultType = serviceResultType;
+            _resultType = resultType;
         }
 
         [Test]
         public void Should_Return_Expected_Result()
         {
-            _serviceResult.Should().Be(_expectedServiceResult);
+            _result.Should().Be(_expectedResult);
         }
 
         protected override void Act()
         {
-            _serviceResult = _service.Result(_serviceResultType);
+            _result = _service.Result(_resultType);
         }
 
         protected override void Arrange()
         {
             _service = new TestService();
-            _expectedServiceResult = MockServiceResultFactory.Object.Create(_serviceResultType);
+            _expectedResult = MockResultFactory.Object.Create(_resultType);
         }
     }
 }

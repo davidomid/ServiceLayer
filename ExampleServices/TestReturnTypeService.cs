@@ -4,253 +4,253 @@ namespace ExampleServices
 {
     public class TestReturnTypeService : IService
     {
-        public ServiceResult TestA1()
+        public Result TestA1()
         {
             return new SuccessResult();
         }
 
-        public ServiceResult TestA2()
+        public Result TestA2()
         {
-            return new ServiceResult(ServiceResultTypes.Success);
+            return new Result(ResultType.Success);
         }
 
-        public ServiceResult TestA3()
+        public Result TestA3()
         {
-            return this.Result(ServiceResultTypes.Success);
+            return this.Result(ResultType.Success);
         }
 
-        public ServiceResult TestA4()
+        public Result TestA4()
         {
-            return ServiceResultTypes.Success;
+            return ResultType.Success;
         }
 
-        public ServiceResult TestA5()
+        public Result TestA5()
         {
             return new FailureResult();
         }
 
-        public ServiceResult TestA6()
+        public Result TestA6()
         {
-            return new ServiceResult(ServiceResultTypes.Failure);
+            return new Result(ResultType.Failure);
         }
 
-        public ServiceResult TestA7()
+        public Result TestA7()
         {
-            return ServiceResultTypes.Failure;
+            return ResultType.Failure;
         }
-        public ServiceResult TestA8()
+        public Result TestA8()
         {
-            return this.Result(FileStorageServiceResultTypes.Success); 
+            return this.Result(FileStorageResultTypes.Success); 
         }
-        public ServiceResult TestA9()
+        public Result TestA9()
         {
-            return this.DataResult(100, ServiceResultTypes.Success);
+            return this.DataResult(100, ResultType.Success);
         }
 
-        public ServiceResult<ServiceResultTypes> TestB1()
+        public Result<ResultType> TestB1()
         {
             return new SuccessResult();
         }
 
-        public ServiceResult<ServiceResultTypes> TestB2()
+        public Result<ResultType> TestB2()
         {
-            return new ServiceResult<ServiceResultTypes>(ServiceResultTypes.Success);
+            return new Result<ResultType>(ResultType.Success);
         }
 
-        public ServiceResult<ServiceResultTypes> TestB3()
+        public Result<ResultType> TestB3()
         {
-            return this.Result<ServiceResultTypes>(ServiceResultTypes.Success);
+            return this.Result<ResultType>(ResultType.Success);
         }
 
-        public ServiceResult<ServiceResultTypes> TestB4()
+        public Result<ResultType> TestB4()
         {
-            return ServiceResultTypes.Success;
+            return ResultType.Success;
         }
 
-        public ServiceResult<ServiceResultTypes> TestB5()
+        public Result<ResultType> TestB5()
         {
             return new FailureResult();
         }
 
-        public ServiceResult<ServiceResultTypes> TestB6()
+        public Result<ResultType> TestB6()
         {
-            return ServiceResultTypes.Failure;
+            return ResultType.Failure;
         }
 
-        public ServiceResult<FileStorageServiceResultTypes> TestC1()
+        public Result<FileStorageResultTypes> TestC1()
         {
             return new SuccessResult();
         }
 
-        public ServiceResult<FileStorageServiceResultTypes> TestC2()
+        public Result<FileStorageResultTypes> TestC2()
         {
-            return this.Result(FileStorageServiceResultTypes.Success); 
+            return this.Result(FileStorageResultTypes.Success); 
         }
 
-        public ServiceResult<FileStorageServiceResultTypes> TestC3()
+        public Result<FileStorageResultTypes> TestC3()
         {
-            return FileStorageServiceResultTypes.Success;
+            return FileStorageResultTypes.Success;
         }
 
-        public ServiceResult<FileStorageServiceResultTypes> TestC4()
+        public Result<FileStorageResultTypes> TestC4()
         {
-            return new ServiceResult<FileStorageServiceResultTypes>(FileStorageServiceResultTypes.Success);
+            return new Result<FileStorageResultTypes>(FileStorageResultTypes.Success);
         }
 
-        public ServiceResult<FileStorageServiceResultTypes> TestC5()
+        public Result<FileStorageResultTypes> TestC5()
         {
             return this.Success();
         }
 
-        public ServiceResult<FileStorageServiceResultTypes> TestC6()
+        public Result<FileStorageResultTypes> TestC6()
         {
             return this.Failure("test");
         }
 
-        public ServiceResult<FileStorageServiceResultTypes> TestC7()
+        public Result<FileStorageResultTypes> TestC7()
         {
             return this.Failure("test", 100, 200);
         }
 
-        public ServiceResult<FileStorageServiceResultTypes> TestC8()
+        public Result<FileStorageResultTypes> TestC8()
         {
-            return this.Result(FileStorageServiceResultTypes.Success);
+            return this.Result(FileStorageResultTypes.Success);
         }
 
-        public ServiceResult<ServiceResultTypes, string> TestD1()
+        public Result<ResultType, string> TestD1()
         {
             return this.Success();
         }
-        public ServiceResult<ServiceResultTypes, string> TestD2()
+        public Result<ResultType, string> TestD2()
         {
             return new FailureResult<string>("test error");
         }
-        public ServiceResult<ServiceResultTypes, string> TestD3()
+        public Result<ResultType, string> TestD3()
         {
             return this.Failure("test error");
         }
-        public ServiceResult<ServiceResultTypes, string> TestD4()
+        public Result<ResultType, string> TestD4()
         {
             return "test error";
         }
-        public ServiceResult<ServiceResultTypes, string> TestD5()
+        public Result<ResultType, string> TestD5()
         {
-            return ServiceResultTypes.Success;
+            return ResultType.Success;
         }
-        public ServiceResult<ServiceResultTypes, string> TestD6()
+        public Result<ResultType, string> TestD6()
         {
-            return this.Result(ServiceResultTypes.Failure, "test error");
+            return this.Result(ResultType.Failure, "test error");
         }
-        public DataServiceResult<int> TestE1()
+        public DataResult<int> TestE1()
         {
             return this.Success(100);
         }
-        public DataServiceResult<int> TestE2()
+        public DataResult<int> TestE2()
         {
             return 100;
         }
-        public DataServiceResult<int> TestE3()
+        public DataResult<int> TestE3()
         {
             return this.Failure();
         }
-        public DataServiceResult<int> TestE4()
+        public DataResult<int> TestE4()
         {
             return this.Failure("test1");
         }
-        public DataServiceResult<int> TestE5()
+        public DataResult<int> TestE5()
         {
             return this.Failure("test1", "test2", "test3");
         }
-        public DataServiceResult<int> TestE6()
+        public DataResult<int> TestE6()
         {
-            return ServiceResultTypes.Success;
+            return ResultType.Success;
         }
-        public DataServiceResult<int> TestE7()
+        public DataResult<int> TestE7()
         {
             return this.DataResult(100); 
         }
-        public DataServiceResult<int> TestE8()
+        public DataResult<int> TestE8()
         {
-            return this.DataResult(100, ServiceResultTypes.Success);
+            return this.DataResult(100, ResultType.Success);
         }
 
-        public DataServiceResult<int, ServiceResultTypes> TestF1()
+        public DataResult<int, ResultType> TestF1()
         {
             return this.Success(100);
         }
-        public DataServiceResult<int, ServiceResultTypes> TestF2()
+        public DataResult<int, ResultType> TestF2()
         {
             return 100;
         }
-        public DataServiceResult<int, ServiceResultTypes> TestF3()
+        public DataResult<int, ResultType> TestF3()
         {
             return this.Failure();
         }
-        public DataServiceResult<int, ServiceResultTypes> TestF4()
+        public DataResult<int, ResultType> TestF4()
         {
             return this.Failure("test1");
         }
-        public DataServiceResult<int, ServiceResultTypes> TestF5()
+        public DataResult<int, ResultType> TestF5()
         {
             return this.Failure("test1", "test2", "test3");
         }
 
-        public DataServiceResult<int, FileStorageServiceResultTypes> TestG1()
+        public DataResult<int, FileStorageResultTypes> TestG1()
         {
             return this.Success(100); 
         }
-        public DataServiceResult<int, FileStorageServiceResultTypes> TestG2()
+        public DataResult<int, FileStorageResultTypes> TestG2()
         {
             return 100; 
         }
-        public DataServiceResult<int, FileStorageServiceResultTypes> TestG3()
+        public DataResult<int, FileStorageResultTypes> TestG3()
         {
             return this.Failure(); 
         }
-        public DataServiceResult<int, FileStorageServiceResultTypes> TestG4()
+        public DataResult<int, FileStorageResultTypes> TestG4()
         {
             return this.Failure("test1");
         }
-        public DataServiceResult<int, FileStorageServiceResultTypes> TestG5()
+        public DataResult<int, FileStorageResultTypes> TestG5()
         {
             return this.Failure("test1", "test2", "test3");
         }
-        public DataServiceResult<int, FileStorageServiceResultTypes> TestG6()
+        public DataResult<int, FileStorageResultTypes> TestG6()
         {
-            return FileStorageServiceResultTypes.FilePathNotExists;
+            return FileStorageResultTypes.FilePathNotExists;
         }
-        public DataServiceResult<int, FileStorageServiceResultTypes> TestG7()
+        public DataResult<int, FileStorageResultTypes> TestG7()
         {
-            return this.Result<FileStorageServiceResultTypes>(FileStorageServiceResultTypes.FilePathNotExists, "The specified file path does not exist");
+            return this.Result<FileStorageResultTypes>(FileStorageResultTypes.FilePathNotExists, "The specified file path does not exist");
         }
 
-        public DataServiceResult<int, FileStorageServiceResultTypes, string> TestH1()
+        public DataResult<int, FileStorageResultTypes, string> TestH1()
         {
             return this.Success(100);
         }
-        public DataServiceResult<int, FileStorageServiceResultTypes, string> TestH2()
+        public DataResult<int, FileStorageResultTypes, string> TestH2()
         {
             return 100;
         }
-        public DataServiceResult<int, FileStorageServiceResultTypes, string> TestH3()
+        public DataResult<int, FileStorageResultTypes, string> TestH3()
         {
             return this.Failure("test1");
         }
-        public DataServiceResult<int, FileStorageServiceResultTypes, string> TestH4()
+        public DataResult<int, FileStorageResultTypes, string> TestH4()
         {
             return "test 1"; 
         }
-        public DataServiceResult<int, FileStorageServiceResultTypes, string> TestH5()
+        public DataResult<int, FileStorageResultTypes, string> TestH5()
         {
             return new FailureResult<string>("test");
         }
-        public DataServiceResult<int, FileStorageServiceResultTypes, string> TestH6()
+        public DataResult<int, FileStorageResultTypes, string> TestH6()
         {
-            return this.DataResult<int, FileStorageServiceResultTypes, string>(100, FileStorageServiceResultTypes.Success); 
+            return this.DataResult<int, FileStorageResultTypes, string>(100, FileStorageResultTypes.Success); 
         }
-        public DataServiceResult<int, FileStorageServiceResultTypes, string> TestH7()
+        public DataResult<int, FileStorageResultTypes, string> TestH7()
         {
-            return this.DataResult<int, FileStorageServiceResultTypes, string>(100);
+            return this.DataResult<int, FileStorageResultTypes, string>(100);
         }
 
         public SuccessResult<int> TestJ1()

@@ -7,10 +7,10 @@ namespace ServiceLayer
 {
     public static class ServiceExtensions
     {
-        internal static IServiceResultFactory ServiceResultFactory = ServiceLocator.Instance.Resolve<IServiceResultFactory>();
+        internal static IResultFactory ResultFactory = ServiceLocator.Instance.Resolve<IResultFactory>();
 
-        internal static IDataServiceResultFactory DataServiceResultFactory =
-            ServiceLocator.Instance.Resolve<IDataServiceResultFactory>();
+        internal static IDataResultFactory DataResultFactory =
+            ServiceLocator.Instance.Resolve<IDataResultFactory>();
 
         internal static ISuccessResultFactory SuccessResultFactory =
             ServiceLocator.Instance.Resolve<ISuccessResultFactory>();
@@ -51,46 +51,46 @@ namespace ServiceLayer
             return FailureResultFactory.Create(errorDetails);
         }
 
-        public static ServiceResult<TResultType> Result<TResultType>(this IService service, TResultType resultType) where TResultType : struct, Enum
+        public static Result<TResultType> Result<TResultType>(this IService service, TResultType resultType) where TResultType : struct, Enum
         {
-            return ServiceResultFactory.Create(resultType);
+            return ResultFactory.Create(resultType);
         }
-        public static ServiceResult<TResultType> Result<TResultType>(this IService service, TResultType resultType, params object[] errorDetails) where TResultType : struct, Enum
+        public static Result<TResultType> Result<TResultType>(this IService service, TResultType resultType, params object[] errorDetails) where TResultType : struct, Enum
         {
-            return ServiceResultFactory.Create(resultType, errorDetails);
+            return ResultFactory.Create(resultType, errorDetails);
         }
-        public static ServiceResult<TResultType, TErrorType> Result<TResultType, TErrorType>(this IService service, TResultType resultType, TErrorType errorDetails = default) where TResultType : struct, Enum
+        public static Result<TResultType, TErrorType> Result<TResultType, TErrorType>(this IService service, TResultType resultType, TErrorType errorDetails = default) where TResultType : struct, Enum
         {
-            return ServiceResultFactory.Create(resultType, errorDetails);
+            return ResultFactory.Create(resultType, errorDetails);
         }
 
-        public static DataServiceResult<TData> DataResult<TData>(this IService service, TData data)
+        public static DataResult<TData> DataResult<TData>(this IService service, TData data)
         {
-            return DataServiceResultFactory.Create(data);
+            return DataResultFactory.Create(data);
         }
-        public static DataServiceResult<TData, TResultType> DataResult<TData, TResultType>(this IService service, TData data) where TResultType : struct, Enum
+        public static DataResult<TData, TResultType> DataResult<TData, TResultType>(this IService service, TData data) where TResultType : struct, Enum
         {
-            return DataServiceResultFactory.Create<TData, TResultType>(data);
+            return DataResultFactory.Create<TData, TResultType>(data);
         }
-        public static DataServiceResult<TData, TResultType> DataResult<TData, TResultType>(this IService service, TData data, TResultType resultType) where TResultType : struct, Enum
+        public static DataResult<TData, TResultType> DataResult<TData, TResultType>(this IService service, TData data, TResultType resultType) where TResultType : struct, Enum
         {
-            return DataServiceResultFactory.Create(data, resultType);
+            return DataResultFactory.Create(data, resultType);
         }
-        public static DataServiceResult<TData, TResultType> DataResult<TData, TResultType>(this IService service, TData data, TResultType resultType, params object[] errorDetails) where TResultType : struct, Enum
+        public static DataResult<TData, TResultType> DataResult<TData, TResultType>(this IService service, TData data, TResultType resultType, params object[] errorDetails) where TResultType : struct, Enum
         {
-            return DataServiceResultFactory.Create(data, resultType, errorDetails);
+            return DataResultFactory.Create(data, resultType, errorDetails);
         }
-        public static DataServiceResult<TData, TResultType, TErrorType> DataResult<TData, TResultType, TErrorType>(this IService service, TData data) where TResultType : struct, Enum
+        public static DataResult<TData, TResultType, TErrorType> DataResult<TData, TResultType, TErrorType>(this IService service, TData data) where TResultType : struct, Enum
         {
-            return DataServiceResultFactory.Create<TData, TResultType, TErrorType>(data);
+            return DataResultFactory.Create<TData, TResultType, TErrorType>(data);
         }
-        public static DataServiceResult<TData, TResultType, TErrorType> DataResult<TData, TResultType, TErrorType>(this IService service, TData data, TResultType resultType) where TResultType : struct, Enum
+        public static DataResult<TData, TResultType, TErrorType> DataResult<TData, TResultType, TErrorType>(this IService service, TData data, TResultType resultType) where TResultType : struct, Enum
         {
-            return DataServiceResultFactory.Create<TData, TResultType, TErrorType>(data, resultType);
+            return DataResultFactory.Create<TData, TResultType, TErrorType>(data, resultType);
         }
-        public static DataServiceResult<TData, TResultType, TErrorType> DataResult<TData, TResultType, TErrorType>(this IService service, TData data, TResultType resultType, TErrorType errorDetails) where TResultType : struct, Enum
+        public static DataResult<TData, TResultType, TErrorType> DataResult<TData, TResultType, TErrorType>(this IService service, TData data, TResultType resultType, TErrorType errorDetails) where TResultType : struct, Enum
         {
-            return DataServiceResultFactory.Create(data, resultType, errorDetails);
+            return DataResultFactory.Create(data, resultType, errorDetails);
         }
     }
 }

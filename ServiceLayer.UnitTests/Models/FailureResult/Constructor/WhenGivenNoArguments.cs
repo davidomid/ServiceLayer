@@ -8,9 +8,9 @@ namespace ServiceLayer.UnitTests.Models.FailureResult.Constructor
         private ServiceLayer.FailureResult _failureResult;
 
         [Test]
-        public void Should_Have_Failure_ServiceResultType()
+        public void Should_Have_Failure_ResultType()
         {
-            _failureResult.ResultType.Should().Be(ServiceResultTypes.Failure);
+            _failureResult.ResultType.Should().Be(ResultType.Failure);
         }
 
         [Test]

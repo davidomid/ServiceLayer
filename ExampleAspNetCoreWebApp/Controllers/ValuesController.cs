@@ -22,16 +22,16 @@ namespace ExampleAspNetCoreWebApp.Controllers
         {
             FileStorageService<Entity> fileStorageService = new FileStorageService<Entity>("TestPath.txt");
             var result = fileStorageService.Get();
-            //var result = new ServiceResult<HttpStatusCode>(HttpStatusCode.OK);
-            //var result = new ServiceResult<HttpStatusCode>(ServiceResultTypes.Success.ToResultType<HttpStatusCode>());
-            return this.FromServiceResult(result);
+            //var result = new Result<HttpStatusCode>(HttpStatusCode.OK);
+            //var result = new Result<HttpStatusCode>(ResultType.Success.ToResultType<HttpStatusCode>());
+            return this.FromResult(result);
         }
 
         // POST api/values
         [HttpPost]
         public ActionResult Post([FromBody] string value)
         {
-            return this.FromServiceResult(new FileStorageService<Entity>("TestData.txt").Add(null));
+            return this.FromResult(new FileStorageService<Entity>("TestData.txt").Add(null));
         }
 
         // PUT api/values/5

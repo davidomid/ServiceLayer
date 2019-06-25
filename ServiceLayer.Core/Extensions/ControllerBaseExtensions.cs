@@ -6,34 +6,34 @@ namespace ServiceLayer.Core
 {
     public static class ControllerBaseExtensions
     {
-        public static ActionResult FromServiceResult(this ControllerBase controller, IServiceResult serviceResult)
+        public static ActionResult FromResult(this ControllerBase controller, IResult result)
         {
-            return serviceResult.ToActionResult();
+            return result.ToActionResult();
         }
 
-        public static ActionResult FromServiceResult<TResultType>(this ControllerBase controller, IServiceResult<TResultType> serviceResult) where TResultType : struct, Enum
+        public static ActionResult FromResult<TResultType>(this ControllerBase controller, IResult<TResultType> result) where TResultType : struct, Enum
         {
-            return serviceResult.ToActionResult();
+            return result.ToActionResult();
         }
 
-        public static ActionResult FromServiceResult(this ControllerBase controller, IServiceResult<HttpStatusCode> httpServiceResult)
+        public static ActionResult FromResult(this ControllerBase controller, IResult<HttpStatusCode> httpResult)
         {
-            return httpServiceResult.ToActionResult();
+            return httpResult.ToActionResult();
         }
 
-        public static ActionResult FromServiceResult<TData>(this ControllerBase controller, IDataServiceResult<TData> serviceResult)
+        public static ActionResult FromResult<TData>(this ControllerBase controller, IDataResult<TData> result)
         {
-            return serviceResult.ToActionResult();
+            return result.ToActionResult();
         }
 
-        public static ActionResult FromServiceResult<TData, TResultType>(this ControllerBase controller, IDataServiceResult<TData, TResultType> serviceResult) where TResultType : struct, Enum
+        public static ActionResult FromResult<TData, TResultType>(this ControllerBase controller, IDataResult<TData, TResultType> result) where TResultType : struct, Enum
         {
-            return serviceResult.ToActionResult();
+            return result.ToActionResult();
         }
 
-        public static ActionResult FromServiceResult<TData>(this ControllerBase controller, IDataServiceResult<TData, HttpStatusCode> httpServiceResult)
+        public static ActionResult FromResult<TData>(this ControllerBase controller, IDataResult<TData, HttpStatusCode> httpResult)
         {
-            return httpServiceResult.ToActionResult();
+            return httpResult.ToActionResult();
         }
     }
 }

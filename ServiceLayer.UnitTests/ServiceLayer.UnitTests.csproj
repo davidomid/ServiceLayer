@@ -15,6 +15,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Extensions\ServiceResultTypesExtensions\**" />
+    <EmbeddedResource Remove="Extensions\ServiceResultTypesExtensions\**" />
+    <None Remove="Extensions\ServiceResultTypesExtensions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.4.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.6.0" />
     <PackageReference Include="Moq" Version="4.10.1" />
@@ -31,10 +37,6 @@
     <Reference Include="Moq">
       <HintPath>..\..\..\..\..\..\.nuget\packages\moq\4.9.0\lib\netstandard1.3\Moq.dll</HintPath>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Extensions\ServiceResultTypesExtensions\ToResultType\" />
   </ItemGroup>
 
 </Project>

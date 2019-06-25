@@ -11,8 +11,8 @@ namespace ServiceLayer.Internal
 
         private readonly Dictionary<Type, object> _instances = new Dictionary<Type, object>
         {
-            { typeof(IServiceResultFactory), new ServiceResultFactory() },
-            { typeof(IDataServiceResultFactory), new DataServiceResultFactory() },
+            { typeof(IResultFactory), new ResultFactory() },
+            { typeof(IDataResultFactory), new DataResultFactory() },
             { typeof(ISuccessResultFactory), new SuccessResultFactory() },
             { typeof(IFailureResultFactory), new FailureResultFactory() },
             { typeof(IInconclusiveResultFactory), new InconclusiveResultFactory() },

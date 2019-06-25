@@ -10,13 +10,13 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.Result
     {
         private IService _service;
         private object[] _errorDetails;
-        private ServiceResult _serviceResult;
-        private ServiceResult _expectedServiceResult;
-        private readonly TestCustomServiceResultTypes _customResultType;
+        private ServiceLayer.Result _result;
+        private ServiceLayer.Result _expectedResult;
+        private readonly TestCustomResultType _customResultType;
 
-        private static readonly TestCustomServiceResultTypes[] ResultTypes = (TestCustomServiceResultTypes[])Enum.GetValues(typeof(TestCustomServiceResultTypes));
+        private static readonly TestCustomResultType[] ResultTypes = (TestCustomResultType[])Enum.GetValues(typeof(TestCustomResultType));
 
-        public WhenGivenCustomResultTypeAndErrorObjectArray(TestCustomServiceResultTypes customResultType)
+        public WhenGivenCustomResultTypeAndErrorObjectArray(TestCustomResultType customResultType)
         {
             _customResultType = customResultType;
         }
@@ -24,19 +24,19 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.Result
         [Test]
         public void Should_Return_Expected_Result()
         {
-            _serviceResult.Should().Be(_expectedServiceResult);
+            _result.Should().Be(_expectedResult);
         }
 
         protected override void Act()
         {
-            _serviceResult = _service.Result(_customResultType, _errorDetails);
+            _result = _service.Result(_customResultType, _errorDetails);
         }
 
         protected override void Arrange()
         {
             _service = new TestService();
             _errorDetails = new[] { Guid.NewGuid().ToString(), 123, new object() };
-            _expectedServiceResult = MockServiceResultFactory.Object.Create(_customResultType, _errorDetails);
+            _expectedResult = MockResultFactory.Object.Create(_customResultType, _errorDetails);
         }
     }
 }

@@ -6,12 +6,12 @@ namespace ServiceLayer.Core.Internal.Factories
 {
     internal interface IActionResultFactory
     {
-        ActionResult Create(IServiceResult serviceResult);
-        ActionResult Create<TResultType>(IServiceResult<TResultType> serviceResult) where TResultType : struct, Enum;
-        ActionResult Create(IServiceResult<HttpStatusCode> httpServiceResult);
-        ActionResult Create<TData>(IDataServiceResult<TData> serviceResult);
-        ActionResult Create<TData, TResultType>(IDataServiceResult<TData, TResultType> serviceResult)
+        ActionResult Create(IResult result);
+        ActionResult Create<TResultType>(IResult<TResultType> result) where TResultType : struct, Enum;
+        ActionResult Create(IResult<HttpStatusCode> httpResult);
+        ActionResult Create<TData>(IDataResult<TData> result);
+        ActionResult Create<TData, TResultType>(IDataResult<TData, TResultType> result)
             where TResultType : struct, Enum;
-        ActionResult Create<TData>(IDataServiceResult<TData, HttpStatusCode> httpServiceResult);
+        ActionResult Create<TData>(IDataResult<TData, HttpStatusCode> httpResult);
     }
 }

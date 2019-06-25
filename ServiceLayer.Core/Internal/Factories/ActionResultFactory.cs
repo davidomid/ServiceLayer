@@ -6,18 +6,18 @@ namespace ServiceLayer.Core.Internal.Factories
 {
     internal class ActionResultFactory : IActionResultFactory
     {
-        public ActionResult Create(IServiceResult serviceResult)
+        public ActionResult Create(IResult result)
         {
-            if (serviceResult.IsSuccessful)
+            if (result.IsSuccessful)
             {
                 return new OkResult();
             }
-            return CreateErrorObjectResult(serviceResult, HttpStatusCode.InternalServerError);
+            return CreateErrorObjectResult(result, HttpStatusCode.InternalServerError);
         }
 
-        public ActionResult Create(IServiceResult<HttpStatusCode> httpServiceResult)
+        public ActionResult Create(IResult<HttpStatusCode> httpResult)
         {
-            switch (httpServiceResult.ResultType)
+            switch (httpResult.ResultType)
             {
                 case HttpStatusCode.OK:
                     return new OkResult();
@@ -28,51 +28,51 @@ namespace ServiceLayer.Core.Internal.Factories
                 case HttpStatusCode.Forbidden:
                     return new ForbidResult();
                 case HttpStatusCode.BadRequest:
-                    return new BadRequestObjectResult(httpServiceResult.ErrorDetails);
+                    return new BadRequestObjectResult(httpResult.ErrorDetails);
                 case HttpStatusCode.Conflict:
-                    return CreateErrorObjectResult(httpServiceResult, HttpStatusCode.Conflict);
+                    return CreateErrorObjectResult(httpResult, HttpStatusCode.Conflict);
                 case HttpStatusCode.InternalServerError:
-                    return CreateErrorObjectResult(httpServiceResult, HttpStatusCode.InternalServerError); 
+                    return CreateErrorObjectResult(httpResult, HttpStatusCode.InternalServerError); 
                 default:
                     goto case HttpStatusCode.InternalServerError;
             }
         }
 
-        public ActionResult Create<TResultType>(IServiceResult<TResultType> serviceResult) where TResultType : struct, Enum
+        public ActionResult Create<TResultType>(IResult<TResultType> result) where TResultType : struct, Enum
         {
-            return Create(new ServiceResult<HttpStatusCode>(serviceResult.ResultType.ToResultType<HttpStatusCode>(),
-                serviceResult.ErrorDetails));
+            return Create(new Result<HttpStatusCode>(result.ResultType.ToResultType<HttpStatusCode>(),
+                result.ErrorDetails));
         }
 
-        public ActionResult Create<TData>(IDataServiceResult<TData> serviceResult)
+        public ActionResult Create<TData>(IDataResult<TData> result)
         {
-            return Create(new DataServiceResult<TData, HttpStatusCode>(serviceResult.Data, serviceResult.ResultType.ToResultType<HttpStatusCode>(), serviceResult.ErrorDetails));
+            return Create(new DataResult<TData, HttpStatusCode>(result.Data, result.ResultType.ToResultType<HttpStatusCode>(), result.ErrorDetails));
         }
 
-        public ActionResult Create<TData, TResultType>(IDataServiceResult<TData, TResultType> serviceResult) where TResultType : struct, Enum
+        public ActionResult Create<TData, TResultType>(IDataResult<TData, TResultType> result) where TResultType : struct, Enum
         {
-            return Create(new DataServiceResult<TData, HttpStatusCode>(serviceResult.Data, serviceResult.ResultType.ToResultType<HttpStatusCode>(), serviceResult.ErrorDetails));
+            return Create(new DataResult<TData, HttpStatusCode>(result.Data, result.ResultType.ToResultType<HttpStatusCode>(), result.ErrorDetails));
         }
 
-        public ActionResult Create<TData>(IDataServiceResult<TData, HttpStatusCode> httpServiceResult)
+        public ActionResult Create<TData>(IDataResult<TData, HttpStatusCode> httpResult)
         {
-            switch (httpServiceResult.ResultType)
+            switch (httpResult.ResultType)
             {
                 case HttpStatusCode.OK:
-                    return CreateOkObjectResult(httpServiceResult); 
+                    return CreateOkObjectResult(httpResult); 
                 default:
-                    return Create((IServiceResult<HttpStatusCode>)httpServiceResult);
+                    return Create((IResult<HttpStatusCode>)httpResult);
             }
         }
 
-        private OkObjectResult CreateOkObjectResult<TData>(IDataServiceResult<TData> serviceResult)
+        private OkObjectResult CreateOkObjectResult<TData>(IDataResult<TData> result)
         {
-            return new OkObjectResult(serviceResult.Data);
+            return new OkObjectResult(result.Data);
         }
 
-        private ObjectResult CreateErrorObjectResult(IServiceResult serviceResult, HttpStatusCode httpStatusCode)
+        private ObjectResult CreateErrorObjectResult(IResult result, HttpStatusCode httpStatusCode)
         {
-            return new ObjectResult(serviceResult.ErrorDetails)
+            return new ObjectResult(result.ErrorDetails)
             {
                 StatusCode = (int?) httpStatusCode
             };

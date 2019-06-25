@@ -10,9 +10,9 @@ namespace ServiceLayer.UnitTests.Models.FailureResult_1.Constructor
         private TestErrorType _errorDetails;
 
         [Test]
-        public void Should_Have_Failure_ServiceResultType()
+        public void Should_Have_Failure_ResultType()
         {
-            _failureResult.ResultType.Should().Be(ServiceResultTypes.Failure);
+            _failureResult.ResultType.Should().Be(ResultType.Failure);
         }
 
         [Test]

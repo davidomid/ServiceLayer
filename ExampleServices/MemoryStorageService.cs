@@ -8,18 +8,18 @@ namespace ExampleServices
     {
         private readonly List<TEntity> _entities = new List<TEntity>();
 
-        public IServiceResult Add(TEntity entity)
+        public IResult Add(TEntity entity)
         {
             _entities.Add(entity);
             return this.Success();
         }
 
-        public IDataServiceResult<IEnumerable<TEntity>> Get()
+        public IDataResult<IEnumerable<TEntity>> Get()
         {
             return this.Success(_entities); 
         }
 
-        public IDataServiceResult<TEntity> GetByKey(string key)
+        public IDataResult<TEntity> GetByKey(string key)
         {
             return this.Success(_entities.FirstOrDefault(e => e.Key == key));
         }

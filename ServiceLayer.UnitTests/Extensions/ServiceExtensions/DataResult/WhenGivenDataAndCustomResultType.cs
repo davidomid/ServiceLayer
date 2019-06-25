@@ -9,34 +9,34 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.DataResult
     public class WhenGivenDataAndCustomResultType : UnitTestBase
     {
         private IService _service;
-        private DataServiceResult<TestData, TestCustomServiceResultTypes> _serviceResult;
-        private DataServiceResult<TestData, TestCustomServiceResultTypes> _expectedServiceResult; 
+        private DataResult<TestData, TestCustomResultType> _result;
+        private DataResult<TestData, TestCustomResultType> _expectedResult; 
 
-        private readonly TestCustomServiceResultTypes _serviceResultType;
+        private readonly TestCustomResultType _resultType;
         private readonly TestData _testData = new TestData();
 
-        private static readonly TestCustomServiceResultTypes[] ResultTypes = (TestCustomServiceResultTypes[])Enum.GetValues(typeof(TestCustomServiceResultTypes));
+        private static readonly TestCustomResultType[] ResultTypes = (TestCustomResultType[])Enum.GetValues(typeof(TestCustomResultType));
 
-        public WhenGivenDataAndCustomResultType(TestCustomServiceResultTypes serviceResultType)
+        public WhenGivenDataAndCustomResultType(TestCustomResultType resultType)
         {
-            _serviceResultType = serviceResultType;
+            _resultType = resultType;
         }
 
         [Test]
         public void Should_Return_Expected_Result()
         {
-            _serviceResult.Should().Be(_expectedServiceResult);
+            _result.Should().Be(_expectedResult);
         }
 
         protected override void Act()
         {
-            _serviceResult = _service.DataResult(_testData, _serviceResultType);
+            _result = _service.DataResult(_testData, _resultType);
         }
 
         protected override void Arrange()
         {
             _service = new TestService();
-            _expectedServiceResult = MockDataServiceResultFactory.Object.Create(_testData, _serviceResultType);
+            _expectedResult = MockDataResultFactory.Object.Create(_testData, _resultType);
         }
     }
 }

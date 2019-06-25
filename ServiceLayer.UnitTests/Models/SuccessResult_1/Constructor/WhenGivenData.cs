@@ -10,9 +10,9 @@ namespace ServiceLayer.UnitTests.Models.SuccessResult_1.Constructor
         private SuccessResult<TestData> _successResult;
 
         [Test]
-        public void Should_Have_Success_ServiceResultType()
+        public void Should_Have_Success_ResultType()
         {
-            _successResult.ResultType.Should().Be(ServiceResultTypes.Success);
+            _successResult.ResultType.Should().Be(ResultType.Success);
         }
 
         [Test]

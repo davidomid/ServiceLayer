@@ -2,7 +2,7 @@
 {
     public class SuccessAttribute : ResultTypeAttribute
     {
-        public SuccessAttribute() : base(ServiceResultTypes.Success)
+        public SuccessAttribute() : base(ServiceLayer.ResultType.Success)
         {
         }
     }

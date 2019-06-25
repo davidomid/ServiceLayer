@@ -9,15 +9,15 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.DataResult
     public class WhenGivenDataAndCustomResultTypeAndGenericErrorTypeArgument : UnitTestBase
     {
         private IService _service;
-        private DataServiceResult<TestData, TestCustomServiceResultTypes, TestErrorType> _serviceResult;
-        private DataServiceResult<TestData, TestCustomServiceResultTypes, TestErrorType> _expectedServiceResult; 
+        private DataResult<TestData, TestCustomResultType, TestErrorType> _result;
+        private DataResult<TestData, TestCustomResultType, TestErrorType> _expectedResult; 
 
         private readonly TestData _testData = new TestData();
-        private readonly TestCustomServiceResultTypes _customResultType;
+        private readonly TestCustomResultType _customResultType;
 
-        private static readonly TestCustomServiceResultTypes[] ResultTypes = (TestCustomServiceResultTypes[])Enum.GetValues(typeof(TestCustomServiceResultTypes));
+        private static readonly TestCustomResultType[] ResultTypes = (TestCustomResultType[])Enum.GetValues(typeof(TestCustomResultType));
 
-        public WhenGivenDataAndCustomResultTypeAndGenericErrorTypeArgument(TestCustomServiceResultTypes customResultType)
+        public WhenGivenDataAndCustomResultTypeAndGenericErrorTypeArgument(TestCustomResultType customResultType)
         {
             _customResultType = customResultType;
         }
@@ -25,18 +25,18 @@ namespace ServiceLayer.UnitTests.Extensions.ServiceExtensions.DataResult
         [Test]
         public void Should_Return_Expected_Result()
         {
-            _serviceResult.Should().BeSameAs(_expectedServiceResult);
+            _result.Should().BeSameAs(_expectedResult);
         }
 
         protected override void Act()
         {
-            _serviceResult = _service.DataResult<TestData, TestCustomServiceResultTypes, TestErrorType>(_testData, _customResultType);
+            _result = _service.DataResult<TestData, TestCustomResultType, TestErrorType>(_testData, _customResultType);
         }
 
         protected override void Arrange()
         {
             _service = new TestService();
-            _expectedServiceResult = MockDataServiceResultFactory.Object.Create<TestData, TestCustomServiceResultTypes, TestErrorType>(_testData, _customResultType);
+            _expectedResult = MockDataResultFactory.Object.Create<TestData, TestCustomResultType, TestErrorType>(_testData, _customResultType);
         }
     }
 }

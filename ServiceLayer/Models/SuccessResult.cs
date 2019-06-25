@@ -1,8 +1,8 @@
 ﻿namespace ServiceLayer
 {
-    public class SuccessResult : ServiceResult
+    public class SuccessResult : Result
     {
-        public SuccessResult() : base(ServiceResultTypes.Success)
+        public SuccessResult() : base(ResultType.Success)
         {
         }
     }
