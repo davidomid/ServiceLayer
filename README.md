@@ -11,7 +11,7 @@ Check out the [wiki](https://github.com/davidomid/ServiceLayer/wiki) for full do
 
 ## Installation
 
-ServiceLayer is available as a NuGet package: 
+ServiceLayer is available as a [NuGet package](https://www.nuget.org/packages/ServiceLayer): 
 
 ```
 Install-Package ServiceLayer
@@ -19,12 +19,13 @@ Install-Package ServiceLayer
 
 ### ASP.NET Core integration
 
-Some useful features for integrating ServiceLayer with ASP.NET Core applications is also available as a separate NuGet package: 
+Some useful features for integrating ServiceLayer with ASP.NET Core applications is also available as a separate [NuGet package](https://www.nuget.org/packages/ServiceLayer.Core): 
 
 ```
 Install-Package ServiceLayer.Core
 ```
 
+### Latest Release
 
 |     Package    |    Version   |    Downloads   |
 | ------- | ----- | ----- |
