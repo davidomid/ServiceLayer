@@ -9,7 +9,7 @@ This library can dramatically simplify your error handling logic across your pro
 
 It alleviates considerable problems which may developers face when writing logic for services and their consumers such as:
 
-- Accidentally couping your service logic to your hosting logic, like this [insert link here].
+- Accidentally coupling your service logic to your hosting logic, like this [insert link here].
 - Having to create lots of custom exception classes, like this [insert link here to example].
 - Implementing a lot of ugly try-catch blocks for handling various exception types, like this [insert link here].
 - Needing to create lot of custom "result" classes which wrap some form of result type, error details and data, like this [insert link here].
