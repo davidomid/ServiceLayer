@@ -1,4 +1,5 @@
 ﻿using System;
+using ServiceLayer.Models;
 
 namespace ServiceLayer.Internal.Factories
 {
@@ -12,5 +13,6 @@ namespace ServiceLayer.Internal.Factories
         Result<TResultType, TErrorType> Create<TResultType, TErrorType>(SuccessResult successResult) where TResultType : struct, Enum;
         Result<TResultType, TErrorType> Create<TResultType, TErrorType>(FailureResult<TErrorType> failureResult)
             where TResultType : struct, Enum;
+        Result<TResultType, TErrorType> Create<TResultType, TErrorType>(InconclusiveResult inconclusiveResult) where TResultType : struct, Enum;
     }
 }
