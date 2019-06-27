@@ -1,5 +1,6 @@
 ﻿using System;
 using ServiceLayer.Internal;
+using ServiceLayer.Models;
 
 namespace ServiceLayer
 {
@@ -28,6 +29,11 @@ namespace ServiceLayer
         public static implicit operator Result<TResultType>(FailureResult failureResult)
         {
             return Engine.ResultFactory.Create<TResultType>(failureResult);
+        }
+
+        public static implicit operator Result<TResultType>(InconclusiveResult inconclusiveResult)
+        {
+            return Engine.ResultFactory.Create<TResultType>(inconclusiveResult);
         }
 
         public static implicit operator Result<TResultType>(TResultType resultType)

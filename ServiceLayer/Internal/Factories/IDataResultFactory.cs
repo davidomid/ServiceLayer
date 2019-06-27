@@ -1,4 +1,5 @@
 ﻿using System;
+using ServiceLayer.Models;
 
 namespace ServiceLayer.Internal.Factories
 {
@@ -11,6 +12,7 @@ namespace ServiceLayer.Internal.Factories
         DataResult<TData, TResultType> Create<TData, TResultType>(TResultType resultType) where TResultType : struct, Enum;
         DataResult<TData, TResultType> Create<TData, TResultType>(TData data) where TResultType : struct, Enum;
         DataResult<TData, TResultType> Create<TData, TResultType>(FailureResult failureResult) where TResultType : struct, Enum;
+        DataResult<TData, TResultType> Create<TData, TResultType>(InconclusiveResult inconclusiveResult) where TResultType : struct, Enum;
         DataResult<TData, TResultType> Create<TData, TResultType>(SuccessResult<TData> successResult) where TResultType : struct, Enum;
         DataResult<TData, TResultType> Create<TData, TResultType>(TData data, TResultType resultType) where TResultType : struct, Enum;
         DataResult<TData, TResultType> Create<TData, TResultType> (Result<TResultType> result) where TResultType : struct, Enum;
@@ -21,5 +23,6 @@ namespace ServiceLayer.Internal.Factories
         DataResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(TErrorType errorDetails) where TResultType : struct, Enum;
         DataResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(TData data, TResultType resultType, TErrorType errorDetails = default) where TResultType : struct, Enum;
         DataResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(Result<TResultType, TErrorType> result) where TResultType : struct, Enum;
+        DataResult<TData> Create<TData>(InconclusiveResult inconclusiveResult);
     }
 }
