@@ -3,9 +3,9 @@ using ServiceLayer.Internal.Converters;
 
 namespace ServiceLayer
 {
-    public abstract class AnyToOneResultConverter<TDestinationResultType> : ResultTypeConverter, IAnyToOneResultConverter<TDestinationResultType> where TDestinationResultType : struct, Enum
+    public abstract class AnyToOneResultTypeConverter<TDestinationResultType> : ResultTypeConverter, IAnyToOneResultTypeConverter<TDestinationResultType> where TDestinationResultType : struct, Enum
     {
-        protected AnyToOneResultConverter() : base(null, typeof(TDestinationResultType))
+        protected AnyToOneResultTypeConverter() : base(null, typeof(TDestinationResultType))
         {
         }
 
