@@ -13,9 +13,9 @@ namespace ServiceLayer
         internal Type SourceType { get; }
         internal Type DestinationType { get; }
 
-        internal abstract Enum Convert(Enum sourceResultType, Type destinationEnumType);
+        internal abstract Enum PerformInternalConversion(Enum sourceResultType, Type destinationEnumType);
 
-        Enum IResultTypeConverter.Convert(Enum sourceResultType, Type destinationEnumType)
+        Enum IResultTypeConverter.PerformInternalConversion(Enum sourceResultType, Type destinationEnumType)
         {
             return ConvertWithValidation(sourceResultType, destinationEnumType);
         }
@@ -39,7 +39,7 @@ namespace ServiceLayer
 
             try
             {
-                return Convert(sourceResultType, destinationEnumType);
+                return PerformInternalConversion(sourceResultType, destinationEnumType);
             }
             catch (Exception ex)
             {

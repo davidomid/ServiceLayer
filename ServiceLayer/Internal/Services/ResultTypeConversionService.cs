@@ -30,7 +30,7 @@ namespace ServiceLayer.Internal.Services
 
             foreach (IResultTypeConverter resultTypeConverter in resultTypeConverters)
             {
-                Enum destinationValue = resultTypeConverter.Convert(sourceResultType, typeof(TDestinationResultType));
+                Enum destinationValue = resultTypeConverter.PerformInternalConversion(sourceResultType, typeof(TDestinationResultType));
                 // If the current converter returns null, continue onto the next converter. If not, return the value.
                 if (destinationValue != null)
                 {

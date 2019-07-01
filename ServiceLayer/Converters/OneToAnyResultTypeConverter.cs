@@ -12,11 +12,11 @@ namespace ServiceLayer
 
         public abstract TDestinationResultType? Convert<TDestinationResultType>(TSourceResultType sourceResultType) where TDestinationResultType : struct, Enum;
 
-        internal override Enum Convert(Enum sourceResultType, Type destinationEnumType)
+        internal override Enum PerformInternalConversion(Enum sourceResultType, Type destinationEnumType)
         {
             var genericConvertMethod = GetType()
                 .GetTypeInfo()
-                .GetDeclaredMethod(nameof(Convert))
+                .GetDeclaredMethod(nameof(PerformInternalConversion))
                 .MakeGenericMethod(destinationEnumType);
 
             try
