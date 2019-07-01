@@ -6,11 +6,11 @@ namespace ServiceLayer.Internal.Converters
 {
     internal class AttributeResultTypeConverter : AnyToAnyResultTypeConverter
     {
-        internal override Enum Convert(Enum sourceResultType, Type destinationEnumType)
+        public override Enum Convert(Enum sourceResultType, Type destinationEnumType)
         {
             // Check if there is an attribute on the source result type value which maps is to the destination type.
             Enum destinationValue = GetDestinationValueByDestinationValueResultTypeAttributeOnSourceValue(sourceResultType,
-                    destinationEnumType);
+                destinationEnumType);
 
             if (destinationValue != null)
             {
@@ -32,7 +32,7 @@ namespace ServiceLayer.Internal.Converters
             // If no attribute can be found, try to find a default destination value by checking for a DefaultResultType attribute on the destination type.
             destinationValue = GetDestinationValueByDefaultResultTypeAttributeForValueOnDestinationType(destinationEnumType);
 
-            return destinationValue; 
+            return destinationValue;
         }
 
         private Enum GetDestinationValueByDefaultResultTypeAttributeForValueOnDestinationType(Type destinationEnumType)
