@@ -9,7 +9,7 @@ namespace ServiceLayer
         {
         }
 
-        internal override Enum Convert(Enum sourceResultType, Type destinationEnumType)
+        internal override Enum PerformInternalConversion(Enum sourceResultType, Type destinationEnumType)
         {
             return this.Convert(sourceResultType);
         }
