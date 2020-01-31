@@ -1,5 +1,5 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using ExampleServices.NoServiceLayer;
 using Microsoft.AspNetCore.Mvc;
 using Document = ExampleServices.NoServiceLayer.Document;
 using IDocumentStorageService = ExampleServices.NoServiceLayer.IDocumentStorageService;
@@ -31,7 +31,7 @@ namespace ExampleAspNetCoreWebApp.Controllers
             }
             catch (ValidationException validationException)
             {
-                return BadRequest(validationException.ValidationResult.ErrorMessage);
+                return BadRequest(validationException.Message);
             }
             catch (Exception)
             {

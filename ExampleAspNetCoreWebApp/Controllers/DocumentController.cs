@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Document = ExampleServices.Document;
 using IDocumentStorageService = ExampleServices.IDocumentStorageService;
