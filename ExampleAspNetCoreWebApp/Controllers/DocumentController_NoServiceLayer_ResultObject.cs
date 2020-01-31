@@ -21,18 +21,23 @@ namespace ExampleAspNetCoreWebApp.Controllers
         public ActionResult<Document> Get(string documentPath, string accessToken)
         {
             GetDocumentResult result = _documentStorageService.GetDocument(documentPath, accessToken);
-            switch (result.ResultType)
+            return ConvertToActionResult(result);
+        }
+
+        private ActionResult ConvertToActionResult(GetDocumentResult getDocumentResult)
+        {
+            switch (getDocumentResult.ResultType)
             {
                 case DocumentStorageResultType.FileNotFound:
                     return NotFound();
                 case DocumentStorageResultType.ValidationError:
-                    return BadRequest(result.ErrorMessage);
+                    return BadRequest(getDocumentResult.ErrorMessage);
                 case DocumentStorageResultType.InvalidAccessToken:
                     return Forbid();
                 case DocumentStorageResultType.UnexpectedError:
-                    return StatusCode(500, result.ErrorMessage);
+                    return StatusCode(500, getDocumentResult.ErrorMessage);
                 default:
-                    return Ok(result.Document);
+                    return Ok(getDocumentResult.Document);
             }
         }
     }

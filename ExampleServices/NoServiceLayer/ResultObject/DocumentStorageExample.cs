@@ -20,56 +20,20 @@ namespace ExampleServices.NoServiceLayer.ResultObject
 
         public GetDocumentResult GetDocument(string documentPath, string accessToken)
         {
-            if (documentPath == null)
-            {
-                return new GetDocumentResult {
-                    ResultType = DocumentStorageResultType.ValidationError,
-                    ErrorMessage = "Document path is required."
-                };
-            }
-
-            if (accessToken == null)
-            {
-                return new GetDocumentResult
-                {
-                    ResultType = DocumentStorageResultType.ValidationError,
-                    ErrorMessage = "Access token is required."
-                };
-            }
-
-            if (!_authService.IsAccessTokenValid())
-            {
-                return new GetDocumentResult
-                {
-                    ResultType = DocumentStorageResultType.InvalidAccessToken
-                };
-            }
-
-            if (!File.Exists(documentPath))
-            {
-                return new GetDocumentResult
-                {
-                    ResultType = DocumentStorageResultType.FileNotFound
-                };
-            }
-
+            if (documentPath == null) return new GetDocumentResult(DocumentStorageResultType.ValidationError, null, "Document path is required.");
+            if (accessToken == null) return new GetDocumentResult(DocumentStorageResultType.ValidationError, null, "Access token is required.");
+            if (!_authService.IsAccessTokenValid()) return new GetDocumentResult(DocumentStorageResultType.InvalidAccessToken);
+            if (!File.Exists(documentPath)) return new GetDocumentResult(DocumentStorageResultType.FileNotFound);
             try
             {
                 string json = File.ReadAllText(documentPath);
                 Document document = JsonConvert.DeserializeObject<Document>(json);
-                return new GetDocumentResult
-                {
-                    Document = document,
-                    ResultType = DocumentStorageResultType.Successful
-                };
+                return new GetDocumentResult(DocumentStorageResultType.Successful, document);
             }
             catch (Exception)
             {
-                return new GetDocumentResult
-                {
-                    ResultType = DocumentStorageResultType.UnexpectedError,
-                    ErrorMessage = "An unexpected error occurred while retrieving the document."
-                };
+                return new GetDocumentResult(DocumentStorageResultType.UnexpectedError, null,
+                    "An unexpected error occurred while retrieving the document.");
             }
         }
     }
@@ -79,6 +43,13 @@ namespace ExampleServices.NoServiceLayer.ResultObject
         public Document Document { get; set; }
         public DocumentStorageResultType ResultType { get; set; }
         public string ErrorMessage { get; set; }
+
+        public GetDocumentResult(DocumentStorageResultType resultType, Document document = null, string errorMessage = null)
+        {
+            ResultType = resultType;
+            Document = document;
+            ErrorMessage = errorMessage;
+        }
     }
 
     public enum DocumentStorageResultType
