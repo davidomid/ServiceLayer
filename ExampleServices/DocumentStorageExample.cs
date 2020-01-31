@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Net;
 using Newtonsoft.Json;
 using ServiceLayer;
@@ -50,7 +49,7 @@ namespace ExampleServices
                 Document document = JsonConvert.DeserializeObject<Document>(json);
                 return document;
             }
-            catch (Exception exception)
+            catch
             {
                 return "An unexpected error occurred while retrieving the document."; 
             }

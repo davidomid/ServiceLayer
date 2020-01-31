@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.IO;
 using Newtonsoft.Json;
 
@@ -45,5 +44,12 @@ namespace ExampleServices.NoServiceLayer.Exceptions
 
     public class InvalidAccessTokenException : Exception
     {
+    }
+
+    public class ValidationException : Exception
+    {
+        public ValidationException(string errorMessage) : base(errorMessage)
+        {
+        }
     }
 }

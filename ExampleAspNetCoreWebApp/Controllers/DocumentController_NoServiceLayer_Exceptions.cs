@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using ExampleServices.NoServiceLayer.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Document = ExampleServices.NoServiceLayer.Exceptions.Document;
@@ -32,7 +31,7 @@ namespace ExampleAspNetCoreWebApp.Controllers
             }
             catch (ValidationException validationException)
             {
-                return BadRequest(validationException.ValidationResult.ErrorMessage);
+                return BadRequest(validationException.Message);
             }
             catch (InvalidAccessTokenException)
             {
