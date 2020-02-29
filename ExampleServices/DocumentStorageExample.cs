@@ -76,6 +76,10 @@ namespace ExampleServices
             Context.ResultTypeConverters.Install(new DocumentResultTypeHttpConverter());
         }
 
+        public override void Uninstall()
+        {
+        }
+
         private class DocumentResultTypeHttpConverter : OneToOneResultTypeConverter<DocumentStorageResultType, HttpStatusCode>
         {
             public override HttpStatusCode? Convert(DocumentStorageResultType sourceResultType)

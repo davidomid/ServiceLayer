@@ -15,8 +15,6 @@ namespace ServiceLayer
 
         public abstract void Install();
 
-        public virtual void Uninstall()
-        {
-        }
+        public abstract void Uninstall(); 
     }
 }
