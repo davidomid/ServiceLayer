@@ -64,36 +64,4 @@ namespace ExampleServices
             return true;
         }
     }
-
-    public class DocumentServicePlugin : Plugin
-    {
-        public DocumentServicePlugin() : base("Document Service")
-        {
-        }
-
-        public override void Install()
-        {
-            Context.ResultTypeConverters.Install(new DocumentResultTypeHttpConverter());
-        }
-
-        public override void Uninstall()
-        {
-        }
-
-        private class DocumentResultTypeHttpConverter : OneToOneResultTypeConverter<DocumentStorageResultType, HttpStatusCode>
-        {
-            public override HttpStatusCode? Convert(DocumentStorageResultType sourceResultType)
-            {
-                switch (sourceResultType)
-                {
-                    case DocumentStorageResultType.FileNotFound: return HttpStatusCode.NotFound;
-                    case DocumentStorageResultType.InvalidAccessToken: return HttpStatusCode.Forbidden;
-                    case DocumentStorageResultType.ValidationError: return HttpStatusCode.BadRequest;
-                }
-
-                return null;
-            }
-        }
-    }
-
 }
