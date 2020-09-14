@@ -7,7 +7,7 @@ namespace ExampleServices
         [Success]
         Success,
         [Failure(IsDefault = true)]
-        Failure,
+        UnexpectedError,
         [ResultType(ResultType.Failure)]
         [ResultType(HttpStatusCode.BadRequest)]
         FilePathNotExists

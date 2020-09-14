@@ -7,31 +7,26 @@ using ServiceLayer;
 
 namespace ExampleServices
 {
-    public interface IFileStorageService<T> 
+    public interface IFileStorageService : IService
     {
+        DataResult<TData, FileStorageResultTypes, string> GetData<TData>(string filePath); 
     }
-
-    public class FileStorageService<T> : IService
+    public class FileStorageService : IFileStorageService
     {
-        private readonly string _filePath;
 
-        public FileStorageService(string filePath)
-        {
-            _filePath = filePath;
-        }
 
-        public DataResult<T, FileStorageResultTypes, string> Get()
+        public DataResult<TData, FileStorageResultTypes, string> GetData<TData>(string filePath)
         {
             try
             {
-                if (File.Exists(_filePath))
+                if (!File.Exists(filePath))
                 {
-                    string json = File.ReadAllText(_filePath);
-                    T entity = JsonConvert.DeserializeObject<T>(json);
-                    return entity;
+                    return this.Result(FileStorageResultTypes.FilePathNotExists, "The specified file path does not exist.");
                 }
 
-                return this.Result(FileStorageResultTypes.FilePathNotExists, "The specified file path does not exist.");
+                string json = File.ReadAllText(filePath);
+                TData data = JsonConvert.DeserializeObject<TData>(json);
+                return data;
             }
             catch (Exception ex)
             {
