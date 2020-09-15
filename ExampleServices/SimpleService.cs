@@ -32,6 +32,19 @@ namespace ExampleServices
             }
         }
 
+        public Result DoOperationWithMultipleErrors()
+        {
+            try
+            {
+                // Some sort of operation here
+                return this.Success();
+            }
+            catch (Exception ex)
+            {
+                return this.Failure(ex.Message, "error 2", 3, false);
+            }
+        }
+
         public Result<ResultType, int> DoOperationWithErrorCode()
         {
             try
