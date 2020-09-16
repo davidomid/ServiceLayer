@@ -36,6 +36,8 @@ namespace ServiceLayer.Core.Internal.Factories
             {
                 case HttpStatusCode.OK:
                     return new OkResult();
+                case HttpStatusCode.BadRequest:
+                    return new BadRequestResult();
                 case HttpStatusCode.NotFound:
                     return new NotFoundResult();
                 case HttpStatusCode.Unauthorized:
