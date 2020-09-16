@@ -107,9 +107,9 @@ namespace ExampleServices
             return this.Failure("test");
         }
 
-        public Result<FileStorageResultTypes> TestC7()
+        public Result<FileStorageResultTypes, int> TestC7()
         {
-            return this.Failure("test", 100, 200);
+            return this.Failure(123);
         }
 
         public Result<FileStorageResultTypes> TestC8()
@@ -159,7 +159,7 @@ namespace ExampleServices
         }
         public DataResult<int> TestE5()
         {
-            return this.Failure("test1", "test2", "test3");
+            return this.Failure("test1");
         }
         public DataResult<int> TestE6()
         {
@@ -188,11 +188,11 @@ namespace ExampleServices
         }
         public DataResult<int, ResultType> TestF4()
         {
-            return this.Failure("test1");
+            return this.Failure("test123");
         }
-        public DataResult<int, ResultType> TestF5()
+        public DataResult<int, ResultType, string> TestF5()
         {
-            return this.Failure("test1", "test2", "test3");
+            return this.Failure("test123");
         }
 
         public DataResult<int, FileStorageResultTypes> TestG1()
@@ -209,19 +209,19 @@ namespace ExampleServices
         }
         public DataResult<int, FileStorageResultTypes> TestG4()
         {
-            return this.Failure("test1");
+            return this.Failure("test123");
         }
-        public DataResult<int, FileStorageResultTypes> TestG5()
+        public DataResult<int, FileStorageResultTypes, string> TestG5()
         {
-            return this.Failure("test1", "test2", "test3");
+            return this.Failure("test123");
         }
         public DataResult<int, FileStorageResultTypes> TestG6()
         {
             return FileStorageResultTypes.FilePathNotExists;
         }
-        public DataResult<int, FileStorageResultTypes> TestG7()
+        public DataResult<int, FileStorageResultTypes, string> TestG7()
         {
-            return this.Result<FileStorageResultTypes>(FileStorageResultTypes.FilePathNotExists, "The specified file path does not exist");
+            return this.Result(FileStorageResultTypes.FilePathNotExists, "The specified file path does not exist");
         }
 
         public DataResult<int, FileStorageResultTypes, string> TestH1()

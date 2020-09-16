@@ -11,14 +11,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataResultFactory.Create_TDa
 
         private TestCustomResultType _expectedResultType =
             TestCustomResultType.TestValueWithFailureAttribute;
-        private object[] _errorDetails;
         private FailureResult _failureResult;
-
-        [Test]
-        public void Should_Return_DataResult_With_Expected_ErrorDetails()
-        {
-            _result.ErrorDetails.Should().BeSameAs(_errorDetails);
-        }
 
         [Test]
         public void Should_Return_DataResult_With_Expected_ResultType()
@@ -41,8 +34,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataResultFactory.Create_TDa
         {
             MockResultTypeConversionService.Setup(s => s.Convert<TestCustomResultType>(ResultType.Failure))
                 .Returns(_expectedResultType);
-            _errorDetails = new[] { "test error 1", "test error 2", "test error 3" };
-            _failureResult = new FailureResult(_errorDetails);
+            _failureResult = new FailureResult();
         }
     }
 }

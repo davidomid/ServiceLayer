@@ -15,7 +15,7 @@ namespace ServiceLayer.Core.Internal.Factories
             return CreateErrorObjectResult(result, HttpStatusCode.InternalServerError);
         }
 
-        public ActionResult Create(IResult<HttpStatusCode> httpResult)
+        public ActionResult Create<TErrorType>(IResult<HttpStatusCode, TErrorType> httpResult)
         {
             switch (httpResult.ResultType)
             {
@@ -40,18 +40,17 @@ namespace ServiceLayer.Core.Internal.Factories
 
         public ActionResult Create<TResultType>(IResult<TResultType> result) where TResultType : struct, Enum
         {
-            return Create(new Result<HttpStatusCode>(result.ResultType.ToResultType<HttpStatusCode>(),
-                result.ErrorDetails));
+            return Create(new Result<HttpStatusCode>(result.ResultType.ToResultType<HttpStatusCode>()));
         }
 
         public ActionResult Create<TData>(IDataResult<TData> result)
         {
-            return Create(new DataResult<TData, HttpStatusCode>(result.Data, result.ResultType.ToResultType<HttpStatusCode>(), result.ErrorDetails));
+            return Create(new DataResult<TData, HttpStatusCode>(result.Data, result.ResultType.ToResultType<HttpStatusCode>()));
         }
 
         public ActionResult Create<TData, TResultType>(IDataResult<TData, TResultType> result) where TResultType : struct, Enum
         {
-            return Create(new DataResult<TData, HttpStatusCode>(result.Data, result.ResultType.ToResultType<HttpStatusCode>(), result.ErrorDetails));
+            return Create(new DataResult<TData, HttpStatusCode>(result.Data, result.ResultType.ToResultType<HttpStatusCode>()));
         }
 
         public ActionResult Create<TData>(IDataResult<TData, HttpStatusCode> httpResult)
@@ -70,9 +69,9 @@ namespace ServiceLayer.Core.Internal.Factories
             return new OkObjectResult(result.Data);
         }
 
-        private ObjectResult CreateErrorObjectResult(IResult result, HttpStatusCode httpStatusCode)
+        private ObjectResult CreateErrorObjectResult<TErrorType>(TErrorType errorDetails, HttpStatusCode httpStatusCode)
         {
-            return new ObjectResult(result.ErrorDetails)
+            return new ObjectResult(errorDetails)
             {
                 StatusCode = (int?) httpStatusCode
             };

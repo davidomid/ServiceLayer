@@ -16,7 +16,7 @@ namespace ExampleServices
             _filePath = filePath;
         }
 
-        public DataResult<List<TEntity>, FileStorageResultTypes> Get()
+        public DataResult<List<TEntity>, FileStorageResultTypes, string> Get()
         {
             try
             {

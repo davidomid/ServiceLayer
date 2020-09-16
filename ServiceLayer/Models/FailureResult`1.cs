@@ -4,12 +4,12 @@ namespace ServiceLayer
 {
     public class FailureResult<TErrorType> : FailureResult
     {
-        public FailureResult(TErrorType errorDetails) : base(errorDetails)
+        public FailureResult(TErrorType errorDetails)
         {
             ErrorDetails = errorDetails;
         }
 
-        public new TErrorType ErrorDetails { get; }
+        public TErrorType ErrorDetails { get; }
 
         public static implicit operator FailureResult<TErrorType>(TErrorType errorDetails)
         {

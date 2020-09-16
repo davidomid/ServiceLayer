@@ -20,7 +20,6 @@ namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Cre
             _actionResultFactory = new Core.Internal.Factories.ActionResultFactory();
             Mock<IResult> mockResult = new Mock<IResult>();
             mockResult.SetupGet(r => r.IsSuccessful).Returns(false);
-            mockResult.SetupGet(r => r.ErrorDetails).Returns(_errorDetails);
             _result = mockResult.Object;
         }
 

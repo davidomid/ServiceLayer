@@ -19,8 +19,6 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ResultFactory.Create_TResult
 
         private readonly TestCustomResultType _expectedCustomResultType = (TestCustomResultType) 1000;
 
-        private object[] _errorDetails; 
-
         private static readonly ResultType[] ResultTypes = (ResultType[])Enum.GetValues(typeof(ResultType));
 
         public WhenGivenResult(ResultType resultType)
@@ -32,8 +30,7 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ResultFactory.Create_TResult
         {
             MockResultTypeConversionService.Setup(s => s.Convert<TestCustomResultType>(_resultType))
                 .Returns(_expectedCustomResultType);
-            _errorDetails = new[] {"test 123", 123, new object()};
-            _fromResult = new Result(_resultType, _errorDetails);
+            _fromResult = new Result(_resultType);
         }
 
         protected override void Act()
@@ -45,12 +42,6 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ResultFactory.Create_TResult
         public void Should_Not_Return_Null()
         {
             _result.Should().NotBeNull();
-        }
-
-        [Test]
-        public void Should_Return_Result_With_Given_ErrorDetails()
-        {
-            _result.ErrorDetails.Should().Be(_errorDetails); 
         }
 
         [Test]

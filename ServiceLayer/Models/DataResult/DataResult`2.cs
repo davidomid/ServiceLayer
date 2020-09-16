@@ -6,15 +6,7 @@ namespace ServiceLayer
 {
     public class DataResult<TData, TResultType> : DataResult<TData>, IDataResult<TData, TResultType> where TResultType : struct, Enum
     {
-        public DataResult(TData data, TResultType resultType) : this(data, resultType, default)
-        {
-        }
-
-        public DataResult(TData data, TResultType resultType, params object[] errorDetails) : this(data, resultType, (object)errorDetails)
-        {
-        }
-
-        public DataResult(TData data, TResultType resultType, object errorDetails) : base(data, resultType.ToResultType<ResultType>(), errorDetails)
+        public DataResult(TData data, TResultType resultType) : base(data, resultType.ToResultType<ResultType>())
         {
             ResultType = resultType;
         }
