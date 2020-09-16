@@ -7,29 +7,23 @@ namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Cre
 {
     public class WhenInvalidResultType : GivenAnHttpStatusCodeResultType
     {
-        public WhenInvalidResultType() : base((HttpStatusCode)999)
+        private const HttpStatusCode HttpStatusCode = (HttpStatusCode)999;
+
+        public WhenInvalidResultType() : base(HttpStatusCode)
         {
         }
 
         [Test]
-        public void Should_Return_ObjectResult()
+        public void Should_Return_StatusCodeResult()
         {
-            ActionResult.Should().BeOfType<ObjectResult>();
+            ActionResult.Should().BeOfType<StatusCodeResult>();
         }
 
         [Test]
-        public void Should_Have_500_StatusCode()
+        public void Should_Have_Expected_StatusCode()
         {
-            ObjectResult objectResult = (ObjectResult)ActionResult;
-            objectResult.StatusCode.Should().Be(500);
+            StatusCodeResult statusCodeResult = (StatusCodeResult)ActionResult;
+            statusCodeResult.StatusCode.Should().Be((int)HttpStatusCode);
         }
-
-        [Test]
-        public void Should_Have_Value_Matching_Given_ErrorDetails()
-        {
-            ObjectResult objectResult = (ObjectResult)ActionResult;
-            objectResult.Value.Should().BeSameAs(ErrorDetails);
-        }
-
     }
 }

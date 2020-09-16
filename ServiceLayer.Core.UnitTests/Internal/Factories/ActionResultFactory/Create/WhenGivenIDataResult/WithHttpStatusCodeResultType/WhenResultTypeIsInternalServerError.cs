@@ -12,24 +12,16 @@ namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Cre
         }
 
         [Test]
-        public void Should_Return_ObjectResult()
+        public void Should_Return_StatusCodeResult()
         {
-            ActionResult.Should().BeOfType<ObjectResult>(); 
+            ActionResult.Should().BeOfType<StatusCodeResult>(); 
         }
 
         [Test]
         public void Should_Have_500_StatusCode()
         {
-            ObjectResult objectResult = (ObjectResult)ActionResult;
-            objectResult.StatusCode.Should().Be(500);
+            StatusCodeResult statusCodeResult = (StatusCodeResult)ActionResult;
+            statusCodeResult.StatusCode.Should().Be(500);
         }
-
-        [Test]
-        public void Should_Have_Value_Matching_Given_ErrorDetails()
-        {
-            ObjectResult objectResult = (ObjectResult)ActionResult;
-            objectResult.Value.Should().BeSameAs(ErrorDetails);
-        }
-
     }
 }

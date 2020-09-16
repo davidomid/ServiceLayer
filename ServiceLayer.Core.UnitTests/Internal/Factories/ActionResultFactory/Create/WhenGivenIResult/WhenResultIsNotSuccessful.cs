@@ -11,8 +11,6 @@ namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Cre
 
         private IActionResult _actionResult;
 
-        private readonly object _errorDetails = new object();
-
         private Core.Internal.Factories.ActionResultFactory _actionResultFactory;
 
         protected override void Arrange()
@@ -38,13 +36,6 @@ namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Cre
         public void Should_Return_ObjectResult()
         {
             _actionResult.Should().BeOfType<ObjectResult>();
-        }
-
-        [Test]
-        public void Should_Have_Value_Matching_Given_ErrorDetails()
-        {
-            ObjectResult objectResult = (ObjectResult)_actionResult;
-            objectResult.Value.Should().Be(_errorDetails);
         }
 
         [Test]
