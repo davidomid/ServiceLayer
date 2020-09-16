@@ -19,6 +19,21 @@ namespace ServiceLayer.Core.Internal.Factories
         {
             switch (httpResult.ResultType)
             {
+                case HttpStatusCode.BadRequest:
+                    return new BadRequestObjectResult(httpResult.ErrorDetails);
+                case HttpStatusCode.Conflict:
+                    return CreateErrorObjectResult(httpResult, HttpStatusCode.Conflict);
+                case HttpStatusCode.InternalServerError:
+                    return CreateErrorObjectResult(httpResult, HttpStatusCode.InternalServerError);
+                default:
+                    return Create((IResult<HttpStatusCode>) httpResult);
+            }
+        }
+
+        public ActionResult Create(IResult<HttpStatusCode> httpResult)
+        {
+            switch (httpResult.ResultType)
+            {
                 case HttpStatusCode.OK:
                     return new OkResult();
                 case HttpStatusCode.NotFound:
@@ -27,20 +42,14 @@ namespace ServiceLayer.Core.Internal.Factories
                     return new UnauthorizedResult();
                 case HttpStatusCode.Forbidden:
                     return new ForbidResult();
-                case HttpStatusCode.BadRequest:
-                    return new BadRequestObjectResult(httpResult.ErrorDetails);
-                case HttpStatusCode.Conflict:
-                    return CreateErrorObjectResult(httpResult, HttpStatusCode.Conflict);
-                case HttpStatusCode.InternalServerError:
-                    return CreateErrorObjectResult(httpResult, HttpStatusCode.InternalServerError); 
                 default:
-                    goto case HttpStatusCode.InternalServerError;
+                    return new StatusCodeResult((int)httpResult.ResultType);
             }
         }
 
-        public ActionResult Create<TResultType>(IResult<TResultType> result) where TResultType : struct, Enum
+        public ActionResult Create<TResultType, TErrorType>(IResult<TResultType, TErrorType> result) where TResultType : struct, Enum
         {
-            return Create(new Result<HttpStatusCode>(result.ResultType.ToResultType<HttpStatusCode>()));
+            return Create(new Result<HttpStatusCode, TErrorType>(result.ResultType.ToResultType<HttpStatusCode>(), result.ErrorDetails));
         }
 
         public ActionResult Create<TData>(IDataResult<TData> result)
