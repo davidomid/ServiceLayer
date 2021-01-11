@@ -44,6 +44,8 @@ namespace ServiceLayer.Core.Internal.Factories
                     return new UnauthorizedResult();
                 case HttpStatusCode.Forbidden:
                     return new ForbidResult();
+                case HttpStatusCode.Conflict:
+                    return new ConflictResult();
                 default:
                     return new StatusCodeResult((int)httpResult.ResultType);
             }
