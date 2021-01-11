@@ -1,25 +1,12 @@
-# ServiceLayer
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/davidomid/ServiceLayer/Operator-improvements/LICENSE)
 
-A C# library for developing SOLID services with consistent error handling. 
+# What is this? 
 
+ServiceLayer is a powerful C# library for developing SOLID services with consistent error handling. 
 
-## Installation
+Check out the [wiki](https://github.com/davidomid/ServiceLayer/wiki) for background information, documentation and usage examples.
 
-ServiceLayer is available as a NuGet package: 
-
-```
-Install-Package ServiceLayer
-```
-
-### ASP.NET Core integration
-
-Some useful features for integrating ServiceLayer with ASP.NET Core applications is also available as a separate NuGet package: 
-
-```
-Install-Package ServiceLayer.Core
-```
-
+# Latest Release
 
 |     Package    |    Version   |    Downloads   |
 | ------- | ----- | ----- |
