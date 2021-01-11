@@ -15,43 +15,55 @@ namespace ServiceLayer.Core.Internal.Factories
             return CreateErrorObjectResult(result, HttpStatusCode.InternalServerError);
         }
 
+        public ActionResult Create<TErrorType>(IResult<HttpStatusCode, TErrorType> httpResult)
+        {
+            switch (httpResult.ResultType)
+            {
+                case HttpStatusCode.BadRequest:
+                    return new BadRequestObjectResult(httpResult.ErrorDetails);
+                case HttpStatusCode.Conflict:
+                    return CreateErrorObjectResult(httpResult, HttpStatusCode.Conflict);
+                case HttpStatusCode.InternalServerError:
+                    return CreateErrorObjectResult(httpResult, HttpStatusCode.InternalServerError);
+                default:
+                    return Create((IResult<HttpStatusCode>) httpResult);
+            }
+        }
+
         public ActionResult Create(IResult<HttpStatusCode> httpResult)
         {
             switch (httpResult.ResultType)
             {
                 case HttpStatusCode.OK:
                     return new OkResult();
+                case HttpStatusCode.BadRequest:
+                    return new BadRequestResult();
                 case HttpStatusCode.NotFound:
                     return new NotFoundResult();
                 case HttpStatusCode.Unauthorized:
                     return new UnauthorizedResult();
                 case HttpStatusCode.Forbidden:
                     return new ForbidResult();
-                case HttpStatusCode.BadRequest:
-                    return new BadRequestObjectResult(httpResult.ErrorDetails);
                 case HttpStatusCode.Conflict:
-                    return CreateErrorObjectResult(httpResult, HttpStatusCode.Conflict);
-                case HttpStatusCode.InternalServerError:
-                    return CreateErrorObjectResult(httpResult, HttpStatusCode.InternalServerError); 
+                    return new ConflictResult();
                 default:
-                    goto case HttpStatusCode.InternalServerError;
+                    return new StatusCodeResult((int)httpResult.ResultType);
             }
         }
 
-        public ActionResult Create<TResultType>(IResult<TResultType> result) where TResultType : struct, Enum
+        public ActionResult Create<TResultType, TErrorType>(IResult<TResultType, TErrorType> result) where TResultType : struct, Enum
         {
-            return Create(new Result<HttpStatusCode>(result.ResultType.ToResultType<HttpStatusCode>(),
-                result.ErrorDetails));
+            return Create(new Result<HttpStatusCode, TErrorType>(result.ResultType.ToResultType<HttpStatusCode>(), result.ErrorDetails));
         }
 
         public ActionResult Create<TData>(IDataResult<TData> result)
         {
-            return Create(new DataResult<TData, HttpStatusCode>(result.Data, result.ResultType.ToResultType<HttpStatusCode>(), result.ErrorDetails));
+            return Create(new DataResult<TData, HttpStatusCode>(result.Data, result.ResultType.ToResultType<HttpStatusCode>()));
         }
 
         public ActionResult Create<TData, TResultType>(IDataResult<TData, TResultType> result) where TResultType : struct, Enum
         {
-            return Create(new DataResult<TData, HttpStatusCode>(result.Data, result.ResultType.ToResultType<HttpStatusCode>(), result.ErrorDetails));
+            return Create(new DataResult<TData, HttpStatusCode>(result.Data, result.ResultType.ToResultType<HttpStatusCode>()));
         }
 
         public ActionResult Create<TData>(IDataResult<TData, HttpStatusCode> httpResult)
@@ -70,9 +82,9 @@ namespace ServiceLayer.Core.Internal.Factories
             return new OkObjectResult(result.Data);
         }
 
-        private ObjectResult CreateErrorObjectResult(IResult result, HttpStatusCode httpStatusCode)
+        private ObjectResult CreateErrorObjectResult<TErrorType>(TErrorType errorDetails, HttpStatusCode httpStatusCode)
         {
-            return new ObjectResult(result.ErrorDetails)
+            return new ObjectResult(errorDetails)
             {
                 StatusCode = (int?) httpStatusCode
             };

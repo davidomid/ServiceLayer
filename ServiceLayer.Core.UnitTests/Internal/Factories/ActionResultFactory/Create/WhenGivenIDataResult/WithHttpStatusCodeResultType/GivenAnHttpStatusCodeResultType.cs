@@ -27,7 +27,6 @@ namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Cre
         {
             Mock<IDataResult<TestData, HttpStatusCode>> mockResult = new Mock<IDataResult<TestData, HttpStatusCode>>();
             mockResult.SetupGet(r => r.ResultType).Returns(_httpStatusCode);
-            mockResult.SetupGet(r => r.ErrorDetails).Returns(ErrorDetails);
             mockResult.SetupGet(r => r.Data).Returns(Data);
             _httpDataResult = mockResult.Object;
         }

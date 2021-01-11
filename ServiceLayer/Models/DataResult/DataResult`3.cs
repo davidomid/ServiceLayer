@@ -6,12 +6,12 @@ namespace ServiceLayer
 {
     public class DataResult<TData, TResultType, TErrorType> : DataResult<TData, TResultType>, IDataResult<TData, TResultType, TErrorType> where TResultType : struct, Enum
     {
-        public DataResult(TData data, TResultType resultType, TErrorType errorDetails) : base(data, resultType, errorDetails)
+        public DataResult(TData data, TResultType resultType, TErrorType errorDetails) : base(data, resultType)
         {
             ErrorDetails = errorDetails;
         }
 
-        public new TErrorType ErrorDetails { get; }
+        public TErrorType ErrorDetails { get; }
 
         public static implicit operator DataResult<TData, TResultType, TErrorType>(TData data)
         {

@@ -34,9 +34,9 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ResultFactory.Create_TResult
         }
 
         [Test]
-        public void Should_Return_Result_With_Given_ErrorDetails()
+        public void Should_Return_Result_With_Null_ErrorDetails()
         {
-            _result.ErrorDetails.Should().BeSameAs(_successResult.ErrorDetails);
+            _result.ErrorDetails.Should().BeNull();
         }
 
         [Test]

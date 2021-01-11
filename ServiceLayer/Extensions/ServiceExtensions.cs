@@ -41,11 +41,6 @@ namespace ServiceLayer
             return FailureResultFactory.Create();
         }
 
-        public static FailureResult Failure(this IService service, params object[] errorDetails)
-        {
-            return FailureResultFactory.Create(errorDetails);
-        }
-
         public static FailureResult<TErrorType> Failure<TErrorType>(this IService service, TErrorType errorDetails = default)
         {
             return FailureResultFactory.Create(errorDetails);
@@ -55,10 +50,7 @@ namespace ServiceLayer
         {
             return ResultFactory.Create(resultType);
         }
-        public static Result<TResultType> Result<TResultType>(this IService service, TResultType resultType, params object[] errorDetails) where TResultType : struct, Enum
-        {
-            return ResultFactory.Create(resultType, errorDetails);
-        }
+
         public static Result<TResultType, TErrorType> Result<TResultType, TErrorType>(this IService service, TResultType resultType, TErrorType errorDetails = default) where TResultType : struct, Enum
         {
             return ResultFactory.Create(resultType, errorDetails);
@@ -75,10 +67,6 @@ namespace ServiceLayer
         public static DataResult<TData, TResultType> DataResult<TData, TResultType>(this IService service, TData data, TResultType resultType) where TResultType : struct, Enum
         {
             return DataResultFactory.Create(data, resultType);
-        }
-        public static DataResult<TData, TResultType> DataResult<TData, TResultType>(this IService service, TData data, TResultType resultType, params object[] errorDetails) where TResultType : struct, Enum
-        {
-            return DataResultFactory.Create(data, resultType, errorDetails);
         }
         public static DataResult<TData, TResultType, TErrorType> DataResult<TData, TResultType, TErrorType>(this IService service, TData data) where TResultType : struct, Enum
         {
