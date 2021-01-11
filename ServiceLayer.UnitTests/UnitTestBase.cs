@@ -2,6 +2,7 @@
 using ServiceLayer.Internal;
 using ServiceLayer.Internal.Factories;
 using ServiceLayer.Internal.Services;
+using ServiceLayer.Models;
 using Testing.Common.Domain.TestClasses;
 using Testing.Common.Infrastructure;
 
@@ -14,6 +15,7 @@ namespace ServiceLayer.UnitTests
         internal static readonly Mock<ISuccessResultFactory> MockSuccessResultFactory = new Mock<ISuccessResultFactory>(MockBehavior.Strict);
         internal static readonly Mock<IFailureResultFactory> MockFailureResultFactory = new Mock<IFailureResultFactory>(MockBehavior.Strict);
         internal static readonly Mock<IResultTypeConversionService> MockResultTypeConversionService = new Mock<IResultTypeConversionService>(MockBehavior.Strict);
+        internal static readonly Mock<IInconclusiveResultFactory> MockInconclusiveResultFactory = new Mock<IInconclusiveResultFactory>();
 
         static UnitTestBase()
         {
@@ -24,6 +26,7 @@ namespace ServiceLayer.UnitTests
             mockServiceLocator.Setup(l => l.Resolve<IDataResultFactory>()).Returns(MockDataResultFactory.Object);
             mockServiceLocator.Setup(l => l.Resolve<ISuccessResultFactory>()).Returns(MockSuccessResultFactory.Object);
             mockServiceLocator.Setup(l => l.Resolve<IFailureResultFactory>()).Returns(MockFailureResultFactory.Object);
+            mockServiceLocator.Setup(l => l.Resolve<IInconclusiveResultFactory>()).Returns(MockInconclusiveResultFactory.Object);
             ServiceLocator.Instance = mockServiceLocator.Object;
 
             SetupMockResultTypeConversionService();
@@ -31,7 +34,7 @@ namespace ServiceLayer.UnitTests
             SetupMockDataResultFactory();
             SetupMockSuccessResultFactory();
             SetupMockFailureResultFactory();
-
+            SetupMockInconclusiveResultFactory();
         }
 
         private static void SetupMockResultTypeConversionService()
@@ -71,6 +74,11 @@ namespace ServiceLayer.UnitTests
                 .Returns(new FailureResult<object[]>(new object[] { default, default, default}));
             MockFailureResultFactory.Setup(f => f.Create(It.IsAny<TestErrorType>()))
                 .Returns(new FailureResult<TestErrorType>(default));
+        }
+        private static void SetupMockInconclusiveResultFactory()
+        {
+            MockInconclusiveResultFactory.Setup(f => f.Create())
+                .Returns(new InconclusiveResult());
         }
 
         private static void SetupMockResultFactory()
