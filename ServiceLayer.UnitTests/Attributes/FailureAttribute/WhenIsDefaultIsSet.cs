@@ -4,10 +4,8 @@ using NUnit.Framework;
 namespace ServiceLayer.UnitTests.Attributes.FailureAttribute
 {
     [TestFixtureSource(nameof(Values))]
-    public class WhenIsDefaultIsSet : UnitTestBase
+    public class WhenIsDefaultIsSet : SuccessAttributeTests
     {
-        private ServiceLayer.FailureAttribute _failureAttribute;
-
         private static readonly bool[] Values = { true, false };
 
         private readonly bool _value;
@@ -17,13 +15,9 @@ namespace ServiceLayer.UnitTests.Attributes.FailureAttribute
             _value = value;
         }
 
-        protected override void Arrange()
-        {
-        }
-
         protected override void Act()
         {
-            _failureAttribute = new ServiceLayer.FailureAttribute
+            FailureAttribute = new ServiceLayer.FailureAttribute
             {
                 IsDefault = _value
             };
@@ -32,7 +26,7 @@ namespace ServiceLayer.UnitTests.Attributes.FailureAttribute
         [Test]
         public void IsDefault_Should_Return_False()
         {
-            _failureAttribute.IsDefault.Should().Be(_value);
+            FailureAttribute.IsDefault.Should().Be(_value);
         }
     }
 }

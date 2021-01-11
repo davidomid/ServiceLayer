@@ -1,10 +1,10 @@
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace ServiceLayer.UnitTests.Attributes.SuccessAttribute
+namespace ServiceLayer.UnitTests.Attributes.InconclusiveAttribute
 {
     [TestFixtureSource(nameof(Values))]
-    public class WhenIsDefaultIsSet : SuccessAttributeTests
+    public class WhenIsDefaultIsSet : InconclusiveAttributeTests
     {
         private static readonly bool[] Values = { true, false };
 
@@ -17,7 +17,7 @@ namespace ServiceLayer.UnitTests.Attributes.SuccessAttribute
 
         protected override void Act()
         {
-            SuccessAttribute = new ServiceLayer.SuccessAttribute
+            InconclusiveAttribute = new ServiceLayer.InconclusiveAttribute
             {
                 IsDefault = _value
             };
@@ -26,7 +26,7 @@ namespace ServiceLayer.UnitTests.Attributes.SuccessAttribute
         [Test]
         public void IsDefault_Should_Return_Given_Value()
         {
-            SuccessAttribute.IsDefault.Should().Be(_value);
+            InconclusiveAttribute.IsDefault.Should().Be(_value);
         }
     }
 }
