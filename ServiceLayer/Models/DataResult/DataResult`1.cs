@@ -3,17 +3,9 @@ using ServiceLayer.Models;
 
 namespace ServiceLayer
 {
-    public class DataResult<TData> : Result<ResultType, object>, IDataResult<TData>
+    public class DataResult<TData> : Result<ResultType>, IDataResult<TData>
     {
-        public DataResult(TData data, ResultType resultType) : this(data, resultType, default)
-        {
-        }
-
-        public DataResult(TData data, ResultType resultType, params object[] errorDetails) : this(data, resultType, (object)errorDetails)
-        {
-        }
-
-        public DataResult(TData data, ResultType resultType, object errorDetails) : base(resultType, errorDetails)
+        public DataResult(TData data, ResultType resultType) : base(resultType)
         {
             Data = data;
         }

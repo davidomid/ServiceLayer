@@ -26,25 +26,25 @@ namespace ServiceLayer.Internal.Factories
         // top-level
         public DataResult<TData, TResultType> Create<TData, TResultType>(InconclusiveResult inconclusiveResult) where TResultType : struct, Enum
         {
-            return Create<TData, TResultType>(default, inconclusiveResult.ResultType, inconclusiveResult.ErrorDetails);
+            return Create<TData, TResultType>(default, inconclusiveResult.ResultType);
         }
 
         public DataResult<TData, TResultType> Create<TData, TResultType>(SuccessResult<TData> successResult)
             where TResultType : struct, Enum
         {
-            return Create<TData, TResultType>(successResult.Data, successResult.ResultType, successResult.ErrorDetails);
+            return Create<TData, TResultType>(successResult.Data, successResult.ResultType);
         }
 
         // top-level
         public DataResult<TData, TResultType> Create<TData, TResultType>(TData data, TResultType resultType) where TResultType : struct, Enum
         {
-            return Create<TData, TResultType, object>(data, resultType);
+            return new DataResult<TData,TResultType>(data, resultType);
         }
 
         // top-level
         public DataResult<TData, TResultType> Create<TData, TResultType>(Result<TResultType> result) where TResultType : struct, Enum
         {
-            return new DataResult<TData,TResultType>(default, result.ResultType, result.ErrorDetails);
+            return Create<TData, TResultType>(default, result.ResultType);
         }
 
         // top-level
@@ -85,25 +85,25 @@ namespace ServiceLayer.Internal.Factories
 
         public DataResult<TData, TResultType> Create<TData, TResultType>(TData data) where TResultType : struct, Enum
         {
-            return Create<TData, TResultType, object>(data, ResultType.Success);
+            return Create<TData, TResultType>(data, ResultType.Success);
         }
 
         public DataResult<TData, TResultType> Create<TData, TResultType>(FailureResult failureResult)
             where TResultType : struct, Enum
         {
-            return Create<TData, TResultType>(default, failureResult.ResultType, failureResult.ErrorDetails);
+            return Create<TData, TResultType>(default, failureResult.ResultType);
         }
 
         public DataResult<TData, TResultType> Create<TData, TResultType>(TResultType resultType)
             where TResultType : struct, Enum
         {
-            return Create<TData, TResultType, object>(default, resultType);
+            return Create<TData, TResultType>(default, resultType);
         }
 
-        private DataResult<TData, TResultType, object> Create<TData, TResultType>(TData data,
-            ResultType resultType, object errorDetails = default) where TResultType : struct, Enum
+        private DataResult<TData, TResultType> Create<TData, TResultType>(TData data,
+            ResultType resultType) where TResultType : struct, Enum
         {
-            return Create<TData, TResultType, object>(data, resultType, errorDetails);
+            return new DataResult<TData,TResultType>(data, resultType.ToResultType<TResultType>());
         }
 
         private DataResult<TData, TResultType, TErrorType> Create<TData, TResultType, TErrorType>(TData data,
@@ -125,7 +125,7 @@ namespace ServiceLayer.Internal.Factories
 
         public DataResult<TData> Create<TData>(InconclusiveResult inconclusiveResult)
         {
-            return new DataResult<TData>(default, inconclusiveResult.ResultType, inconclusiveResult.ErrorDetails);
+            return new DataResult<TData>(default, inconclusiveResult.ResultType);
         }
     }
 }

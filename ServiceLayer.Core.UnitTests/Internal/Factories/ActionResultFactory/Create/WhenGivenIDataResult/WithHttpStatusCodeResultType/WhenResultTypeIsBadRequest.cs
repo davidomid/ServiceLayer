@@ -14,14 +14,7 @@ namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Cre
         [Test]
         public void Should_Return_BadRequestResult()
         {
-            ActionResult.Should().BeOfType<BadRequestObjectResult>(); 
-        }
-
-        [Test]
-        public void Should_Have_Value_Matching_Given_ErrorDetails()
-        {
-            BadRequestObjectResult badRequestObjectResult = (BadRequestObjectResult)ActionResult;
-            badRequestObjectResult.Value.Should().Be(ErrorDetails);
+            ActionResult.Should().BeOfType<BadRequestResult>();
         }
     }
 }

@@ -23,12 +23,6 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataResultFactory.Create_TDa
             _result.ResultType.Should().Be(ResultType.Success);
         }
 
-        [Test]
-        public void Should_Return_DataResult_With_Null_ErrorDetails()
-        {
-            _result.ErrorDetails.Should().BeNull();
-        }
-
         protected override void Act()
         {
             _result = _dataResultFactory.Create(_testData);

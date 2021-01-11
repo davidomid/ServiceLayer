@@ -26,12 +26,6 @@ namespace ServiceLayer.UnitTests.Internal.Factories.DataResultFactory.Create_TDa
         }
 
         [Test]
-        public void Should_Return_DataResult_With_Null_ErrorDetails()
-        {
-            _result.ErrorDetails.Should().BeNull();
-        }
-
-        [Test]
         public void Should_Return_DataResult_With_Expected_ResultType()
         {
             _result.ResultType.Should().Be(_resultType);

@@ -26,12 +26,6 @@ namespace ServiceLayer.UnitTests.Models.DataResult_2.Constructor
         }
 
         [Test]
-        public void Should_Have_ErrorDetails_Null()
-        {
-            _result.ErrorDetails.Should().BeNull();
-        }
-
-        [Test]
         public void Should_Have_Data_Matching_Given_Data()
         {
             _result.Data.Should().BeSameAs(_testData);

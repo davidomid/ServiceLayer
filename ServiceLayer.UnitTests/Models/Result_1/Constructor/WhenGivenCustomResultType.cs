@@ -24,12 +24,6 @@ namespace ServiceLayer.UnitTests.Models.Result_1.Constructor
             _result.ResultType.Should().Be(_customResultType);
         }
 
-        [Test]
-        public void Should_Have_ErrorDetails_Null()
-        {
-            _result.ErrorDetails.Should().BeNull();
-        }
-
         protected override void Arrange()
         {
 

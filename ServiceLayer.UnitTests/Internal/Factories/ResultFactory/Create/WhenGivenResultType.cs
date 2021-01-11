@@ -37,12 +37,6 @@ namespace ServiceLayer.UnitTests.Internal.Factories.ResultFactory.Create
         }
 
         [Test]
-        public void Should_Return_Result_Null_ErrorDetails()
-        {
-            _result.ErrorDetails.Should().BeNull();
-        }
-
-        [Test]
         public void Should_Return_Result_With_Expected_ResultType()
         {
             _result.ResultType.Should().Be(_resultType);
