@@ -2,7 +2,7 @@
 using System.IO;
 using Newtonsoft.Json;
 
-namespace ExampleServices.NoServiceLayer
+namespace ExampleServices.NoServiceLayer.Exceptions
 {
     public interface IDocumentStorageService
     {

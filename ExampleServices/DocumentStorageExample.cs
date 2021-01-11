@@ -5,7 +5,6 @@ using ServiceLayer;
 
 namespace ExampleServices
 {
-
     public interface IDocumentStorageService : IService
     {
          DataResult<Document, DocumentStorageResultType, string> GetDocument(string documentPath, string accessToken);
@@ -18,7 +17,7 @@ namespace ExampleServices
         UnexpectedError,
         [Success]
         [ResultType(HttpStatusCode.OK)]
-        FileRetrievalSuccessful,
+        Successful,
         FileNotFound,
         InvalidAccessToken,
         ValidationError
@@ -38,19 +37,33 @@ namespace ExampleServices
             _authService = authService;
         }
 
-        public DataResult<Document, DocumentStorageResultType, string> GetDocument(string documentPath,
-            string accessToken)
+        public DataResult<Document, DocumentStorageResultType, string> GetDocument(string documentPath, string accessToken)
         {
-            if (documentPath == null) return this.Result(DocumentStorageResultType.ValidationError, "Document path is required.");
-            if (accessToken == null) return this.Result(DocumentStorageResultType.ValidationError, "Access token is required.");
+            if (documentPath == null)
+            {
+                return this.Result(DocumentStorageResultType.ValidationError, "Document path is required.");
+            }
 
-            if (!_authService.IsAccessTokenValid()) return DocumentStorageResultType.InvalidAccessToken;
+            if (accessToken == null)
+            {
+                return this.Result(DocumentStorageResultType.ValidationError, "Access token is required.");
+            }
 
-            if (!File.Exists(documentPath)) return DocumentStorageResultType.FileNotFound;
-
-            string json = File.ReadAllText(documentPath);
-            Document document = JsonConvert.DeserializeObject<Document>(json);
-            return document;
+            if (!_authService.IsAccessTokenValid())
+            {
+                return DocumentStorageResultType.InvalidAccessToken;
+            }
+            if (!File.Exists(documentPath)) {return DocumentStorageResultType.FileNotFound;}
+            try
+            {
+                string json = File.ReadAllText(documentPath);
+                Document document = JsonConvert.DeserializeObject<Document>(json);
+                return document;
+            }
+            catch
+            {
+                return "An unexpected error occurred while retrieving the document."; 
+            }
         }
     }
 

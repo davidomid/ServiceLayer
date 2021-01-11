@@ -7,78 +7,31 @@ using ServiceLayer;
 
 namespace ExampleServices
 {
-    public class FileStorageService<TEntity> : IStorageService<TEntity> where TEntity : Entity
+    public interface IFileStorageService : IService
     {
-        private readonly string _filePath;
+        DataResult<TData, FileStorageResultTypes, string> GetData<TData>(string filePath); 
+    }
+    public class FileStorageService : IFileStorageService
+    {
 
-        public FileStorageService(string filePath)
-        {
-            _filePath = filePath;
-        }
 
-        public DataResult<List<TEntity>, FileStorageResultTypes, string> Get()
-        {
-            try
-            {
-                if (File.Exists(_filePath))
-                {
-                    string json = File.ReadAllText(_filePath);
-                    List<TEntity> entities = JsonConvert.DeserializeObject<List<TEntity>>(json);
-                    return entities;
-                }
-
-                return this.Result(FileStorageResultTypes.FilePathNotExists, "The specified file path does not exist.");
-            }
-            catch (Exception ex)
-            {
-                return this.Failure(ex.Message); 
-            }
-        }
-
-        public Result Add(TEntity entity)
+        public DataResult<TData, FileStorageResultTypes, string> GetData<TData>(string filePath)
         {
             try
             {
-                var allEntitiesResult = Get();
-                if (allEntitiesResult.IsSuccessful)
+                if (!File.Exists(filePath))
                 {
-                    List<TEntity> entities = allEntitiesResult.Data?.ToList() ?? new List<TEntity>();
-                    entities.Add(entity);
-                    string json = JsonConvert.SerializeObject(entities);
-                    File.WriteAllText(_filePath, json);
+                    return this.Result(FileStorageResultTypes.FilePathNotExists, "The specified file path does not exist.");
                 }
-                return this.Failure(allEntitiesResult.ErrorDetails);
+
+                string json = File.ReadAllText(filePath);
+                TData data = JsonConvert.DeserializeObject<TData>(json);
+                return data;
             }
             catch (Exception ex)
             {
-                return this.Failure(ex.Message);
+                return ex.Message; 
             }
-        }
-
-        public DataResult<TEntity> GetByKey(string key)
-        {
-            var allEntitiesResult = Get();
-            if (allEntitiesResult.IsSuccessful)
-            {
-                return allEntitiesResult.Data?.FirstOrDefault(d => d.Key == key); 
-            }
-
-            return this.Failure(allEntitiesResult.ErrorDetails);
-        }
-
-        IDataResult<IEnumerable<TEntity>> IStorageService<TEntity>.Get()
-        {
-            return Get(); 
-        }
-
-        IResult IStorageService<TEntity>.Add(TEntity entity)
-        {
-            return Add(entity); 
-        }
-
-        IDataResult<TEntity> IStorageService<TEntity>.GetByKey(string key)
-        {
-            return GetByKey(key);
         }
     }
 }
