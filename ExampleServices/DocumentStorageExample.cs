@@ -41,19 +41,20 @@ namespace ExampleServices
         {
             if (documentPath == null)
             {
-                return this.Result(DocumentStorageResultType.ValidationError, "Document path is required.");
+                return  this.Result(DocumentStorageResultType.ValidationError, "Document path is required.");
             }
-
             if (accessToken == null)
             {
                 return this.Result(DocumentStorageResultType.ValidationError, "Access token is required.");
             }
-
             if (!_authService.IsAccessTokenValid(accessToken))
             {
                 return DocumentStorageResultType.InvalidAccessToken;
             }
-            if (!File.Exists(documentPath)) {return DocumentStorageResultType.FileNotFound;}
+            if (!File.Exists(documentPath))
+            {
+                return DocumentStorageResultType.FileNotFound;
+            }
             try
             {
                 string json = File.ReadAllText(documentPath);
