@@ -22,7 +22,7 @@ namespace ExampleServices.NoServiceLayer.ResultObject
         {
             if (documentPath == null) return new GetDocumentResult(DocumentStorageResultType.ValidationError, null, "Document path is required.");
             if (accessToken == null) return new GetDocumentResult(DocumentStorageResultType.ValidationError, null, "Access token is required.");
-            if (!_authService.IsAccessTokenValid()) return new GetDocumentResult(DocumentStorageResultType.InvalidAccessToken);
+            if (!_authService.IsAccessTokenValid(accessToken)) return new GetDocumentResult(DocumentStorageResultType.InvalidAccessToken);
             if (!File.Exists(documentPath)) return new GetDocumentResult(DocumentStorageResultType.FileNotFound);
             try
             {
@@ -67,6 +67,6 @@ namespace ExampleServices.NoServiceLayer.ResultObject
 
     public interface IAuthService
     {
-        bool IsAccessTokenValid();
+        bool IsAccessTokenValid(string accessToken);
     }
 }

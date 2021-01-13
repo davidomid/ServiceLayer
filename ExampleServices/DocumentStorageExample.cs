@@ -25,7 +25,7 @@ namespace ExampleServices
 
     public interface IAuthService
     {
-        bool IsAccessTokenValid();
+        bool IsAccessTokenValid(string accessToken);
     }
 
     public class DocumentStorageService : IDocumentStorageService
@@ -49,7 +49,7 @@ namespace ExampleServices
                 return this.Result(DocumentStorageResultType.ValidationError, "Access token is required.");
             }
 
-            if (!_authService.IsAccessTokenValid())
+            if (!_authService.IsAccessTokenValid(accessToken))
             {
                 return DocumentStorageResultType.InvalidAccessToken;
             }
@@ -72,7 +72,7 @@ namespace ExampleServices
     }
     public class AuthService : IAuthService
     {
-        public bool IsAccessTokenValid()
+        public bool IsAccessTokenValid(string accessToken)
         {
             return true;
         }

@@ -23,7 +23,7 @@ namespace ExampleServices.NoServiceLayer.Exceptions
             if (documentPath == null) throw new ValidationException("Document path is required.");
             if (accessToken == null) throw new ValidationException("Access token is required.");
 
-            if (!_authService.IsAccessTokenValid()) throw new InvalidAccessTokenException();
+            if (!_authService.IsAccessTokenValid(accessToken)) throw new InvalidAccessTokenException();
 
             if (!File.Exists(documentPath)) return null;
 
@@ -39,7 +39,7 @@ namespace ExampleServices.NoServiceLayer.Exceptions
 
     public interface IAuthService
     {
-        bool IsAccessTokenValid();
+        bool IsAccessTokenValid(string accessToken);
     }
 
     public class InvalidAccessTokenException : Exception
