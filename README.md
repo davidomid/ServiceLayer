@@ -38,7 +38,7 @@ public class DocumentStorageService
 [HttpGet]
 public ActionResult<Document> Get(string documentPath, string accessToken)
 {
-    return _documentStorageService.GetDocument(documentPath, accessToken).ToActionResult();
+    return documentStorageService.GetDocument(documentPath, accessToken).ToActionResult();
 }
 ```
 ### Has this piqued your interest? 
