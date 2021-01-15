@@ -7,23 +7,18 @@ ServiceLayer is a powerful C# library for developing SOLID services with consist
 ## ServiceLayer lets you write code like this
 
 ```csharp
-public DataResult<Document, DocumentStorageResultType, string> GetDocument(string documentPath, string accessToken)
+public DataResult<Document, DocumentStorageResultType, string> GetDocument(string documentPath)
 {
     if (documentPath == null)
     {
         return this.Result(DocumentStorageResultType.ValidationError, "Document path is required.");
     }
 
-    if (accessToken == null)
+    if (!File.Exists(documentPath)) 
     {
-        return this.Result(DocumentStorageResultType.ValidationError, "Access token is required.");
+        return DocumentStorageResultType.FileNotFound;
     }
 
-    if (!_authService.IsAccessTokenValid(accessToken))
-    {
-        return DocumentStorageResultType.InvalidAccessToken;
-    }
-    if (!File.Exists(documentPath)) {return DocumentStorageResultType.FileNotFound;}
     try
     {
         string json = File.ReadAllText(documentPath);
