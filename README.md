@@ -40,14 +40,6 @@ public class DocumentStorageService
 [HttpGet]
 public ActionResult<Document> Get(string documentPath)
 {
-    return documentStorageService.GetDocument(documentPath).ToActionResult();
-}
-```
-### Another example of the method being consumed by an API action...
-```csharp
-[HttpGet]
-public ActionResult<Document> Get(string documentPath)
-{
     var documentResult = _documentStorageService.GetDocument(documentPath);
     switch (documentResult.ResultType)
     {
@@ -62,6 +54,15 @@ public ActionResult<Document> Get(string documentPath)
         default:
             return _documentStorageService.GetDocument(documentPath, accessToken).ToActionResult();
     }
+}
+```
+
+### Another way of writing that same method...
+```csharp
+[HttpGet]
+public ActionResult<Document> Get(string documentPath)
+{
+    return documentStorageService.GetDocument(documentPath).ToActionResult();
 }
 ```
 
