@@ -40,7 +40,7 @@ public ActionResult<Document> Get(string documentPath, string accessToken)
 ```
 ### Has this piqued your interest? 
 
-Check out the [wiki](https://github.com/davidomid/ServiceLayer/wiki) for background information, documentation and usage examples.
+Check out the **[wiki](https://github.com/davidomid/ServiceLayer/wiki)** for background information, documentation and usage examples.
 
 # Latest Release
 
