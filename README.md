@@ -31,8 +31,9 @@ public DataResult<Document, DocumentStorageResultType, string> GetDocument(strin
     }
 }
 ```
+### Like what you see?
 
-**Like what you see?** Check out the [wiki](https://github.com/davidomid/ServiceLayer/wiki) for background information, documentation and usage examples.
+Check out the [wiki](https://github.com/davidomid/ServiceLayer/wiki) for background information, documentation and usage examples.
 
 # Latest Release
 
