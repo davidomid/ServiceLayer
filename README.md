@@ -6,6 +6,7 @@ ServiceLayer is a powerful C# library for developing SOLID services with consist
 
 ## ServiceLayer lets you write code like this
 
+### An example service method...
 ```csharp
 public class DocumentStorageService
 {
@@ -34,13 +35,36 @@ public class DocumentStorageService
     }
 }
 ```
+### An example API action consuming that service...
 ```csharp
 [HttpGet]
-public ActionResult<Document> Get(string documentPath, string accessToken)
+public ActionResult<Document> Get(string documentPath)
 {
-    return documentStorageService.GetDocument(documentPath, accessToken).ToActionResult();
+    return documentStorageService.GetDocument(documentPath).ToActionResult();
 }
 ```
+### Another example of the method being consumed by an API action...
+```csharp
+[HttpGet]
+public ActionResult<Document> Get(string documentPath)
+{
+    var documentResult = _documentStorageService.GetDocument(documentPath);
+    switch (documentResult.ResultType)
+    {
+        case DocumentStorageResultType.Successful:
+            return documentResult.Data;
+        case DocumentStorageResultType.FileNotFound:
+            return this.NotFound();
+        case DocumentStorageResultType.ValidationError:
+            return this.BadRequest(documentResult.ErrorDetails);
+        case DocumentStorageResultType.UnexpectedError:
+            return this.StatusCode(500, "An unexpected error occurred.");
+        default:
+            return _documentStorageService.GetDocument(documentPath, accessToken).ToActionResult();
+    }
+}
+```
+
 ### Has this piqued your interest? 
 
 Check out the **[wiki](https://github.com/davidomid/ServiceLayer/wiki)** for background information, documentation and usage examples.
