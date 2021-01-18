@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ServiceLayer.Core
@@ -16,9 +15,9 @@ namespace ServiceLayer.Core
             return result.ToActionResult();
         }
 
-        public static ActionResult FromResult(this ControllerBase controller, IResult<HttpStatusCode> httpResult)
+        public static ActionResult FromResult<TResultType, TErrorType>(this ControllerBase controller, IResult<TResultType, TErrorType> result) where TResultType : struct, Enum
         {
-            return httpResult.ToActionResult();
+            return result.ToActionResult();
         }
 
         public static ActionResult FromResult<TData>(this ControllerBase controller, IDataResult<TData> result)
@@ -31,9 +30,9 @@ namespace ServiceLayer.Core
             return result.ToActionResult();
         }
 
-        public static ActionResult FromResult<TData>(this ControllerBase controller, IDataResult<TData, HttpStatusCode> httpResult)
+        public static ActionResult FromResult<TData, TResultType, TErrorType>(this ControllerBase controller, IDataResult<TData, TResultType, TErrorType> result) where TResultType : struct, Enum
         {
-            return httpResult.ToActionResult();
+            return result.ToActionResult();
         }
     }
 }
