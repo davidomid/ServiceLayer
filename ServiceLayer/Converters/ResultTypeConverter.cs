@@ -20,7 +20,7 @@ namespace ServiceLayer
             return ConvertWithValidation(sourceResultType, destinationEnumType);
         }
 
-        internal Enum ConvertWithValidation(Enum sourceResultType, Type destinationEnumType) 
+        private Enum ConvertWithValidation(Enum sourceResultType, Type destinationEnumType) 
         {
             if (SourceType != null && sourceResultType.GetType() != SourceType)
             {
