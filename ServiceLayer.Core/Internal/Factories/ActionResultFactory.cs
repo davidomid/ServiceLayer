@@ -1,77 +1,13 @@
 ﻿using System;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
+using ServiceLayer.Core.Converters;
 
 namespace ServiceLayer.Core.Internal.Factories
 {
     internal class ActionResultFactory : IActionResultFactory
     {
-        //public ActionResult Create<TErrorType>(IResult<HttpStatusCode, TErrorType> httpResult)
-        //{
-        //    switch (httpResult.ResultType)
-        //    {
-        //        case HttpStatusCode.BadRequest:
-        //            return new BadRequestObjectResult(httpResult.ErrorDetails);
-        //        case HttpStatusCode.Conflict:
-        //            return CreateErrorObjectResult(httpResult, HttpStatusCode.Conflict);
-        //        case HttpStatusCode.InternalServerError:
-        //            return CreateErrorObjectResult(httpResult, HttpStatusCode.InternalServerError);
-        //        default:
-        //            return Create((IResult<HttpStatusCode>) httpResult);
-        //    }
-        //}
-
-        //public ActionResult Create(IResult<HttpStatusCode> httpResult)
-        //{
-        //    switch (httpResult.ResultType)
-        //    {
-        //        case HttpStatusCode.OK:
-        //            return new OkResult();
-        //        case HttpStatusCode.BadRequest:
-        //            return new BadRequestResult();
-        //        case HttpStatusCode.NotFound:
-        //            return new NotFoundResult();
-        //        case HttpStatusCode.Unauthorized:
-        //            return new UnauthorizedResult();
-        //        case HttpStatusCode.Forbidden:
-        //            return new ForbidResult();
-        //        case HttpStatusCode.Conflict:
-        //            return new ConflictResult();
-        //        default:
-        //            return new StatusCodeResult((int)httpResult.ResultType);
-        //    }
-        //}
-
-        //public ActionResult Create<TResultType, TErrorType>(IResult<TResultType, TErrorType> result) where TResultType : struct, Enum
-        //{
-        //    return Create(new Result<HttpStatusCode, TErrorType>(result.ResultType.ToResultType<HttpStatusCode>(), result.ErrorDetails));
-        //}
-
-        //public ActionResult Create<TData>(IDataResult<TData> result)
-        //{
-        //    return Create(new DataResult<TData, HttpStatusCode>(result.Data, result.ResultType.ToResultType<HttpStatusCode>()));
-        //}
-
-        //public ActionResult Create<TData, TResultType>(IDataResult<TData, TResultType> result) where TResultType : struct, Enum
-        //{
-        //    return Create(new DataResult<TData, HttpStatusCode>(result.Data, result.ResultType.ToResultType<HttpStatusCode>()));
-        //}
-
-        //public ActionResult Create<TData>(IDataResult<TData, HttpStatusCode> httpResult)
-        //{
-        //    switch (httpResult.ResultType)
-        //    {
-        //        case HttpStatusCode.OK:
-        //            return CreateOkObjectResult(httpResult); 
-        //        default:
-        //            return Create((IResult<HttpStatusCode>)httpResult);
-        //    }
-        //}
-
-        //private OkObjectResult CreateOkObjectResult<TData>(IDataResult<TData> result)
-        //{
-        //    return new OkObjectResult(result.Data);
-        //}
+        private readonly DefaultActionResultTypeConverter _defaultActionResultTypeConverter = new DefaultActionResultTypeConverter();
 
         public ActionResult Create(IResult result)
         {
@@ -87,45 +23,33 @@ namespace ServiceLayer.Core.Internal.Factories
             // Allow someone to specify a converter for converting from the result to an ActionResult? 
             // Allow someone to specify a converter from HttpStatusCode to ActionResult instead of the default logic?
 
-            if (result.IsSuccessful)
-            {
-                return new OkResult();
-            }
-            return CreateErrorObjectResult(result, HttpStatusCode.InternalServerError);
+            // Convert to an ActionResult using the default converter. 
+            return _defaultActionResultTypeConverter.Convert(result);
         }
 
         public ActionResult Create<TResultType>(IResult<TResultType> result) where TResultType : struct, Enum
         {
-            throw new NotImplementedException();
+            return _defaultActionResultTypeConverter.Convert(new Result<HttpStatusCode>(result.ResultType.ToResultType<HttpStatusCode>())); 
         }
 
         public ActionResult Create<TResultType, TErrorType>(IResult<TResultType, TErrorType> result) where TResultType : struct, Enum
         {
-            throw new NotImplementedException();
+            return _defaultActionResultTypeConverter.Convert(new Result<HttpStatusCode, object>(result.ResultType.ToResultType<HttpStatusCode>(), result.ErrorDetails));
         }
 
         public ActionResult Create<TData>(IDataResult<TData> result)
         {
-            throw new NotImplementedException();
+            return _defaultActionResultTypeConverter.Convert(new DataResult<object>(result.Data, result.ResultType));
         }
-
+        
         public ActionResult Create<TData, TResultType>(IDataResult<TData, TResultType> result) where TResultType : struct, Enum
         {
-            throw new NotImplementedException();
+            return _defaultActionResultTypeConverter.Convert(new DataResult<object, HttpStatusCode>(result.Data, result.ResultType.ToResultType<HttpStatusCode>()));
         }
 
         public ActionResult Create<TData, TResultType, TErrorType>(IDataResult<TData, TResultType, TErrorType> result) where TResultType : struct, Enum
         {
-            throw new NotImplementedException();
+            return _defaultActionResultTypeConverter.Convert(new DataResult<object, HttpStatusCode, object>(result.Data, result.ResultType.ToResultType<HttpStatusCode>(), result.ErrorDetails));
         }
-
-        private ObjectResult CreateErrorObjectResult<TErrorType>(TErrorType errorDetails, HttpStatusCode httpStatusCode)
-        {
-            return new ObjectResult(errorDetails)
-            {
-                StatusCode = (int?)httpStatusCode
-            };
-        }
-
     }
 }
