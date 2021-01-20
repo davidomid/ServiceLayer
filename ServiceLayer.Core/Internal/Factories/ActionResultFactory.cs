@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.Core.Converters;
@@ -9,47 +10,84 @@ namespace ServiceLayer.Core.Internal.Factories
     {
         private readonly DefaultActionResultTypeConverter _defaultActionResultTypeConverter = new DefaultActionResultTypeConverter();
 
+        private readonly Dictionary<Type, IActionResultConverter> _actionResultConverters;
+
+        public ActionResultFactory()
+        {
+            _actionResultConverters = new Dictionary<Type, IActionResultConverter>
+            {
+                { typeof(IResult), _defaultActionResultTypeConverter },
+                { typeof(IResult<HttpStatusCode>), _defaultActionResultTypeConverter },
+                { typeof(IResult<HttpStatusCode, object>), _defaultActionResultTypeConverter },
+                { typeof(IDataResult<object>), _defaultActionResultTypeConverter },
+                { typeof(IDataResult<object, HttpStatusCode>), _defaultActionResultTypeConverter },
+                { typeof(IDataResult<object, HttpStatusCode, object>), _defaultActionResultTypeConverter }
+            };
+        }
+
         public ActionResult Create(IResult result)
         {
-            // 1. See if there's a converter for converting the result object to ActionResult. If not one, revert to using the default converter.
-
-            // 2. Once inside the default converter, attempt to convert the result to one with HttpStatusCode ResultType and then trying to
-            // convert it again. 
-
-            // 3. There would be a default converter for converting from HttpStatusCode to ActionResult. 
-
-            // See if there's a converter for converting IResult to ActionResult. If not one, revert to converting to HttpStatusCode and then trying to
-            // convert to ActionResult using the default logic?
-            // Allow someone to specify a converter for converting from the result to an ActionResult? 
-            // Allow someone to specify a converter from HttpStatusCode to ActionResult instead of the default logic?
-
-            // Convert to an ActionResult using the default converter. 
-            return _defaultActionResultTypeConverter.Convert(result);
+            IActionResultConverter<IResult> actionResultConverter = GetActionResultConverter<IResult>();
+            return actionResultConverter.Convert(result);
         }
 
         public ActionResult Create<TResultType>(IResult<TResultType> result) where TResultType : struct, Enum
         {
-            return _defaultActionResultTypeConverter.Convert(new Result<HttpStatusCode>(result.ResultType.ToResultType<HttpStatusCode>())); 
+            IActionResultConverter<IResult<TResultType>> actionResultConverter = GetActionResultConverter<IResult<TResultType>>();
+            if (actionResultConverter == null)
+            {
+                return Create(new Result<HttpStatusCode>(result.ResultType.ToResultType<HttpStatusCode>()));
+            }
+            return actionResultConverter.Convert(result);
         }
 
         public ActionResult Create<TResultType, TErrorType>(IResult<TResultType, TErrorType> result) where TResultType : struct, Enum
         {
-            return _defaultActionResultTypeConverter.Convert(new Result<HttpStatusCode, object>(result.ResultType.ToResultType<HttpStatusCode>(), result.ErrorDetails));
+            IActionResultConverter<IResult<TResultType, TErrorType>> actionResultConverter = GetActionResultConverter<IResult<TResultType, TErrorType>>();
+            if (actionResultConverter == null)
+            {
+                return Create(new Result<HttpStatusCode, object>(result.ResultType.ToResultType<HttpStatusCode>(), result.ErrorDetails));
+            }
+            return actionResultConverter.Convert(result);
         }
 
         public ActionResult Create<TData>(IDataResult<TData> result)
         {
-            return _defaultActionResultTypeConverter.Convert(new DataResult<object>(result.Data, result.ResultType));
+            IActionResultConverter<IDataResult<TData>> actionResultConverter = GetActionResultConverter<IDataResult<TData>>();
+            if (actionResultConverter == null)
+            {
+                return Create<object>(new DataResult<object>(result.Data, result.ResultType));
+            }
+            return actionResultConverter.Convert(result);
         }
         
         public ActionResult Create<TData, TResultType>(IDataResult<TData, TResultType> result) where TResultType : struct, Enum
         {
-            return _defaultActionResultTypeConverter.Convert(new DataResult<object, HttpStatusCode>(result.Data, result.ResultType.ToResultType<HttpStatusCode>()));
+            IActionResultConverter<IDataResult<TData, TResultType>> actionResultConverter = GetActionResultConverter<IDataResult<TData, TResultType>>();
+            if (actionResultConverter == null)
+            {
+                return Create(new DataResult<object, HttpStatusCode>(result.Data, result.ResultType.ToResultType<HttpStatusCode>()));
+            }
+            return actionResultConverter.Convert(result);
         }
 
         public ActionResult Create<TData, TResultType, TErrorType>(IDataResult<TData, TResultType, TErrorType> result) where TResultType : struct, Enum
         {
-            return _defaultActionResultTypeConverter.Convert(new DataResult<object, HttpStatusCode, object>(result.Data, result.ResultType.ToResultType<HttpStatusCode>(), result.ErrorDetails));
+            IActionResultConverter<IDataResult<TData, TResultType, TErrorType>> actionResultConverter = GetActionResultConverter<IDataResult<TData, TResultType, TErrorType>>();
+            if (actionResultConverter == null)
+            {
+                return Create(new DataResult<object, HttpStatusCode, object>(result.Data, result.ResultType.ToResultType<HttpStatusCode>(), result.ErrorDetails));
+            }
+            return actionResultConverter.Convert(result);
+        }
+
+        private IActionResultConverter<TResult> GetActionResultConverter<TResult>() where TResult : IResult
+        {
+            if (_actionResultConverters.TryGetValue(typeof(TResult), out var actionResultConverter))
+            {
+                return (IActionResultConverter<TResult>) actionResultConverter;
+            }
+            return null;
         }
     }
 }

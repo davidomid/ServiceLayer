@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace ServiceLayer.Core.Converters
+﻿namespace ServiceLayer.Core.Converters
 {
-    public interface IActionResultConverter<in TResult> where TResult : IResult
+    public interface IActionResultConverter
     {
-        ActionResult Convert(TResult result);
     }
 }
