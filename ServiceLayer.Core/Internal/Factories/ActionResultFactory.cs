@@ -1,29 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.Core.Converters;
+using ServiceLayer.Core.Internal.Converters;
 
 namespace ServiceLayer.Core.Internal.Factories
 {
     internal class ActionResultFactory : IActionResultFactory
     {
-        private readonly DefaultActionResultTypeConverter _defaultActionResultTypeConverter = new DefaultActionResultTypeConverter();
-
-        private readonly Dictionary<Type, IActionResultConverter> _actionResultConverters;
-
-        public ActionResultFactory()
-        {
-            _actionResultConverters = new Dictionary<Type, IActionResultConverter>
-            {
-                { typeof(IResult), _defaultActionResultTypeConverter },
-                { typeof(IResult<HttpStatusCode>), _defaultActionResultTypeConverter },
-                { typeof(IResult<HttpStatusCode, object>), _defaultActionResultTypeConverter },
-                { typeof(IDataResult<object>), _defaultActionResultTypeConverter },
-                { typeof(IDataResult<object, HttpStatusCode>), _defaultActionResultTypeConverter },
-                { typeof(IDataResult<object, HttpStatusCode, object>), _defaultActionResultTypeConverter }
-            };
-        }
+        private readonly IActionResultConverterCollection _actionResultConverters = new ActionResultConverterCollection();
 
         public ActionResult Create(IResult result)
         {
@@ -83,7 +68,7 @@ namespace ServiceLayer.Core.Internal.Factories
 
         private IActionResultConverter<TResult> GetActionResultConverter<TResult>() where TResult : IResult
         {
-            if (_actionResultConverters.TryGetValue(typeof(TResult), out var actionResultConverter))
+            if (_actionResultConverters.Installed.TryGetValue(typeof(TResult), out var actionResultConverter))
             {
                 return (IActionResultConverter<TResult>) actionResultConverter;
             }
