@@ -15,7 +15,7 @@ namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Cre
 
         protected IActionResult ActionResult;
 
-        private readonly Core.Internal.Factories.ActionResultFactory _actionResultFactory = new Core.Internal.Factories.ActionResultFactory();
+        private readonly Core.Internal.Factories.ActionResultFactory _actionResultFactory = new Core.Internal.Factories.ActionResultFactory(new AspNetCorePluginSettings());
 
         protected GivenAnHttpStatusCodeResultType(HttpStatusCode httpResultType)
         {

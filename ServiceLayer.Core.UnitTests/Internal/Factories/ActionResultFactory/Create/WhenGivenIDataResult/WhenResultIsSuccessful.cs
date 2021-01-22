@@ -15,8 +15,9 @@ namespace ServiceLayer.Core.UnitTests.Internal.Factories.ActionResultFactory.Cre
 
         protected override void Arrange()
         {
+            var aspNetCorePluginSettings = new AspNetCorePluginSettings();
             ServiceLayerConfig.Plugins.Install(new AspNetCorePlugin());
-            _actionResultFactory = new Core.Internal.Factories.ActionResultFactory();
+            _actionResultFactory = new Core.Internal.Factories.ActionResultFactory(aspNetCorePluginSettings);
             Mock<IDataResult<string>> mockResult = new Mock<IDataResult<string>>();
             mockResult.SetupGet(r => r.ResultType).Returns(ResultType.Success);
             _dataResult = mockResult.Object;

@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using NUnit.Framework;
 using ServiceLayer.Internal.Factories;
@@ -12,7 +13,7 @@ namespace ServiceLayer.UnitTests.Internal.ServiceLocator.Resolve
     {
         private object _factoryInstance;
 
-        private readonly ServiceLayer.Internal.ServiceLocator _serviceLocator = new ServiceLayer.Internal.ServiceLocator();
+        private readonly ServiceLayer.Internal.ServiceLocator _serviceLocator = (ServiceLayer.Internal.ServiceLocator)Activator.CreateInstance(typeof(ServiceLayer.Internal.ServiceLocator), true);
 
         protected override void Arrange()
         {

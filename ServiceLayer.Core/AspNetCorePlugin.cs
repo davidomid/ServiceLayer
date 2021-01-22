@@ -1,4 +1,5 @@
-﻿using ServiceLayer.Core.Internal.Converters;
+﻿using ServiceLayer.Core.Internal;
+using ServiceLayer.Core.Internal.Converters;
 
 namespace ServiceLayer.Core
 {
@@ -10,10 +11,16 @@ namespace ServiceLayer.Core
             new ResultTypesToHttpStatusCodeConverter()
         };
 
-        public AspNetCorePlugin() : base("ASP.NET Core")
+        public AspNetCorePlugin(AspNetCorePluginSettings pluginSettings = null) : base("ASP.NET Core")
         {
-        }
+            if (pluginSettings == null)
+            {
+                pluginSettings = new AspNetCorePluginSettings();
+            }
 
+            ServiceLocator.Instance.Register(pluginSettings);
+        }
+        
         public override void Install()
         {
             foreach (var resultTypeConverter in _resultTypeConverters)

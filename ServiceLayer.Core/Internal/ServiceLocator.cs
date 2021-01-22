@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using ServiceLayer.Core.Internal.Factories;
 
 namespace ServiceLayer.Core.Internal
 {
@@ -11,14 +10,20 @@ namespace ServiceLayer.Core.Internal
         {
         }
 
-        private readonly Dictionary<Type, object> _instances = new Dictionary<Type, object>
+        private readonly Dictionary<Type, object> _instances = new Dictionary<Type, object>();
+
+        public void Register<T>(T component) where T : class
         {
-            { typeof(IActionResultFactory), new ActionResultFactory() }
-        };
+            _instances[typeof(T)] = component;
+        }
 
         public T Resolve<T>() where T : class
         {
-            return _instances[typeof(T)] as T;
+            if (_instances.ContainsKey(typeof(T)))
+            {
+                return _instances[typeof(T)] as T;
+            }
+            return null;
         }
     }
 }

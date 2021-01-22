@@ -1,49 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Net;
 using ServiceLayer.Core.Converters;
 
 namespace ServiceLayer.Core.Internal.Converters
 {
-    internal class ActionResultConverterCollection : IActionResultConverterCollection
+    public sealed class ActionResultConverterCollection : Dictionary<Type, IActionResultConverter>
     {
-        private readonly DefaultActionResultTypeConverter _defaultActionResultTypeConverter = new DefaultActionResultTypeConverter();
-
-        private readonly Dictionary<Type, IActionResultConverter> _installedActionResultConverters;
+        private static readonly DefaultActionResultConverter DefaultActionResultConverter = new DefaultActionResultConverter();
+        private readonly Dictionary<Type, IActionResultConverter> _defaultTypeActionResultConverters = new Dictionary<Type, IActionResultConverter>
+        {
+            { typeof(IResult), DefaultActionResultConverter },
+            { typeof(IResult<HttpStatusCode>), DefaultActionResultConverter },
+            { typeof(IResult<HttpStatusCode, object>), DefaultActionResultConverter },
+            { typeof(IDataResult<object>), DefaultActionResultConverter },
+            { typeof(IDataResult<object, HttpStatusCode>), DefaultActionResultConverter },
+            { typeof(IDataResult<object, HttpStatusCode, object>), DefaultActionResultConverter }
+        };
 
         public ActionResultConverterCollection()
         {
-            _installedActionResultConverters = new Dictionary<Type, IActionResultConverter>
+            foreach (var defaultTypeActionResultConverter in _defaultTypeActionResultConverters)
             {
-                { typeof(IResult), _defaultActionResultTypeConverter },
-                { typeof(IResult<HttpStatusCode>), _defaultActionResultTypeConverter },
-                { typeof(IResult<HttpStatusCode, object>), _defaultActionResultTypeConverter },
-                { typeof(IDataResult<object>), _defaultActionResultTypeConverter },
-                { typeof(IDataResult<object, HttpStatusCode>), _defaultActionResultTypeConverter },
-                { typeof(IDataResult<object, HttpStatusCode, object>), _defaultActionResultTypeConverter }
-            };
-        }
-
-        public IReadOnlyDictionary<Type, IActionResultConverter> Installed => new ReadOnlyDictionary<Type, IActionResultConverter>(_installedActionResultConverters);
-
-        public void Install(Type sourceType, IActionResultConverter actionResultConverter)
-        {
-            if (_installedActionResultConverters.TryGetValue(sourceType, out var existingActionResultConverter))
-            {
-                if (existingActionResultConverter == actionResultConverter)
-                {
-                    return;
-                }
-
-                _installedActionResultConverters.Remove(sourceType);
+                AddIfNotExists(defaultTypeActionResultConverter.Key, defaultTypeActionResultConverter.Value);
             }
-            _installedActionResultConverters.Add(sourceType, actionResultConverter);
         }
 
-        public void Uninstall(Type sourceType)
+        private void AddIfNotExists(Type type, IActionResultConverter actionResultConverter)
         {
-            _installedActionResultConverters.Remove(sourceType);
+            if (!this.ContainsKey(type))
+            {
+                this.Add(type, actionResultConverter);
+            }
         }
     }
 }

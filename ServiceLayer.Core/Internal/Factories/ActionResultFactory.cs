@@ -2,13 +2,17 @@
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.Core.Converters;
-using ServiceLayer.Core.Internal.Converters;
 
 namespace ServiceLayer.Core.Internal.Factories
 {
     internal class ActionResultFactory : IActionResultFactory
     {
-        private readonly IActionResultConverterCollection _actionResultConverters = new ActionResultConverterCollection();
+        private readonly AspNetCorePluginSettings _pluginSettings;
+
+        public ActionResultFactory(AspNetCorePluginSettings pluginSettings)
+        {
+            _pluginSettings = pluginSettings;
+        }
 
         public ActionResult Create(IResult result)
         {
@@ -68,7 +72,7 @@ namespace ServiceLayer.Core.Internal.Factories
 
         private IActionResultConverter<TResult> GetActionResultConverter<TResult>() where TResult : IResult
         {
-            if (_actionResultConverters.Installed.TryGetValue(typeof(TResult), out var actionResultConverter))
+            if (_pluginSettings.ResultTypeConverters.TryGetValue(typeof(TResult), out var actionResultConverter))
             {
                 return (IActionResultConverter<TResult>) actionResultConverter;
             }

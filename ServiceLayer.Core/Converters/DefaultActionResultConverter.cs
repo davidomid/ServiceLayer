@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ServiceLayer.Core.Converters
 {
-    public class DefaultActionResultTypeConverter : 
+    public class DefaultActionResultConverter : 
         IActionResultConverter<IResult>, 
         IActionResultConverter<IResult<HttpStatusCode>>,
         IActionResultConverter<IResult<HttpStatusCode, object>>,
