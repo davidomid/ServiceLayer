@@ -7,6 +7,9 @@ namespace ServiceLayer.Core.Internal
     internal class ServiceLocator : IServiceLocator
     {
         public static IServiceLocator Instance = new ServiceLocator();
+        private ServiceLocator()
+        {
+        }
 
         private readonly Dictionary<Type, object> _instances = new Dictionary<Type, object>
         {
