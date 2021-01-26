@@ -1,4 +1,5 @@
-﻿using ExampleServices;
+﻿using System.Collections.Generic;
+using ExampleServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ServiceLayer;
 using ServiceLayer.Core;
+using ServiceLayer.Core.Converters;
+using ServiceLayer.Core.Internal.Converters;
 
 namespace ExampleAspNetCoreWebApp
 {
@@ -23,7 +26,10 @@ namespace ExampleAspNetCoreWebApp
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<IDocumentStorageService>(new DocumentStorageService(new AuthService()));
-            ServiceLayerConfig.Plugins.Install(new AspNetCorePlugin());
+            ServiceLayerConfig.Plugins.Install(new AspNetCorePlugin(new AspNetCorePluginSettings
+            {
+                ResultTypeConverters = new ActionResultConverterCollection(new List<IActionResultConverter>())
+            }));
             ServiceLayerConfig.Plugins.Install(new DocumentServicePlugin());
         }
 

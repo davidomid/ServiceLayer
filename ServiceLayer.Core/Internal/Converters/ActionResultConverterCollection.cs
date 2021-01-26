@@ -1,37 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
+﻿using System.Collections.Generic;
+using System.Linq;
 using ServiceLayer.Core.Converters;
 
 namespace ServiceLayer.Core.Internal.Converters
 {
-    public sealed class ActionResultConverterCollection : Dictionary<Type, IActionResultConverter>
+    public sealed class ActionResultConverterCollection
     {
-        private static readonly DefaultActionResultConverter DefaultActionResultConverter = new DefaultActionResultConverter();
-        private readonly Dictionary<Type, IActionResultConverter> _defaultTypeActionResultConverters = new Dictionary<Type, IActionResultConverter>
+        private readonly List<IActionResultConverter> _actionResultConverters;
+        public ActionResultConverterCollection(List<IActionResultConverter> actionResultConverters)
         {
-            { typeof(IResult), DefaultActionResultConverter },
-            { typeof(IResult<HttpStatusCode>), DefaultActionResultConverter },
-            { typeof(IResult<HttpStatusCode, object>), DefaultActionResultConverter },
-            { typeof(IDataResult<object>), DefaultActionResultConverter },
-            { typeof(IDataResult<object, HttpStatusCode>), DefaultActionResultConverter },
-            { typeof(IDataResult<object, HttpStatusCode, object>), DefaultActionResultConverter }
-        };
-
-        public ActionResultConverterCollection()
-        {
-            foreach (var defaultTypeActionResultConverter in _defaultTypeActionResultConverters)
+            _actionResultConverters = new List<IActionResultConverter>(actionResultConverters)
             {
-                AddIfNotExists(defaultTypeActionResultConverter.Key, defaultTypeActionResultConverter.Value);
-            }
+                new DefaultActionResultConverter()
+            };
         }
 
-        private void AddIfNotExists(Type type, IActionResultConverter actionResultConverter)
+        internal IActionResultConverter<TResult> GetActionResultConverter<TResult>() where TResult : IResult
         {
-            if (!this.ContainsKey(type))
-            {
-                this.Add(type, actionResultConverter);
-            }
+            var actionResultConverter = _actionResultConverters.OfType<IActionResultConverter<TResult>>().FirstOrDefault();
+            return actionResultConverter;
         }
     }
 }
