@@ -26,10 +26,7 @@ namespace ExampleAspNetCoreWebApp
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<IDocumentStorageService>(new DocumentStorageService(new AuthService()));
-            ServiceLayerConfig.Plugins.Install(new AspNetCorePlugin(new AspNetCorePluginSettings
-            {
-                ResultTypeConverters = new ActionResultConverterCollection(new List<IActionResultConverter>())
-            }));
+            ServiceLayerConfig.Plugins.Install(new AspNetCorePlugin());
             ServiceLayerConfig.Plugins.Install(new DocumentServicePlugin());
         }
 
