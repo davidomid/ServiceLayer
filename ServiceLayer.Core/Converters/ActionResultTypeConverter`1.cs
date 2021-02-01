@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ServiceLayer.Core.Converters
 {
-    public class ActionResultTypeConverter<TResult> : IActionResultConverter<TResult> where TResult : IResult
+    public sealed class ActionResultTypeConverter<TResult> : IActionResultConverter<TResult> where TResult : IResult
     {
         private readonly Func<TResult, ActionResult> _function;
 
