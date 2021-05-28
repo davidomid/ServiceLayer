@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.Core.Internal;
 using ServiceLayer.Core.Internal.Factories;
@@ -20,6 +19,11 @@ namespace ServiceLayer.Core
             return ActionResultFactory.Create(result);
         }
 
+        public static ActionResult ToActionResult<TResultType, TErrorType>(this IResult<TResultType, TErrorType> result) where TResultType : struct, Enum
+        {
+            return ActionResultFactory.Create(result);
+        }
+
         public static ActionResult ToActionResult<TData>(this IDataResult<TData> dataResult)
         {
             return ActionResultFactory.Create(dataResult);
@@ -30,9 +34,9 @@ namespace ServiceLayer.Core
             return ActionResultFactory.Create(result);
         }
 
-        public static ActionResult ToActionResult<TData>(this IDataResult<TData, HttpStatusCode> httpResult)
+        public static ActionResult ToActionResult<TData, TResultType, TErrorType>(this IDataResult<TData, TResultType, TErrorType> result) where TResultType : struct, Enum
         {
-            return ActionResultFactory.Create(httpResult);
+            return ActionResultFactory.Create(result);
         }
     }
 }
