@@ -39,15 +39,15 @@ namespace ExampleServices
                 // Some sort of operation here
                 return this.Success();
             }
-            catch (IOException ioex)
+            catch (IOException)
             {
                 return 1000;
             }
-            catch (TimeoutException tex)
+            catch (TimeoutException)
             {
                 return 2000;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return 5000;
             }
@@ -61,15 +61,15 @@ namespace ExampleServices
                 // Some sort of operation here
                 return "test data";
             }
-            catch (IOException ioex)
+            catch (IOException)
             {
                 return 1000;
             }
-            catch (TimeoutException tex)
+            catch (TimeoutException)
             {
                 return 2000;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return 5000;
             }
