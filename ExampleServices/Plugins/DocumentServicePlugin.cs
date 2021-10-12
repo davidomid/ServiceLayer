@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
-using ServiceLayer;
+﻿using ServiceLayer;
 
 namespace ExampleServices
 {
