@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using ServiceLayer.Core.Converters;
-using ServiceLayer.Core.Internal.Converters;
 
 namespace ServiceLayer.Core
 {

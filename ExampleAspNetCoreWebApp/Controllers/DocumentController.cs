@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Document = ExampleServices.Document;
 using IDocumentStorageService = ExampleServices.IDocumentStorageService;
-using ServiceLayer.Core;
 using ServiceLayer.Core.Extensions;
 
 namespace ExampleAspNetCoreWebApp.Controllers
