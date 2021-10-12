@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using ServiceLayer.Core.Converters;
+using ServiceLayer.Core.Internal.Converters;
 
-namespace ServiceLayer.Core.Internal.Converters
+namespace ServiceLayer.Core.Converters
 {
     public sealed class ActionResultConverterCollection
     {
