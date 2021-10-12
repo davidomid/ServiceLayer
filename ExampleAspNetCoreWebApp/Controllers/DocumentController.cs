@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ServiceLayer.Core;
 using Document = ExampleServices.Document;
 using IDocumentStorageService = ExampleServices.IDocumentStorageService;
-using ServiceLayer.Core;
+
 namespace ExampleAspNetCoreWebApp.Controllers
 {
     [Route("api/document")]

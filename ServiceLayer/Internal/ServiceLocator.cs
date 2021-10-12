@@ -9,6 +9,10 @@ namespace ServiceLayer.Internal
     {
         public static IServiceLocator Instance = new ServiceLocator();
 
+        private ServiceLocator()
+        {
+        }
+
         private readonly Dictionary<Type, object> _instances = new Dictionary<Type, object>
         {
             { typeof(IResultFactory), new ResultFactory() },

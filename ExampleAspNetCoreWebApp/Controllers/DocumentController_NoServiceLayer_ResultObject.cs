@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using ExampleServices.NoServiceLayer.ResultObject;
+﻿using ExampleServices.NoServiceLayer.ResultObject;
 using Microsoft.AspNetCore.Mvc;
 using Document = ExampleServices.NoServiceLayer.ResultObject.Document;
 using IDocumentStorageService = ExampleServices.NoServiceLayer.ResultObject.IDocumentStorageService;

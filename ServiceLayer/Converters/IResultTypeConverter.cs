@@ -2,7 +2,7 @@
 
 namespace ServiceLayer
 {
-    internal interface IResultTypeConverter
+    internal interface IResultTypeConverter 
     {
         Enum PerformInternalConversion(Enum sourceResultType, Type destinationType); 
     }

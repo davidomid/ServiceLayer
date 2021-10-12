@@ -6,88 +6,68 @@ namespace ServiceLayer.Core.Internal.Factories
 {
     internal class ActionResultFactory : IActionResultFactory
     {
+        private readonly AspNetCorePluginSettings _pluginSettings;
+
+        public ActionResultFactory(AspNetCorePluginSettings pluginSettings)
+        {
+            _pluginSettings = pluginSettings;
+        }
+
         public ActionResult Create(IResult result)
         {
-            if (result.IsSuccessful)
-            {
-                return new OkResult();
-            }
-            return CreateErrorObjectResult(result, HttpStatusCode.InternalServerError);
+            IActionResultConverter<IResult> actionResultConverter = _pluginSettings.ResultTypeConverters.GetActionResultConverter<IResult>();
+            return actionResultConverter.Convert(result);
         }
 
-        public ActionResult Create<TErrorType>(IResult<HttpStatusCode, TErrorType> httpResult)
+        public ActionResult Create<TResultType>(IResult<TResultType> result) where TResultType : struct, Enum
         {
-            switch (httpResult.ResultType)
+            IActionResultConverter<IResult<TResultType>> actionResultConverter = _pluginSettings.ResultTypeConverters.GetActionResultConverter<IResult<TResultType>>();
+            if (actionResultConverter == null)
             {
-                case HttpStatusCode.BadRequest:
-                    return new BadRequestObjectResult(httpResult.ErrorDetails);
-                case HttpStatusCode.Conflict:
-                    return CreateErrorObjectResult(httpResult, HttpStatusCode.Conflict);
-                case HttpStatusCode.InternalServerError:
-                    return CreateErrorObjectResult(httpResult, HttpStatusCode.InternalServerError);
-                default:
-                    return Create((IResult<HttpStatusCode>) httpResult);
+                return Create(new Result<HttpStatusCode>(result.ResultType.ToResultType<HttpStatusCode>()));
             }
-        }
-
-        public ActionResult Create(IResult<HttpStatusCode> httpResult)
-        {
-            switch (httpResult.ResultType)
-            {
-                case HttpStatusCode.OK:
-                    return new OkResult();
-                case HttpStatusCode.BadRequest:
-                    return new BadRequestResult();
-                case HttpStatusCode.NotFound:
-                    return new NotFoundResult();
-                case HttpStatusCode.Unauthorized:
-                    return new UnauthorizedResult();
-                case HttpStatusCode.Forbidden:
-                    return new ForbidResult();
-                case HttpStatusCode.Conflict:
-                    return new ConflictResult();
-                default:
-                    return new StatusCodeResult((int)httpResult.ResultType);
-            }
+            return actionResultConverter.Convert(result);
         }
 
         public ActionResult Create<TResultType, TErrorType>(IResult<TResultType, TErrorType> result) where TResultType : struct, Enum
         {
-            return Create(new Result<HttpStatusCode, TErrorType>(result.ResultType.ToResultType<HttpStatusCode>(), result.ErrorDetails));
+            IActionResultConverter<IResult<TResultType, TErrorType>> actionResultConverter = _pluginSettings.ResultTypeConverters.GetActionResultConverter<IResult<TResultType, TErrorType>>();
+            if (actionResultConverter == null)
+            {
+                return Create(new Result<HttpStatusCode, object>(result.ResultType.ToResultType<HttpStatusCode>(), result.ErrorDetails));
+            }
+            return actionResultConverter.Convert(result);
         }
 
         public ActionResult Create<TData>(IDataResult<TData> result)
         {
-            return Create(new DataResult<TData, HttpStatusCode>(result.Data, result.ResultType.ToResultType<HttpStatusCode>()));
+            IActionResultConverter<IDataResult<TData>> actionResultConverter = _pluginSettings.ResultTypeConverters.GetActionResultConverter<IDataResult<TData>>();
+            if (actionResultConverter == null)
+            {
+                return Create<object>(new DataResult<object>(result.Data, result.ResultType));
+            }
+            return actionResultConverter.Convert(result);
         }
-
+        
         public ActionResult Create<TData, TResultType>(IDataResult<TData, TResultType> result) where TResultType : struct, Enum
         {
-            return Create(new DataResult<TData, HttpStatusCode>(result.Data, result.ResultType.ToResultType<HttpStatusCode>()));
-        }
-
-        public ActionResult Create<TData>(IDataResult<TData, HttpStatusCode> httpResult)
-        {
-            switch (httpResult.ResultType)
+            IActionResultConverter<IDataResult<TData, TResultType>> actionResultConverter = _pluginSettings.ResultTypeConverters.GetActionResultConverter<IDataResult<TData, TResultType>>();
+            if (actionResultConverter == null)
             {
-                case HttpStatusCode.OK:
-                    return CreateOkObjectResult(httpResult); 
-                default:
-                    return Create((IResult<HttpStatusCode>)httpResult);
+                return Create(new DataResult<object, HttpStatusCode>(result.Data, result.ResultType.ToResultType<HttpStatusCode>()));
             }
+            return actionResultConverter.Convert(result);
         }
 
-        private OkObjectResult CreateOkObjectResult<TData>(IDataResult<TData> result)
+        public ActionResult Create<TData, TResultType, TErrorType>(IDataResult<TData, TResultType, TErrorType> result) where TResultType : struct, Enum
         {
-            return new OkObjectResult(result.Data);
-        }
-
-        private ObjectResult CreateErrorObjectResult<TErrorType>(TErrorType errorDetails, HttpStatusCode httpStatusCode)
-        {
-            return new ObjectResult(errorDetails)
+            IActionResultConverter<IDataResult<TData, TResultType, TErrorType>> actionResultConverter = _pluginSettings.ResultTypeConverters.GetActionResultConverter<IDataResult<TData, TResultType, TErrorType>>();
+            if (actionResultConverter == null)
             {
-                StatusCode = (int?) httpStatusCode
-            };
+                return Create(new DataResult<object, HttpStatusCode, object>(result.Data, result.ResultType.ToResultType<HttpStatusCode>(), result.ErrorDetails));
+            }
+            return actionResultConverter.Convert(result);
         }
+
     }
 }
