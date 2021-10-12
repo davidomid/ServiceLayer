@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.Core.Internal;
 using ServiceLayer.Core.Internal.Factories;
 
-namespace ServiceLayer.Core.Extensions
+namespace ServiceLayer.Core
 {
     public static class ResultExtensions
     {

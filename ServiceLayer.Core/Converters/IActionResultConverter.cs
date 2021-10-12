@@ -1,4 +1,4 @@
-﻿namespace ServiceLayer.Core.Converters
+﻿namespace ServiceLayer.Core
 {
     public interface IActionResultConverter
     {

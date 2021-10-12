@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ServiceLayer.Core.Converters
+namespace ServiceLayer.Core
 {
     public sealed class ActionResultConverter<TResult> : IActionResultConverter<TResult> where TResult : IResult
     {

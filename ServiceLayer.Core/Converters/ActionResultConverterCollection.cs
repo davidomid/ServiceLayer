@@ -2,7 +2,7 @@
 using System.Linq;
 using ServiceLayer.Core.Internal.Converters;
 
-namespace ServiceLayer.Core.Converters
+namespace ServiceLayer.Core
 {
     public sealed class ActionResultConverterCollection
     {

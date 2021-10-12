@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ServiceLayer.Core.Extensions
+namespace ServiceLayer.Core
 {
     public static class ControllerBaseExtensions
     {
