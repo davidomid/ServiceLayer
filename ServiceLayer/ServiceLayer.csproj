@@ -27,7 +27,7 @@
   <PropertyGroup Label="DefaultDocumentationProperties">
     <DefaultDocumentationFolder>..\documentation\api</DefaultDocumentationFolder>
     <DefaultDocumentationFileNameMode>FullName</DefaultDocumentationFileNameMode>
-    <DefaultDocumentationGeneratedPages>Assembly, Types, Members</DefaultDocumentationGeneratedPages>
+    <DefaultDocumentationGeneratedPages>Namespaces, Types, Members</DefaultDocumentationGeneratedPages>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="DefaultDocumentation" Version="0.7.9">

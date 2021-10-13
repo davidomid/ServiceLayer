@@ -1,5 +1,4 @@
-#### [ServiceLayer](index.md 'index')
-### [ServiceLayer](index.md#ServiceLayer 'ServiceLayer')
+### [ServiceLayer](ServiceLayer.md 'ServiceLayer')
 ## InconclusiveAttribute Class
 This attribute maps the source enum value to the [Inconclusive](ServiceLayer_ResultType.md#ServiceLayer_ResultType_Inconclusive 'ServiceLayer.ResultType.Inconclusive') result type.
 

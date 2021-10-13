@@ -1,5 +1,4 @@
-#### [ServiceLayer](index.md 'index')
-### [ServiceLayer](index.md#ServiceLayer 'ServiceLayer')
+### [ServiceLayer](ServiceLayer.md 'ServiceLayer')
 ## ResultType Enum
 The default enum representing the status of a result returned from a service method.  
 ```csharp

@@ -1,5 +1,4 @@
-#### [ServiceLayer](index.md 'index')
-### [ServiceLayer](index.md#ServiceLayer 'ServiceLayer')
+### [ServiceLayer](ServiceLayer.md 'ServiceLayer')
 ## FailureAttribute Class
 This attribute maps the source enum value to the [Failure](ServiceLayer_ResultType.md#ServiceLayer_ResultType_Failure 'ServiceLayer.ResultType.Failure') result type.
 

@@ -1,5 +1,4 @@
-#### [ServiceLayer](index.md 'index')
-### [ServiceLayer](index.md#ServiceLayer 'ServiceLayer')
+### [ServiceLayer](ServiceLayer.md 'ServiceLayer')
 ## SuccessAttribute Class
 This attribute maps the source enum value to the [Success](ServiceLayer_ResultType.md#ServiceLayer_ResultType_Success 'ServiceLayer.ResultType.Success') result type.
 

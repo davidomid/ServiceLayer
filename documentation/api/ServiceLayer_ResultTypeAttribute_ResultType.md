@@ -1,5 +1,4 @@
-#### [ServiceLayer](index.md 'index')
-### [ServiceLayer](index.md#ServiceLayer 'ServiceLayer').[ResultTypeAttribute](ServiceLayer_ResultTypeAttribute.md 'ServiceLayer.ResultTypeAttribute')
+### [ServiceLayer](ServiceLayer.md 'ServiceLayer').[ResultTypeAttribute](ServiceLayer_ResultTypeAttribute.md 'ServiceLayer.ResultTypeAttribute')
 ## ResultTypeAttribute.ResultType Property
 Gets the value of the result type  
 ```csharp

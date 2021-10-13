@@ -1,6 +1,3 @@
-#### [ServiceLayer](index.md 'index')
-### Namespaces
-<a name='ServiceLayer'></a>
 ## ServiceLayer Namespace
 
 | Classes | |
@@ -14,4 +11,3 @@
 | Enums | |
 | :--- | :--- |
 | [ResultType](ServiceLayer_ResultType.md 'ServiceLayer.ResultType') | The default enum representing the status of a result returned from a service method.<br/> |
-  

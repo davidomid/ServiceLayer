@@ -1,5 +1,4 @@
-#### [ServiceLayer](index.md 'index')
-### [ServiceLayer](index.md#ServiceLayer 'ServiceLayer')
+### [ServiceLayer](ServiceLayer.md 'ServiceLayer')
 ## ResultTypeAttribute Class
 This attribute is used for annotating a source enum value and providing a destination value which it can be mapped to.
 

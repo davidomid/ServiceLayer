@@ -1,5 +1,4 @@
-#### [ServiceLayer](index.md 'index')
-### [ServiceLayer](index.md#ServiceLayer 'ServiceLayer').[FailureAttribute](ServiceLayer_FailureAttribute.md 'ServiceLayer.FailureAttribute')
+### [ServiceLayer](ServiceLayer.md 'ServiceLayer').[FailureAttribute](ServiceLayer_FailureAttribute.md 'ServiceLayer.FailureAttribute')
 ## FailureAttribute.FailureAttribute() Constructor
 Initializes a new instance of the [FailureAttribute](ServiceLayer_FailureAttribute.md 'ServiceLayer.FailureAttribute') class  
 ```csharp
