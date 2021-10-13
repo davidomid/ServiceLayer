@@ -18,17 +18,15 @@
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DocumentationFile>bin\Debug\ServiceLayer.xml</DocumentationFile>
-    <DefaultDocumentationFolder>bin\Debug\docs\api</DefaultDocumentationFolder>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DocumentationFile>bin\Release\ServiceLayer.xml</DocumentationFile>
-    <DefaultDocumentationFolder>bin\Release\docs\api</DefaultDocumentationFolder>
   </PropertyGroup>
   
   <PropertyGroup Label="DefaultDocumentationProperties">
-    <DefaultDocumentationAssemblyPageName>API-Reference</DefaultDocumentationAssemblyPageName>
-    <DefaultDocumentationFileNameMode>Name</DefaultDocumentationFileNameMode>
+    <DefaultDocumentationFolder>..\documentation\api</DefaultDocumentationFolder>
+    <DefaultDocumentationFileNameMode>FullName</DefaultDocumentationFileNameMode>
     <DefaultDocumentationGeneratedPages>Assembly, Types, Members</DefaultDocumentationGeneratedPages>
     <DefaultDocumentationRemoveFileExtensionFromLinks>true</DefaultDocumentationRemoveFileExtensionFromLinks>
   </PropertyGroup>
