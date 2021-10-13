@@ -1,7 +1,7 @@
-#### [ServiceLayer](index 'index')
-### [ServiceLayer](index#ServiceLayer 'ServiceLayer').[ResultTypeAttribute](ServiceLayer_ResultTypeAttribute 'ServiceLayer.ResultTypeAttribute')
+#### [ServiceLayer](index.md 'index')
+### [ServiceLayer](index.md#ServiceLayer 'ServiceLayer').[ResultTypeAttribute](ServiceLayer_ResultTypeAttribute.md 'ServiceLayer.ResultTypeAttribute')
 ## ResultTypeAttribute.ResultTypeAttribute(object) Constructor
-Initializes a new instance of the [ResultTypeAttribute](ServiceLayer_ResultTypeAttribute 'ServiceLayer.ResultTypeAttribute') class  
+Initializes a new instance of the [ResultTypeAttribute](ServiceLayer_ResultTypeAttribute.md 'ServiceLayer.ResultTypeAttribute') class  
 ```csharp
 public ResultTypeAttribute(object resultType);
 ```

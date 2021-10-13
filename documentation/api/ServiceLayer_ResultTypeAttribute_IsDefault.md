@@ -1,5 +1,5 @@
-#### [ServiceLayer](index 'index')
-### [ServiceLayer](index#ServiceLayer 'ServiceLayer').[ResultTypeAttribute](ServiceLayer_ResultTypeAttribute 'ServiceLayer.ResultTypeAttribute')
+#### [ServiceLayer](index.md 'index')
+### [ServiceLayer](index.md#ServiceLayer 'ServiceLayer').[ResultTypeAttribute](ServiceLayer_ResultTypeAttribute.md 'ServiceLayer.ResultTypeAttribute')
 ## ResultTypeAttribute.IsDefault Property
 If set to true, a value of the given ResultType will be converted to the annotated enum value by default.
 

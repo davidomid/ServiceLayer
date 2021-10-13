@@ -28,7 +28,6 @@
     <DefaultDocumentationFolder>..\documentation\api</DefaultDocumentationFolder>
     <DefaultDocumentationFileNameMode>FullName</DefaultDocumentationFileNameMode>
     <DefaultDocumentationGeneratedPages>Assembly, Types, Members</DefaultDocumentationGeneratedPages>
-    <DefaultDocumentationRemoveFileExtensionFromLinks>true</DefaultDocumentationRemoveFileExtensionFromLinks>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="DefaultDocumentation" Version="0.7.9">

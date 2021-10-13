@@ -1,5 +1,5 @@
-#### [ServiceLayer](index 'index')
-### [ServiceLayer](index#ServiceLayer 'ServiceLayer')
+#### [ServiceLayer](index.md 'index')
+### [ServiceLayer](index.md#ServiceLayer 'ServiceLayer')
 ## DefaultResultTypeAttribute Class
 The default result type attribute class.
 
