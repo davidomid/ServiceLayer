@@ -29,7 +29,7 @@
   <PropertyGroup Label="DefaultDocumentationProperties">
     <DefaultDocumentationAssemblyPageName>API-Reference</DefaultDocumentationAssemblyPageName>
     <DefaultDocumentationFileNameMode>Name</DefaultDocumentationFileNameMode>
-    <DefaultDocumentationGeneratedPages>Assembly, Namespaces, Types, Members</DefaultDocumentationGeneratedPages>
+    <DefaultDocumentationGeneratedPages>Assembly, Types, Members</DefaultDocumentationGeneratedPages>
     <DefaultDocumentationRemoveFileExtensionFromLinks>true</DefaultDocumentationRemoveFileExtensionFromLinks>
   </PropertyGroup>
   <ItemGroup>
