@@ -6,6 +6,7 @@ namespace ServiceLayer
     /// <summary>
     /// Inherit this abstract class to create your own result type converter which converts any source result type enum value to a given <typeparamref name="TDestinationResultType"/> enum.
     /// </summary>
+    /// <typeparam name="TDestinationResultType">The destination result type enum which any given source result types will be converted to.</typeparam>
     public abstract class AnyToOneResultTypeConverter<TDestinationResultType> : ResultTypeConverter, IAnyToOneResultTypeConverter<TDestinationResultType> where TDestinationResultType : struct, Enum
     {
         /// <summary>
@@ -23,7 +24,7 @@ namespace ServiceLayer
         /// <summary>
         /// <para>This needs to be implemented so that any source result type enum value can be converted to the given <typeparamref name="TDestinationResultType"/> destination result type enum.</para>
         /// </summary>
-        /// <typeparam name="TDestinationResultType">The destination result type enum which the source result type value will be converted to.</typeparam>
+        /// <typeparam name="TDestinationResultType">The destination result type enum which the given <paramref name="sourceResultType"/> will be converted to.</typeparam>
         /// <param name="sourceResultType">The source result type enum value.</param>
         /// <returns>
         ///     A resulting <typeparamref name="TDestinationResultType"/> value after converting from the given <paramref name="sourceResultType"/>.

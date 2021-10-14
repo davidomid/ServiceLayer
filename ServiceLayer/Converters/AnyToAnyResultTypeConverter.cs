@@ -23,7 +23,7 @@ namespace ServiceLayer
         /// <para>This needs to be implemented so that any source result type enum value can be converted to any destination result type enum.</para>
         /// </summary>
         /// <param name="sourceResultType">The source result type enum value.</param>
-        /// <param name="destinationEnumType">The destination result type enum which the source result type value will be converted to.</param>
+        /// <param name="destinationEnumType">The destination result type enum which the given <paramref name="sourceResultType"/> will be converted to.</param>
         /// <returns>
         ///     An <see cref="Enum"/> value with the same type as the given <paramref name="destinationEnumType"/>, after being converted from the given <paramref name="sourceResultType"/>.
         ///     <c>null</c> can be returned when no conversion to <paramref name="destinationEnumType"/> is possible.
