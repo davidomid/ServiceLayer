@@ -4,7 +4,7 @@ using ServiceLayer.Internal.Converters;
 namespace ServiceLayer
 {
     /// <summary>
-    /// Inherit this abstract class to create your own result type converter which converts any source result type enum value to any destination result type enum.
+    /// Inherit this abstract class to create your own result type converter which converts any source result type enum value to a given <typeparamref name="TDestinationResultType"/> enum.
     /// </summary>
     public abstract class AnyToOneResultTypeConverter<TDestinationResultType> : ResultTypeConverter, IAnyToOneResultTypeConverter<TDestinationResultType> where TDestinationResultType : struct, Enum
     {

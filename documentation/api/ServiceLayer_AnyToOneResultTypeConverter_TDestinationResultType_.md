@@ -1,6 +1,6 @@
 ### [ServiceLayer](ServiceLayer.md 'ServiceLayer')
 ## AnyToOneResultTypeConverter&lt;TDestinationResultType&gt; Class
-Inherit this abstract class to create your own result type converter which converts any source result type enum value to any destination result type enum.  
+Inherit this abstract class to create your own result type converter which converts any source result type enum value to a given [TDestinationResultType](ServiceLayer_AnyToOneResultTypeConverter_TDestinationResultType_.md#ServiceLayer_AnyToOneResultTypeConverter_TDestinationResultType__TDestinationResultType 'ServiceLayer.AnyToOneResultTypeConverter&lt;TDestinationResultType&gt;.TDestinationResultType') enum.  
 ```csharp
 public abstract class AnyToOneResultTypeConverter<TDestinationResultType> : ServiceLayer.ResultTypeConverter
     where TDestinationResultType : struct, System.Enum
