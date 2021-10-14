@@ -12,14 +12,14 @@ namespace ServiceLayer
         /// <summary>
         /// Initializes a new instance of the <see cref="ResultTypeAttribute"/> class
         /// </summary>
-        /// <param name="resultType">The destination value which the source enum value can be converted to.</param>
+        /// <param name="resultType">Sets the value of the <see cref="ResultType"/> property.</param>
         public ResultTypeAttribute(object resultType)
         {
             ResultType = (Enum)resultType;
         }
 
         /// <summary>
-        /// Gets the value of the result type
+        /// Gets the destination value which the source enum value can be converted to.
         /// </summary>
         public Enum ResultType { get; }
 
