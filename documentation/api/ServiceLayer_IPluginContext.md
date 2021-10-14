@@ -1,10 +1,11 @@
 ### [ServiceLayer](ServiceLayer.md 'ServiceLayer')
 ## IPluginContext Interface
 This allows you to retrieve and manipulate the plugins and result type converters which are installed by ServiceLayer, from within the installation and uninstallation logic of your custom plugins.  
-<remarks>An instance of this interface is available via the <see cref="P:ServiceLayer.Plugin.Context"/> property</remarks>
 ```csharp
 public interface IPluginContext
 ```
+### Remarks
+An instance of this interface is available via the [Context](ServiceLayer_Plugin_Context.md 'ServiceLayer.Plugin.Context') property
 
 | Properties | |
 | :--- | :--- |

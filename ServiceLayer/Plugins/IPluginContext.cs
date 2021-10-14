@@ -2,8 +2,8 @@
 {
     /// <summary>
     /// This allows you to retrieve and manipulate the plugins and result type converters which are installed by ServiceLayer, from within the installation and uninstallation logic of your custom plugins.
-    /// <remarks>An instance of this interface is available via the <see cref="Plugin.Context"/> property</remarks>
     /// </summary>
+    /// <remarks>An instance of this interface is available via the <see cref="Plugin.Context"/> property</remarks>
     public interface IPluginContext
     {
         /// <summary>
