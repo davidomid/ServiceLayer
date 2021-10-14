@@ -2,6 +2,7 @@
 
 | Classes | |
 | :--- | :--- |
+| [AnyToAnyResultTypeConverter](ServiceLayer_AnyToAnyResultTypeConverter.md 'ServiceLayer.AnyToAnyResultTypeConverter') | Inherit this abstract class to create your own result type converter which converts any source result type enum value to any destination result type enum.<br/> |
 | [DefaultResultTypeAttribute](ServiceLayer_DefaultResultTypeAttribute.md 'ServiceLayer.DefaultResultTypeAttribute') | The default result type attribute class.<br/><br/><br/><br/>This attribute is used for annotating the default value of an enum to use when it's treated as a result type.<br/><br/> |
 | [FailureAttribute](ServiceLayer_FailureAttribute.md 'ServiceLayer.FailureAttribute') | This attribute maps the source enum value to the [Failure](ServiceLayer_ResultType.md#ServiceLayer_ResultType_Failure 'ServiceLayer.ResultType.Failure') result type.<br/><br/><br/><br/>Use this attribute to mark enum values which should be considered failure result types.<br/><br/> |
 | [InconclusiveAttribute](ServiceLayer_InconclusiveAttribute.md 'ServiceLayer.InconclusiveAttribute') | This attribute maps the source enum value to the [Inconclusive](ServiceLayer_ResultType.md#ServiceLayer_ResultType_Inconclusive 'ServiceLayer.ResultType.Inconclusive') result type.<br/><br/><br/><br/>Use this attribute to mark enum values which should be considered inconclusive result types.<br/><br/> |
@@ -14,6 +15,7 @@
 | :--- | :--- |
 | [IPluginCollection](ServiceLayer_IPluginCollection.md 'ServiceLayer.IPluginCollection') | This interface provides access to a list of ServiceLayer plugins which are already installed.<br/><br/> |
 | [IPluginContext](ServiceLayer_IPluginContext.md 'ServiceLayer.IPluginContext') | This allows you to retrieve and manipulate the plugins and result type converters which are installed by ServiceLayer, from within the installation and uninstallation logic of your custom plugins.<br/> |
+| [IService](ServiceLayer_IService.md 'ServiceLayer.IService') | This is a simple interface which can be used to mark a class as being a service.<br/> |
 
 | Enums | |
 | :--- | :--- |
