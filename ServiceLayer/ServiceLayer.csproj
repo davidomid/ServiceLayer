@@ -28,6 +28,7 @@
     <DefaultDocumentationFolder>..\documentation\api</DefaultDocumentationFolder>
     <DefaultDocumentationFileNameMode>FullName</DefaultDocumentationFileNameMode>
     <DefaultDocumentationGeneratedPages>Namespaces, Types, Members</DefaultDocumentationGeneratedPages>
+    <DefaultDocumentationGeneratedAccessModifiers>Public, Protected</DefaultDocumentationGeneratedAccessModifiers>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="DefaultDocumentation" Version="0.7.9">
