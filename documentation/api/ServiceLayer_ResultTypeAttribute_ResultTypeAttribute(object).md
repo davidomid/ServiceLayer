@@ -7,5 +7,5 @@ public ResultTypeAttribute(object resultType);
 #### Parameters
 <a name='ServiceLayer_ResultTypeAttribute_ResultTypeAttribute(object)_resultType'></a>
 `resultType` [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object')  
-The destination value which the source enum value can be converted to.
+Sets the value of the [ResultType](ServiceLayer_ResultTypeAttribute_ResultType.md 'ServiceLayer.ResultTypeAttribute.ResultType') property.
   

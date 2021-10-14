@@ -5,4 +5,4 @@ Contains a collection of plugins which are currently installed.
 public static IPluginCollection Plugins;
 ```
 #### Field Value
-[ServiceLayer.IPluginCollection](https://docs.microsoft.com/en-us/dotnet/api/ServiceLayer.IPluginCollection 'ServiceLayer.IPluginCollection')
+[IPluginCollection](ServiceLayer_IPluginCollection.md 'ServiceLayer.IPluginCollection')

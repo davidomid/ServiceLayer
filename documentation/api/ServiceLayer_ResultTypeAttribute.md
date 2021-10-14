@@ -23,6 +23,6 @@ Derived
 | Properties | |
 | :--- | :--- |
 | [IsDefault](ServiceLayer_ResultTypeAttribute_IsDefault.md 'ServiceLayer.ResultTypeAttribute.IsDefault') | If set to true, a value of the given ResultType will be converted to the annotated enum value by default.<br/><br/><br/><br/>This is useful when you have multiple values in the source enum annotated with the same destination value.<br/><br/> |
-| [ResultType](ServiceLayer_ResultTypeAttribute_ResultType.md 'ServiceLayer.ResultTypeAttribute.ResultType') | Gets the value of the result type<br/> |
+| [ResultType](ServiceLayer_ResultTypeAttribute_ResultType.md 'ServiceLayer.ResultTypeAttribute.ResultType') | Gets the destination value which the source enum value can be converted to.<br/> |
 #### See Also
 - [System.Attribute](https://docs.microsoft.com/en-us/dotnet/api/System.Attribute 'System.Attribute')
