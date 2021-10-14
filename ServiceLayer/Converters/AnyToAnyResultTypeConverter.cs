@@ -29,9 +29,7 @@ namespace ServiceLayer
         ///     <c>null</c> can be returned when no conversion to <paramref name="destinationEnumType"/> is possible.
         /// </returns>
         /// <remarks>
-        ///     If no direct conversion to the destination result type enum is possible, you can return <c>null</c>.
-        ///     ServiceLayer will then automatically fall back to the next valid converter.
-        ///     If you want to prevent ServiceLayer from falling back to the next converter, you can throw an <see cref="Exception"/>.
+        /// If no direct conversion to the destination result type enum is possible, you can return <c>null</c>. ServiceLayer will then automatically fall back to the next valid converter. If you want to prevent ServiceLayer from falling back to the next converter, you can throw any <see cref="Exception"/>.
         /// </remarks>
         public abstract Enum Convert(Enum sourceResultType, Type destinationEnumType);
     }
