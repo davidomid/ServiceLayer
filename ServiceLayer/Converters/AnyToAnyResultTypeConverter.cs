@@ -26,8 +26,7 @@ namespace ServiceLayer
         /// <param name="destinationEnumType">The destination result type enum which the source result type value will be converted to.</param>
         /// <returns>
         ///     An <see cref="Enum"/> value with the same type as the given <paramref name="destinationEnumType"/>, after being converted from the given <paramref name="sourceResultType"/>.
-        ///     <c>null</c>
-        ///     <value>null</value> can be returned when no conversion to <paramref name="destinationEnumType"/> is possible.
+        ///     <c>null</c> can be returned when no conversion to <paramref name="destinationEnumType"/> is possible.
         /// </returns>
         /// <remarks>
         ///     If no direct conversion to the destination result type enum is possible, you can return <c>null</c>.
