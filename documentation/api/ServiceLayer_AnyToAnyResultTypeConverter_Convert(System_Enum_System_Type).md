@@ -11,7 +11,7 @@ The source result type enum value.
   
 <a name='ServiceLayer_AnyToAnyResultTypeConverter_Convert(System_Enum_System_Type)_destinationEnumType'></a>
 `destinationEnumType` [System.Type](https://docs.microsoft.com/en-us/dotnet/api/System.Type 'System.Type')  
-The destination result type enum which the source result type value will be converted to.
+The destination result type enum which the given [sourceResultType](ServiceLayer_AnyToAnyResultTypeConverter_Convert(System_Enum_System_Type).md#ServiceLayer_AnyToAnyResultTypeConverter_Convert(System_Enum_System_Type)_sourceResultType 'ServiceLayer.AnyToAnyResultTypeConverter.Convert(System.Enum, System.Type).sourceResultType') will be converted to.
   
 #### Returns
 [System.Enum](https://docs.microsoft.com/en-us/dotnet/api/System.Enum 'System.Enum')  

@@ -8,6 +8,7 @@ public abstract class AnyToOneResultTypeConverter<TDestinationResultType> : Serv
 #### Type parameters
 <a name='ServiceLayer_AnyToOneResultTypeConverter_TDestinationResultType__TDestinationResultType'></a>
 `TDestinationResultType`  
+The destination result type enum which any given source result types will be converted to.
   
 
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [ServiceLayer.ResultTypeConverter](https://docs.microsoft.com/en-us/dotnet/api/ServiceLayer.ResultTypeConverter 'ServiceLayer.ResultTypeConverter') &#129106; AnyToOneResultTypeConverter&lt;TDestinationResultType&gt;  
